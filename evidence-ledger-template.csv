@@ -1,0 +1,2 @@
+evidence_id,book,chapter,page_ref,location_scope,primary_location,secondary_location,constraint_type,constraint_statement,certainty_tier,quote_excerpt,paraphrase,negative_constraint,decision_status,notes
+EX001,TNOTW,,,campus,,,,,Tier 1,,,,pending,

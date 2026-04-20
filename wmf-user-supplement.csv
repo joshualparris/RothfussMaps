@@ -1,0 +1,7 @@
+location_id,building_or_room_name,chapter,evidence_type,paraphrased_evidence,what_this_proves,confidence
+UNIV-WMF-01,Archives (Sub-three),22,Spatial,Tucked corner door; long flight of stone steps; low-ceilinged wide hallway.,Establishes depth of inhabited Archives below the Stacks.,A
+UNIV-WMF-02,Puppet's Chambers,22,Architectural,Bizarrely out of place room in the belly of the Archives; two internal doorways.,Presence of a permanent residence or watchpoint deep within the secure Stacks.,A
+UNIV-WMF-03,Archives Shelving,22,Directional,"Books sorted by floor, corner, row, rack, and shelf, for example: second floor, southeast corner, second row, second rack, third shelf.",Confirms a rigid grid-based coordinate system for the massive Archives interior.,A
+UNIV-WMF-04,The Hidden City,"8, 14",Spatial,Auri's domain; narrow tunnels provide back-door access to the Archives.,The Underthing is not just ruins but a functional hidden transit network.,B
+UNIV-WMF-05,Ambrose's Rooms,11,Architectural,Second-story rooms; elaborate stained-glass windows.,Elite student housing is distinguished by aesthetic luxury and height.,A
+UNIV-WMF-06,Golden Pony,10,Adjacency,Located on the University side of the river; elaborate kitchens and stables.,There is a high-end commercial hub adjacent to the University for wealthy students.,A

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The University Atlas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="atlas-shell">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <p class="eyebrow">Kingkiller Chronicle Floor Plan Atlas</p>
+        <h1>The University Atlas</h1>
+        <p class="brand-copy">
+          A lore-sensitive browser for campus anchors, building shells, levels, room studies, and legacy drift that still needs to stay visible.
+        </p>
+      </div>
+
+      <div class="sidebar-controls">
+        <label class="search-wrap" for="atlas-search">
+          <span>Find an area or study</span>
+          <input id="atlas-search" type="search" placeholder="Archives, Tomes, Haven, Underthing…">
+        </label>
+      </div>
+
+      <nav id="district-nav" class="district-nav" aria-label="Atlas navigation"></nav>
+    </aside>
+
+    <main class="main-panel">
+      <header class="hero">
+        <div class="hero-copy">
+          <p id="hero-district" class="hero-district"></p>
+          <h2 id="hero-title">The University Atlas</h2>
+          <p id="hero-blurb" class="hero-blurb"></p>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-card">
+            <span class="meta-label">Render Count</span>
+            <strong id="hero-render-count">0</strong>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Current Status</span>
+            <strong id="hero-status">Awaiting selection</strong>
+          </div>
+        </div>
+      </header>
+
+      <section class="area-topline">
+        <div id="area-links" class="link-row"></div>
+        <div id="canon-note" class="canon-note"></div>
+      </section>
+
+      <section class="study-panel">
+        <div class="study-header">
+          <div>
+            <p class="section-kicker">Study Order</p>
+            <h3>Levels, rooms, and live branches</h3>
+          </div>
+          <div id="study-count" class="study-count"></div>
+        </div>
+        <div id="study-rail" class="study-rail"></div>
+      </section>
+
+      <section class="viewer-grid">
+        <div class="viewer-column">
+          <div class="viewer-card">
+            <div class="viewer-topbar">
+              <div>
+                <p id="item-kind" class="viewer-kind"></p>
+                <h3 id="item-title">Select a study</h3>
+              </div>
+              <div class="viewer-actions">
+                <button id="prev-image" class="icon-btn" type="button" aria-label="Previous image">←</button>
+                <button id="next-image" class="icon-btn" type="button" aria-label="Next image">→</button>
+              </div>
+            </div>
+            <p id="item-note" class="item-note"></p>
+            <div id="item-caution-wrap" class="caution-wrap"></div>
+
+            <div id="image-stage" class="image-stage empty">
+              <div class="empty-state">
+                <p class="empty-title">No image selected yet</p>
+                <p class="empty-copy">Choose an area in the sidebar, then pick a study card to browse its current render set.</p>
+              </div>
+            </div>
+
+            <div class="thumb-strip-wrap">
+              <div id="thumb-strip" class="thumb-strip"></div>
+            </div>
+
+            <div id="image-caption" class="image-caption"></div>
+          </div>
+        </div>
+
+        <div class="details-column">
+          <section class="details-card">
+            <p class="section-kicker">Study Notes</p>
+            <div id="study-details" class="study-details">
+              <p>Select a study to see its render list, linked docs, and caution notes.</p>
+            </div>
+          </section>
+
+          <section class="details-card">
+            <p class="section-kicker">Browser Notes</p>
+            <ul class="browser-notes">
+              <li>Areas are ordered by a more book-faithful progression, not just by folder number.</li>
+              <li>Legacy drift is kept visible instead of silently deleted, especially where older images predate canon corrections.</li>
+              <li>Areas with no renders yet stay in the atlas so the build order remains honest and easy to follow.</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="atlas-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

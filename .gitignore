@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+
+# Do not publish the full source novels to a public repo.
+The_Name_of_Wind.pdf
+The Wise Mans Fear - Book (1).pdf

@@ -1,0 +1,313 @@
+Yes. I’ve treated **named interior sub-zones as part of their parent buildings**, so this stays building-focused rather than turning into a room-by-room atlas. I’ve included the **unnamed bursar building** and the **Underthing** because both behave like real built complexes in the evidence.
+
+## The University (overall campus)
+
+**1. What is explicitly known**
+The University is a **multi-building campus** of **about fifteen buildings**, set within or at the heart of a **small town/city** with wide roads, lawns, gardens, and specialist trades. By *WMF* it hosts **over a thousand students**, and admissions uses a major outdoor courtyard space. The campus also has a **northern edge** where a dirt road leads out toward Haven.   
+
+**2. What is strongly implied**
+The campus is **spread out rather than compact**, with significant movement between buildings through **courtyards, lanes, lawns, and roads**. It does not read as one enclosed fortress or single academic block.  
+
+**3. What is weakly inferred**
+It is probably a **low-rise, accretive academic townscape**, with buildings added over time rather than imposed by one clean masterplan. That is an inference from the mixed forms of the major buildings and the dispersed movement patterns. 
+
+**4. What must not be contradicted**
+Do not turn it into a single castle, a walled monastery, or a neat symmetrical campus. Do not erase the fact that the major buildings are **architecturally unlike one another**. Do not resolve the **Imre / University-town relationship** beyond what the text supports. 
+
+**5. Likely building function and circulation**
+Circulation is likely **outdoor-first** at the campus scale: building-to-building movement across open ground, with certain courtyards functioning as gathering, disciplinary, or admissions spaces. The north road to Haven suggests that at least one institutional outbuilding is deliberately set away from the academic core.  
+
+**6. Likely entrances, stairs, and room zones**
+At the campus level, expect **separate entrances for separate buildings**, rather than one grand portal. The large courtyards likely act as **distribution nodes**, with academic, residential, industrial, and medical zones spread around them.  
+
+**7. Unknowns that must remain unknown**
+The exact campus plan, compass orientation of most buildings, total site boundary, whether the University town is simply Imre or distinct from it, and how many courtyards there are all remain unknown. 
+
+**8. Final reconstruction summary in plain architectural language**
+Reconstruct the University as a **loose, lived-in academic settlement**: a spread of substantial but mismatched institutional buildings set among roads, lawns, gardens, and courts, with outdoor movement doing much of the connective work.  
+
+---
+
+## The Archives
+
+**1. What is explicitly known**
+The Archives are a **huge grey, windowless, block-like building** visible from the bridge approach. They have **one massive pair of stone doors** leading into a **small antechamber** with a desk, ledgers, sympathy lamps, and controlled routes to **Tomes**, **Stacks**, and **scriv-only** access. Inside, the Stacks are **dark, cool, dry, multi-level, and extend underground**; the building also contains the **Scriptorium, Sorting Hall, Buggery, Cataloger’s Mew, Bindery, Bolts, Palimpsest, Acquisitions Office**, Tomes, and a **roof reached by a locked interior door**.     
+
+**2. What is strongly implied**
+This is not just a storage block but a **controlled information plant**: public reading at the edge, restricted storage deeper in, production and processing rooms embedded within, and operational oversight concentrated near the front and in acquisitions. It functions almost like a **small internal city**.  
+
+**3. What is weakly inferred**
+The overall form is probably a **deep-shell masonry mass** with most light and supervision concentrated near the entrance and work zones, while the deeper storage areas rely on lamps and internal wayfinding. That is inferred from the windowless exterior, dark Stacks, and controlled access sequence.  
+
+**4. What must not be contradicted**
+Do not add exterior windows. Do not add multiple public entrances. Do not flatten Tomes and Stacks into one open library floor. Do not treat the four-plate door as ordinary joinery or as something casually accessible.   
+
+**5. Likely building function and circulation**
+Circulation likely runs **entrance hall → controlled threshold → Tomes / deeper restricted routes**, with separate service circulation for scrivs. Tomes is the public garden-like reading zone; the Stacks are deeper, darker, and vertically distributed; specialist workrooms branch off as internal districts.   
+
+**6. Likely entrances, stairs, and room zones**
+Likely sequence: **stone outer doors → antechamber / ledger desk → Tomes and Stack thresholds**. Inside the Stacks there are **stairwells up and down**, small **stone discussion rooms** with heavy wooden doors, and at least one hidden/restricted zone marked by the **four-plate door**. Roof access exists through a **locked internal roof door**.   
+
+**7. Unknowns that must remain unknown**
+The exact floor-by-floor plan, the depth below ground, the internal positions of most named workrooms, the exact location of the four-plate door, and the precise roof-entry location remain unknown.  
+
+**8. Final reconstruction summary in plain architectural language**
+Reconstruct the Archives as a **massive, windowless, single-entry stone repository** with a guarded threshold, a public reading front, a vast dark storage interior extending both upward and downward, and a web of specialised workrooms embedded inside it like districts in a city.   
+
+---
+
+## Mains
+
+**1. What is explicitly known**
+Mains covers **nearly an acre and a half**, looks **cobbled together from smaller mismatched buildings**, and is the **oldest** University building. Its corridors turn oddly, dead-end, and take roundabout paths; it contains **theatre-style classrooms**; at least one courtyard can only be reached through a **window**; and its roof is a **maze of chimneys and mismatched slate, clay, and tin**. A route exists from the roof down into a courtyard via an **apple tree**, and one easy roof access uses a **trio of decorative chimneys** on the **southwestern side**.   
+
+**2. What is strongly implied**
+Mains is an **accreted labyrinth**, not a simple block. It likely swallowed older structures and courts over time, leaving leftover pockets, awkward junctions, and rooftop irregularities. 
+
+**3. What is weakly inferred**
+It probably acts as a **general-purpose academic core**: classrooms, passages, offices, and absorbed older fabric all jammed together. That is inferred from its scale, age, and variety of spaces rather than one direct statement. 
+
+**4. What must not be contradicted**
+Do not make Mains clean, axial, or internally efficient. Do not give it one tidy roofline. Do not remove the possibility of **isolated courts** or **improvised vertical routes**.  
+
+**5. Likely building function and circulation**
+Circulation is likely **messy and inherited**, with routes shaped by old additions rather than by logic. Movement probably alternates between large shared corridors, awkward connectors, classroom pockets, and occasional trapped courtyard edges. 
+
+**6. Likely entrances, stairs, and room zones**
+Expect **multiple entrances**, many stairs, and many internal level changes. Room zones likely include lecture rooms, circulation spines, absorbed courtyards, rooftop access points, and odd dead-end stretches that only make sense historically, not functionally.  
+
+**7. Unknowns that must remain unknown**
+The exact plan, number of floors, which absorbed buildings survive intact inside it, and whether the apple-tree courtyard is internal or merely adjacent all remain unresolved. 
+
+**8. Final reconstruction summary in plain architectural language**
+Reconstruct Mains as a **huge, old, stitched-together academic pile**: irregular in plan, thick with corridors, courts, and teaching rooms, and topped by a complicated roofscape that students can navigate if they know the tricks.  
+
+---
+
+## Mews
+
+**1. What is explicitly known**
+Mews has a **circular central hub** with **eight wings radiating out** like a compass rose. One description calls it **three stories tall** and **many-windowed**. Yet the bunks for non-Arcanum students are said to be on the **fourth floor of the east wing**, farthest from the **bathing facilities on the ground floor**. The women’s wing is access-controlled, and Kvothe once reaches it by coming through a **window and a locked door** after emerging from the Underthing.   
+
+**2. What is strongly implied**
+Mews is the University’s main **student residential building**, with wings likely segregated by student category, gender, or status. Its radial plan suggests wing-based wayfinding and distribution from a shared core.  
+
+**3. What is weakly inferred**
+The central hub probably contains shared circulation or administrative functions, with residential rooms pushed outward along the wings. That is inferred from the radial form, not explicitly stated. 
+
+**4. What must not be contradicted**
+Do not erase the **radial eight-wing plan**. Do not collapse it into a simple dorm block. Do not ignore the **three-storey / fourth-floor tension**; that contradiction must stay open. Do not treat the women’s wing as freely accessible.  
+
+**5. Likely building function and circulation**
+Circulation likely runs **hub → wing → floor → bunk room**, with a practical, boarding-house logic rather than grandeur. Residential movement is vertical and repetitive, and at least some access is policed by wing and by time of day.  
+
+**6. Likely entrances, stairs, and room zones**
+Likely zones: entrance and stewarding near the front/core, ground-floor bathing, bunk rooms higher up, gendered or controlled wings, and narrower windows on upper levels. Expect multiple stairs within a building of this type, though their exact number is unknown.  
+
+**7. Unknowns that must remain unknown**
+Whether Mews is truly three stories, four stories, or three visible storeys plus another level; what exactly sits in the hub; and how the women’s wing connects to the rest of the building all remain unresolved.  
+
+**8. Final reconstruction summary in plain architectural language**
+Reconstruct Mews as a **radial student lodging building**, practical rather than elegant, with a central node, multiple residential wings, vertically stacked bunk accommodation, ground-floor service areas, and controlled access to at least some wings.  
+
+---
+
+## Hollows
+
+**1. What is explicitly known**
+Hollows is **simple and square**, with **stained-glass windows**. From the Archives it is reached by going **down, then left**, and it is recognisable by **two big maples out front**. Inside it contains an **admissions theatre** with a stage and raised crescent masters’ table, at least one **back entrance**, and **Elodin’s office**.  
+
+**2. What is strongly implied**
+Hollows functions as a **formal academic / administrative building**, suited to ceremony, questioning, and masterly business rather than residence or heavy practical work. 
+
+**3. What is weakly inferred**
+The unnamed tiered lecture hall in *WMF* may be in Hollows, but that connection is **not explicit** and should remain tentative. 
+
+**4. What must not be contradicted**
+Do not make Hollows large and sprawling. Do not remove its stained-glass identity. Do not collapse the admissions theatre and Masters’ Hall into the same room unless you mark that as uncertain.  
+
+**5. Likely building function and circulation**
+Likely circulation is **front approach through a formal entrance**, with at least one **secondary/back route**, and internal division between ceremonial rooms, offices, and possibly teaching rooms. 
+
+**6. Likely entrances, stairs, and room zones**
+Likely zones include a public ceremonial room, one or more masters’ spaces, and possibly lecture space. A back entrance definitely exists. Stairs are not explicitly described for Hollows itself, so they should not be over-specified. 
+
+**7. Unknowns that must remain unknown**
+Whether Masters’ Hall is definitely inside Hollows, whether Elodin’s lecture hall is in the same building, and how many storeys Hollows has all remain unknown.  
+
+**8. Final reconstruction summary in plain architectural language**
+Reconstruct Hollows as a **compact square academic building**, visually marked by stained glass and a pair of maples, with at least one formal hall, one back access route, and an interior suited to examinations, masters’ business, and controlled academic gathering. 
+
+---
+
+## Mess
+
+**1. What is explicitly known**
+Mess is a **separate building across the lawn from Mews**, described as **long** and **low-roofed**. It serves **three meals a day**, and its dining room has **large plank tables** seating about **two hundred students**.  
+
+**2. What is strongly implied**
+This is a **communal dining hall**, built for throughput rather than ceremony, and physically tied into student housing patterns. 
+
+**3. What is weakly inferred**
+It likely has kitchen and service areas at one end or behind the main hall, but that is inferred from function rather than directly described in the surviving evidence. 
+
+**4. What must not be contradicted**
+Do not make Mess tall, compact, or intimate. Do not attach it directly to Mews without evidence. It is explicitly **across the lawn** and spatially separate. 
+
+**5. Likely building function and circulation**
+Likely circulation is straightforward: **entry → tray/service line → long-table seating**, with heavy peak traffic at meal times. 
+
+**6. Likely entrances, stairs, and room zones**
+Likely one or more broad entries at ground level, a large main eating room, and service zones kept to the side or rear. No stairs are explicitly evidenced and should not be added gratuitously. 
+
+**7. Unknowns that must remain unknown**
+Exact plan, kitchen position, number of doors, and whether staff dining is separate all remain unknown. 
+
+**8. Final reconstruction summary in plain architectural language**
+Reconstruct Mess as a **big, plain, low dining shed or hall**, set across open grass from Mews, designed to feed large numbers of students efficiently rather than impress them.  
+
+---
+
+## Medica
+
+**1. What is explicitly known**
+Medica lies **on the other side of the Archives** from one courtyard approach. It is a **large, oddly shaped building**, like a **taller, less rambling version of Mains**. It is not only for teaching medicine: it also **tends the sick** and does not turn them away for inability to pay up front.  
+
+**2. What is strongly implied**
+Medica is both a **teaching building and a treatment institution**, probably with a stronger service/public role than most University buildings. 
+
+**3. What is weakly inferred**
+Because patients can settle debts later and treatment seems ongoing, the building probably includes more than consultation rooms alone — likely wards, treatment rooms, stores, and teaching space — but that remains inferred. 
+
+**4. What must not be contradicted**
+Do not shrink Medica into a tiny infirmary. Do not make it purely academic. Do not give it the same rambling profile as Mains; the text explicitly distinguishes it as **taller** and **less rambling**. 
+
+**5. Likely building function and circulation**
+Likely circulation separates **student / instructional use** from **patient treatment flows**, with entry from a courtyard side and internal movement shaped by triage, treatment, and recovery. That is a reasoned inference from its dual function. 
+
+**6. Likely entrances, stairs, and room zones**
+Likely ground-level public/patient access, treatment rooms, and upper or separate teaching zones. Stairs are likely in a building of this scale and height, but no specific stair system is described. 
+
+**7. Unknowns that must remain unknown**
+Exact plan, number of storeys, internal medical layout, and whether the building is organised by specialty, ward, or teaching rank all remain unknown. 
+
+**8. Final reconstruction summary in plain architectural language**
+Reconstruct Medica as a **substantial institutional medical building**, larger and more upright than Mains, serving both as a teaching facility and a working treatment house for the sick and injured. 
+
+---
+
+## Fishery / Artificery
+
+**1. What is explicitly known**
+The Fishery is the University’s **industrial / handcraft building**, housing shops for **glassblowers, joiners, potters, glaziers, forge-work and smelt-work**. Kilvin’s workshop is a **huge room** with many worktables; there are **rafters / high walkways**, and in *WMF* sunlight enters through **low windows on the eastern wall**. There is also a **southern exit** toward a courtyard, and Kilvin’s office is an enclosed room off the workshop with its own hot apparatus and a heavy door.  
+
+**2. What is strongly implied**
+This is a **noisy, dangerous, production-heavy teaching workshop**, not a quiet classroom block. It is both instructional and practical, with different craft zones likely occupying distinct parts of the building. 
+
+**3. What is weakly inferred**
+The building probably has a **big open central workshop floor** with specialist work areas around it and oversight rooms or catwalks above. That is inferred from the huge-room language, eastern windows, and earlier high-walkway evidence in the ledger.  
+
+**4. What must not be contradicted**
+Do not make the Fishery small, delicate, or library-like. Do not remove its industrial character, eastern windows, or the fact that Kilvin’s office is a separate enclosed room off the main workshop.  
+
+**5. Likely building function and circulation**
+Likely circulation is **entry → workshop floor → specialist stations / kilns / furnaces / benches**, with masters’ oversight from adjoining offices and upper walkways. A courtyard-facing south exit gives it a practical second route.  
+
+**6. Likely entrances, stairs, and room zones**
+Likely multiple ground-level work entries, a south exit, a large main workshop, specialist heat-work areas, Kilvin’s office, and access upward to catwalks or rafter-level apparatus.  
+
+**7. Unknowns that must remain unknown**
+The exact outer footprint, roof shape, precise placement of each shop, and how much of the building is one volume versus subdivided remain unknown. 
+
+**8. Final reconstruction summary in plain architectural language**
+Reconstruct the Fishery as a **large, hard-working craft and artificing hall**: bright at the east wall in the morning, hot, loud, full of benches and specialised work zones, with a separate master’s office and circulation designed around practical making rather than display.  
+
+---
+
+## Bursar’s office building (unnamed)
+
+**1. What is explicitly known**
+Lorren leads Kvothe **across a courtyard**, into **another stone building**, through a **hallway**, and **down a flight of stairs** to reach the bursar. The building itself is unnamed. 
+
+**2. What is strongly implied**
+This is a **separate administrative building**, not just a room in Mains or the Archives. The bursar’s position is at or below entry level rather than in a grand front chamber. 
+
+**3. What is weakly inferred**
+It probably houses other administrative functions besides the bursar, but that is only an inference from the fact that it is a dedicated stone building with internal circulation. 
+
+**4. What must not be contradicted**
+Do not pretend the building is named when the evidence does not name it. Do not move the bursar’s office to an upper floor or directly into the courtyard without the stair descent. 
+
+**5. Likely building function and circulation**
+Likely circulation is practical and clerical: **courtyard entry → hall → stair down → bursar office**, with little ceremonial emphasis. 
+
+**6. Likely entrances, stairs, and room zones**
+At minimum: one courtyard-facing entrance, one internal hall, one stair down, and at least one basement or lower-ground office zone. Anything beyond that is conjecture. 
+
+**7. Unknowns that must remain unknown**
+Name, exact footprint, number of floors, and what else is housed there remain unknown. 
+
+**8. Final reconstruction summary in plain architectural language**
+Reconstruct this as a **plain stone administrative building** with a modest courtyard entry and a lower-level bursarial office reached by an internal corridor and stair. 
+
+---
+
+## Haven / the Crockery / the Rookery
+
+**1. What is explicitly known**
+Haven lies out at the **northern edge** of the University zone, reached by a **wide dirt road into the forest**. It is a **huge manor-like asylum** with **red-tile roof, high windows, arched doorways, pillars, fountains, hedges, and a ten-foot wrought-iron fence**. Inside there is a **grand entryway** with stained glass, vaulted ceilings, polished marble, a desk with ledgers, a wide marble stair, and long white halls lined with wooden doors. Some rooms are padded; one former holding room used for Elodin has a **solid copper door**, bare stone, copper-framed windows, no inside handle, and an inaccessible-looking balcony. 
+
+**2. What is strongly implied**
+Haven is a **segregated institutional complex**: part asylum, part secure containment facility, and architecturally far more formal than an ordinary ward house. It is meant to impress, restrain, and process. 
+
+**3. What is weakly inferred**
+It likely combines a **public / intake front** with increasingly controlled interior wings, including ordinary patient rooms and high-containment cells. That is a strong reading of the circulation, but still partly inferred. 
+
+**4. What must not be contradicted**
+Do not make Haven shabby, cottage-like, or invisible. Do not erase the fence, formal grounds, or manor-scale architecture. Do not reduce Elodin’s former room to a normal cell. 
+
+**5. Likely building function and circulation**
+Likely sequence: **approach road → fenced grounds → formal intake / ledger desk → stair and corridors → patient wings**, with increasing security deeper inside. High-containment rooms sit in distinct wings or controlled reaches rather than immediately off the public entry. 
+
+**6. Likely entrances, stairs, and room zones**
+Expect a principal front entrance, a large public entry hall, at least one major stair, long ward corridors, ordinary patient rooms, special padded rooms, and at least one copper-secured containment chamber in a separate wing. 
+
+**7. Unknowns that must remain unknown**
+Exact plan, number of storeys, whether “Haven,” “Crockery,” and “Rookery” are exact synonyms or partly overlapping usages, and the mechanism behind the “heavy” feel of Elodin’s former room remain unknown. 
+
+**8. Final reconstruction summary in plain architectural language**
+Reconstruct Haven as a **large, fenced institutional manor-asylum**: formal on the outside, grand but controlled at the front, then increasingly corridor-bound and secure within, with ordinary wards and specialised high-security chambers coexisting in one complex. 
+
+---
+
+## The Underthing
+
+**1. What is explicitly known**
+The Underthing is a **vast underground built complex** beneath the University, explored over many nights. Named areas include **Woods, Vaults, Cricklet, Belows**, and others. Woods has **crumbling halls and rooms** with **wooden support beams**; Cricklet is a **long low room** with a **fresh-water trickle**; Vaults is a **narrow hallway** with **three deep cracks**; Belows is a **maze of intersecting tunnels** at least **a hundred feet below ground**, full of rushing wind. There are also **tight crawlspaces** and routes that connect back into Mews / the Archives zone.   
+
+**2. What is strongly implied**
+The Underthing is not one room or one basement. It is a **layered hidden sub-city of abandoned or forgotten service spaces**, partly ruined and partly passable, with different micro-environments and very uneven geometry. 
+
+**3. What is weakly inferred**
+It probably represents **older infrastructure, abandoned foundations, utility passages, and swallowed substructures** rather than one deliberately planned undercroft. That is inferred from the variety, damage, and scale. 
+
+**4. What must not be contradicted**
+Do not make the Underthing tidy, uniformly built, or easily navigable. Do not collapse it into a single tunnel system. Do not erase the structural decay, depth, crawlspaces, or environmental variation.  
+
+**5. Likely building function and circulation**
+Circulation is likely **fragmentary and local**, mixing tunnels, ruined rooms, narrow halls, cracks, crawlways, and occasional vertical breaches back into the inhabited University. This is exploration circulation, not formal public circulation.  
+
+**6. Likely entrances, stairs, and room zones**
+Expect hidden or improvised accesses, occasional windows or locked doors back into upper buildings, extremely narrow segments, and named zones that differ sharply in section and atmosphere. Stairs may exist, but the surviving evidence stresses tunnels, halls, crawlways, and cracks more than orderly stair systems.  
+
+**7. Unknowns that must remain unknown**
+Its full extent, original purpose, chronological layering, exact relation to every major building above, and the exact spelling/meaning of “Belows” must remain unknown. 
+
+**8. Final reconstruction summary in plain architectural language**
+Reconstruct the Underthing as a **buried, sprawling, semi-ruined service labyrinth** under the University: part tunnel network, part abandoned room system, part infrastructural remnant, with wildly different conditions from zone to zone and only fragmentary links back to the inhabited world above.  
+
+---
+
+I’ve **not** treated these as standalone buildings here: **House of the Wind / Pennant Square, Stonebridge, Imre, Ambrose’s room, Elodin’s unnamed lecture-hall building, Tomes, Stacks, Scriptorium, Sorting Hall, Buggery, Bindery, Bolts, Palimpsest, Acquisitions Office, Kilvin’s office, and Masters’ Hall**. I treated those as **courtyards, routes, towns, rooms, or sub-zones within parent buildings** because the ledger supports them that way more strongly than as separate buildings.   
+
+The cleanest next step is a **deduplicated master reconstruction pack** with one page per building plus a parent/child space tree.

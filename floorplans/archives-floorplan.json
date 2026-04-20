@@ -1,0 +1,128 @@
+{
+  "project": "University Map Project",
+  "building_name": "The Archives",
+  "version": "v2",
+  "north_reference": "up",
+  "certainty_summary": {
+    "tier_1_confirmed": ["5 stories tall, square grey windowless monolith", "Two-stage entrance with antechamber", "Branching to TOMES/STACKS/SCRIVS ONLY", "Entry hall as active staffed threshold", "Ledger-controlled access ('in the book')", "Stack access separate with fees, requires hand lamps", "Tiered sanctions system restricting access", "Roof accessible via locked interior door, bare stone surface overlooking courtyard", "City-like internal maze with roads/lanes/alleys", "Tomes: well-lit reading room", "Stacks: dark unlit storage", "Subareas: Scriptorium, Sorting Hall, acquisitions office"],
+    "tier_2_implied": ["Multi-floor with stairwells", "Extensive shelving systems"],
+    "tier_3_inferred": ["Urban maze of book districts"]
+  },
+  "site_context": {
+    "adjacent_locations": ["Mains (west)", "Hollows (nearby east)"],
+    "approach_routes": ["East from Mains, circle to find entrance"],
+    "exterior_constraints": ["Square grey featureless stone", "Single great stone entrance"],
+    "banned_exterior_assumptions": ["No windows", "No ornamentation", "No multiple entrances"]
+  },
+  "building_shell": {
+    "floor_count_known": true,
+    "shape_description": "Square grey stone monolith, 5 stories tall, windowless",
+    "entrances": ["stone_doors_to_antechamber"],
+    "vertical_links": ["multiple stairwells", "southeast_stairwell"],
+    "window_rules": ["No windows anywhere"],
+    "hard_bans": ["No exterior ornamentation", "No even lighting in Stacks"]
+  },
+  "floors": [
+    {
+      "floor_id": "antechamber",
+      "purpose": "Security threshold",
+      "circulation": {
+        "main_paths": ["stone doors in, wooden doors out"],
+        "stairs": [],
+        "restricted_routes": ["scrivs_only"]
+      },
+      "rooms": [
+        {
+          "room_id": "antechamber",
+          "name": "Antechamber",
+          "purpose": "Access control",
+          "must_connect_to": ["tomes_doors", "stacks_doors", "scrivs_door"],
+          "must_not_connect_to": [],
+          "features": ["small space", "branching doors"],
+          "lighting": ["interior lighting"],
+          "access_rules": ["public entry point"],
+          "unknowns": ["exact dimensions"]
+        }
+      ]
+    },
+    {
+      "floor_id": "tomes",
+      "purpose": "Public reading",
+      "circulation": {
+        "main_paths": ["from antechamber"],
+        "stairs": ["to upper floors"],
+        "restricted_routes": []
+      },
+      "rooms": [
+        {
+          "room_id": "tomes",
+          "name": "Tomes",
+          "purpose": "Main reading room",
+          "must_connect_to": ["antechamber"],
+          "must_not_connect_to": [],
+          "features": ["large high-ceilinged", "long tables", "core texts"],
+          "lighting": ["well-lit"],
+          "access_rules": ["public reading"],
+          "unknowns": ["exact shelving layout"]
+        }
+      ]
+    },
+    {
+      "floor_id": "stacks",
+      "purpose": "Restricted storage",
+      "circulation": {
+        "main_paths": ["city-like maze", "roads, lanes, alleys"],
+        "stairs": ["southeast_stairwell"],
+        "restricted_routes": ["hidden areas"]
+      },
+      "rooms": [
+        {
+          "room_id": "stacks_maze",
+          "name": "The Stacks",
+          "purpose": "Book storage maze",
+          "must_connect_to": ["antechamber", "stairwells"],
+          "must_not_connect_to": [],
+          "features": ["unlit", "hand lamps required", "cool dry air"],
+          "lighting": ["dark, portable light only"],
+          "access_rules": ["restricted"],
+          "unknowns": ["exact maze layout"]
+        },
+        {
+          "room_id": "scriptorium",
+          "name": "Scriptorium",
+          "purpose": "Copying and scripting",
+          "must_connect_to": ["stacks"],
+          "must_not_connect_to": [],
+          "features": ["specialized work area"],
+          "lighting": ["controlled lighting"],
+          "access_rules": ["staff access"],
+          "unknowns": ["exact location"]
+        },
+        {
+          "room_id": "sorting_hall",
+          "name": "Sorting Hall",
+          "purpose": "Book processing",
+          "must_connect_to": ["stacks"],
+          "must_not_connect_to": [],
+          "features": ["processing area"],
+          "lighting": ["interior lighting"],
+          "access_rules": ["staff access"],
+          "unknowns": ["exact location"]
+        },
+        {
+          "room_id": "acquisitions_office",
+          "name": "Acquisitions Office",
+          "purpose": "Book acquisition administration",
+          "must_connect_to": ["stacks"],
+          "must_not_connect_to": [],
+          "features": ["tiny perpetually dark", "huge lacquered map"],
+          "lighting": ["dark"],
+          "access_rules": ["administrative"],
+          "unknowns": ["exact location"]
+        }
+      ]
+    }
+  ],
+  "open_questions": ["Exact city-like district layout", "Four-plate door location"],
+  "design_inferences": ["Shelving as urban maze", "Climate control via Underthing ventilation"]
+}

@@ -1,0 +1,150 @@
+{
+  "project": "University Map Project",
+  "building_name": "The Mews",
+  "version": "v3",
+  "north_reference": "up",
+  "certainty_summary": {
+    "tier_1_confirmed": ["Circular central hub with 8 radiating wings", "Exterior describes Mews as grey, many-windowed, and three stories tall", "East wing: non-Arcanum on 4th floor", "West wing: Arcanum students", "Ground floor: bathing facilities"],
+    "tier_2_implied": ["Hub-and-spoke radial layout", "Wing-specific assignments", "The Mews has a real floor-count tension that must be preserved"],
+    "tier_3_inferred": ["Compass rose wing arrangement", "Partial upper east-wing level or attic-like accommodation reconciles the contradiction"]
+  },
+  "site_context": {
+    "adjacent_locations": ["Mess (across lawn to south)"],
+    "approach_routes": ["Campus-side approach to main entrance"],
+    "exterior_constraints": ["Radial grey stone with many windows"],
+    "banned_exterior_assumptions": ["No rectangular design"]
+  },
+  "building_shell": {
+    "floor_count_known": false,
+    "shape_description": "Radial hub-and-spoke with circular center and 8 wings",
+    "entrances": ["south_from_courtyard"],
+    "vertical_links": ["stairs_between_floors"],
+    "window_rules": ["Many windows throughout"],
+    "hard_bans": ["No rectangular dormitory", "No uniform assignments", "No claim that every visible wing is an obvious full four stories"]
+  },
+  "floors": [
+    {
+      "floor_id": "ground",
+      "purpose": "Communal facilities",
+      "circulation": {
+        "main_paths": ["central hub radiating to wings"],
+        "stairs": ["up to second floor"],
+        "restricted_routes": []
+      },
+      "rooms": [
+        {
+          "room_id": "central_hub_ground",
+          "name": "Central Hub Ground",
+          "purpose": "Circulation center",
+          "must_connect_to": ["south_entrance", "wing_corridors", "stairs"],
+          "must_not_connect_to": [],
+          "features": ["circular space"],
+          "lighting": ["windows"],
+          "access_rules": ["open circulation"],
+          "unknowns": ["exact hub design"]
+        },
+        {
+          "room_id": "bathing_facilities",
+          "name": "Bathing Facilities",
+          "purpose": "Communal baths",
+          "must_connect_to": ["central_hub"],
+          "must_not_connect_to": [],
+          "features": ["bathrooms", "washing areas"],
+          "lighting": ["windows"],
+          "access_rules": ["student access"],
+          "unknowns": ["exact layout"]
+        }
+      ]
+    },
+    {
+      "floor_id": "second",
+      "purpose": "Student housing",
+      "circulation": {
+        "main_paths": ["wing corridors"],
+        "stairs": ["up to third", "down to ground"],
+        "restricted_routes": []
+      },
+      "rooms": [
+        {
+          "room_id": "east_wing_second",
+          "name": "East Wing Second Floor",
+          "purpose": "Student rooms",
+          "must_connect_to": ["central_hub"],
+          "must_not_connect_to": [],
+          "features": ["student rooms"],
+          "lighting": ["windows"],
+          "access_rules": ["student access"],
+          "unknowns": ["room assignments"]
+        },
+        {
+          "room_id": "west_wing_second",
+          "name": "West Wing Second Floor",
+          "purpose": "Student rooms",
+          "must_connect_to": ["central_hub"],
+          "must_not_connect_to": [],
+          "features": ["student rooms"],
+          "lighting": ["windows"],
+          "access_rules": ["student access"],
+          "unknowns": ["room assignments"]
+        }
+      ]
+    },
+    {
+      "floor_id": "third",
+      "purpose": "Student housing",
+      "circulation": {
+        "main_paths": ["wing corridors"],
+        "stairs": ["up to reconstructed upper east-wing level", "down to second"],
+        "restricted_routes": []
+      },
+      "rooms": [
+        {
+          "room_id": "east_wing_third",
+          "name": "East Wing Third Floor",
+          "purpose": "Student rooms",
+          "must_connect_to": ["central_hub"],
+          "must_not_connect_to": [],
+          "features": ["student rooms"],
+          "lighting": ["windows"],
+          "access_rules": ["student access"],
+          "unknowns": ["room assignments"]
+        },
+        {
+          "room_id": "west_wing_third",
+          "name": "West Wing Third Floor",
+          "purpose": "Student rooms",
+          "must_connect_to": ["central_hub"],
+          "must_not_connect_to": [],
+          "features": ["student rooms"],
+          "lighting": ["windows"],
+          "access_rules": ["student access"],
+          "unknowns": ["room assignments"]
+        }
+      ]
+    },
+    {
+      "floor_id": "reconstructed_upper_east_level",
+      "purpose": "Partial upper residential level",
+      "circulation": {
+        "main_paths": ["east wing upper corridor"],
+        "stairs": ["down to third"],
+        "restricted_routes": []
+      },
+      "rooms": [
+        {
+          "room_id": "east_wing_upper_bunks",
+          "name": "East Wing Upper Bunks",
+          "purpose": "Non-Arcanum student rooms",
+          "must_connect_to": ["east_wing_third", "upper_stair_or_landing"],
+          "must_not_connect_to": [],
+          "features": ["student bunks", "farthest from baths", "partial upper level or attic-like accommodation"],
+          "lighting": ["windows or dormers if reconstructed"],
+          "access_rules": ["non-Arcanum students"],
+          "unknowns": ["exact extent of level", "whether it spans only east wing or more"]
+        }
+      ]
+    }
+  ],
+  "open_questions": ["Exact wing assignments", "Additional facilities", "How the apparent three-story exterior reconciles with the east-wing fourth-floor reference"],
+  "design_inferences": ["Compass rose with 8 cardinal/intercardinal directions", "Status-based vertical segregation", "Partial upper east-wing accommodation is the least disruptive bridge"]
+}

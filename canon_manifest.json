@@ -1,0 +1,240 @@
+{
+  "entities": [
+    {
+      "entity_id": "university",
+      "entity_type": "campus",
+      "claims": [
+        {
+          "claim": "lies west of Imre",
+          "certainty": "canon",
+          "source_ref": "TNOTW, various",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Imre is a little over two miles from the University on the eastern side of the Omethi",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Archives visible from the bridge approach",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Hollows reached from Archives by down, then left",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Mews radial with eight wings",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Mains sprawling and irregular",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "exact global compass placement of many buildings",
+          "certainty": "unknown",
+          "source_ref": "",
+          "notes": "unresolved campus-wide relationships",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "whether the 'small city/town' around the University is simply Imre or a distinct University-serving settlement",
+          "certainty": "unknown",
+          "source_ref": "",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "exact position of Masters' Hall",
+          "certainty": "unknown",
+          "source_ref": "",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        }
+      ]
+    },
+    {
+      "entity_id": "archives",
+      "entity_type": "building",
+      "claims": [
+        {
+          "claim": "six-story square grey windowless monolithic block, featureless and severe",
+          "certainty": "canon",
+          "source_ref": "evidence ledger UMAP001-UMAP010",
+          "notes": "height confirmed as six stories",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "single great stone entrance that requires circling the building to locate",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "two-stage entry: stone doors into small antechamber, then wooden doors to interior",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "antechamber branches to TOMES (double doors), STACKS (double doors), SCRIVS ONLY (smaller door)",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Tomes: large high-ceilinged well-lit main reading room with long tables and core texts",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "well-lit by controlled artificial illumination",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Stacks: unlit, dark storage requiring hand lamps, cool dry fresh-aired despite no windows",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "internal circulation like a city with roads, winding lanes, alleys, and shortcuts",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "subareas: Scriptorium, Sorting Hall, Buggery, Cataloger's Mew, Bindery, Bolts, Palimpsest, acquisitions office",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "acquisitions office: tiny perpetually dark room with huge lacquered map on one wall",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Stacks organization: well/badly cataloged neighborhoods, multi-floor",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "four-plate door at heart of Archives city",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "southeast stairwell in Stacks",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "roof accessible via locked interior door, bare stone surface overlooking courtyard",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "connected to Underthing via ventilation tunnels",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "access controlled by ledger registration ('in the book')",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "tiered access system with sanctions (can restrict to 'Tomes only')",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Stack access separate with fees, distinct from Tomes",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "no windows anywhere in the building",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "hard ban on windows",
+          "hard_ban": true,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "no natural light through windows",
+          "certainty": "canon",
+          "source_ref": "TNOTW",
+          "notes": "hard ban on natural light",
+          "hard_ban": true,
+          "frozen_bridge": false
+        }
+      ]
+    }
+  ]
+}
