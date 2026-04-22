@@ -1,0 +1,28 @@
+@"
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# Blender
+*.blend1
+*.blend2
+
+# Godot
+.import/
+.godot/
+
+# Node
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# OneDrive / temp
+~$*
+*.tmp
+tmp/
+"@ | Set-Content .gitignore
