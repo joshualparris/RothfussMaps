@@ -1269,6 +1269,34 @@
           }
         },
         {
+          "id": "level_2_landing_to_scriv_work",
+          "label": "Landing to Scriv Work Zone",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_2_stair_landing", "level_2_scriv_work_zone" ],
+          "line": {
+            "start": { "x": 10.0, "z": -6.0 },
+            "end": { "x": 10.0, "z": -4.6 }
+          },
+          "notes": [
+            "Added after playtest feedback so the room beside the top of the stairs has a direct side opening."
+          ]
+        },
+        {
+          "id": "level_2_landing_to_south_stacks",
+          "label": "Landing to South Stack District",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_2_stair_landing", "level_2_restricted_stack_districts" ],
+          "line": {
+            "start": { "x": 16.0, "z": -6.0 },
+            "end": { "x": 16.0, "z": -4.6 }
+          },
+          "notes": [
+            "Added after playtest feedback to keep Level 2 from bottlenecking at the stair landing."
+          ]
+        },
+        {
           "id": "level_2_circulation_to_stacks",
           "label": "Circulation Spine to Stacks",
           "certainty": "reconstructed",
@@ -1278,6 +1306,20 @@
             "start": { "x": 16.0, "z": 0.0 },
             "end": { "x": 16.0, "z": 2.4 }
           }
+        },
+        {
+          "id": "level_2_circulation_to_north_stacks",
+          "label": "Circulation Spine to North Stack District",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_2_circulation_spine", "level_2_restricted_stack_districts" ],
+          "line": {
+            "start": { "x": 16.0, "z": 5.0 },
+            "end": { "x": 16.0, "z": 7.4 }
+          },
+          "notes": [
+            "Second stack opening added so the east shelving districts are reachable from more than one point."
+          ]
         },
         {
           "id": "level_2_circulation_to_scriv_work",
@@ -1291,6 +1333,20 @@
           }
         },
         {
+          "id": "level_2_circulation_to_transcription",
+          "label": "Circulation Spine to Transcription Rooms",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_2_circulation_spine", "level_2_transcription_rooms" ],
+          "line": {
+            "start": { "x": 10.0, "z": 5.2 },
+            "end": { "x": 10.0, "z": 7.6 }
+          },
+          "notes": [
+            "Added after playtest feedback so the western restricted work rooms are reachable from the stair-adjacent spine."
+          ]
+        },
+        {
           "id": "level_2_circulation_to_north_stair",
           "label": "Circulation Spine to North Stair",
           "certainty": "reconstructed",
@@ -1300,6 +1356,62 @@
             "start": { "x": 10.2, "z": 8.8 },
             "end": { "x": 15.8, "z": 8.8 }
           }
+        },
+        {
+          "id": "level_2_transcription_to_tool_lamp_storage",
+          "label": "Transcription Rooms to Tool and Lamp Storage",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_2_transcription_rooms", "level_2_tool_lamp_storage" ],
+          "line": {
+            "start": { "x": -14.0, "z": 8.0 },
+            "end": { "x": -14.0, "z": 10.4 }
+          },
+          "notes": [
+            "Reconstructed internal service opening to make the Level 2 west support rooms navigable."
+          ]
+        },
+        {
+          "id": "level_2_scriv_work_to_south_stairwell",
+          "label": "Scriv Work to Southeast Stairwell Anchor",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_2_scriv_work_zone", "level_2_south_stairwell" ],
+          "line": {
+            "start": { "x": -14.0, "z": -4.8 },
+            "end": { "x": -14.0, "z": -2.4 }
+          },
+          "notes": [
+            "Reconstructed internal opening so the south stairwell anchor is reachable in the walkthrough."
+          ]
+        },
+        {
+          "id": "level_2_north_stair_to_transcription",
+          "label": "North Stairwell to Transcription Rooms",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_2_north_stairwell", "level_2_transcription_rooms" ],
+          "line": {
+            "start": { "x": 10.0, "z": 10.2 },
+            "end": { "x": 10.0, "z": 12.4 }
+          },
+          "notes": [
+            "Added to give the northern stair core access into the western restricted rooms."
+          ]
+        },
+        {
+          "id": "level_2_north_stair_to_stacks",
+          "label": "North Stairwell to Stack Districts",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_2_north_stairwell", "level_2_restricted_stack_districts" ],
+          "line": {
+            "start": { "x": 16.0, "z": 10.2 },
+            "end": { "x": 16.0, "z": 12.4 }
+          },
+          "notes": [
+            "Added to make the northern stack districts accessible without backtracking through a single opening."
+          ]
         }
       ],
       "stairs": [
