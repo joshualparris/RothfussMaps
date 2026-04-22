@@ -2732,154 +2732,154 @@ use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Ramp" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 11.6591, 1.9438)
+position = Vector3(13, 11.5391, 1.1438)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4, 0.22, 11.5551)
 use_collision = true
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread01" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 9.7491, -2.9182)
+position = Vector3(13, 9.6291, -3.7182)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread02" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 9.9582, -2.4364)
+position = Vector3(13, 9.8382, -3.2364)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread03" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 10.1673, -1.9545)
+position = Vector3(13, 10.0473, -2.7545)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread04" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 10.3764, -1.4727)
+position = Vector3(13, 10.2564, -2.2727)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread05" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 10.5855, -0.9909)
+position = Vector3(13, 10.4655, -1.7909)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread06" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 10.7945, -0.5091)
+position = Vector3(13, 10.6745, -1.3091)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread07" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 11.0036, -0.0273)
+position = Vector3(13, 10.8836, -0.8273)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread08" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 11.2127, 0.4545)
+position = Vector3(13, 11.0927, -0.3455)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread09" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 11.4218, 0.9364)
+position = Vector3(13, 11.3018, 0.1364)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread10" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 11.6309, 1.4182)
+position = Vector3(13, 11.5109, 0.6182)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread11" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 11.84, 1.9)
+position = Vector3(13, 11.72, 1.1)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread12" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 12.0491, 2.3818)
+position = Vector3(13, 11.9291, 1.5818)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread13" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 12.2582, 2.8636)
+position = Vector3(13, 12.1382, 2.0636)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread14" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 12.4673, 3.3455)
+position = Vector3(13, 12.3473, 2.5455)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread15" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 12.6764, 3.8273)
+position = Vector3(13, 12.5564, 3.0273)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread16" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 12.8855, 4.3091)
+position = Vector3(13, 12.7655, 3.5091)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread17" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 13.0945, 4.7909)
+position = Vector3(13, 12.9745, 3.9909)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread18" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 13.3036, 5.2727)
+position = Vector3(13, 13.1836, 4.4727)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread19" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 13.5127, 5.7545)
+position = Vector3(13, 13.3927, 4.9545)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread20" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 13.7218, 6.2364)
+position = Vector3(13, 13.6018, 5.4364)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false
 material = SubResource("Mat_stair_marker")
 
 [node name="VerticalLink03_Level2ToLevel3Stair_Tread21" type="CSGBox3D" parent="Blockout/VerticalLinks"]
-position = Vector3(13, 13.9309, 6.7182)
+position = Vector3(13, 13.8109, 5.9182)
 rotation = Vector3(-0.4094, 0, 0)
 size = Vector3(4.12, 0.05, 0.12)
 use_collision = false

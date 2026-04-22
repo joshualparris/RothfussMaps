@@ -1987,11 +1987,12 @@
       "step_count": 22,
       "from_floor": "level_2",
       "to_floor": "level_3",
-      "start": { "x": 13.0, "y": 9.46, "z": -3.4 },
-      "end": { "x": 13.0, "y": 14.06, "z": 7.2 },
+      "start": { "x": 13.0, "y": 9.34, "z": -4.2 },
+      "end": { "x": 13.0, "y": 13.94, "z": 6.4 },
       "notes": [
         "Playable Godot link between Level 2 and the 3rd Floor main stair landing.",
         "The 3rd Floor plan labels a main stair to the 2nd and 4th floors; this route uses that as the conservative circulation anchor.",
+        "Start and end points are aligned to landing slab edges so the ramp does not penetrate the Level 3 floor collision.",
         "Exact stair run and landing geometry remain reconstructed."
       ]
     }
