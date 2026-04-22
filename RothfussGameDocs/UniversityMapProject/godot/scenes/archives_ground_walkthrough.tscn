@@ -1,0 +1,1550 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor_slab"]
+albedo_color = Color(0.23, 0.23, 0.22, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_room_canon"]
+albedo_color = Color(0.78, 0.84, 0.9, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_room_implied"]
+albedo_color = Color(0.86, 0.78, 0.55, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_room_reconstructed"]
+albedo_color = Color(0.72, 0.74, 0.72, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_outer_wall"]
+albedo_color = Color(0.05, 0.05, 0.05, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_partition_wall"]
+albedo_color = Color(0.13, 0.13, 0.13, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_door_marker"]
+albedo_color = Color(0.7, 0.14, 0.1, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_stair_marker"]
+albedo_color = Color(0.12, 0.45, 0.25, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_fixture"]
+albedo_color = Color(0.38, 0.29, 0.17, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_label_dark"]
+albedo_color = Color(0.02, 0.02, 0.02, 1)
+roughness = 0.82
+
+[node name="archives_ground_walkthrough" type="Node3D"]
+
+[node name="Blockout" type="Node3D" parent="."]
+
+[node name="Slabs" type="Node3D" parent="Blockout"]
+
+[node name="Rooms" type="Node3D" parent="Blockout"]
+
+[node name="Walls" type="Node3D" parent="Blockout"]
+
+[node name="Doors" type="Node3D" parent="Blockout"]
+
+[node name="Stairs" type="Node3D" parent="Blockout"]
+
+[node name="Fixtures" type="Node3D" parent="Blockout"]
+
+[node name="Labels" type="Node3D" parent="Blockout"]
+
+[node name="Slab01_MainSlab" type="CSGBox3D" parent="Blockout/Slabs"]
+position = Vector3(-4, 0.06, 1)
+size = Vector3(40, 0.12, 30)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Slab02_EastServiceSlab" type="CSGBox3D" parent="Blockout/Slabs"]
+position = Vector3(22, 0.06, -3)
+size = Vector3(12, 0.12, 22)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Slab03_NorthEntryLipSlab" type="CSGBox3D" parent="Blockout/Slabs"]
+position = Vector3(0, 0.06, 17)
+size = Vector3(8, 0.12, 2)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Slab04_FrontStoneLandingSlab" type="CSGBox3D" parent="Blockout/Slabs"]
+position = Vector3(0, 0.06, 21)
+size = Vector3(16, 0.12, 6)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Room01_Antechamber" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(0, 0.15, 14)
+size = Vector3(8, 0.04, 8)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room02_ScrivsOnlyThreshold" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(-9, 0.15, 11)
+size = Vector3(10, 0.04, 2)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room03_ScrivsOnlyCorridor" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(-13, 0.15, 0)
+size = Vector3(2, 0.04, 20)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room04_ScrivsOffice" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(-19, 0.15, 7)
+size = Vector3(10, 0.04, 6)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Room05_TranscriptionRoom" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(-19, 0.15, 2)
+size = Vector3(10, 0.04, 4)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Room06_CopyingRoom" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(-19, 0.15, -2.5)
+size = Vector3(10, 0.04, 5)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Room07_ScrivsRest" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(-19, 0.15, -7.5)
+size = Vector3(10, 0.04, 5)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Room08_Tomes" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(-1, 0.15, 0)
+size = Vector3(22, 0.04, 20)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room09_StacksThreshold" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(13, 0.15, 0)
+size = Vector3(6, 0.04, 16)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="Room10_LowerStacksAccessChamber" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(13, 0.15, -11)
+size = Vector3(6, 0.04, 6)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="Room11_RestrictedShelvingEntry" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(19, 0.15, 0.5)
+size = Vector3(6, 0.04, 9)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Room12_LampLarder" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(17, 0.15, 6.5)
+size = Vector3(2, 0.04, 3)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Room13_CatalogueRoom" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(20, 0.15, 6.5)
+size = Vector3(4, 0.04, 3)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Room14_Unpacking" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(19, 0.15, -7)
+size = Vector3(6, 0.04, 6)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Room15_VerticalTransportShaft" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(25, 0.15, -1)
+size = Vector3(6, 0.04, 18)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="OuterWall01" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(2, 2.42, -14)
+size = Vector3(52, 4.6, 0.6)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall02" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(28, 2.42, -3)
+size = Vector3(0.6, 4.6, 22)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall03" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(22, 2.42, 8)
+size = Vector3(12, 4.6, 0.6)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall04" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 2.42, 12)
+size = Vector3(0.6, 4.6, 8)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall05" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(10, 2.42, 16)
+size = Vector3(12, 4.6, 0.6)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall06" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(4, 2.42, 17)
+size = Vector3(0.6, 4.6, 2)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall07" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-3.04, 2.42, 18)
+size = Vector3(1.92, 4.6, 0.6)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall08" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(3.04, 2.42, 18)
+size = Vector3(1.92, 4.6, 0.6)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall09" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-4, 2.42, 17)
+size = Vector3(0.6, 4.6, 2)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall10" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 2.42, 16)
+size = Vector3(20, 4.6, 0.6)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall11" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-24, 2.42, 1)
+size = Vector3(0.6, 4.6, 30)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="Partition001_Antechamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-3.54, 1.57, 10)
+size = Vector3(0.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition002_Antechamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(3.54, 1.57, 10)
+size = Vector3(0.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition003_Antechamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(4, 1.57, 14)
+size = Vector3(0.22, 2.9, 8)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition004_Antechamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-3.04, 1.57, 18)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition005_Antechamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(3.04, 1.57, 18)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition006_Antechamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-4, 1.57, 10.26)
+size = Vector3(0.22, 2.9, 0.52)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition007_Antechamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-4, 1.57, 14.74)
+size = Vector3(0.22, 2.9, 6.52)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition008_ScrivsOnlyThreshold" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-13.79, 1.57, 10)
+size = Vector3(0.42, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition009_ScrivsOnlyThreshold" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-8.21, 1.57, 10)
+size = Vector3(8.42, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition010_ScrivsOnlyThreshold" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-4, 1.57, 11.74)
+size = Vector3(0.22, 2.9, 0.52)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition011_ScrivsOnlyThreshold" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-9, 1.57, 12)
+size = Vector3(10, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition012_ScrivsOnlyThreshold" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 1.57, 11)
+size = Vector3(0.22, 2.9, 2)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition013_ScrivsOnlyCorridor" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-13, 1.57, -10)
+size = Vector3(2, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition014_ScrivsOnlyCorridor" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-12, 1.57, 0)
+size = Vector3(0.22, 2.9, 20)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition015_ScrivsOnlyCorridor" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-12.21, 1.57, 10)
+size = Vector3(0.42, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition016_ScrivsOnlyCorridor" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 1.57, -8.94)
+size = Vector3(0.22, 2.9, 2.12)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition017_ScrivsOnlyCorridor" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 1.57, -4.7)
+size = Vector3(0.22, 2.9, 3.64)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition018_ScrivsOnlyCorridor" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 1.57, -0.1)
+size = Vector3(0.22, 2.9, 2.84)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition019_ScrivsOnlyCorridor" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 1.57, 4.45)
+size = Vector3(0.22, 2.9, 3.54)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition020_ScrivsOnlyCorridor" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 1.57, 8.89)
+size = Vector3(0.22, 2.9, 2.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition021_ScrivsOffice" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-19, 1.57, 4)
+size = Vector3(10, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition022_ScrivsOffice" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 1.57, 5.11)
+size = Vector3(0.22, 2.9, 2.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition023_ScrivsOffice" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-19, 1.57, 10)
+size = Vector3(10, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition024_ScrivsOffice" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-24, 1.57, 7)
+size = Vector3(0.22, 2.9, 6)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition025_TranscriptionRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-19, 1.57, 0)
+size = Vector3(10, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition026_TranscriptionRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 1.57, 0.66)
+size = Vector3(0.22, 2.9, 1.32)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition027_TranscriptionRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 1.57, 3.34)
+size = Vector3(0.22, 2.9, 1.32)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition028_TranscriptionRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-24, 1.57, 2)
+size = Vector3(0.22, 2.9, 4)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition029_CopyingRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-19, 1.57, -5)
+size = Vector3(10, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition030_CopyingRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 1.57, -3.94)
+size = Vector3(0.22, 2.9, 2.12)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition031_CopyingRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 1.57, -0.76)
+size = Vector3(0.22, 2.9, 1.52)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition032_CopyingRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-24, 1.57, -2.5)
+size = Vector3(0.22, 2.9, 5)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition033_ScrivsRest" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-19, 1.57, -10)
+size = Vector3(10, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition034_ScrivsRest" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-14, 1.57, -5.76)
+size = Vector3(0.22, 2.9, 1.52)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition035_ScrivsRest" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-24, 1.57, -7.5)
+size = Vector3(0.22, 2.9, 5)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition036_Tomes" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-1, 1.57, -10)
+size = Vector3(22, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition037_Tomes" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(10, 1.57, -6.04)
+size = Vector3(0.22, 2.9, 7.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition038_Tomes" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(10, 1.57, 6.04)
+size = Vector3(0.22, 2.9, 7.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition039_Tomes" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(-7.54, 1.57, 10)
+size = Vector3(8.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition040_Tomes" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(6.54, 1.57, 10)
+size = Vector3(6.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition041_StacksThreshold" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(10.06, 1.57, -8)
+size = Vector3(0.12, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition042_StacksThreshold" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(15.94, 1.57, -8)
+size = Vector3(0.12, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition043_StacksThreshold" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.57, -4.64)
+size = Vector3(0.22, 2.9, 6.72)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition044_StacksThreshold" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.57, 4.64)
+size = Vector3(0.22, 2.9, 6.72)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition045_StacksThreshold" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(13, 1.57, 8)
+size = Vector3(6, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition046_StacksThreshold" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(10, 1.57, -5.04)
+size = Vector3(0.22, 2.9, 5.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition047_StacksThreshold" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(10, 1.57, 5.04)
+size = Vector3(0.22, 2.9, 5.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition048_LowerStacksAccessChamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(13, 1.57, -14)
+size = Vector3(6, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition049_LowerStacksAccessChamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.57, -11)
+size = Vector3(0.22, 2.9, 6)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition050_LowerStacksAccessChamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(10, 1.57, -11)
+size = Vector3(0.22, 2.9, 6)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition051_RestrictedShelvingEntry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16.76, 1.57, -4)
+size = Vector3(1.52, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition052_RestrictedShelvingEntry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(21.24, 1.57, -4)
+size = Vector3(1.52, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition053_RestrictedShelvingEntry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(22, 1.57, -2.54)
+size = Vector3(0.22, 2.9, 2.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition054_RestrictedShelvingEntry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(22, 1.57, 3.54)
+size = Vector3(0.22, 2.9, 2.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition055_RestrictedShelvingEntry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16.21, 1.57, 5)
+size = Vector3(0.42, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition056_RestrictedShelvingEntry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(18.15, 1.57, 5)
+size = Vector3(1.14, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition057_RestrictedShelvingEntry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(21.14, 1.57, 5)
+size = Vector3(1.72, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition058_RestrictedShelvingEntry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.57, -2.64)
+size = Vector3(0.22, 2.9, 2.72)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition059_RestrictedShelvingEntry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.57, 3.14)
+size = Vector3(0.22, 2.9, 3.72)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition060_LampLarder" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(17.79, 1.57, 5)
+size = Vector3(0.42, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition061_LampLarder" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(18, 1.57, 6.5)
+size = Vector3(0.22, 2.9, 3)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition062_LampLarder" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(17, 1.57, 8)
+size = Vector3(2, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition063_LampLarder" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.57, 6.5)
+size = Vector3(0.22, 2.9, 3)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition064_CatalogueRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(18.36, 1.57, 5)
+size = Vector3(0.72, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition065_CatalogueRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(22, 1.57, 6.5)
+size = Vector3(0.22, 2.9, 3)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition066_CatalogueRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(20, 1.57, 8)
+size = Vector3(4, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition067_Unpacking" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(19, 1.57, -10)
+size = Vector3(6, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition068_Unpacking" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(22, 1.57, -7)
+size = Vector3(0.22, 2.9, 6)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition069_Unpacking" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.57, -7)
+size = Vector3(0.22, 2.9, 6)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition070_VerticalTransportShaft" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(25, 1.57, -10)
+size = Vector3(6, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition071_VerticalTransportShaft" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(28, 1.57, -1)
+size = Vector3(0.22, 2.9, 18)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition072_VerticalTransportShaft" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(25, 1.57, 8)
+size = Vector3(6, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition073_VerticalTransportShaft" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(22, 1.57, -5.54)
+size = Vector3(0.22, 2.9, 8.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition074_VerticalTransportShaft" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(22, 1.57, 5.04)
+size = Vector3(0.22, 2.9, 5.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Door01_MainStoneEntrance" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(0, 0.18, 18)
+size = Vector3(4, 0.08, 0.55)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door02_AntechamberToTomes" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(0, 0.18, 10)
+size = Vector3(6, 0.08, 0.55)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door03_AntechamberToScrivsThreshold" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(-4, 0.18, 11)
+size = Vector3(0.55, 0.08, 0.8)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door04_ScrivsThresholdToCorridor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(-13, 0.18, 10)
+size = Vector3(1, 0.08, 0.55)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door05_ScrivsOfficeToCorridor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(-14, 0.18, 7)
+size = Vector3(0.55, 0.08, 1.4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door06_TranscriptionToCorridor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(-14, 0.18, 2)
+size = Vector3(0.55, 0.08, 1.2)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door07_CopyingToCorridor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(-14, 0.18, -2.2)
+size = Vector3(0.55, 0.08, 1.2)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door08_RestToCorridor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(-14, 0.18, -7.2)
+size = Vector3(0.55, 0.08, 1.2)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door09_TomesToStacksThreshold" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(10, 0.18, 0)
+size = Vector3(0.55, 0.08, 4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door10_StacksToLowerAccess" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(13, 0.18, -8)
+size = Vector3(5.6, 0.08, 0.55)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door11_StacksToRestrictedShelving" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(16, 0.18, 0)
+size = Vector3(0.55, 0.08, 2.4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door12_RestrictedToLampLarder" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(17, 0.18, 5)
+size = Vector3(1, 0.08, 0.55)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door13_RestrictedToCatalogue" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(19.5, 0.18, 5)
+size = Vector3(1.4, 0.08, 0.55)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door14_RestrictedToUnpacking" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(19, 0.18, -4)
+size = Vector3(2.8, 0.08, 0.55)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door15_RestrictedToTransportShaft" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(22, 0.18, 0.5)
+size = Vector3(0.55, 0.08, 3)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Stair01_NorthStacksDown" type="CSGBox3D" parent="Blockout/Stairs"]
+position = Vector3(13, 0.23, 5.4)
+size = Vector3(5, 0.1, 4.4)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="Stair02_SouthStacksDown" type="CSGBox3D" parent="Blockout/Stairs"]
+position = Vector3(13, 0.23, -5.4)
+size = Vector3(5, 0.1, 4.4)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="Stair03_LowerStacksAccess" type="CSGBox3D" parent="Blockout/Stairs"]
+position = Vector3(13, 0.23, -11.1)
+size = Vector3(5, 0.1, 4.6)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="Fixture01_PermissionsCounter" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(0, 0.63, 11.45)
+size = Vector3(5.6, 0.9, 0.7)
+use_collision = true
+material = SubResource("Mat_fixture")
+
+[node name="Fixture02_InternalLanternRoofMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(0, 0.22, 0.3)
+size = Vector3(8.4, 0.08, 6.2)
+use_collision = false
+material = SubResource("Mat_fixture")
+
+[node name="Fixture03_TomesTableWest" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(-7.95, 0.555, -0.5)
+size = Vector3(1.5, 0.75, 13)
+use_collision = true
+material = SubResource("Mat_fixture")
+
+[node name="Fixture04_TomesTableCentral" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(-0.65, 0.555, -0.5)
+size = Vector3(1.5, 0.75, 13)
+use_collision = true
+material = SubResource("Mat_fixture")
+
+[node name="Fixture05_TomesTableEast" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(6.55, 0.555, -0.5)
+size = Vector3(1.5, 0.75, 13)
+use_collision = true
+material = SubResource("Mat_fixture")
+
+[node name="Fixture06_TomesColumnNw" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(-7.85, 1.28, 7.35)
+size = Vector3(0.7, 2.2, 0.7)
+use_collision = true
+material = SubResource("Mat_fixture")
+
+[node name="Fixture07_TomesColumnNe" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(7.15, 1.28, 7.35)
+size = Vector3(0.7, 2.2, 0.7)
+use_collision = true
+material = SubResource("Mat_fixture")
+
+[node name="Fixture08_TomesColumnSw" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(-7.85, 1.28, -7.85)
+size = Vector3(0.7, 2.2, 0.7)
+use_collision = true
+material = SubResource("Mat_fixture")
+
+[node name="Fixture09_TomesColumnSe" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(7.15, 1.28, -7.85)
+size = Vector3(0.7, 2.2, 0.7)
+use_collision = true
+material = SubResource("Mat_fixture")
+
+[node name="Label01_LabelAntechamber" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(0, 0.36, 14)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Antechamber"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label02_LabelScrivsOnly" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(-13, 0.36, 0)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Scrivs Only"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label03_LabelScrivsOffice" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(-19, 0.36, 7)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Scriv's Office"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label04_LabelTranscription" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(-19, 0.36, 2)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Transcription"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label05_LabelCopyingRoom" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(-19, 0.36, -2.5)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Copying Room"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label06_LabelScrivsRest" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(-19, 0.36, -7.5)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Scriv's Rest"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label07_LabelTomes" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(-1, 0.36, -9)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Tomes - Public Reading Hall"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label08_LabelStacksThreshold" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(13, 0.36, 0)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Stacks"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label09_LabelLowerStacksAccess" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(13, 0.36, -11)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Lower Stacks Access"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label10_LabelRestrictedShelving" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(19, 0.36, 0.5)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Restricted Shelving"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label11_LabelLampLarder" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(17, 0.36, 6.5)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Lamp Larder"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label12_LabelCatalogueRoom" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(20, 0.36, 6.5)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Catalogue Room"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label13_LabelUnpacking" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(19, 0.36, -7)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Unpacking"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Label14_LabelTransportShaft" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(25, 0.36, -1)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Vertical Transport Shaft"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Level1" type="Node3D" parent="Blockout"]
+
+[node name="Slabs" type="Node3D" parent="Blockout/Level1"]
+
+[node name="Rooms" type="Node3D" parent="Blockout/Level1"]
+
+[node name="Walls" type="Node3D" parent="Blockout/Level1"]
+
+[node name="Doors" type="Node3D" parent="Blockout/Level1"]
+
+[node name="Stairs" type="Node3D" parent="Blockout/Level1"]
+
+[node name="Fixtures" type="Node3D" parent="Blockout/Level1"]
+
+[node name="Labels" type="Node3D" parent="Blockout/Level1"]
+
+[node name="Level1_Slab01_Level1WestMainSlab" type="CSGBox3D" parent="Blockout/Level1/Slabs"]
+position = Vector3(-7, 4.66, 2)
+size = Vector3(34, 0.12, 28)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Level1_Slab02_Level1StairLandingSlab" type="CSGBox3D" parent="Blockout/Level1/Slabs"]
+position = Vector3(13, 4.66, 7.6)
+size = Vector3(6, 0.12, 2.4)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Level1_Slab03_Level1NorthStripSlab" type="CSGBox3D" parent="Blockout/Level1/Slabs"]
+position = Vector3(13, 4.66, 12.4)
+size = Vector3(6, 0.12, 7.2)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Level1_Slab04_Level1EastWingSlab" type="CSGBox3D" parent="Blockout/Level1/Slabs"]
+position = Vector3(22, 4.66, -1)
+size = Vector3(12, 0.12, 22)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Level1_Room01_Level1TomesGallery" type="CSGBox3D" parent="Blockout/Level1/Rooms"]
+position = Vector3(1, 4.75, 1.5)
+size = Vector3(18, 0.04, 17)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Level1_Room02_Level1WestStackAccess" type="CSGBox3D" parent="Blockout/Level1/Rooms"]
+position = Vector3(-19, 4.75, -1)
+size = Vector3(10, 0.04, 12)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="Level1_Room03_Level1AntechamberOverlook" type="CSGBox3D" parent="Blockout/Level1/Rooms"]
+position = Vector3(-16, 4.75, 8.5)
+size = Vector3(16, 0.04, 7)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Level1_Room04_Level1StairLanding" type="CSGBox3D" parent="Blockout/Level1/Rooms"]
+position = Vector3(13, 4.75, 7.6)
+size = Vector3(6, 0.04, 2.4)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Level1_Room05_Level1CatalogueRoom" type="CSGBox3D" parent="Blockout/Level1/Rooms"]
+position = Vector3(22, 4.75, 7)
+size = Vector3(12, 0.04, 6)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Level1_Room06_Level1UnpackingRoom" type="CSGBox3D" parent="Blockout/Level1/Rooms"]
+position = Vector3(22, 4.75, 1)
+size = Vector3(12, 0.04, 6)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Level1_Room07_Level1RestrictingRoom" type="CSGBox3D" parent="Blockout/Level1/Rooms"]
+position = Vector3(22, 4.75, -6)
+size = Vector3(12, 0.04, 8)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Level1_OuterWall01" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(2, 6.72, -12)
+size = Vector3(52, 4, 0.6)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="Level1_OuterWall02" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(28, 6.72, -1)
+size = Vector3(0.6, 4, 22)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="Level1_OuterWall03" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(22, 6.72, 10)
+size = Vector3(12, 4, 0.6)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="Level1_OuterWall04" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(16, 6.72, 13)
+size = Vector3(0.6, 4, 6)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="Level1_OuterWall05" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(-4, 6.72, 16)
+size = Vector3(40, 4, 0.6)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="Level1_OuterWall06" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(-24, 6.72, 2)
+size = Vector3(0.6, 4, 28)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="Level1_Partition001_Level1TomesGallery" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(1, 6.17, -7)
+size = Vector3(18, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition002_Level1TomesGallery" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(10, 6.17, -0.14)
+size = Vector3(0.22, 2.9, 13.72)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition003_Level1TomesGallery" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(10, 6.17, 9.14)
+size = Vector3(0.22, 2.9, 1.72)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition004_Level1TomesGallery" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(1, 6.17, 10)
+size = Vector3(18, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition005_Level1TomesGallery" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(-8, 6.17, 1.5)
+size = Vector3(0.22, 2.9, 17)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition006_Level1WestStackAccess" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(-19, 6.17, -7)
+size = Vector3(10, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition007_Level1WestStackAccess" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(-14, 6.17, -1)
+size = Vector3(0.22, 2.9, 12)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition008_Level1WestStackAccess" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(-19, 6.17, 5)
+size = Vector3(10, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition009_Level1WestStackAccess" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(-24, 6.17, -1)
+size = Vector3(0.22, 2.9, 12)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition010_Level1AntechamberOverlook" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(-16, 6.17, 5)
+size = Vector3(16, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition011_Level1AntechamberOverlook" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(-8, 6.17, 8.5)
+size = Vector3(0.22, 2.9, 7)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition012_Level1AntechamberOverlook" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(-16, 6.17, 12)
+size = Vector3(16, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition013_Level1AntechamberOverlook" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(-24, 6.17, 8.5)
+size = Vector3(0.22, 2.9, 7)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition014_Level1StairLanding" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(10.06, 6.17, 6.4)
+size = Vector3(0.12, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition015_Level1StairLanding" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(15.94, 6.17, 6.4)
+size = Vector3(0.12, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition016_Level1StairLanding" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(16, 6.17, 6.56)
+size = Vector3(0.22, 2.9, 0.32)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition017_Level1StairLanding" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(16, 6.17, 8.54)
+size = Vector3(0.22, 2.9, 0.52)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition018_Level1StairLanding" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(13, 6.17, 8.8)
+size = Vector3(6, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition019_Level1StairLanding" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(10, 6.17, 6.56)
+size = Vector3(0.22, 2.9, 0.32)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition020_Level1StairLanding" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(10, 6.17, 8.54)
+size = Vector3(0.22, 2.9, 0.52)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition021_Level1CatalogueRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(17.36, 6.17, 4)
+size = Vector3(2.72, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition022_Level1CatalogueRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(24.64, 6.17, 4)
+size = Vector3(6.72, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition023_Level1CatalogueRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(28, 6.17, 7)
+size = Vector3(0.22, 2.9, 6)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition024_Level1CatalogueRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(22, 6.17, 10)
+size = Vector3(12, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition025_Level1CatalogueRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(16, 6.17, 5.36)
+size = Vector3(0.22, 2.9, 2.72)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition026_Level1CatalogueRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(16, 6.17, 9.14)
+size = Vector3(0.22, 2.9, 1.72)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition027_Level1UnpackingRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(17.36, 6.17, -2)
+size = Vector3(2.72, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition028_Level1UnpackingRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(24.64, 6.17, -2)
+size = Vector3(6.72, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition029_Level1UnpackingRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(28, 6.17, 1)
+size = Vector3(0.22, 2.9, 6)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition030_Level1UnpackingRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(16, 6.17, 1)
+size = Vector3(0.22, 2.9, 6)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition031_Level1RestrictingRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(22, 6.17, -10)
+size = Vector3(12, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition032_Level1RestrictingRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(28, 6.17, -6)
+size = Vector3(0.22, 2.9, 8)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Partition033_Level1RestrictingRoom" type="CSGBox3D" parent="Blockout/Level1/Walls"]
+position = Vector3(16, 6.17, -6)
+size = Vector3(0.22, 2.9, 8)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Level1_Door01_Level1RampIntoStairLanding" type="CSGBox3D" parent="Blockout/Level1/Doors"]
+position = Vector3(13, 4.78, 6.4)
+size = Vector3(5.6, 0.08, 0.55)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Level1_Door02_Level1StairToTomesGallery" type="CSGBox3D" parent="Blockout/Level1/Doors"]
+position = Vector3(10, 4.78, 7.5)
+size = Vector3(0.55, 0.08, 1.4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Level1_Door03_Level1StairToCatalogue" type="CSGBox3D" parent="Blockout/Level1/Doors"]
+position = Vector3(16, 4.78, 7.5)
+size = Vector3(0.55, 0.08, 1.4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Level1_Door04_Level1CatalogueToUnpacking" type="CSGBox3D" parent="Blockout/Level1/Doors"]
+position = Vector3(20, 4.78, 4)
+size = Vector3(2.4, 0.08, 0.55)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Level1_Door05_Level1UnpackingToRestricting" type="CSGBox3D" parent="Blockout/Level1/Doors"]
+position = Vector3(20, 4.78, -2)
+size = Vector3(2.4, 0.08, 0.55)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Level1_Stair01_Level1ArrivalMarker" type="CSGBox3D" parent="Blockout/Level1/Stairs"]
+position = Vector3(13, 4.83, 7.5)
+size = Vector3(4.4, 0.1, 1.8)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="Level1_Fixture01_Level1UpperReadingTable" type="CSGBox3D" parent="Blockout/Level1/Fixtures"]
+position = Vector3(1, 5.155, 1.7)
+size = Vector3(12, 0.75, 1.4)
+use_collision = true
+material = SubResource("Mat_fixture")
+
+[node name="Level1_Fixture02_Level1SympathyLightingMarker" type="CSGBox3D" parent="Blockout/Level1/Fixtures"]
+position = Vector3(1, 4.82, -1.8)
+size = Vector3(14, 0.08, 0.8)
+use_collision = false
+material = SubResource("Mat_fixture")
+
+[node name="Level1_Label01_LabelLevel1TomesGallery" type="Label3D" parent="Blockout/Level1/Labels"]
+position = Vector3(1, 4.96, 8)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Level 1 - Upper Tomes Gallery"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Level1_Label02_LabelLevel1StairLanding" type="Label3D" parent="Blockout/Level1/Labels"]
+position = Vector3(13, 4.96, 7.4)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Stairs to Ground"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Level1_Label03_LabelLevel1Catalogue" type="Label3D" parent="Blockout/Level1/Labels"]
+position = Vector3(22, 4.96, 7)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Catalogue Room"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Level1_Label04_LabelLevel1Unpacking" type="Label3D" parent="Blockout/Level1/Labels"]
+position = Vector3(22, 4.96, 1)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Unpacking Room"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="Level1_Label05_LabelLevel1Restricting" type="Label3D" parent="Blockout/Level1/Labels"]
+position = Vector3(22, 4.96, -6)
+rotation = Vector3(-1.5708, 0, 0)
+text = "Restricting Room"
+font_size = 48
+pixel_size = 0.015
+outline_size = 6
+modulate = Color(0.02, 0.02, 0.02, 1)
+
+[node name="VerticalLinks" type="Node3D" parent="Blockout"]
+
+[node name="VerticalLink01_GroundToLevel1Stair_Ramp" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 2.4247, -0.4681)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4, 0.22, 16.0896)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread01" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 0.4918, -7.5)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread02" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 0.7036, -6.8)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread03" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 0.9155, -6.1)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread04" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 1.1273, -5.4)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread05" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 1.3391, -4.7)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread06" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 1.5509, -4)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread07" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 1.7627, -3.3)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread08" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 1.9745, -2.6)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread09" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 2.1864, -1.9)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread10" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 2.3982, -1.2)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread11" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 2.61, -0.5)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread12" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 2.8218, 0.2)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread13" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 3.0336, 0.9)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread14" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 3.2455, 1.6)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread15" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 3.4573, 2.3)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread16" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 3.6691, 3)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread17" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 3.8809, 3.7)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread18" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 4.0927, 4.4)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread19" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 4.3045, 5.1)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread20" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 4.5164, 5.8)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_GroundToLevel1Stair_Tread21" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(13, 4.7282, 6.5)
+rotation = Vector3(-0.2938, 0, 0)
+size = Vector3(4.12, 0.05, 0.12)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 15)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 18, 0)
+light_energy = 2.2
+
+[node name="FillLight" type="OmniLight3D" parent="."]
+position = Vector3(0, 6, 2)
+light_energy = 1.0
+omni_range = 45.0
