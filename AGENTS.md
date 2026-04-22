@@ -89,6 +89,19 @@ Use `RothfussGameDocs/UniversityMapProject/data/review_gates.json` for gate stat
 - Do not rely on manual Blender scene edits as the canonical record.
 - Explain any uncertainty or blocked external tool clearly.
 
+## Git Workflow
+
+- Use Git checkpoints regularly.
+- Commit and push after each completed logical milestone.
+- Never use `git add .`
+- Stage files by purpose.
+- Do not push if validators/tests fail, unless the user explicitly approves.
+- Do not commit unrelated files together.
+- Do not rewrite history unless the user explicitly asks.
+- If a change is interpretive, say so before committing.
+- If there are merge conflicts, branch divergence, or authentication failures, stop and explain clearly.
+- Report commit hash, branch, commit message, and push result after each push.
+
 ## Drift Handling
 
 When you find drift:
