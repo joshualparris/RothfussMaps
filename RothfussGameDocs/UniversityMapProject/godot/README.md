@@ -14,7 +14,7 @@ The scene is now generated as native Godot CSG from the source JSON, so it is vi
 
 `res://assets/archives_ground_v02_canon_safe.glb`
 
-This scene includes a reconstructed Level 1 and a playable stair link between ground and Level 1. The stair is implemented as a shallow collision ramp with visual treads so walking up and down is reliable in Godot.
+This scene includes reconstructed upper Archives levels and playable stair links between them. Stairs are implemented as shallow collision ramps with visual treads so walking up and down is reliable in Godot.
 
 Controls:
 
