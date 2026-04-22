@@ -1034,6 +1034,798 @@
           "position": { "x": 22.0, "z": -6.0 }
         }
       ]
+    },
+    {
+      "id": "level_2",
+      "name": "Level 2",
+      "certainty": "reconstructed",
+      "elevation": 9.2,
+      "floor_height": 4.0,
+      "notes": [
+        "Reconstructed from the supplied Archives 2nd Floor visual plan.",
+        "This layer is a playable Godot interpretation of the first restricted stacks level above the public threshold.",
+        "The broad central stair spine is intentionally widened for reliable first-person movement between Levels 1, 2, and 3."
+      ],
+      "footprint": {
+        "id": "archives_level_2_footprint",
+        "label": "Archives Level 2 Shell",
+        "certainty": "canon",
+        "geometry_certainty": "reconstructed",
+        "polygon": [
+          { "x": -24.0, "z": -12.0 },
+          { "x": 28.0, "z": -12.0 },
+          { "x": 28.0, "z": 16.0 },
+          { "x": -24.0, "z": 16.0 }
+        ]
+      },
+      "slab_regions": [
+        {
+          "id": "level_2_west_stacks_slab",
+          "label": "Level 2 West Stacks Slab",
+          "certainty": "reconstructed",
+          "polygon": [
+            { "x": -24.0, "z": -12.0 },
+            { "x": 10.0, "z": -12.0 },
+            { "x": 10.0, "z": 16.0 },
+            { "x": -24.0, "z": 16.0 }
+          ]
+        },
+        {
+          "id": "level_2_stair_landing_slab",
+          "label": "Level 2 Stair Landing Slab",
+          "certainty": "reconstructed",
+          "polygon": [
+            { "x": 10.0, "z": -6.4 },
+            { "x": 16.0, "z": -6.4 },
+            { "x": 16.0, "z": -4.2 },
+            { "x": 10.0, "z": -4.2 }
+          ],
+          "notes": [
+            "Split landing slab leaves an open stairwell void below the ramp arrival."
+          ]
+        },
+        {
+          "id": "level_2_central_spine_slab",
+          "label": "Level 2 Central Stair Spine Slab",
+          "certainty": "reconstructed",
+          "polygon": [
+            { "x": 10.0, "z": -4.2 },
+            { "x": 16.0, "z": -4.2 },
+            { "x": 16.0, "z": 16.0 },
+            { "x": 10.0, "z": 16.0 }
+          ]
+        },
+        {
+          "id": "level_2_east_stack_district_slab",
+          "label": "Level 2 East Stack District Slab",
+          "certainty": "reconstructed",
+          "polygon": [
+            { "x": 16.0, "z": -12.0 },
+            { "x": 28.0, "z": -12.0 },
+            { "x": 28.0, "z": 16.0 },
+            { "x": 16.0, "z": 16.0 }
+          ]
+        }
+      ],
+      "rooms": [
+        {
+          "id": "level_2_tool_lamp_storage",
+          "label": "Tool and Lamp Storage",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": -24.0, "z": 4.0 },
+            { "x": -14.0, "z": 4.0 },
+            { "x": -14.0, "z": 14.0 },
+            { "x": -24.0, "z": 14.0 }
+          ],
+          "notes": [
+            "Drawn from the left-side storage and lamp zones on the 2nd Floor plan."
+          ]
+        },
+        {
+          "id": "level_2_south_stairwell",
+          "label": "Southeast Stairwell Anchor",
+          "certainty": "implied",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": -24.0, "z": -10.0 },
+            { "x": -14.0, "z": -10.0 },
+            { "x": -14.0, "z": 1.0 },
+            { "x": -24.0, "z": 1.0 }
+          ],
+          "notes": [
+            "The named stair anchor is retained as implied/reconstructed and not treated as measured canon."
+          ]
+        },
+        {
+          "id": "level_2_scriv_work_zone",
+          "label": "Scriv-Work Zone",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_staff",
+          "polygon": [
+            { "x": -14.0, "z": -8.0 },
+            { "x": 10.0, "z": -8.0 },
+            { "x": 10.0, "z": 0.5 },
+            { "x": -14.0, "z": 0.5 }
+          ],
+          "notes": [
+            "Represents copying, transcription, and reference work zones from the 2nd Floor plan."
+          ]
+        },
+        {
+          "id": "level_2_transcription_rooms",
+          "label": "Transcription Rooms",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_staff",
+          "polygon": [
+            { "x": -14.0, "z": 4.0 },
+            { "x": 10.0, "z": 4.0 },
+            { "x": 10.0, "z": 14.0 },
+            { "x": -14.0, "z": 14.0 }
+          ],
+          "notes": [
+            "Simplified from multiple small transcription and conservation rooms in the visual plan."
+          ]
+        },
+        {
+          "id": "level_2_stair_landing",
+          "label": "Level 2 Stair Landing",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": 10.0, "z": -6.4 },
+            { "x": 16.0, "z": -6.4 },
+            { "x": 16.0, "z": -4.2 },
+            { "x": 10.0, "z": -4.2 }
+          ],
+          "notes": [
+            "Playable arrival point from Level 1."
+          ]
+        },
+        {
+          "id": "level_2_circulation_spine",
+          "label": "Circulation Spine",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": 10.0, "z": -4.2 },
+            { "x": 16.0, "z": -4.2 },
+            { "x": 16.0, "z": 8.8 },
+            { "x": 10.0, "z": 8.8 }
+          ],
+          "notes": [
+            "Central playable spine based on the 2nd Floor circulation corridor and stairwell logic."
+          ]
+        },
+        {
+          "id": "level_2_north_stairwell",
+          "label": "North Stairwell",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": 10.0, "z": 8.8 },
+            { "x": 16.0, "z": 8.8 },
+            { "x": 16.0, "z": 14.0 },
+            { "x": 10.0, "z": 14.0 }
+          ],
+          "notes": [
+            "Represents the north stairwell shown near the 2nd Floor plan's upper circulation spine."
+          ]
+        },
+        {
+          "id": "level_2_restricted_stack_districts",
+          "label": "Restricted Stack Districts",
+          "certainty": "implied",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": 16.0, "z": -10.0 },
+            { "x": 28.0, "z": -10.0 },
+            { "x": 28.0, "z": 14.0 },
+            { "x": 16.0, "z": 14.0 }
+          ],
+          "notes": [
+            "Condenses the district A-G shelving routes into a playable stack wing."
+          ]
+        }
+      ],
+      "doors": [
+        {
+          "id": "level_2_ramp_arrival",
+          "label": "Ramp Arrival from Level 1",
+          "certainty": "reconstructed",
+          "type": "vertical_circulation_opening",
+          "connects": [ "level_2_stair_landing", "level_1_to_level_2_stair" ],
+          "line": {
+            "start": { "x": 10.2, "z": -6.4 },
+            "end": { "x": 15.8, "z": -6.4 }
+          }
+        },
+        {
+          "id": "level_2_landing_to_circulation",
+          "label": "Landing to Circulation Spine",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_2_stair_landing", "level_2_circulation_spine" ],
+          "line": {
+            "start": { "x": 10.2, "z": -4.2 },
+            "end": { "x": 15.8, "z": -4.2 }
+          }
+        },
+        {
+          "id": "level_2_circulation_to_stacks",
+          "label": "Circulation Spine to Stacks",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_2_circulation_spine", "level_2_restricted_stack_districts" ],
+          "line": {
+            "start": { "x": 16.0, "z": 0.0 },
+            "end": { "x": 16.0, "z": 2.4 }
+          }
+        },
+        {
+          "id": "level_2_circulation_to_scriv_work",
+          "label": "Circulation Spine to Scriv Work",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_2_circulation_spine", "level_2_scriv_work_zone" ],
+          "line": {
+            "start": { "x": 10.0, "z": -1.0 },
+            "end": { "x": 10.0, "z": 1.0 }
+          }
+        },
+        {
+          "id": "level_2_circulation_to_north_stair",
+          "label": "Circulation Spine to North Stair",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_2_circulation_spine", "level_2_north_stairwell" ],
+          "line": {
+            "start": { "x": 10.2, "z": 8.8 },
+            "end": { "x": 15.8, "z": 8.8 }
+          }
+        }
+      ],
+      "stairs": [
+        {
+          "id": "level_2_arrival_marker",
+          "label": "Arrival from Level 1",
+          "certainty": "reconstructed",
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": 10.8, "z": -6.1 },
+            { "x": 15.2, "z": -6.1 },
+            { "x": 15.2, "z": -4.5 },
+            { "x": 10.8, "z": -4.5 }
+          ]
+        },
+        {
+          "id": "level_2_departure_marker",
+          "label": "Stairs to Level 3",
+          "certainty": "reconstructed",
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": 10.8, "z": -3.8 },
+            { "x": 15.2, "z": -3.8 },
+            { "x": 15.2, "z": -2.2 },
+            { "x": 10.8, "z": -2.2 }
+          ]
+        }
+      ],
+      "fixtures": [
+        {
+          "id": "level_2_scriv_desks",
+          "label": "Scriv Desks",
+          "certainty": "reconstructed",
+          "type": "desk",
+          "height": 0.75,
+          "polygon": [
+            { "x": -10.0, "z": -4.8 },
+            { "x": 6.0, "z": -4.8 },
+            { "x": 6.0, "z": -3.4 },
+            { "x": -10.0, "z": -3.4 }
+          ]
+        },
+        {
+          "id": "level_2_east_shelf_row_a",
+          "label": "District Shelf Row A",
+          "certainty": "reconstructed",
+          "type": "shelf",
+          "height": 1.6,
+          "polygon": [
+            { "x": 18.0, "z": -8.0 },
+            { "x": 26.0, "z": -8.0 },
+            { "x": 26.0, "z": -7.2 },
+            { "x": 18.0, "z": -7.2 }
+          ]
+        },
+        {
+          "id": "level_2_east_shelf_row_b",
+          "label": "District Shelf Row B",
+          "certainty": "reconstructed",
+          "type": "shelf",
+          "height": 1.6,
+          "polygon": [
+            { "x": 18.0, "z": -3.8 },
+            { "x": 26.0, "z": -3.8 },
+            { "x": 26.0, "z": -3.0 },
+            { "x": 18.0, "z": -3.0 }
+          ]
+        },
+        {
+          "id": "level_2_east_shelf_row_c",
+          "label": "District Shelf Row C",
+          "certainty": "reconstructed",
+          "type": "shelf",
+          "height": 1.6,
+          "polygon": [
+            { "x": 18.0, "z": 0.8 },
+            { "x": 26.0, "z": 0.8 },
+            { "x": 26.0, "z": 1.6 },
+            { "x": 18.0, "z": 1.6 }
+          ]
+        },
+        {
+          "id": "level_2_east_shelf_row_d",
+          "label": "District Shelf Row D",
+          "certainty": "reconstructed",
+          "type": "shelf",
+          "height": 1.6,
+          "polygon": [
+            { "x": 18.0, "z": 5.4 },
+            { "x": 26.0, "z": 5.4 },
+            { "x": 26.0, "z": 6.2 },
+            { "x": 18.0, "z": 6.2 }
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "id": "label_level_2_scriv_work",
+          "text": "Level 2 - Scriv Work",
+          "certainty": "reconstructed",
+          "position": { "x": -3.0, "z": -2.0 }
+        },
+        {
+          "id": "label_level_2_stair_spine",
+          "text": "Stairs: Level 1 / Level 3",
+          "certainty": "reconstructed",
+          "position": { "x": 13.0, "z": 1.8 }
+        },
+        {
+          "id": "label_level_2_stack_districts",
+          "text": "Restricted Stack Districts",
+          "certainty": "implied",
+          "position": { "x": 22.0, "z": 10.5 }
+        },
+        {
+          "id": "label_level_2_tool_lamp",
+          "text": "Tool and Lamp Storage",
+          "certainty": "reconstructed",
+          "position": { "x": -19.0, "z": 9.0 }
+        }
+      ]
+    },
+    {
+      "id": "level_3",
+      "name": "Level 3",
+      "certainty": "reconstructed",
+      "elevation": 13.8,
+      "floor_height": 4.0,
+      "notes": [
+        "Reconstructed from the supplied Archives 3rd Floor plan.",
+        "The clean canon-constrained 3rd Floor image is used for the main stair, Legacy Quarter, Bindery, Sorting Hall, and Illuminated Cul-de-Sac labels.",
+        "The route is kept broad and simplified so the player can walk up from Level 2 and explore without tight collision traps."
+      ],
+      "footprint": {
+        "id": "archives_level_3_footprint",
+        "label": "Archives Level 3 Shell",
+        "certainty": "canon",
+        "geometry_certainty": "reconstructed",
+        "polygon": [
+          { "x": -24.0, "z": -12.0 },
+          { "x": 28.0, "z": -12.0 },
+          { "x": 28.0, "z": 16.0 },
+          { "x": -24.0, "z": 16.0 }
+        ]
+      },
+      "slab_regions": [
+        {
+          "id": "level_3_west_book_city_slab",
+          "label": "Level 3 West Book-City Slab",
+          "certainty": "reconstructed",
+          "polygon": [
+            { "x": -24.0, "z": -12.0 },
+            { "x": 10.0, "z": -12.0 },
+            { "x": 10.0, "z": 16.0 },
+            { "x": -24.0, "z": 16.0 }
+          ]
+        },
+        {
+          "id": "level_3_main_stair_landing_slab",
+          "label": "Level 3 Main Stair Landing Slab",
+          "certainty": "reconstructed",
+          "polygon": [
+            { "x": 10.0, "z": 6.4 },
+            { "x": 16.0, "z": 6.4 },
+            { "x": 16.0, "z": 8.8 },
+            { "x": 10.0, "z": 8.8 }
+          ],
+          "notes": [
+            "Landing slab is split to leave the ramp shaft open below."
+          ]
+        },
+        {
+          "id": "level_3_north_spine_slab",
+          "label": "Level 3 North Spine Slab",
+          "certainty": "reconstructed",
+          "polygon": [
+            { "x": 10.0, "z": 8.8 },
+            { "x": 16.0, "z": 8.8 },
+            { "x": 16.0, "z": 16.0 },
+            { "x": 10.0, "z": 16.0 }
+          ]
+        },
+        {
+          "id": "level_3_east_legacy_slab",
+          "label": "Level 3 East Legacy Slab",
+          "certainty": "reconstructed",
+          "polygon": [
+            { "x": 16.0, "z": -12.0 },
+            { "x": 28.0, "z": -12.0 },
+            { "x": 28.0, "z": 16.0 },
+            { "x": 16.0, "z": 16.0 }
+          ]
+        }
+      ],
+      "rooms": [
+        {
+          "id": "level_3_canted_ranges",
+          "label": "The Canted Ranges",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": -24.0, "z": 5.0 },
+            { "x": -12.0, "z": 5.0 },
+            { "x": -12.0, "z": 14.0 },
+            { "x": -24.0, "z": 14.0 }
+          ],
+          "notes": [
+            "Named from the clean 3rd Floor plan; geometry is simplified to a rectangular playable zone."
+          ]
+        },
+        {
+          "id": "level_3_work_zone",
+          "label": "Work Zone",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_staff",
+          "polygon": [
+            { "x": -24.0, "z": -6.0 },
+            { "x": -12.0, "z": -6.0 },
+            { "x": -12.0, "z": 5.0 },
+            { "x": -24.0, "z": 5.0 }
+          ]
+        },
+        {
+          "id": "level_3_bindery",
+          "label": "Bindery",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_staff",
+          "polygon": [
+            { "x": -12.0, "z": 8.0 },
+            { "x": 10.0, "z": 8.0 },
+            { "x": 10.0, "z": 14.0 },
+            { "x": -12.0, "z": 14.0 }
+          ],
+          "notes": [
+            "The 3rd Floor plan labels the Bindery as reconstructed; this keeps that uncertainty."
+          ]
+        },
+        {
+          "id": "level_3_vellum_alcove",
+          "label": "The Vellum Alcove",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_staff",
+          "polygon": [
+            { "x": -12.0, "z": 2.0 },
+            { "x": 10.0, "z": 2.0 },
+            { "x": 10.0, "z": 8.0 },
+            { "x": -12.0, "z": 8.0 }
+          ]
+        },
+        {
+          "id": "level_3_legacy_quarter_west",
+          "label": "Legacy Quarter West",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": -12.0, "z": -8.0 },
+            { "x": 10.0, "z": -8.0 },
+            { "x": 10.0, "z": 2.0 },
+            { "x": -12.0, "z": 2.0 }
+          ]
+        },
+        {
+          "id": "level_3_main_stair_landing",
+          "label": "Main Stair to 2nd and 4th Floor",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": 10.0, "z": 6.4 },
+            { "x": 16.0, "z": 6.4 },
+            { "x": 16.0, "z": 8.8 },
+            { "x": 10.0, "z": 8.8 }
+          ],
+          "notes": [
+            "Playable arrival point from Level 2, named from the 3rd Floor plan's main stair note."
+          ]
+        },
+        {
+          "id": "level_3_legacy_quarter_east",
+          "label": "Legacy Quarter East",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": 16.0, "z": 0.0 },
+            { "x": 24.0, "z": 0.0 },
+            { "x": 24.0, "z": 14.0 },
+            { "x": 16.0, "z": 14.0 }
+          ]
+        },
+        {
+          "id": "level_3_illuminated_cul_de_sac",
+          "label": "The Illuminated Cul-de-Sac",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": 24.0, "z": 4.0 },
+            { "x": 28.0, "z": 4.0 },
+            { "x": 28.0, "z": 14.0 },
+            { "x": 24.0, "z": 14.0 }
+          ]
+        },
+        {
+          "id": "level_3_sorting_hall",
+          "label": "Sorting Hall",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_staff",
+          "polygon": [
+            { "x": 24.0, "z": -2.0 },
+            { "x": 28.0, "z": -2.0 },
+            { "x": 28.0, "z": 4.0 },
+            { "x": 24.0, "z": 4.0 }
+          ],
+          "notes": [
+            "The plan labels Sorting Hall as reconstructed; placement remains reviewable."
+          ]
+        },
+        {
+          "id": "level_3_south_illuminated_cul_de_sac",
+          "label": "South Illuminated Cul-de-Sac",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "approximate": true,
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": 16.0, "z": -10.0 },
+            { "x": 28.0, "z": -10.0 },
+            { "x": 28.0, "z": -2.0 },
+            { "x": 16.0, "z": -2.0 }
+          ]
+        }
+      ],
+      "doors": [
+        {
+          "id": "level_3_ramp_arrival",
+          "label": "Ramp Arrival from Level 2",
+          "certainty": "reconstructed",
+          "type": "vertical_circulation_opening",
+          "connects": [ "level_3_main_stair_landing", "level_2_to_level_3_stair" ],
+          "line": {
+            "start": { "x": 10.2, "z": 6.4 },
+            "end": { "x": 15.8, "z": 6.4 }
+          }
+        },
+        {
+          "id": "level_3_main_stair_to_west",
+          "label": "Main Stair to West Shelves",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_3_main_stair_landing", "level_3_vellum_alcove" ],
+          "line": {
+            "start": { "x": 10.0, "z": 7.0 },
+            "end": { "x": 10.0, "z": 8.4 }
+          }
+        },
+        {
+          "id": "level_3_main_stair_to_east",
+          "label": "Main Stair to Legacy Quarter",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_3_main_stair_landing", "level_3_legacy_quarter_east" ],
+          "line": {
+            "start": { "x": 16.0, "z": 7.0 },
+            "end": { "x": 16.0, "z": 8.4 }
+          }
+        },
+        {
+          "id": "level_3_main_stair_to_north_spine",
+          "label": "Main Stair to North Spine",
+          "certainty": "reconstructed",
+          "type": "interior_restricted",
+          "connects": [ "level_3_main_stair_landing", "level_3_bindery" ],
+          "line": {
+            "start": { "x": 10.2, "z": 8.8 },
+            "end": { "x": 15.8, "z": 8.8 }
+          }
+        }
+      ],
+      "stairs": [
+        {
+          "id": "level_3_arrival_marker",
+          "label": "Arrival from Level 2",
+          "certainty": "reconstructed",
+          "access": "restricted_archive",
+          "polygon": [
+            { "x": 10.8, "z": 6.6 },
+            { "x": 15.2, "z": 6.6 },
+            { "x": 15.2, "z": 8.4 },
+            { "x": 10.8, "z": 8.4 }
+          ]
+        }
+      ],
+      "fixtures": [
+        {
+          "id": "level_3_canted_range_rows",
+          "label": "Canted Range Shelves",
+          "certainty": "reconstructed",
+          "type": "shelf",
+          "height": 1.6,
+          "polygon": [
+            { "x": -22.0, "z": 8.0 },
+            { "x": -14.0, "z": 8.0 },
+            { "x": -14.0, "z": 8.8 },
+            { "x": -22.0, "z": 8.8 }
+          ]
+        },
+        {
+          "id": "level_3_work_zone_tables",
+          "label": "Work Zone Tables",
+          "certainty": "reconstructed",
+          "type": "table",
+          "height": 0.75,
+          "polygon": [
+            { "x": -22.0, "z": -2.0 },
+            { "x": -14.0, "z": -2.0 },
+            { "x": -14.0, "z": -0.8 },
+            { "x": -22.0, "z": -0.8 }
+          ]
+        },
+        {
+          "id": "level_3_legacy_shelf_row_a",
+          "label": "Legacy Shelf Row A",
+          "certainty": "reconstructed",
+          "type": "shelf",
+          "height": 1.7,
+          "polygon": [
+            { "x": -8.0, "z": -5.5 },
+            { "x": 8.0, "z": -5.5 },
+            { "x": 8.0, "z": -4.7 },
+            { "x": -8.0, "z": -4.7 }
+          ]
+        },
+        {
+          "id": "level_3_legacy_shelf_row_b",
+          "label": "Legacy Shelf Row B",
+          "certainty": "reconstructed",
+          "type": "shelf",
+          "height": 1.7,
+          "polygon": [
+            { "x": -8.0, "z": -1.5 },
+            { "x": 8.0, "z": -1.5 },
+            { "x": 8.0, "z": -0.7 },
+            { "x": -8.0, "z": -0.7 }
+          ]
+        },
+        {
+          "id": "level_3_east_shelf_row_a",
+          "label": "East Legacy Shelf Row A",
+          "certainty": "reconstructed",
+          "type": "shelf",
+          "height": 1.7,
+          "polygon": [
+            { "x": 18.0, "z": 2.0 },
+            { "x": 23.0, "z": 2.0 },
+            { "x": 23.0, "z": 2.8 },
+            { "x": 18.0, "z": 2.8 }
+          ]
+        },
+        {
+          "id": "level_3_east_shelf_row_b",
+          "label": "East Legacy Shelf Row B",
+          "certainty": "reconstructed",
+          "type": "shelf",
+          "height": 1.7,
+          "polygon": [
+            { "x": 18.0, "z": 6.0 },
+            { "x": 23.0, "z": 6.0 },
+            { "x": 23.0, "z": 6.8 },
+            { "x": 18.0, "z": 6.8 }
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "id": "label_level_3_main_stair",
+          "text": "Level 3 - Main Stair to 2nd/4th",
+          "certainty": "reconstructed",
+          "position": { "x": 13.0, "z": 7.6 }
+        },
+        {
+          "id": "label_level_3_canted_ranges",
+          "text": "The Canted Ranges",
+          "certainty": "reconstructed",
+          "position": { "x": -18.0, "z": 11.0 }
+        },
+        {
+          "id": "label_level_3_bindery",
+          "text": "Bindery",
+          "certainty": "reconstructed",
+          "position": { "x": -1.0, "z": 11.5 }
+        },
+        {
+          "id": "label_level_3_legacy_quarter",
+          "text": "The Legacy Quarter",
+          "certainty": "reconstructed",
+          "position": { "x": 1.0, "z": -3.0 }
+        },
+        {
+          "id": "label_level_3_illuminated_cul_de_sac",
+          "text": "Illuminated Cul-de-Sac",
+          "certainty": "reconstructed",
+          "position": { "x": 24.0, "z": 10.0 }
+        },
+        {
+          "id": "label_level_3_sorting_hall",
+          "text": "Sorting Hall",
+          "certainty": "reconstructed",
+          "position": { "x": 26.0, "z": 1.0 }
+        }
+      ]
     }
   ],
   "vertical_links": [
@@ -1052,6 +1844,42 @@
       "notes": [
         "Playable Godot link between ground and Level 1.",
         "Implemented as a shallow collision ramp with visible stair treads so movement is reliable while still reading as stairs.",
+        "Exact stair run and landing geometry remain reconstructed."
+      ]
+    },
+    {
+      "id": "level_1_to_level_2_stair",
+      "label": "Stairs from Level 1 to Level 2",
+      "certainty": "reconstructed",
+      "type": "walkable_stair_ramp",
+      "width": 4.0,
+      "thickness": 0.22,
+      "step_count": 22,
+      "from_floor": "level_1",
+      "to_floor": "level_2",
+      "start": { "x": 13.0, "y": 4.86, "z": 8.2 },
+      "end": { "x": 13.0, "y": 9.46, "z": -5.4 },
+      "notes": [
+        "Playable Godot link between Level 1 and Level 2.",
+        "The route is reconstructed from stair and circulation logic in the Level 2 plan, with extra width for reliable first-person movement.",
+        "Exact stair run and landing geometry remain reviewable."
+      ]
+    },
+    {
+      "id": "level_2_to_level_3_stair",
+      "label": "Stairs from Level 2 to Level 3",
+      "certainty": "reconstructed",
+      "type": "walkable_stair_ramp",
+      "width": 4.0,
+      "thickness": 0.22,
+      "step_count": 22,
+      "from_floor": "level_2",
+      "to_floor": "level_3",
+      "start": { "x": 13.0, "y": 9.46, "z": -3.4 },
+      "end": { "x": 13.0, "y": 14.06, "z": 7.2 },
+      "notes": [
+        "Playable Godot link between Level 2 and the 3rd Floor main stair landing.",
+        "The 3rd Floor plan labels a main stair to the 2nd and 4th floors; this route uses that as the conservative circulation anchor.",
         "Exact stair run and landing geometry remain reconstructed."
       ]
     }
