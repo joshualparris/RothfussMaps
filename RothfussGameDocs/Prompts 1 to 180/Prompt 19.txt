@@ -1,0 +1,496 @@
+﻿Prompt 19
+
+Prompt 19 should now do the original plan's Prompt 19 job: make "busk at Anker's" a real action with modest earnings, crowd/performance logic, and small reputation consequences. Because Prompt 2 already introduced a basic busk action and Prompt 5 added musicEngine.ts for the Eolian, this version should standardise busking as a grounded lower-tier music action rather than invent a separate parallel music system. It should feel clearly different from the Eolian: more about scraping together drabs and local notice, less about prestige.
+KKC TEXT ADVENTURE - PROMPT 19 OF 180
+==========================================
+Busk at Anker's: Modest Earnings, Crowd Quality, and Local Reputation
+==========================================
+
+This prompt builds directly on Prompts 1 through 18.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+
+This prompt follows the original Phase 1 plan role for Prompt 19:
+implement a proper "busk at Anker's" action where the player performs,
+earns drabs based on crowd/performance quality, and can gain modest
+local reputation.
+
+Important:
+Prompt 2 already introduced a basic busk action.
+Prompt 5 introduced musicEngine.ts for Eolian audition/performance.
+This prompt does NOT create a separate new music architecture.
+It standardises busking at Anker's as the lower-stakes, lower-prestige
+music action of the MVP.
+
+Do not add new gameplay systems beyond this music/economy refinement.
+
+═══════════════════════════════════════
+HARD BANS - UNCHANGED
+═══════════════════════════════════════
+
+No Anthropic. No OpenAI. No new AI provider.
+Gemini remains the only optional LLM provider in this codebase.
+
+No web server. No frontend.
+No new locations.
+No new NPCs.
+No new instrument progression tree.
+No new composition system.
+No random dice-roll mechanics.
+No combat use for music.
+No Eolian-style prestige rewards here.
+
+Do not:
+- merge Anker's busking with Eolian performance
+- award talent pipes from busking
+- make busking a high-income exploit
+- create a new skill tree or hidden XP system
+- add new commands beyond standardising existing busk behaviour
+
+═══════════════════════════════════════
+ARCHITECTURE RULE - STILL ABSOLUTE
+═══════════════════════════════════════
+
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- busking truth
+- local crowd/performance truth
+- earnings truth
+- modest reputation change truth
+
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+
+The busking helpers:
+- must live in engine/*
+- must not call the database
+- must not mutate PlayerState unless explicitly returning a new state
+- must not invent unrelated gameplay systems
+
+═══════════════════════════════════════
+GOAL OF THIS PROMPT
+═══════════════════════════════════════
+
+By the end of Prompt 19, the player should be able to:
+
+  - type `busk` or `busk at anker's` while at Anker's
+  - receive a deterministic busking result based on current condition
+    and reputation
+  - earn a modest amount of drabs
+  - increase university_social slightly on a decent performance
+  - increase eolian_standing slightly only on notably strong busking
+  - feel that busking is useful for survival but clearly below the
+    Eolian in prestige
+
+The codebase should have one authoritative busking implementation that
+works with the existing music/economy/reputation systems.
+
+═══════════════════════════════════════
+SCOPE OF THIS PROMPT
+═══════════════════════════════════════
+
+This prompt covers:
+  1. Extend musicEngine.ts with busking logic
+  2. Add a lightweight daily busking limit
+  3. Standardise busking command handling in actions.ts
+  4. Add authored Anker's busking result lines
+  5. Add tests for earnings, gating, and modest reputation growth
+
+This prompt does NOT cover:
+  - Eolian redesign
+  - formal music skill progression
+  - song composition
+  - new locations or audiences
+  - instrument damage
+  - multi-song performance choices
+  - Denna or other major audience scenes
+
+═══════════════════════════════════════
+NEW FILES IN THIS PROMPT
+═══════════════════════════════════════
+
+Add exactly these files:
+
+  src/
+    content/
+      buskingNarration.ts
+  tests/
+    busking.test.ts
+
+Modify these existing files:
+  src/types/index.ts
+  src/engine/state.ts
+  src/engine/musicEngine.ts
+  src/engine/actions.ts
+  src/engine/time.ts
+  src/narration/renderStatus.ts
+
+Modify only if those files already exist in the codebase from earlier prompts.
+If a listed file does not exist yet when Prompt 19 is run, skip it
+rather than inventing around it.
+
+Do not add any other files.
+
+═══════════════════════════════════════
+TYPES - update src/types/index.ts
+═══════════════════════════════════════
+
+Do not remove or rename existing types.
+
+Add:
+
+export interface BuskingState {
+  busked_today: boolean;
+  last_busk_day: number | null;
+}
+
+Also add to PlayerState:
+  busking_state: BuskingState;
+
+Update initDefaultPlayerState() in engine/state.ts to include:
+  busking_state: {
+    busked_today: false,
+    last_busk_day: null,
+  }
+
+Rules:
+- busking_state exists only to prevent repeated same-day farming
+- do not add any other new types in this prompt
+
+═══════════════════════════════════════
+STATE - update src/engine/state.ts
+═══════════════════════════════════════
+
+Update:
+  loadPlayerState(db)
+  savePlayerState(db, state)
+  initDefaultPlayerState()
+
+to include:
+  busking_state
+
+Rules:
+- keep persistence changes minimal
+- do not refactor unrelated state logic
+- do not alter the meaning of any existing music or reputation fields
+
+═══════════════════════════════════════
+AUTHORED TEXT - src/content/buskingNarration.ts
+═══════════════════════════════════════
+
+Implement and export:
+
+  ANKERS_BUSK_BLOCKED: string[]
+  ANKERS_BUSK_POOR: string[]
+  ANKERS_BUSK_MODEST: string[]
+  ANKERS_BUSK_STRONG: string[]
+
+Rules:
+- Original prose only
+- Exactly 3 entries in each pool
+- 1-2 sentences per entry
+- Deterministic selection only:
+    index = state.day_number % 3
+- Tone should fit Anker's:
+    local, practical, lived-in, mildly public
+- Poor result should feel disappointing, not catastrophic
+- Modest result should feel like scraping together survival money
+- Strong result should feel noticed, but still not like the Eolian
+
+ANKERS_BUSK_BLOCKED is for:
+- wrong location
+- missing lute
+- already busked today
+- too exhausted to busk
+
+Do not quote Rothfuss.
+Do not write like a quest reward screen.
+
+═══════════════════════════════════════
+ENGINE - update src/engine/musicEngine.ts
+═══════════════════════════════════════
+
+Do not refactor working Eolian logic.
+Only extend the file.
+
+Implement and export:
+
+  canBuskAtAnkers(state: PlayerState): boolean
+
+  calculateBuskingQuality(state: PlayerState): 'poor' | 'modest' | 'strong'
+
+  buskAtAnkers(
+    state: PlayerState,
+    db
+  ): { message: string; newState: PlayerState }
+
+  resetDailyBusking(state: PlayerState): PlayerState
+
+Rules:
+
+─────────────────────────────────────
+canBuskAtAnkers(state)
+─────────────────────────────────────
+
+Return true only if:
+- state.location_id === 'university_ankers'
+- inventory contains item id 'lute'
+- state.busking_state.busked_today === false
+- state.fatigue < 85
+
+Otherwise false.
+
+Do not check any other conditions in this helper.
+
+─────────────────────────────────────
+calculateBuskingQuality(state)
+─────────────────────────────────────
+
+Return one of:
+  'poor'
+  'modest'
+  'strong'
+
+Deterministic rules only.
+No randomness.
+
+Suggested scoring model:
+  start score = 0
+
+  if state.reputation.university_social >= 50: score += 1
+  if state.reputation.eolian_standing >= 40: score += 1
+
+  if state.fatigue >= 70: score -= 2
+  else if state.fatigue >= 40: score -= 1
+
+  if state.hunger >= 70: score -= 1
+
+  if state.injuries.length > 0: score -= 1
+
+  if state.money_drabs < 20: score += 0
+    // poverty does not improve performance; no romanticising
+
+Map final score:
+  score <= -1 -> 'poor'
+  score 0..1  -> 'modest'
+  score >= 2  -> 'strong'
+
+Keep it deterministic and compact.
+
+─────────────────────────────────────
+buskAtAnkers(state, db)
+─────────────────────────────────────
+
+Rules:
+- If canBuskAtAnkers(state) is false:
+    return blocked line from ANKERS_BUSK_BLOCKED
+    state unchanged
+
+On success:
+- determine quality via calculateBuskingQuality(state)
+- call advanceTime(state, 1)
+- then apply deterministic earnings:
+
+  poor:
+    +2 drabs
+    university_social unchanged
+    eolian_standing unchanged
+
+  modest:
+    +4 drabs
+    university_social +1 (clamp 100)
+    eolian_standing unchanged
+
+  strong:
+    +7 drabs
+    university_social +2 (clamp 100)
+    eolian_standing +1 (clamp 100)
+
+- use addMoney() from engine/currency.ts
+- set:
+    busking_state.busked_today = true
+    busking_state.last_busk_day = newState.day_number
+- increase fatigue by 8 (clamp 100)
+- increase hunger by 4 (clamp 100)
+
+Return:
+- a line from the matching narration pool
+- plus a short second line stating the money earned in natural language,
+  using formatCurrency()
+- do not auto-render the location
+- do not award talent pipes
+- do not change academic_standing here
+
+Tone:
+- grounded, practical
+- this is decent survival work at best, not triumph
+
+─────────────────────────────────────
+resetDailyBusking(state)
+─────────────────────────────────────
+
+Rules:
+- if state.busking_state.last_busk_day !== state.day_number:
+    set busked_today to false
+- otherwise leave unchanged
+- return new state
+
+This helper exists because day changes should reopen busking later.
+
+═══════════════════════════════════════
+TIME - update src/engine/time.ts
+═══════════════════════════════════════
+
+Keep existing time/day logic intact.
+
+When the cycle passes from night -> morning, also reset:
+  busking_state.busked_today = false
+
+Do not alter:
+- Fishery resets
+- Eolian resets
+- any other existing daily reset logic
+
+If resetDailyBusking(state) is a cleaner way to do this in your current
+code structure, use it.
+
+═══════════════════════════════════════
+ACTIONS - update src/engine/actions.ts
+═══════════════════════════════════════
+
+Do not refactor working command logic.
+Only extend / standardise it.
+
+For existing busk command handling:
+- route it through buskAtAnkers(state, db)
+- also support:
+    busk at anker's
+    busk at ankers
+- return only the busking result text and newState
+- do not auto-render the location afterward
+
+Rules:
+- preserve all other command behaviour
+- if the existing busk action already exists, replace its internal logic
+  with the shared musicEngine helper instead of keeping duplicate logic
+- after a successful busk, existing tuition deadline checks may still run
+  if actions.ts already does this after time-advancing actions
+
+Do not add any other new commands.
+
+═══════════════════════════════════════
+STATUS RENDERING - update src/narration/renderStatus.ts
+═══════════════════════════════════════
+
+Keep renderStatus() compact.
+
+Add one optional busking line only when relevant:
+- if busking_state.busked_today is true:
+    include a short line such as:
+      "Busking: already played at Anker's today."
+- otherwise omit the line
+
+Do not bloat the status output.
+
+═══════════════════════════════════════
+TESTS - tests/busking.test.ts
+═══════════════════════════════════════
+
+Import:
+  canBuskAtAnkers
+  calculateBuskingQuality
+  buskAtAnkers
+  resetDailyBusking
+from src/engine/musicEngine.ts
+
+Also import:
+  initDefaultPlayerState from src/engine/state.ts
+
+Tests:
+
+  eligibility:
+    1. default state outside Anker's cannot busk
+    2. state at university_ankers with lute and not busked_today can busk
+    3. state at university_ankers without lute cannot busk
+    4. state at university_ankers with fatigue 90 cannot busk
+
+  quality:
+    5. tired/hungry state resolves to poor
+    6. ordinary healthy state resolves to modest
+    7. socially stronger, well-rested state can resolve to strong
+
+  busking:
+    8. blocked busking leaves state unchanged
+    9. successful poor busk earns 2 drabs
+    10. successful modest busk earns 4 drabs
+    11. successful strong busk earns 7 drabs
+    12. successful busk sets busked_today true
+    13. successful busk advances time by 1
+    14. successful busk increases fatigue and hunger
+    15. second busk on same day is blocked
+
+  reset:
+    16. resetDailyBusking clears busked_today when day changes
+    17. resetDailyBusking leaves same-day state unchanged
+
+═══════════════════════════════════════
+TESTS - update existing tests if needed
+═══════════════════════════════════════
+
+If there are existing economy or music tests, update them minimally so:
+- busk now routes through the shared musicEngine helper
+- earnings expectations match the new deterministic busking values
+
+Do not rewrite unrelated tests.
+
+═══════════════════════════════════════
+ARCHITECTURE REMINDERS
+═══════════════════════════════════════
+
+These rules from Prompt 1 still apply:
+
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls outside the optional Gemini provider
+  - No unused imports or files
+
+musicEngine.ts remains an engine-layer file.
+It must not call the DB except in the same minimal way already used by
+the existing music systems, if applicable.
+It must not decide unrelated gameplay systems.
+It exists only to standardise busking at Anker's for the MVP.
+
+═══════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════
+
+This prompt is complete when:
+
+  - `busk` works as a shared Anker's action
+  - busking only works at Anker's
+  - busking requires the lute
+  - busking is blocked if already done that day
+  - busking earns a modest deterministic amount of drabs
+  - stronger busking can slightly improve local/social reputation
+  - busking never grants pipes or Eolian-tier prestige
+  - status can show that busking has already been done that day
+  - no new gameplay systems beyond this busking refinement are introduced
+  - all new tests pass alongside earlier prompts' tests
+  - no refactoring of working Prompts 1-18 code beyond what is required
+
+==========================================
+END OF PROMPT 19
+==========================================
+
+The clean next step after this is Prompt 20: multi-axis reputation system formalisation, which matches the original sequence.
+

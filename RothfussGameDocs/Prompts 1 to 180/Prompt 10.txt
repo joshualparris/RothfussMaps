@@ -1,0 +1,421 @@
+Prompt 10
+This Prompt 10 follows the  original plan’s Prompt 10 role : build a conversation handler so talk to [NPC] can use the optional LLM path with an NPC-specific character document in context. Because your current architecture already has local talkToNPC() logic and seeded NPC profiles, this version adds an  optional Gemini conversation layer
+ for the safe MVP cast, while keeping the engine authoritative and the local path intact. It also deliberately avoids fragile NPCs like Denna, Auri, Elodin, Bast, and Felurian at this stage.
+
+KKC TEXT ADVENTURE — PROMPT 10 OF 180
+==========================================
+NPC Conversation Handler: Optional Gemini Dialogue for Safe MVP NPCs
+==========================================
+This prompt builds directly on Prompts 1, 2, 3, 4, 5, 6, 7, 8, and 9.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+This prompt follows the original Phase 1 plan role for Prompt 10:
+build the conversation handler so that when the player types
+"""talk to [NPC]"" or ""ask [NPC] about [topic]"", the narration layer can"
+optionally use Gemini with that NPC's character document in context.
+Do not add new gameplay systems in this prompt.
+═══════════════════════════════════════
+HARD BANS — UNCHANGED
+═══════════════════════════════════════
+No Anthropic. No OpenAI. No new AI provider.
+Gemini remains the only optional LLM provider in this codebase.
+No web server. No frontend.
+No new movement rules.
+No new economy systems.
+No new sympathy rules.
+No new social mechanics.
+No new mystery systems.
+No new locations.
+Do not add these NPCs to Gemini conversation in this prompt:
+  - Denna
+  - Auri
+  - Elodin
+  - Bast
+  - Felurian
+  - Chronicler
+  - Kote
+They are too delicate for the MVP conversation layer at this stage.
+═══════════════════════════════════════
+ARCHITECTURE RULE — STILL ABSOLUTE
+═══════════════════════════════════════
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- sympathy truth
+- social truth
+- music/Eolian truth
+- NPC presence truth
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+- canon grounding only
+- lore-guard validation only
+- optional conversation prose only
+The LLM:
+- must never mutate PlayerState
+- must never write to the DB
+- must never decide whether an NPC is present
+- must never invent facts outside the supplied character doc,
+  canon facts, and current scene context
+- must never resolve mysteries
+- must never create gameplay outcomes
+Local deterministic talkToNPC() remains the safe fallback.
+═══════════════════════════════════════
+GOAL OF THIS PROMPT
+═══════════════════════════════════════
+By the end of Prompt 10, the project should support:
+  - local NPC conversation exactly as before
+  - optional Gemini-based NPC conversation for the current MVP-safe cast
+  - NPC-specific character context passed into Gemini
+  - topic-aware conversation prompts
+  - lore-guard validation on Gemini conversation output
+  - automatic fallback to local talkToNPC() when Gemini fails or
+    when the NPC is not eligible for LLM conversation
+The player should be able to:
+  - talk to Simmon, Wilem, Anker, Kilvin, Ambrose, Deoch, and Stanchion
+    using the optional Gemini path
+  - still get local deterministic responses if Gemini is disabled,
+    unavailable, unsafe, or unsupported
+═══════════════════════════════════════
+SCOPE OF THIS PROMPT
+═══════════════════════════════════════
+This prompt covers:
+  1. Add a conversation context builder
+  2. Add a Gemini NPC conversation helper
+  3. Extend NarrationProvider only as needed
+  4. Use existing npcProfiles.ts as the authoritative character docs
+  5. Add eligibility rules for which NPCs may use Gemini
+  6. Add local fallback to talkToNPC()
+  7. Add tests for supported/unsupported NPCs and fallback behaviour
+This prompt does NOT cover:
+  - new NPC profiles beyond the currently seeded MVP cast
+  - Denna, Auri, Elodin, Bast, or other high-risk characters
+  - persistent conversation memory
+  - relationship mechanics beyond the existing systems
+  - LLM-generated branching dialogue trees
+  - new commands
+  - new locations
+  - new gameplay outcomes
+═══════════════════════════════════════
+NEW FILES IN THIS PROMPT
+═══════════════════════════════════════
+Add exactly these files:
+  src/
+    narration/
+      npcConversationContext.ts
+  tests/
+    npcConversationNarrator.test.ts
+Modify these existing files:
+  src/types/index.ts
+  src/narration/provider.ts
+  src/narration/canonInstructions.ts
+  src/narration/geminiNarrator.ts
+  src/engine/actions.ts
+  src/engine/npcEngine.ts
+  src/content/npcProfiles.ts
+  tests/geminiNarrator.test.ts
+  tests/npcEngine.test.ts
+Do not add any other files.
+═══════════════════════════════════════
+TYPES — update src/types/index.ts
+═══════════════════════════════════════
+Do not remove or rename existing types.
+Add:
+export interface NpcConversationContext {
+  command: string;
+  npc_id: string;
+  npc_name: string;
+  topic: string | null;
+  player_summary: {
+    era: string;
+    location_id: string;
+    time_of_day: TimeOfDay;
+    day_number: number;
+    academic_rank: AcademicRank;
+    hunger_label: string;
+    fatigue_label: string;
+    warmth_label?: string;
+    injury_summary?: string;
+    social_standing_label?: string;
+  };
+  npc_profile_summary: {
+    temperament: string;
+    speech_style: string;
+    known_topics: string[];
+    taboo_topics: string[];
+  };
+  scene_summary: {
+    current_location_name: string;
+    visible_people: string[];
+  };
+  canon_registry_facts: string[];
+}
+Update NarrationProvider to include one additional optional method:
+  talkToNpcScene?(
+    context: NpcConversationContext
+  ): Promise<string>;
+Rules:
+- This method is optional
+- LocalNarrator does not need to implement it
+- GeminiNarrator must implement it
+- Do not alter existing methods
+═══════════════════════════════════════
+NPC PROFILES — update src/content/npcProfiles.ts
+═══════════════════════════════════════
+Do not rewrite existing profiles.
+Only ensure each currently safe MVP NPC has enough data for Gemini use.
+Supported Gemini NPCs in this prompt:
+  - simmon
+  - wilem
+  - anker
+  - kilvin
+  - ambrose
+  - deoch
+  - stanchion
+Rules:
+- Keep the existing NPCProfile structure
+- Do not add new NPCs
+- If any existing profile lacks:
+    known_topics
+    taboo_topics
+    greeting_pool
+    exit_lines
+  fill them in now
+- Do not make profiles longer or fancier than needed
+- Keep them concise, practical, and canon-grounded
+- Do not add deep private lore or mystery knowledge
+═══════════════════════════════════════
+NPC CONVERSATION CONTEXT — src/narration/npcConversationContext.ts
+═══════════════════════════════════════
+Implement and export:
+  isGeminiNpcEligible(npcId: string): boolean
+  buildNpcConversationContext(input: {
+    command: string;
+    npcId: string;
+    topic: string | null;
+    state: PlayerState;
+    currentLocation: Location;
+    visibleNpcs: NPC[];
+  }): NpcConversationContext | null
+Rules:
+isGeminiNpcEligible:
+- return true only for:
+    simmon
+    wilem
+    anker
+    kilvin
+    ambrose
+    deoch
+    stanchion
+- return false for everything else
+buildNpcConversationContext:
+- if npcId is not Gemini-eligible, return null
+- derive hunger/fatigue/warmth/injury/social labels exactly the same way
+  Prompt 7’s scene context builder does
+- load NPC profile from NPC_PROFILES
+- if no profile is found, return null
+- use canon registry facts relevant to:
+    current location group
+    npc identity
+    topic if present
+- include only visible people in scene_summary.visible_people
+- keep the context compact and deterministic
+- do not include raw trust numbers
+- do not include hidden state
+- do not include unresolved mysteries
+This file is pure.
+It must not call the database.
+═══════════════════════════════════════
+CANON INSTRUCTIONS — update src/narration/canonInstructions.ts
+═══════════════════════════════════════
+Keep all existing instructions and mystery bans.
+Add these explicit conversation rules:
+- When speaking as an NPC, stay within that NPC's supplied profile.
+- Do not make the NPC know things outside their supplied profile,
+  canon registry facts, and visible scene context.
+- If a topic is taboo, the NPC should deflect or refuse briefly rather
+  than explain why in mechanical terms.
+- Do not let the NPC speak with modern idiom.
+- Keep the reply concise: usually 1–3 short paragraphs maximum.
+- Do not create new lore, promises, quests, or mechanics.
+- Do not let the NPC resolve deep mysteries.
+Do not remove any earlier lore-guard or canon-grounding instructions.
+═══════════════════════════════════════
+GEMINI NARRATOR — update src/narration/geminiNarrator.ts
+═══════════════════════════════════════
+Do not refactor working scene narration logic.
+Only add NPC conversation support.
+Implement:
+  talkToNpcScene(
+    context: NpcConversationContext
+  ): Promise<string>
+Rules:
+- Use the same Gemini client already established
+- Use the existing fallback philosophy:
+    if Gemini fails, return a local deterministic fallback string
+- Use the existing lore guard after output is received
+- Reuse canon instructions plus a conversation-specific prompt
+Add two private helpers if needed:
+  buildNpcConversationSystemPrompt(context: NpcConversationContext): string
+  buildNpcConversationUserPrompt(context: NpcConversationContext): string
+Prompt rules:
+- system prompt must include:
+    KKC_CANON_INSTRUCTIONS
+    the NPC’s temperament
+    speech_style
+    known_topics
+    taboo_topics
+    visible scene context
+    compact canon ground truth if relevant
+- user prompt must include:
+    current command
+    topic if any
+    current location name
+    visible people
+    player condition labels
+    instruction to reply as the NPC directly
+Validation rules:
+- keep the same validateOutput() and lore guard flow as scene narration
+- if output fails validation or lore safety:
+    fall back to local talkToNPC() response path
+- reject empty or obviously non-dialogue output
+- do not return raw JSON
+The local fallback path for NPC conversation should be:
+- the existing engine/npcEngine.ts talkToNPC() result
+═══════════════════════════════════════
+NPC ENGINE — update src/engine/npcEngine.ts
+═══════════════════════════════════════
+Do not refactor working local NPC logic.
+Only add what is necessary for Gemini integration.
+Implement and export if not already present:
+  parseNpcCommand(input: string): { npcId: string | null; topic: string | null }
+Rules:
+- support these existing/familiar patterns:
+    talk to simmon
+    talk to wilem
+    talk to anker
+    talk to kilvin
+    talk to ambrose
+    talk to deoch
+    talk to stanchion
+    ask simmon about classes
+    ask kilvin about work
+    ask ambrose about archives
+    ask stanchion about pipes
+- keep parsing simple and deterministic
+- do not try to build a full natural-language parser
+- if the current file already has equivalent logic, keep it and just
+  export or lightly extend it
+Do not change the actual local talkToNPC() behaviour unless required
+for compatibility.
+═══════════════════════════════════════
+ACTIONS — update src/engine/actions.ts
+═══════════════════════════════════════
+Do not refactor working command logic.
+Only extend the talk/ask handling.
+For talk/ask commands:
+- continue to parse using parseNpcCommand() / existing local logic
+- load current location and visible NPCs from DB
+- if narrator has talkToNpcScene defined
+  and NARRATION_MODE is not 'local'
+  and the target NPC is Gemini-eligible
+  and buildNpcConversationContext(...) returns a context:
+    call narrator.talkToNpcScene(context)
+- otherwise:
+    use the existing local talkToNPC() path
+Rules:
+- Engine still decides whether the NPC is present
+- Engine still decides which NPC is being addressed
+- Gemini only provides the prose reply
+- No state changes are introduced by conversation in this prompt
+- help, status, inventory, quit remain local-only
+- existing non-conversation scene narration remains unchanged
+Do not add any new commands beyond the existing talk/ask patterns.
+═══════════════════════════════════════
+TESTS — tests/npcConversationNarrator.test.ts
+═══════════════════════════════════════
+Import:
+  isGeminiNpcEligible
+  buildNpcConversationContext
+from src/narration/npcConversationContext.ts
+Also import:
+  initDefaultPlayerState from src/engine/state.ts
+  getLocation from src/engine/movement.ts
+  runMigrations from src/db/schema.ts
+  runSeed from src/db/seed.ts
+  Database from better-sqlite3
+Use an in-memory SQLite DB:
+  new Database(':memory:')
+Call runMigrations() and runSeed() before tests.
+Tests:
+  eligibility:
+    1. simmon is eligible
+    2. kilvin is eligible
+    3. ambrose is eligible
+    4. denna is not eligible
+    5. auri is not eligible
+  context building:
+    6. buildNpcConversationContext for simmon returns non-null
+    7. returned context includes npc_name and speech_style
+    8. returned context includes visible people list
+    9. returned context includes canon_registry_facts
+    10. unsupported npcId returns null
+═══════════════════════════════════════
+TESTS — update tests/geminiNarrator.test.ts
+═══════════════════════════════════════
+Add these tests:
+  20. talkToNpcScene() returns fallback local text on Gemini failure
+  21. talkToNpcScene() returns fallback local text on lore-guard failure
+  22. talkToNpcScene() returns Gemini text when valid and safe
+Mock Gemini responses.
+Do not make real network calls.
+═══════════════════════════════════════
+TESTS — update tests/npcEngine.test.ts
+═══════════════════════════════════════
+Add these tests:
+"  12. parseNpcCommand(""talk to simmon"") returns npcId simmon"
+"  13. parseNpcCommand(""ask kilvin about work"") returns npcId kilvin and topic work"
+"  14. parseNpcCommand(""ask stanchion about pipes"") returns npcId stanchion and topic pipes"
+"  15. parseNpcCommand(""talk to denna"") returns npcId denna or null"
+      but Gemini eligibility remains false elsewhere
+Rules:
+- the parser may recognise names that are not Gemini-eligible
+- Gemini eligibility is enforced separately by narration context builder
+═══════════════════════════════════════
+ARCHITECTURE REMINDERS
+═══════════════════════════════════════
+These rules from Prompt 1 still apply:
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls outside the optional Gemini provider
+  - No unused imports or files
+npcConversationContext.ts is a narration-layer file.
+It must not call the DB.
+It must not decide gameplay outcomes.
+It exists only to build safe, compact NPC conversation context.
+═══════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════
+This prompt is complete when:
+  - talk/ask commands still work locally exactly as before
+  - Gemini NPC conversation is available only for the MVP-safe cast
+  - unsupported NPCs automatically use the local path
+  - Gemini NPC replies are grounded in npcProfiles + canon facts + scene context
+  - Gemini NPC replies are checked by the lore guard before being returned
+  - if Gemini fails, local talkToNPC() fallback is used
+  - no conversation path mutates PlayerState in this prompt
+  - no new gameplay systems are introduced
+  - all new tests pass alongside earlier prompts' tests
+  - no refactoring of working Prompts 1–9 code beyond what is required
+==========================================
+END OF PROMPT 10
+==========================================
+The clean next step after this is  Prompt 11: deepen and standardise NPC character documents for the first core cast , which matches your original sequence.

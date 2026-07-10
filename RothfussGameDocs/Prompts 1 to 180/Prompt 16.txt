@@ -1,0 +1,339 @@
+﻿Prompt 16
+
+Prompt 16 should now do the original plan's Prompt 16 job: make the basic economy feel real and standardised - specifically Anker's room at 2 jots/night, meals costing drabs, money deducted on rest/eat actions, and warnings when funds are low. Because your earlier prompts already introduced economy.ts, eat, sleep, money in drabs, and then Prompt 14 centralised currency helpers, this version of Prompt 16 is about locking those costs and warnings into one consistent MVP economy layer rather than inventing a second economy system.
+KKC TEXT ADVENTURE - PROMPT 16 OF 180
+==========================================
+Basic Economy: Room Costs, Meal Costs, and Low-Funds Warnings
+==========================================
+
+This prompt builds directly on Prompts 1 through 15.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+
+This prompt follows the original Phase 1 plan role for Prompt 16:
+build a basic economy where Anker's room costs 2 jots/night, meals cost
+drabs, money is deducted on rest/eat actions, and the player is warned
+when funds are low.
+
+Important:
+Prompt 2 already introduced eat / sleep / busk and Prompt 14 centralised
+currency helpers. This prompt does NOT reinvent the economy. It
+standardises costs, deductions, and warning behaviour.
+
+Do not add new gameplay systems beyond this economy refinement.
+
+═══════════════════════════════════════
+HARD BANS - UNCHANGED
+═══════════════════════════════════════
+
+No Anthropic. No OpenAI. No new AI provider.
+Gemini remains the only optional LLM provider in this codebase.
+
+No web server. No frontend.
+No new locations.
+No new NPCs.
+No new commands beyond what already exists.
+No new debt system.
+No loans.
+No haggling.
+No item resale.
+No shop UI.
+No dynamic pricing.
+
+Do not:
+- change money storage away from total drabs
+- add random prices
+- add multiple inns or meal tiers beyond this prompt's modest scope
+- turn economy warnings into a quest system
+
+═══════════════════════════════════════
+ARCHITECTURE RULE - STILL ABSOLUTE
+═══════════════════════════════════════
+
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- economy truth
+- cost truth
+- low-funds warning truth
+
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+
+The economy helpers:
+- must live in engine/*
+- must not call the database
+- must not mutate PlayerState unless explicitly returning a new state
+- must not invent new gameplay outcomes beyond meal/rest cost and warning logic
+
+═══════════════════════════════════════
+GOAL OF THIS PROMPT
+═══════════════════════════════════════
+
+By the end of Prompt 16, the player should be able to:
+
+  - pay a fixed room cost when resting at Anker's
+  - pay a fixed meal cost when eating
+  - fail to rest/eat if they cannot afford it
+  - see a low-funds warning when their money becomes precarious
+  - feel that basic daily living costs matter materially
+
+The codebase should have one authoritative place for these economy
+rules and warning thresholds.
+
+═══════════════════════════════════════
+SCOPE OF THIS PROMPT
+═══════════════════════════════════════
+
+This prompt covers:
+  1. Standardise room and meal costs in engine/economy.ts
+  2. Add low-funds warning helpers
+  3. Ensure eat and sleep use shared currency helpers from Prompt 14
+  4. Add warning text to relevant economy actions and status rendering
+  5. Add tests for costs, deduction, affordability failure, and warning thresholds
+
+This prompt does NOT cover:
+  - tuition (already handled in Prompt 15)
+  - loans or debt
+  - rent arrears
+  - multiple inns
+  - luxury meals
+  - barter
+  - item breakage costs
+  - new commands
+
+═══════════════════════════════════════
+NEW FILES IN THIS PROMPT
+═══════════════════════════════════════
+
+Add exactly these files:
+
+  tests/
+    economyWarnings.test.ts
+
+Modify these existing files:
+  src/engine/economy.ts
+  src/engine/actions.ts
+  src/narration/renderStatus.ts
+  tests/economy.test.ts
+
+Modify only if those files already exist in the codebase from earlier prompts.
+Do not add any other files.
+
+═══════════════════════════════════════
+ECONOMY RULES - update src/engine/economy.ts
+═══════════════════════════════════════
+
+Do not refactor the entire file.
+Only standardise and extend what is already there.
+
+Add and export these constants:
+
+  ANKERS_ROOM_COST_DRABS = 20   // 2 jots
+  BASIC_MEAL_COST_DRABS = 4     // modest student meal
+  LOW_FUNDS_WARNING_DRABS = 15  // 1 jot, 5 drabs
+  CRITICAL_FUNDS_WARNING_DRABS = 5
+
+Rules:
+- Keep these as simple constants in economy.ts
+- Do not add dynamic pricing
+- Do not add random modifiers
+
+Also implement and export:
+
+  getFundsWarning(drabs: number): string | null
+
+Rules for getFundsWarning(drabs):
+- if drabs <= CRITICAL_FUNDS_WARNING_DRABS:
+    return a brief warning line indicating the player is nearly out of money
+- else if drabs <= LOW_FUNDS_WARNING_DRABS:
+    return a brief warning line indicating money is running short
+- else:
+    return null
+
+Tone:
+- practical
+- grounded
+- not melodramatic
+- no meta-game wording
+
+Example acceptable warning tone:
+  "You are nearly out of money."
+  "Your purse is growing worryingly light."
+
+Do not mention exact arithmetic in the warning unless naturally needed.
+
+═══════════════════════════════════════
+ECONOMY ACTIONS - update src/engine/economy.ts
+═══════════════════════════════════════
+
+Standardise these existing actions if they already exist:
+
+  eat(state: PlayerState): { message: string; newState: PlayerState }
+  sleep(state: PlayerState): { message: string; newState: PlayerState }
+  busk(...): keep existing behaviour except where currency helpers apply
+
+Rules for eat():
+- meal cost must be BASIC_MEAL_COST_DRABS
+- use canAfford() and spendMoney() from src/engine/currency.ts
+- if player cannot afford the meal:
+    return a brief in-world line saying they do not have enough money to eat
+    state unchanged
+- on success:
+    deduct meal cost
+    reduce hunger according to the existing economy/survival logic already established
+    do not change any unrelated systems
+- if the new remaining money triggers a low-funds warning:
+    append the warning after a blank line
+
+Rules for sleep():
+- room cost must be ANKERS_ROOM_COST_DRABS
+- use canAfford() and spendMoney() from src/engine/currency.ts
+- this room-cost logic applies when the current MVP sleep/rest flow assumes paid lodging at Anker's
+- if player cannot afford the room:
+    return a brief in-world line saying they cannot afford the room tonight
+    state unchanged
+- on success:
+    deduct room cost
+    apply the existing rest / recovery / reset logic already established in previous prompts
+    do not alter non-economy recovery rules except as already defined
+- if the new remaining money triggers a low-funds warning:
+    append the warning after a blank line
+
+Rules for busk():
+- do not change the earning logic already established
+- after successful income, do not emit a low-funds warning
+- continue to use addMoney() from currency.ts if not already doing so
+
+Do not add new economy actions in this prompt.
+
+═══════════════════════════════════════
+ACTIONS - update src/engine/actions.ts
+═══════════════════════════════════════
+
+Do not refactor working command handling.
+
+Only ensure that:
+- existing eat command uses the standardised eat() result
+- existing sleep / rest command uses the standardised sleep() result
+- no duplicate ad hoc room/meal pricing remains in actions.ts
+
+If actions.ts currently contains inline cost logic, move that cost logic
+back into economy.ts and keep actions.ts thin.
+
+Do not add new commands.
+
+═══════════════════════════════════════
+STATUS RENDERING - update src/narration/renderStatus.ts
+═══════════════════════════════════════
+
+Keep renderStatus() compact.
+
+Add one short money-pressure line only when applicable, based on
+getFundsWarning(state.money_drabs).
+
+Rules:
+- If getFundsWarning(...) returns null, do not add any line
+- If it returns a warning, append a short line such as:
+    "Funds: running short."
+  or
+    "Funds: nearly gone."
+- Keep it compact
+- Do not duplicate the full warning message if that would bloat status
+- Do not change any other status formatting more than necessary
+
+This keeps low-funds pressure visible even outside economy actions.
+
+═══════════════════════════════════════
+TESTS - tests/economyWarnings.test.ts
+═══════════════════════════════════════
+
+Import:
+  ANKERS_ROOM_COST_DRABS
+  BASIC_MEAL_COST_DRABS
+  LOW_FUNDS_WARNING_DRABS
+  CRITICAL_FUNDS_WARNING_DRABS
+  getFundsWarning
+from src/engine/economy.ts
+
+Tests:
+
+  constants:
+    1. ANKERS_ROOM_COST_DRABS === 20
+    2. BASIC_MEAL_COST_DRABS === 4
+    3. LOW_FUNDS_WARNING_DRABS === 15
+    4. CRITICAL_FUNDS_WARNING_DRABS === 5
+
+  getFundsWarning:
+    5. 30 returns null
+    6. 15 returns a low-funds warning
+    7. 10 returns a low-funds warning
+    8. 5 returns a critical-funds warning
+    9. 0 returns a critical-funds warning
+
+═══════════════════════════════════════
+TESTS - update tests/economy.test.ts
+═══════════════════════════════════════
+
+Keep existing tests intact.
+Add these if economy.test.ts already exists:
+
+  10. eat from a state with sufficient funds deducts BASIC_MEAL_COST_DRABS
+  11. eat from a state with insufficient funds leaves money unchanged
+  12. sleep from a state with sufficient funds deducts ANKERS_ROOM_COST_DRABS
+  13. sleep from a state with insufficient funds leaves money unchanged
+  14. successful eat can append a low-funds warning when remaining money is low
+  15. successful sleep can append a low-funds warning when remaining money is low
+
+If the exact eat/sleep signatures in your code differ slightly from this
+prompt, adapt the tests to the real function signatures rather than
+rewriting the whole economy layer.
+
+═══════════════════════════════════════
+ARCHITECTURE REMINDERS
+═══════════════════════════════════════
+
+These rules from Prompt 1 still apply:
+
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls outside the optional Gemini provider
+  - No unused imports or files
+
+economy.ts remains an engine-layer file.
+It must not call the DB.
+It must not decide unrelated gameplay systems.
+It exists only to make room/meal costs and money-pressure warnings consistent.
+
+═══════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════
+
+This prompt is complete when:
+
+  - Anker's room cost is standardised at 2 jots
+  - a basic meal cost is standardised in drabs
+  - eat deducts meal cost correctly
+  - sleep/rest deducts room cost correctly
+  - insufficient funds block those actions cleanly
+  - low-funds warnings appear when money is precarious
+  - renderStatus can surface a compact funds warning
+  - no new gameplay systems beyond this economy refinement are introduced
+  - all new tests pass alongside earlier prompts' tests
+  - no refactoring of working Prompts 1-15 code beyond what is required
+
+==========================================
+END OF PROMPT 16
+==========================================
+
+The clean next step after this is Prompt 17: hunger/fatigue tracker refinement, which matches your original sequence.
+

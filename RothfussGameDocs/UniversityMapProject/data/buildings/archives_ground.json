@@ -1,0 +1,276 @@
+{
+  "building_id": "archives",
+  "floor_id": "ground",
+  "metadata": {
+    "elevation_y": 0.0,
+    "floor_height": 4.6,
+    "wall_thickness_default": 1.5,
+    "north_orientation_deg": 0,
+    "source": "Archives Ground Floor - Canon-Safe Simplified",
+    "certainty_overall": "canon_primary_with_implied_support",
+    "notes": "Simplified canonical structure. Removes speculative reconstructed rooms. Focuses on threshold sequence, access control, and public-vs-restricted split as described in canon constraints.",
+    "version": "v02_canon_safe"
+  },
+  "geometries": {
+    "footprint": [
+      {"x": -30, "z": -25},
+      {"x": 30, "z": -25},
+      {"x": 30, "z": 25},
+      {"x": -30, "z": 25}
+    ],
+    "walls": [
+      {
+        "id": "outer_north",
+        "start": {"x": -30, "z": 25},
+        "end": {"x": 30, "z": 25},
+        "thickness": 3.0,
+        "certainty": "canon",
+        "label": "Outer stone wall - north (formidable)"
+      },
+      {
+        "id": "outer_east",
+        "start": {"x": 30, "z": 25},
+        "end": {"x": 30, "z": -25},
+        "thickness": 3.0,
+        "certainty": "canon",
+        "label": "Outer stone wall - east"
+      },
+      {
+        "id": "outer_south",
+        "start": {"x": 30, "z": -25},
+        "end": {"x": -30, "z": -25},
+        "thickness": 3.0,
+        "certainty": "canon",
+        "label": "Outer stone wall - south"
+      },
+      {
+        "id": "outer_west",
+        "start": {"x": -30, "z": -25},
+        "end": {"x": -30, "z": 25},
+        "thickness": 3.0,
+        "certainty": "canon",
+        "label": "Outer stone wall - west (no windows)"
+      },
+      {
+        "id": "internal_antechamber_split",
+        "start": {"x": -10, "z": 15},
+        "end": {"x": 10, "z": 15},
+        "thickness": 1.5,
+        "certainty": "canon",
+        "label": "Wall separating antechamber from deeper spaces"
+      },
+      {
+        "id": "internal_scrivs_boundary",
+        "start": {"x": -20, "z": -20},
+        "end": {"x": -20, "z": 15},
+        "thickness": 1.5,
+        "certainty": "implied",
+        "label": "Wall enclosing scrivs-only staff zone"
+      },
+      {
+        "id": "internal_tomes_stacks_split",
+        "start": {"x": 10, "z": -20},
+        "end": {"x": 10, "z": 15},
+        "thickness": 1.5,
+        "certainty": "canon",
+        "label": "Wall dividing public Tomes from restricted Stacks"
+      }
+    ],
+    "rooms": [
+      {
+        "id": "antechamber",
+        "label": "Antechamber",
+        "certainty": "canon",
+        "description": "Threshold gatekeeping space. Entry sequence enforcer.",
+        "polygon": [
+          {"x": -5, "z": 18},
+          {"x": 5, "z": 18},
+          {"x": 5, "z": 25},
+          {"x": -5, "z": 25}
+        ],
+        "notes": "Staffed, permissions enforced, controls access to all deeper spaces"
+      },
+      {
+        "id": "permissions_desk",
+        "label": "Permissions & Gatekeeping Desk",
+        "certainty": "canon",
+        "description": "Control point for access approval",
+        "polygon": [
+          {"x": 5, "z": 18},
+          {"x": 12, "z": 18},
+          {"x": 12, "z": 22},
+          {"x": 5, "z": 22}
+        ],
+        "notes": "Secure staffed counter, permissions logic enforced"
+      },
+      {
+        "id": "scrivs_only_zone",
+        "label": "Scrivs Only (Staff Zone)",
+        "certainty": "canon",
+        "description": "Restricted scribal staff work and rest areas",
+        "polygon": [
+          {"x": -20, "z": -20},
+          {"x": -5, "z": -20},
+          {"x": -5, "z": 15},
+          {"x": -20, "z": 15}
+        ],
+        "notes": "West side: staff offices, workrooms, and rest areas. Restricted to scribal staff only."
+      },
+      {
+        "id": "tomes",
+        "label": "Tomes (Public Reading Hall)",
+        "certainty": "canon",
+        "description": "Formal, well-lit public reading and research space",
+        "polygon": [
+          {"x": -5, "z": -20},
+          {"x": 10, "z": -20},
+          {"x": 10, "z": 15},
+          {"x": -5, "z": 15}
+        ],
+        "notes": "Public access. Better lit than rest of building. Audit-formal tone. Internal lantern roof providing daylight."
+      },
+      {
+        "id": "stacks_main",
+        "label": "Stacks (Main Shelving & Archives)",
+        "certainty": "canon",
+        "description": "Primary shelving columns and organized archival storage",
+        "polygon": [
+          {"x": 10, "z": -20},
+          {"x": 25, "z": -20},
+          {"x": 25, "z": 15},
+          {"x": 10, "z": 15}
+        ],
+        "notes": "Main archive storage. Shelving organized by coordinate. Restricted access enforced at entry."
+      },
+      {
+        "id": "restricted_entry",
+        "label": "Restricted Stacks Entry Control",
+        "certainty": "implied",
+        "description": "Gated threshold to deep restricted archives",
+        "polygon": [
+          {"x": 25, "z": 8},
+          {"x": 30, "z": 8},
+          {"x": 30, "z": 12},
+          {"x": 25, "z": 12}
+        ],
+        "notes": "Permissions required. Gateway to deep levels below."
+      }
+    ],
+    "portals": [
+      {
+        "id": "stone_doors_main",
+        "type": "door",
+        "pos": {"x": 0, "z": 25},
+        "width": 5.0,
+        "label": "Formidable Fortified Outer Stone Doors",
+        "certainty": "canon",
+        "notes": "Primary entrance. Massive stonework. Only public entrance to building."
+      },
+      {
+        "id": "door_antechamber_tomes",
+        "type": "door",
+        "pos": {"x": 0, "z": 15},
+        "width": 2.0,
+        "label": "Door: Antechamber to Tomes (Public)",
+        "certainty": "canon",
+        "notes": "Public path to reading hall"
+      },
+      {
+        "id": "door_antechamber_scrivs",
+        "type": "door",
+        "pos": {"x": -8, "z": 15},
+        "width": 1.5,
+        "label": "Door: Antechamber to Scrivs Only (Restricted)",
+        "certainty": "canon",
+        "notes": "Staff-only access, permissions enforced"
+      },
+      {
+        "id": "door_tomes_stacks",
+        "type": "door",
+        "pos": {"x": 10, "z": 5},
+        "width": 2.0,
+        "label": "Door: Tomes to Stacks (Controlled)",
+        "certainty": "canon",
+        "notes": "Access from public reading to archive storage, with permissions check"
+      },
+      {
+        "id": "door_stacks_restricted",
+        "type": "door",
+        "pos": {"x": 25, "z": 10},
+        "width": 1.5,
+        "label": "Door: Stacks to Restricted Deep Access",
+        "certainty": "implied",
+        "notes": "Gated deep archive entry"
+      }
+    ],
+    "vertical_circulation": [
+      {
+        "id": "stair_down_lower_stacks_main",
+        "type": "stair",
+        "pos": {"x": 18, "z": -15},
+        "target_floor": "level_1",
+        "direction": "down",
+        "label": "Stairs to Lower Stacks (Deep Access)",
+        "certainty": "canon",
+        "notes": "Major descent to deep archive levels. Restricted access."
+      },
+      {
+        "id": "stair_down_lower_stacks_secondary",
+        "type": "stair",
+        "pos": {"x": 22, "z": 8},
+        "target_floor": "level_1",
+        "direction": "down",
+        "label": "Stairs to Lower Stacks (Secondary)",
+        "certainty": "implied",
+        "notes": "Secondary descent from restricted entry control area"
+      },
+      {
+        "id": "vertical_transport_deep",
+        "type": "lift",
+        "pos": {"x": 28, "z": 0},
+        "target_floor": "level_3_sub",
+        "direction": "down",
+        "label": "Vertical Transport Shaft (Immense)",
+        "certainty": "canon",
+        "notes": "Mechanical lift system for deep archives access. Multiple sub-levels below."
+      }
+    ],
+    "metadata_features": [
+      {
+        "id": "canonical_entry_sequence",
+        "type": "circulation_logic",
+        "label": "Entry Sequence: Stone Doors → Antechamber → Permissions → [Public/Restricted Branch]",
+        "certainty": "canon",
+        "notes": "Threshold gating enforces permission-based access. Canonical control flow."
+      },
+      {
+        "id": "public_restricted_split",
+        "type": "access_control",
+        "label": "Public Zone (Tomes) vs. Restricted Zone (Stacks & Below)",
+        "certainty": "canon",
+        "notes": "Two-tier model: public reading floor; restricted archive depths"
+      },
+      {
+        "id": "scrivs_staff_separation",
+        "type": "access_control",
+        "label": "Scrivs-Only Staff Zone (West side)",
+        "certainty": "canon",
+        "notes": "Separate from public. Private workroom and rest area for scribal staff."
+      },
+      {
+        "id": "no_windows_fortress",
+        "type": "architectural_constraint",
+        "label": "No windows. Windowless fortress shell.",
+        "certainty": "canon",
+        "notes": "Severe, secure, isolated from exterior visibility"
+      },
+      {
+        "id": "internal_lantern_roof",
+        "type": "daylight_system",
+        "label": "Internal Lantern Roof (Tomes hall)",
+        "certainty": "canon",
+        "notes": "Conceptual light well above Tomes, providing daylight to public reading area despite no exterior windows"
+      }
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "crydee_review_gates_v01",
+  "targets": {
+    "castle_crydee:site": {
+      "source_audit_generated": {
+        "status": "generated",
+        "updated_at": "2026-05-04T04:14:30Z",
+        "note": "Generated C:\\Users\\joshua.parris\\OneDrive - Dubbo Christian School\\Documents\\03_Projects\\RothfussGame\\CrydeeProject\\docs\\SOURCE_AUDIT.md and C:\\Users\\joshua.parris\\OneDrive - Dubbo Christian School\\Documents\\03_Projects\\RothfussGame\\CrydeeProject\\logs\\source_audit.json."
+      },
+      "source_pdf_reviewed": {
+        "status": "pending",
+        "updated_at": null,
+        "note": "Manual review of the lawful source and extraction quality is still needed."
+      },
+      "evidence_ledger_started": {
+        "status": "ready",
+        "updated_at": "2026-05-04T00:00:00Z",
+        "note": "Seed Crydee evidence rows have been created."
+      },
+      "site_layout_frozen": {
+        "status": "pending",
+        "updated_at": null,
+        "note": "Working draft exists but must not be treated as frozen."
+      },
+      "building_brief_frozen": {
+        "status": "pending",
+        "updated_at": null,
+        "note": "Castle Crydee brief exists but should be tightened after a wider evidence pass."
+      },
+      "floor_json_frozen": {
+        "status": "approved_for_blockout",
+        "updated_at": "2026-05-04T05:10:00Z",
+        "note": "castle_crydee_site_v03_canon_safe.json is approved as the active source-accuracy walkthrough draft. It expands V02 with site geography, battlements, and stronger hero routes, but it is still not a final canon architecture lock."
+      },
+      "blender_blockout_generated": {
+        "status": "pending",
+        "updated_at": null,
+        "note": "Blender is optional for the current native-Godot CSG prototype."
+      },
+      "godot_test_ready": {
+        "status": "ready",
+        "updated_at": "2026-05-04T05:30:40Z",
+        "note": "Godot walkthrough smoke-tested successfully for res://scenes/castle_crydee_ground_walkthrough.tscn."
+      },
+      "v03_site_accuracy_pass": {
+        "status": "ready_for_review",
+        "updated_at": "2026-05-04T05:10:00Z",
+        "note": "V03 source-accuracy pass generated from castle_crydee_site_v03_canon_safe.json. Adds source-led site geography, verticality, defensive wall detail, and hero routes. Still not final canon lock."
+      }
+    }
+  }
+}

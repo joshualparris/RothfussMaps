@@ -1,0 +1,52 @@
+{
+  "project": "University Map Project",
+  "building_name": "",
+  "version": "v1",
+  "north_reference": "up",
+  "certainty_summary": {
+    "tier_1_confirmed": [],
+    "tier_2_implied": [],
+    "tier_3_inferred": []
+  },
+  "site_context": {
+    "adjacent_locations": [],
+    "approach_routes": [],
+    "exterior_constraints": [],
+    "banned_exterior_assumptions": []
+  },
+  "building_shell": {
+    "floor_count_known": null,
+    "shape_description": "",
+    "entrances": [],
+    "vertical_links": [],
+    "window_rules": [],
+    "hard_bans": []
+  },
+  "floors": [
+    {
+      "floor_id": "ground",
+      "purpose": "",
+      "circulation": {
+        "main_paths": [],
+        "stairs": [],
+        "restricted_routes": []
+      },
+      "rooms": [
+        {
+          "room_id": "",
+          "name": "",
+          "purpose": "",
+          "must_connect_to": [],
+          "must_not_connect_to": [],
+          "features": [],
+          "lighting": [],
+          "access_rules": [],
+          "unknowns": []
+        }
+      ]
+    }
+  ],
+  "open_questions": [],
+  "design_inferences": [],
+  "image_prompt_notes": []
+}

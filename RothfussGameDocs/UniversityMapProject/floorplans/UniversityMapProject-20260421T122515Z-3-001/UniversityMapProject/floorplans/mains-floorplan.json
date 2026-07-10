@@ -1,0 +1,62 @@
+{
+  "project": "University Map Project",
+  "building_name": "The Mains",
+  "version": "v2",
+  "north_reference": "up",
+  "certainty_summary": {
+    "tier_1_confirmed": ["Irregular accreted complex covering 1.5 acres", "Maze-like circulation with odd turns and dead ends", "Absorbed courtyards and buildings", "Theatre-style lecture rooms with tiered seating and raised stages", "Roof access via drainpipes and apple tree descent to courtyard"],
+    "tier_2_implied": ["Multi-level with absorbed spaces", "Complex internal layout"],
+    "tier_3_inferred": ["Historical layering with mismatched architecture"]
+  },
+  "site_context": {
+    "adjacent_locations": ["Artificery (north)", "Archives (east)", "Medica (south)", "Courtyard (west)"],
+    "approach_routes": ["All cardinal directions"],
+    "exterior_constraints": ["Cobbled together from mismatched buildings", "Sheltered box alleys with drainpipes"],
+    "banned_exterior_assumptions": ["No symmetrical design"]
+  },
+  "building_shell": {
+    "floor_count_known": false,
+    "shape_description": "Irregular accreted complex covering nearly 1.5 acres",
+    "entrances": ["north", "east", "south", "west", "roof_access"],
+    "vertical_links": ["multiple stairs", "drainpipes"],
+    "window_rules": ["Medieval style windows in accreted sections"],
+    "hard_bans": ["No uniform or symmetrical design", "No straightforward navigation"]
+  },
+  "floors": [
+    {
+      "floor_id": "ground",
+      "purpose": "Primary circulation and absorbed spaces",
+      "circulation": {
+        "main_paths": ["rambling routes with odd turns", "shortcuts through workrooms"],
+        "stairs": ["multiple internal stairs"],
+        "restricted_routes": ["isolated courtyard access"]
+      },
+      "rooms": [
+        {
+          "room_id": "absorbed_courtyard",
+          "name": "Absorbed Courtyard",
+          "purpose": "Isolated internal void",
+          "must_connect_to": ["window_access"],
+          "must_not_connect_to": ["normal_circulation"],
+          "features": ["completely isolated", "window access only"],
+          "lighting": ["natural light through windows"],
+          "access_rules": ["climbing required"],
+          "unknowns": ["exact number of absorbed spaces"]
+        },
+        {
+          "room_id": "workroom_shortcut",
+          "name": "Workroom Shortcut",
+          "purpose": "Alternative circulation path",
+          "must_connect_to": ["main_paths"],
+          "must_not_connect_to": [],
+          "features": ["rambling routes"],
+          "lighting": ["interior lighting"],
+          "access_rules": ["open for shortcuts"],
+          "unknowns": ["exact shortcut locations"]
+        }
+      ]
+    }
+  ],
+  "open_questions": ["Exact accreted building count", "Full extent of absorbed courtyards"],
+  "design_inferences": ["Irregular footprint with historical additions", "Complex vertical stacking"]
+}

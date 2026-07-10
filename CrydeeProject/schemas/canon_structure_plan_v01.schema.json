@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/canon_structure_plan_v01.schema.json",
+  "title": "Canon Structure Plan v01",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "structure",
+    "level",
+    "zone_role",
+    "footprint",
+    "spaces",
+    "links",
+    "labels",
+    "validation_flags"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "canon_structure_plan_v01"
+    },
+    "structure": {
+      "$ref": "#/$defs/certifiedObject"
+    },
+    "level": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "certainty",
+        "draft",
+        "approximate_dimensions"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "certainty": { "$ref": "#/$defs/certainty" },
+        "draft": { "type": "boolean" },
+        "approximate_dimensions": { "type": "boolean" },
+        "metrics": { "type": "object" }
+      },
+      "additionalProperties": true
+    },
+    "zone_role": {
+      "type": "object",
+      "required": [
+        "certainty",
+        "summary"
+      ],
+      "properties": {
+        "certainty": { "$ref": "#/$defs/certainty" },
+        "summary": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "footprint": {
+      "$ref": "#/$defs/polygonItem"
+    },
+    "spaces": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/polygonItem" }
+    },
+    "links": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/linkItem" }
+    },
+    "vertical_links": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/polygonItem" }
+    },
+    "fixtures": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/polygonItem" }
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "#/$defs/certifiedObject" },
+          {
+            "type": "object",
+            "required": [
+              "text",
+              "position"
+            ],
+            "properties": {
+              "text": { "type": "string" },
+              "position": { "$ref": "#/$defs/point" }
+            }
+          }
+        ]
+      }
+    },
+    "validation_flags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "level",
+          "message"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "level": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "info",
+              "warning",
+              "error"
+            ]
+          },
+          "message": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "$defs": {
+    "certainty": {
+      "type": "string",
+      "enum": [
+        "canon",
+        "implied",
+        "reconstructed",
+        "unknown",
+        "tension"
+      ]
+    },
+    "point": {
+      "type": "object",
+      "required": [
+        "x",
+        "z"
+      ],
+      "properties": {
+        "x": { "type": "number" },
+        "z": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "certifiedObject": {
+      "type": "object",
+      "required": [
+        "id",
+        "certainty"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "label": { "type": "string" },
+        "certainty": { "$ref": "#/$defs/certainty" },
+        "geometry_certainty": { "$ref": "#/$defs/certainty" },
+        "approximate": { "type": "boolean" },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "polygonItem": {
+      "allOf": [
+        { "$ref": "#/$defs/certifiedObject" },
+        {
+          "type": "object",
+          "required": [
+            "polygon"
+          ],
+          "properties": {
+            "polygon": {
+              "type": "array",
+              "minItems": 3,
+              "items": { "$ref": "#/$defs/point" }
+            }
+          }
+        }
+      ]
+    },
+    "linkItem": {
+      "allOf": [
+        { "$ref": "#/$defs/certifiedObject" },
+        {
+          "type": "object",
+          "required": [
+            "connects",
+            "line"
+          ],
+          "properties": {
+            "connects": {
+              "type": "array",
+              "minItems": 2,
+              "items": { "type": "string" }
+            },
+            "line": {
+              "type": "object",
+              "required": [
+                "start",
+                "end"
+              ],
+              "properties": {
+                "start": { "$ref": "#/$defs/point" },
+                "end": { "$ref": "#/$defs/point" }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+

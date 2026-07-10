@@ -1,0 +1,38 @@
+{
+  "schema_version": "crydee_pipeline_manifest_v01",
+  "project_name": "Crydee Reconstruction",
+  "source_of_truth_policy": "Structured evidence and floor JSON are authoritative. Godot output is generated from that source JSON.",
+  "defaults": {
+    "source_pdf": "magician_file.pdf",
+    "source_auditor": "scripts/source_audit.py",
+    "repo_validator": "scripts/validate_repo.py",
+    "prompt_generator": "scripts/generate_prompt.py",
+    "validator": "scripts/validate_floor_plan.py",
+    "godot_setup": "scripts/godot/setup_walkthrough_project.py"
+  },
+  "targets": [
+    {
+      "target_id": "castle_crydee:site",
+      "building": "castle_crydee",
+      "floor": "ground",
+      "phase": "source_accuracy_v03_walkthrough",
+      "status": "v03_site_accuracy_pass",
+      "source_pdf": "magician_file.pdf",
+      "source_json": "data/buildings/castle_crydee_site_v03_canon_safe.json",
+      "schema": "schemas/canon_floor_plan_v02.schema.json",
+      "building_brief": "buildings/castle-crydee-brief.md",
+      "source_audit_doc": "docs/SOURCE_AUDIT.md",
+      "evidence_ledger": "evidence/evidence-ledger.csv",
+      "canon_manifest": "evidence/canon_manifest.json",
+      "prompt_seed": "ai-prompts/crydee-site-plan.md",
+      "godot_project": "godot",
+      "godot_main_scene": "godot/scenes/castle_crydee_ground_walkthrough.tscn",
+      "godot_asset_path": "godot/assets/castle_crydee_site_v03_canon_safe.glb",
+      "notes": [
+        "V03 adds site geography, stronger gate-courtyard-keep sequencing, battlements, and more vertical fidelity.",
+        "Geometry remains reconstructed where the novel does not provide exact measurements or full shell relationships.",
+        "The Godot walkthrough is generated directly from the V03 JSON as native CSG; Blender remains optional for later visual or export work."
+      ]
+    }
+  ]
+}

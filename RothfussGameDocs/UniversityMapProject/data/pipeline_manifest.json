@@ -1,0 +1,37 @@
+{
+  "schema_version": "university_pipeline_manifest_v01",
+  "project_name": "Rothfuss University Reconstruction",
+  "source_of_truth_policy": "Structured JSON and evidence files are authoritative. Blender and Godot assets are generated outputs.",
+  "defaults": {
+    "validator": "scripts/validation/validate_floor_plan.py",
+    "blender_importer": "scripts/blender/import_floor_plan.py",
+    "godot_setup": "scripts/godot/setup_walkthrough_project.py"
+  },
+  "targets": [
+    {
+      "building": "archives",
+      "floor": "ground",
+      "status": "first_authoritative_blockout_target",
+      "source_json": "data/buildings/archives_ground_v02_canon_safe.json",
+      "schema": "schemas/canon_floor_plan_v02.schema.json",
+      "building_brief": "buildings/archives-brief.md",
+      "automation_audit": "docs/AUTOMATION_PIPELINE_AUDIT.md",
+      "export_blend": "exports/blender/archives_ground_v02_canon_safe.blend",
+      "export_glb": "godot/assets/archives_ground_v02_canon_safe.glb",
+      "godot_project": "godot",
+      "godot_main_scene": "godot/scenes/archives_ground_walkthrough.tscn",
+      "evidence_inputs": [
+        "evidence/canon_manifest.json",
+        "evidence/evidence-ledger.csv",
+        "evidence/university-evidence-ledger-v3.csv",
+        "docs/university-evidence-summary-v3.md"
+      ],
+      "notes": [
+        "This target is canon-safe for first blockout testing, not a final full Archives layout.",
+        "The Stacks are represented as threshold logic only.",
+        "Speculative support rooms are intentionally excluded."
+      ]
+    }
+  ]
+}
+

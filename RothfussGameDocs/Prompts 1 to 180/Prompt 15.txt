@@ -1,0 +1,422 @@
+﻿Prompt 15
+
+This Prompt 15 sticks to the original plan's Prompt 15 role: make tuition a real system with an amount owed, a deadline, a payment action, and overdue consequences. It also respects what Prompt 2 already introduced - tuition_state in PlayerState - by formalising and centralising that logic instead of reinventing it.
+KKC TEXT ADVENTURE - PROMPT 15 OF 180
+==========================================
+Tuition System: Deadline, Payment, and Overdue Consequences
+==========================================
+
+This prompt builds directly on Prompts 1 through 14.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+
+This prompt follows the original Phase 1 plan role for Prompt 15:
+implement a working tuition system so that a tuition amount is owed,
+must be paid by a deadline, and has consequences if left overdue.
+
+Important:
+Prompt 2 already introduced tuition_state in PlayerState.
+This prompt does NOT reinvent tuition from scratch.
+It centralises and makes it function as a real game system.
+
+Do not add new gameplay systems beyond tuition in this prompt.
+
+═══════════════════════════════════════
+HARD BANS - UNCHANGED
+═══════════════════════════════════════
+
+No Anthropic. No OpenAI. No new AI provider.
+Gemini remains the only optional LLM provider in this codebase.
+
+No web server. No frontend.
+No new locations.
+No new NPCs.
+No new movement rules.
+No new sympathy rules.
+No new music systems.
+No new social mechanics beyond tuition consequences.
+
+Do not:
+- add multi-term procedural tuition generation yet
+- add formal hearings or master panels yet
+- add debt interest
+- add banking or loans
+- add calendar UI
+- make tuition into a quest chain
+
+This prompt is for one working MVP tuition system.
+
+═══════════════════════════════════════
+ARCHITECTURE RULE - STILL ABSOLUTE
+═══════════════════════════════════════
+
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- tuition truth
+- overdue consequence truth
+
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+
+The tuition helpers:
+- must live in engine/*
+- must not call the database
+- must not mutate PlayerState unless explicitly returning a new state
+- must not invent new gameplay outcomes beyond tuition payment / overdue
+
+═══════════════════════════════════════
+GOAL OF THIS PROMPT
+═══════════════════════════════════════
+
+By the end of Prompt 15, the player should be able to:
+
+  - type `tuition` or `check tuition` and see what is owed
+  - type `pay tuition` and pay it if they can afford it
+  - fail to pay if they do not have enough money
+  - cross the deadline and have tuition become overdue
+  - suffer a one-time overdue consequence to reputation/standing
+  - continue play with the overdue state visible until paid
+
+The codebase should have one authoritative tuition module used by all
+current tuition-related logic.
+
+═══════════════════════════════════════
+SCOPE OF THIS PROMPT
+═══════════════════════════════════════
+
+This prompt covers:
+  1. Add engine/tuitionEngine.ts
+  2. Extend TuitionState slightly to support one-time overdue penalties
+  3. Add commands:
+       tuition
+       check tuition
+       pay tuition
+  4. Add overdue checking after time-advancing actions
+  5. Add a clear tuition status renderer
+  6. Add tests for payment, insufficient funds, overdue transition,
+     and one-time penalty application
+
+This prompt does NOT cover:
+  - multi-term tuition recalculation
+  - hearings before the Masters
+  - academic rank advancement
+  - calendar UI
+  - term rollover
+  - new commands beyond tuition checking/payment
+
+═══════════════════════════════════════
+NEW FILES IN THIS PROMPT
+═══════════════════════════════════════
+
+Add exactly these files:
+
+  src/
+    engine/
+      tuitionEngine.ts
+  tests/
+    tuitionEngine.test.ts
+
+Modify these existing files:
+  src/types/index.ts
+  src/engine/state.ts
+  src/engine/actions.ts
+  src/narration/renderStatus.ts
+
+Modify only if those files already exist in the codebase from earlier prompts.
+Do not add any other files.
+
+═══════════════════════════════════════
+TYPES - update src/types/index.ts
+═══════════════════════════════════════
+
+Do not remove or rename existing types.
+
+Update TuitionState to include:
+
+export interface TuitionState {
+  amount_drabs: number;
+  due_on_day: number;
+  paid: boolean;
+  overdue: boolean;
+  overdue_penalty_applied: boolean;
+}
+
+Rules:
+- Keep existing field names unchanged
+- Add only overdue_penalty_applied
+- Do not add any other new types in this prompt
+
+═══════════════════════════════════════
+STATE - update src/engine/state.ts
+═══════════════════════════════════════
+
+Update initDefaultPlayerState() so tuition_state becomes:
+
+  tuition_state: {
+    amount_drabs: 30,
+    due_on_day: 14,
+    paid: false,
+    overdue: false,
+    overdue_penalty_applied: false,
+  }
+
+Also update loadPlayerState() and savePlayerState() so the expanded
+tuition_state persists correctly.
+
+Do not refactor unrelated state logic.
+
+═══════════════════════════════════════
+ENGINE - src/engine/tuitionEngine.ts
+═══════════════════════════════════════
+
+Implement and export:
+
+  getTuitionStatusText(state: PlayerState): string
+
+  canPayTuition(state: PlayerState): boolean
+
+  payTuition(state: PlayerState): {
+    message: string;
+    newState: PlayerState;
+  }
+
+  checkTuitionDeadline(state: PlayerState): {
+    message: string | null;
+    newState: PlayerState;
+  }
+
+Rules:
+
+─────────────────────────────────────
+getTuitionStatusText(state)
+─────────────────────────────────────
+
+Return a clean in-world status string describing:
+- amount owed (formatted currency)
+- due day
+- whether already paid
+- whether overdue
+
+Use formatCurrency from engine/currency.ts.
+
+Examples of tone:
+- factual, concise, in-world enough to fit the rest of the CLI
+- no raw JSON
+- no game jargon like "quest" or "objective"
+
+Suggested output shape:
+  "Tuition owed: 3 jots. Due on day 14. Status: unpaid."
+  "Tuition owed: nothing. Status: paid."
+  "Tuition owed: 3 jots. Due on day 14. Status: overdue."
+
+─────────────────────────────────────
+canPayTuition(state)
+─────────────────────────────────────
+
+Return true only if:
+- tuition_state.paid is false
+- state.money_drabs >= tuition_state.amount_drabs
+
+Otherwise false.
+
+─────────────────────────────────────
+payTuition(state)
+─────────────────────────────────────
+
+Rules:
+- If tuition_state.paid is already true:
+    return a brief line saying tuition is already settled
+    state unchanged
+- If player cannot afford payment:
+    return a brief line saying they do not have enough money
+    state unchanged
+- Otherwise:
+    deduct tuition_state.amount_drabs using spendMoney() from engine/currency.ts
+    set:
+      tuition_state.paid = true
+      tuition_state.overdue = false
+    leave overdue_penalty_applied unchanged
+    return a brief in-world line acknowledging the payment
+
+Do not change any other systems here.
+
+─────────────────────────────────────
+checkTuitionDeadline(state)
+─────────────────────────────────────
+
+Rules:
+- If tuition_state.paid is true:
+    return message null, state unchanged
+- If state.day_number <= tuition_state.due_on_day:
+    return message null, state unchanged
+- If tuition is already overdue and overdue_penalty_applied is true:
+    return message null, state unchanged
+- Otherwise:
+    set:
+      tuition_state.overdue = true
+      tuition_state.overdue_penalty_applied = true
+
+    apply a one-time overdue penalty:
+      reputation.academic_standing -= 5 (clamp min 0)
+      reputation.university_social -= 2 (clamp min 0)
+
+    return a brief line making clear tuition has gone overdue and this
+    has affected the player's standing
+
+Rules for tone:
+- practical, institutional, unpleasant
+- not melodramatic
+- no invented hearing scene yet
+
+═══════════════════════════════════════
+ACTIONS - update src/engine/actions.ts
+═══════════════════════════════════════
+
+Do not refactor working command logic.
+Only extend it.
+
+Add these commands:
+
+  tuition
+  check tuition
+    -> return getTuitionStatusText(state), state unchanged
+
+  pay tuition
+    -> call payTuition(state)
+    -> return result.message and result.newState
+
+Also update dispatch() so that after any command that may advance time
+or day and produces a newState, it runs:
+
+  checkTuitionDeadline(newState)
+
+and returns the updated newState plus the tuition deadline message if
+one was produced.
+
+Rules:
+- Do not duplicate tuition deadline messages repeatedly
+- Overdue consequence must happen only once because of
+  overdue_penalty_applied
+- For commands that do not advance time or day, it is acceptable to
+  call checkTuitionDeadline() anyway because it is idempotent after the
+  penalty is applied
+- If both a command result and a tuition deadline message are produced,
+  join them cleanly with a blank line between them
+
+Do not add any other commands.
+
+═══════════════════════════════════════
+NARRATION - update src/narration/renderStatus.ts
+═══════════════════════════════════════
+
+Keep existing renderStatus() behaviour intact.
+
+Extend it to include one additional tuition line, using the shared
+tuition status helper if practical.
+
+Minimum requirement:
+- renderStatus() should now surface tuition_state in a compact readable way
+
+Example acceptable line:
+  "Tuition: unpaid, 3 jots due on day 14."
+  "Tuition: paid."
+  "Tuition: overdue, 3 jots were due on day 14."
+
+Do not turn status into a wall of text.
+
+═══════════════════════════════════════
+TESTS - tests/tuitionEngine.test.ts
+═══════════════════════════════════════
+
+Import:
+  getTuitionStatusText
+  canPayTuition
+  payTuition
+  checkTuitionDeadline
+from src/engine/tuitionEngine.ts
+
+Also import:
+  initDefaultPlayerState from src/engine/state.ts
+
+Tests:
+
+  status text:
+    1. default state returns unpaid tuition text mentioning 3 jots and day 14
+    2. paid tuition state returns text indicating paid
+    3. overdue tuition state returns text indicating overdue
+
+  canPayTuition:
+    4. default state with 300 drabs can pay tuition
+    5. state with 10 drabs cannot pay tuition
+    6. already-paid tuition returns false
+
+  payTuition:
+    7. paying from default state deducts 30 drabs and marks paid true
+    8. insufficient funds leaves state unchanged
+    9. paying twice leaves state unchanged the second time
+
+  deadline:
+    10. state on day 14 is not yet overdue
+    11. unpaid state on day 15 becomes overdue
+    12. overdue state applies academic_standing penalty once
+    13. running checkTuitionDeadline twice does not double-penalise
+    14. paid tuition never becomes overdue
+
+═══════════════════════════════════════
+TESTS - update existing tests if needed
+═══════════════════════════════════════
+
+If there are existing status-rendering tests, update them minimally to
+allow the additional tuition line.
+
+Do not rewrite unrelated tests.
+
+═══════════════════════════════════════
+ARCHITECTURE REMINDERS
+═══════════════════════════════════════
+
+These rules from Prompt 1 still apply:
+
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls outside the optional Gemini provider
+  - No unused imports or files
+
+tuitionEngine.ts is an engine-layer file.
+It must not call the DB.
+It must not decide new gameplay systems.
+It exists only to make tuition a working deadline/payment system.
+
+═══════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════
+
+This prompt is complete when:
+
+  - the player can type `tuition` or `check tuition`
+  - the player can type `pay tuition`
+  - payment deducts money correctly in drabs
+  - already-paid tuition cannot be paid again
+  - unpaid tuition becomes overdue after day 14
+  - overdue penalty applies exactly once
+  - renderStatus surfaces tuition cleanly
+  - no new gameplay systems beyond tuition are introduced
+  - all new tests pass alongside earlier prompts' tests
+  - no refactoring of working Prompts 1-14 code beyond what is required
+
+==========================================
+END OF PROMPT 15
+==========================================
+
+The clean next step after this is Prompt 16: basic economy standardisation for room/meal costs and low-funds warnings, which matches the original sequence.
+

@@ -1,0 +1,411 @@
+﻿Prompt 14
+
+Because the original Prompt 14 slot was "implement the currency system: drabs/jots/talents; player_state stores total in drabs; write display and transaction functions," and your current prompts already partly did that in Prompt 1 (formatCurrency) and Prompt 2 (economy actions), this version of Prompt 14 is best used to formalise and centralise currency logic rather than invent it from scratch again.
+KKC TEXT ADVENTURE - PROMPT 14 OF 180
+==========================================
+Currency System: Centralised Drab/Jot/Talent Display and Transactions
+==========================================
+
+This prompt builds directly on Prompts 1 through 13.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+
+This prompt follows the original Phase 1 plan role for Prompt 14:
+implement the currency system properly, with player_state storing total
+money in drabs, and shared display + transaction helpers used across
+the codebase.
+
+Important:
+Prompts 1 and 2 already introduced money_drabs and some economy logic.
+This prompt does NOT reinvent that. It centralises and standardises it.
+
+Do not add new gameplay systems in this prompt.
+
+═══════════════════════════════════════
+HARD BANS - UNCHANGED
+═══════════════════════════════════════
+
+No Anthropic. No OpenAI. No new AI provider.
+Gemini remains the only optional LLM provider in this codebase.
+
+No web server. No frontend.
+No new locations.
+No new NPCs.
+No new commands.
+No new economy mechanics beyond standardising money handling.
+
+Do not:
+- change the meaning of money_drabs
+- add floating-point money
+- add new denominations beyond drabs, jots, talents
+- move money truth into narration/*
+- make currency formatting random or context-sensitive in this prompt
+
+═══════════════════════════════════════
+ARCHITECTURE RULE - STILL ABSOLUTE
+═══════════════════════════════════════
+
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- economy truth
+- currency truth
+
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+
+The currency helpers:
+- must live in engine/*
+- must not call the database
+- must not mutate PlayerState unless explicitly returning a new state
+- must not introduce new gameplay outcomes
+- exist to standardise money display and transactions everywhere
+
+═══════════════════════════════════════
+GOAL OF THIS PROMPT
+═══════════════════════════════════════
+
+By the end of Prompt 14, the codebase should have a single shared
+currency module that:
+
+  - keeps player money stored in drabs only
+  - formats money consistently as talents / jots / drabs
+  - provides reusable transaction helpers
+  - prevents negative spending
+  - is used by renderStatus, economy actions, Fishery pay, and any
+    other existing money-changing logic
+
+The player should continue to experience money exactly as before, but
+the code should now have one authoritative currency implementation.
+
+═══════════════════════════════════════
+SCOPE OF THIS PROMPT
+═══════════════════════════════════════
+
+This prompt covers:
+  1. Add engine/currency.ts
+  2. Centralise currency formatting there
+  3. Add transaction helpers:
+       canAfford
+       spendMoney
+       addMoney
+       breakdownCurrency
+  4. Update renderStatus.ts to use the shared formatter
+  5. Update economy/social/music code paths to use shared transaction helpers
+  6. Add tests for formatting and transactions
+
+This prompt does NOT cover:
+  - new prices
+  - new shops
+  - haggling
+  - bank / credit systems
+  - item resale
+  - debt mechanics beyond what already exists
+  - UI redesign
+
+═══════════════════════════════════════
+NEW FILES IN THIS PROMPT
+═══════════════════════════════════════
+
+Add exactly these files:
+
+  src/
+    engine/
+      currency.ts
+  tests/
+    currency.test.ts
+
+Modify these existing files:
+  src/narration/renderStatus.ts
+  src/narration/narrationContext.ts
+  src/engine/economy.ts
+  src/engine/socialEngine.ts
+  src/engine/actions.ts
+
+Modify only if those files already exist in the codebase from earlier prompts.
+Do not create replacement files for missing systems.
+If one of those files does not yet exist when Prompt 14 is run, skip it
+rather than inventing around it.
+
+Do not add any other files.
+
+═══════════════════════════════════════
+ENGINE - src/engine/currency.ts
+═══════════════════════════════════════
+
+Implement and export:
+
+  DRABS_PER_JOT = 10
+  JOTS_PER_TALENT = 10
+  DRABS_PER_TALENT = 100
+
+  breakdownCurrency(drabs: number): {
+    talents: number;
+    jots: number;
+    drabs: number;
+  }
+
+  formatCurrency(drabs: number): string
+
+  canAfford(currentDrabs: number, costDrabs: number): boolean
+
+  spendMoney(
+    currentDrabs: number,
+    costDrabs: number
+  ): { success: boolean; remainingDrabs: number }
+
+  addMoney(
+    currentDrabs: number,
+    amountDrabs: number
+  ): number
+
+Rules:
+
+─────────────────────────────────────
+breakdownCurrency(drabs)
+─────────────────────────────────────
+
+- Input is total drabs as an integer
+- Clamp negative input to 0 before processing
+- Return whole talents, remaining jots, remaining drabs
+- Example:
+    125 -> { talents: 1, jots: 2, drabs: 5 }
+
+─────────────────────────────────────
+formatCurrency(drabs)
+─────────────────────────────────────
+
+- Use breakdownCurrency()
+- Output examples:
+    0   -> "nothing"
+    7   -> "7 drabs"
+    10  -> "1 jot"
+    15  -> "1 jot, 5 drabs"
+    100 -> "1 talent"
+    125 -> "1 talent, 2 jots, 5 drabs"
+    300 -> "3 talents"
+- Omit zero-value denominations
+- Use singular/plural correctly:
+    1 drab / 2 drabs
+    1 jot / 2 jots
+    1 talent / 2 talents
+- Deterministic only
+
+─────────────────────────────────────
+canAfford(currentDrabs, costDrabs)
+─────────────────────────────────────
+
+- Return false if costDrabs < 0
+- Return currentDrabs >= costDrabs otherwise
+
+─────────────────────────────────────
+spendMoney(currentDrabs, costDrabs)
+─────────────────────────────────────
+
+- If costDrabs < 0:
+    return success: false, remainingDrabs: currentDrabs
+- If currentDrabs < costDrabs:
+    return success: false, remainingDrabs: currentDrabs
+- Otherwise:
+    return success: true, remainingDrabs: currentDrabs - costDrabs
+
+Do not allow negative remaining money.
+
+─────────────────────────────────────
+addMoney(currentDrabs, amountDrabs)
+─────────────────────────────────────
+
+- If amountDrabs <= 0:
+    return currentDrabs
+- Otherwise return currentDrabs + amountDrabs
+
+Do not mutate PlayerState here.
+Pure functions only.
+
+═══════════════════════════════════════
+NARRATION - update src/narration/renderStatus.ts
+═══════════════════════════════════════
+
+Keep renderStatus() and renderInventory() behaviour unchanged.
+
+Update this file so that:
+- formatCurrency is imported from src/engine/currency.ts
+- the local formatting implementation is removed from renderStatus.ts
+- renderStatus() uses the shared engine currency formatter
+
+Rules:
+- Do not change the output style except where required by the shared formatter
+- Do not leave duplicate formatCurrency implementations in the codebase
+- If tests currently import formatCurrency from renderStatus.ts,
+  update those tests to import it from engine/currency.ts instead
+
+═══════════════════════════════════════
+NARRATION CONTEXT - update src/narration/narrationContext.ts
+═══════════════════════════════════════
+
+If this file exists from Prompt 7:
+
+- Update it to import formatCurrency from src/engine/currency.ts
+- Keep all existing behaviour unchanged
+- inventory_summary.money_display must still use formatted currency,
+  now from the shared currency module
+
+If narrationContext.ts does not exist yet when Prompt 14 is run, skip
+this change rather than inventing around it.
+
+═══════════════════════════════════════
+ECONOMY INTEGRATION - update src/engine/economy.ts
+═══════════════════════════════════════
+
+If economy.ts exists from earlier prompts:
+
+Update all money-changing logic to use:
+- canAfford()
+- spendMoney()
+- addMoney()
+- formatCurrency() if a message needs formatted output
+
+Rules:
+- Do not change prices already established in earlier prompts
+- Do not change the meaning of eat / sleep / busk
+- Only replace ad hoc arithmetic with shared helpers
+- Keep all existing in-world failure messages unless a small wording
+  adjustment is required by the shared helper flow
+
+Examples:
+- eat action should use spendMoney()
+- room / sleep costs should use spendMoney()
+- busk income should use addMoney()
+
+If economy.ts does not exist yet, skip this section.
+
+═══════════════════════════════════════
+SOCIAL / FISHERY INTEGRATION - update src/engine/socialEngine.ts
+═══════════════════════════════════════
+
+If socialEngine.ts exists from Prompt 4:
+
+Update Fishery pay handling to use addMoney() instead of direct
+money_drabs arithmetic.
+
+Rules:
+- Do not change the pay formula
+- Do not change Kilvin logic
+- Only centralise the currency addition
+
+If socialEngine.ts does not exist yet, skip this section.
+
+═══════════════════════════════════════
+ACTIONS - update src/engine/actions.ts
+═══════════════════════════════════════
+
+Only if actions.ts currently formats or reports money directly:
+- update it to use formatCurrency() from engine/currency.ts
+
+Do not refactor command handling.
+Do not add new commands.
+
+This is only to eliminate duplicated money formatting logic if present.
+
+═══════════════════════════════════════
+TESTS - tests/currency.test.ts
+═══════════════════════════════════════
+
+Import:
+  breakdownCurrency
+  formatCurrency
+  canAfford
+  spendMoney
+  addMoney
+from src/engine/currency.ts
+
+Tests:
+
+  breakdownCurrency:
+    1. 0 -> talents 0, jots 0, drabs 0
+    2. 125 -> 1 talent, 2 jots, 5 drabs
+    3. negative input is clamped to 0
+
+  formatCurrency:
+    4. 0 -> "nothing"
+    5. 7 -> "7 drabs"
+    6. 10 -> "1 jot"
+    7. 15 -> "1 jot, 5 drabs"
+    8. 100 -> "1 talent"
+    9. 125 -> "1 talent, 2 jots, 5 drabs"
+    10. 300 -> "3 talents"
+
+  canAfford:
+    11. canAfford(10, 5) is true
+    12. canAfford(10, 10) is true
+    13. canAfford(10, 11) is false
+    14. canAfford(10, -1) is false
+
+  spendMoney:
+    15. spendMoney(10, 5) returns success true, remaining 5
+    16. spendMoney(10, 10) returns success true, remaining 0
+    17. spendMoney(10, 11) returns success false, remaining 10
+    18. spendMoney(10, -1) returns success false, remaining 10
+
+  addMoney:
+    19. addMoney(10, 5) returns 15
+    20. addMoney(10, 0) returns 10
+    21. addMoney(10, -3) returns 10
+
+═══════════════════════════════════════
+TESTS - update existing tests
+═══════════════════════════════════════
+
+If tests currently import formatCurrency from renderStatus.ts,
+update them to import formatCurrency from src/engine/currency.ts.
+
+Do not rewrite unrelated tests.
+Keep all existing behaviour assertions intact.
+
+═══════════════════════════════════════
+ARCHITECTURE REMINDERS
+═══════════════════════════════════════
+
+These rules from Prompt 1 still apply:
+
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls outside the optional Gemini provider
+  - No unused imports or files
+
+currency.ts is an engine-layer file.
+It must not call the DB.
+It must not decide gameplay outcomes.
+It exists only to standardise money representation and transactions.
+
+═══════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════
+
+This prompt is complete when:
+
+  - the codebase has a single shared currency module
+  - player money still stores total drabs only
+  - currency formatting is centralised and consistent
+  - renderStatus uses the shared currency formatter
+  - economy/social code uses shared transaction helpers where relevant
+  - no duplicate formatCurrency implementations remain
+  - no gameplay rules are changed beyond using shared helpers
+  - all new tests pass alongside earlier prompts' tests
+  - no refactoring of working Prompts 1-13 code beyond what is required
+
+==========================================
+END OF PROMPT 14
+==========================================
+
+The clean next step after this is Prompt 15: tuition system, which matches your original sequence.
+

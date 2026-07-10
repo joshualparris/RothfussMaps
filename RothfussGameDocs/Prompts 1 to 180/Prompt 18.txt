@@ -1,0 +1,582 @@
+﻿Prompt 18
+
+Prompt 18 should now do the original plan's Prompt 18 job: formalise the inventory system around the items that already matter in your MVP - especially the lute (fragile, significant), sympathy kit items, clothes quality, and notes/books - while giving you clean display, examine, and limited use commands. Because earlier prompts already introduced inventory, the lute, and sympathy materials, this version is about centralising inventory truth rather than starting over.
+KKC TEXT ADVENTURE - PROMPT 18 OF 180
+==========================================
+Inventory System: Lute, Sympathy Kit, Clothes Quality, Notes, and Use Commands
+==========================================
+
+This prompt builds directly on Prompts 1 through 17.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+
+This prompt follows the original Phase 1 plan role for Prompt 18:
+expand the inventory system so key items matter, especially the lute,
+sympathy materials, clothes quality, and notes/books. Add display and
+limited use/examine commands in a way that fits the current MVP.
+
+Important:
+Earlier prompts already introduced:
+- inventory as structured data
+- Kvothe's lute
+- sympathy kit items and materials
+- inventory display
+This prompt does NOT reinvent inventory from scratch.
+It centralises item truth and adds modest MVP interactions.
+
+Do not add new gameplay systems beyond inventory refinement.
+
+═══════════════════════════════════════
+HARD BANS - UNCHANGED
+═══════════════════════════════════════
+
+No Anthropic. No OpenAI. No new AI provider.
+Gemini remains the only optional LLM provider in this codebase.
+
+No web server. No frontend.
+No new locations.
+No new NPCs.
+No equipment-stat system.
+No crafting system.
+No durability simulation beyond the lute/clothes flags defined here.
+No inventory weight system.
+No container UI.
+No random loot generation.
+
+Do not:
+- replace inventory with a whole new schema unless absolutely required
+- make the lute a generic weapon/tool
+- turn notes/books into a full reading minigame
+- add stealing, dropping, or selling items in this prompt
+- break existing sympathy item behaviour
+
+═══════════════════════════════════════
+ARCHITECTURE RULE - STILL ABSOLUTE
+═══════════════════════════════════════
+
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- inventory truth
+- item-use truth
+
+content/* owns:
+- authored item registry only
+
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+
+The inventory helpers:
+- must live in engine/*
+- must not call the database
+- must not mutate PlayerState unless explicitly returning a new state
+- must not invent new gameplay systems beyond examining and limited item use
+
+═══════════════════════════════════════
+GOAL OF THIS PROMPT
+═══════════════════════════════════════
+
+By the end of Prompt 18, the player should be able to:
+
+  - type `inventory` and see a cleaner, more meaningful inventory listing
+  - type `examine lute`, `examine candle`, `examine clothes`, or
+    `examine notes` and receive a grounded in-world description
+  - type `use lute` and get a safe contextual response
+  - type `use notes` / `use book` and get a modest, non-mechanical response
+  - type `use clothes` and get a clothing-quality-aware response
+  - keep sympathy materials in inventory without breaking the sympathy system
+
+The codebase should have one authoritative registry of meaningful items
+and lightweight item-use rules.
+
+═══════════════════════════════════════
+SCOPE OF THIS PROMPT
+═══════════════════════════════════════
+
+This prompt covers:
+  1. Add content/itemRegistry.ts
+  2. Add ItemDefinition and ClothingQuality types
+  3. Add inventoryEngine.ts
+  4. Extend PlayerState slightly for clothes quality
+  5. Add commands:
+       examine [item]
+       use [item]
+  6. Improve renderInventory() using the item registry
+  7. Add tests for lookup, examination, and safe item use
+
+This prompt does NOT cover:
+  - selling or dropping items
+  - stealing items
+  - item wear over time beyond the static clothing quality field
+  - instrument damage events
+  - reading full books/notes content
+  - crafting or combining items
+  - changing sympathy adjudication rules
+
+═══════════════════════════════════════
+NEW FILES IN THIS PROMPT
+═══════════════════════════════════════
+
+Add exactly these files:
+
+  src/
+    content/
+      itemRegistry.ts
+    engine/
+      inventoryEngine.ts
+  tests/
+    inventoryEngine.test.ts
+
+Modify these existing files:
+  src/types/index.ts
+  src/engine/state.ts
+  src/engine/actions.ts
+  src/narration/renderStatus.ts
+
+Modify only if those files already exist in the codebase from earlier prompts.
+If a listed file does not exist yet when Prompt 18 is run, skip it
+rather than inventing around it.
+
+Do not add any other files.
+
+═══════════════════════════════════════
+TYPES - update src/types/index.ts
+═══════════════════════════════════════
+
+Do not remove or rename existing types.
+
+Add:
+
+export type ClothingQuality =
+  'poor' | 'worn' | 'serviceable' | 'good';
+
+export interface ItemDefinition {
+  id: string;
+  display_name: string;
+  category: 'instrument' | 'sympathy_material' | 'clothing' | 'notes' | 'book' | 'misc';
+  fragile: boolean;
+  significant: boolean;
+  examinable: boolean;
+  usable: boolean;
+  default_examine_text: string;
+  default_use_text: string;
+}
+
+Also add to PlayerState:
+  clothing_quality: ClothingQuality;
+
+Update initDefaultPlayerState() in engine/state.ts to include:
+  clothing_quality: 'worn'
+
+Rules:
+- Keep existing InventoryItem unchanged
+- ItemDefinition is registry metadata only
+- clothing_quality is separate from inventory quantity data because
+  clothes are a persistent condition in the MVP
+- do not add any other new types in this prompt
+
+═══════════════════════════════════════
+STATE - update src/engine/state.ts
+═══════════════════════════════════════
+
+Update:
+  loadPlayerState(db)
+  savePlayerState(db, state)
+  initDefaultPlayerState()
+
+to include:
+  clothing_quality
+
+Rules:
+- keep persistence changes minimal
+- do not refactor unrelated state logic
+- keep current inventory items intact
+- if default inventory currently lacks notes/books, add exactly one
+  simple study item now:
+
+  {
+    id: 'lecture_notes',
+    name: 'lecture notes',
+    quantity: 1,
+    notes: 'A few pages of working notes from recent lessons.'
+  }
+
+Do not add more default items than needed.
+
+═══════════════════════════════════════
+ITEM REGISTRY - src/content/itemRegistry.ts
+═══════════════════════════════════════
+
+Implement and export:
+
+  ITEM_REGISTRY: Record<string, ItemDefinition>
+
+  getItemDefinition(itemId: string): ItemDefinition | null
+
+Rules:
+- Original prose only
+- Compact, grounded, practical descriptions
+- Do not quote Rothfuss
+- Registry covers only current MVP-relevant items
+- Do not invent broad future item categories yet
+
+Required item definitions in this prompt:
+
+  lute
+    category: instrument
+    fragile: true
+    significant: true
+    examinable: true
+    usable: true
+    examine/use text should reflect that it matters deeply and must be handled carefully
+
+  candle_tallow
+    category: sympathy_material
+    fragile: false
+    significant: false
+    examinable: true
+    usable: true
+    basic sympathetic preparation material
+
+  wicking
+    category: sympathy_material
+    fragile: false
+    significant: false
+    examinable: true
+    usable: true
+
+  iron_drab
+    category: sympathy_material
+    fragile: false
+    significant: false
+    examinable: true
+    usable: true
+
+  clay_lump
+    category: sympathy_material
+    fragile: false
+    significant: false
+    examinable: true
+    usable: true
+
+  pine_pitch
+    category: sympathy_material
+    fragile: false
+    significant: false
+    examinable: true
+    usable: true
+
+  wax_stub
+    category: sympathy_material
+    fragile: false
+    significant: false
+    examinable: true
+    usable: true
+
+  lecture_notes
+    category: notes
+    fragile: false
+    significant: false
+    examinable: true
+    usable: true
+
+Also include a virtual item definition for:
+  clothes
+    category: clothing
+    fragile: false
+    significant: false
+    examinable: true
+    usable: true
+
+Rules for "clothes":
+- this is not required to exist as an inventory item
+- inventoryEngine should handle it via PlayerState.clothing_quality
+
+Do not add books beyond lecture_notes in this prompt unless already
+present in the existing codebase.
+
+═══════════════════════════════════════
+ENGINE - src/engine/inventoryEngine.ts
+═══════════════════════════════════════
+
+Implement and export:
+
+  getInventoryDisplayLines(state: PlayerState): string[]
+
+  findInventoryItem(
+    state: PlayerState,
+    query: string
+  ): InventoryItem | null
+
+  examineItem(
+    state: PlayerState,
+    query: string
+  ): string
+
+  useItem(
+    state: PlayerState,
+    query: string
+  ): { message: string; newState: PlayerState }
+
+  getClothingDescription(quality: ClothingQuality): string
+
+Rules:
+
+─────────────────────────────────────
+getInventoryDisplayLines(state)
+─────────────────────────────────────
+
+Return a stable list of human-readable inventory lines.
+
+Rules:
+- Use ITEM_REGISTRY display_name where possible
+- Include quantity suffix only when quantity > 1
+- Include notes only when helpful and compact
+- If the lute is present, it should stand out naturally but not with
+  decorative formatting
+- Also include clothes as a separate line derived from clothing_quality,
+  even if not in inventory:
+    e.g. "Clothes: worn"
+- If inventory is otherwise empty, still show clothes line
+
+Example acceptable lines:
+  "Kvothe's lute"
+  "tallow candle x3"
+  "lecture notes"
+  "Clothes: worn"
+
+─────────────────────────────────────
+findInventoryItem(state, query)
+─────────────────────────────────────
+
+Rules:
+- Case-insensitive matching
+- Accept simple aliases:
+    lute -> lute
+    candle / tallow candle -> candle_tallow
+    wick / wicking -> wicking
+    drab / iron drab -> iron_drab
+    clay -> clay_lump
+    pitch / pine pitch -> pine_pitch
+    wax -> wax_stub
+    notes / lecture notes -> lecture_notes
+    clothes / clothing -> special-case handled separately
+- Return the matching InventoryItem if present
+- Return null if not present
+- For clothes, return null here; clothes are handled by examine/use logic directly
+
+─────────────────────────────────────
+getClothingDescription(quality)
+─────────────────────────────────────
+
+Return deterministic text:
+
+  poor         -> "Your clothes are poor and plainly mark your means."
+  worn         -> "Your clothes are worn but still serviceable enough for daily use."
+  serviceable  -> "Your clothes are plain, decent, and fit for ordinary student life."
+  good         -> "Your clothes are in good order and sit well enough on you."
+
+Return those exact strings.
+
+─────────────────────────────────────
+examineItem(state, query)
+─────────────────────────────────────
+
+Rules:
+- If query refers to clothes/clothing:
+    return getClothingDescription(state.clothing_quality)
+- Else look up the inventory item and registry definition
+- If item is not present:
+    return "You are not carrying that."
+- If registry definition is missing:
+    return a brief generic line:
+      "There is nothing especially notable about it at a glance."
+- Otherwise return the item's default_examine_text
+- If the item has inventory notes, it is acceptable to append them
+  after a blank line if that improves clarity, but keep it brief
+
+Do not create new state changes here.
+
+─────────────────────────────────────
+useItem(state, query)
+─────────────────────────────────────
+
+Rules:
+- If query refers to clothes/clothing:
+    return a brief line about straightening or checking your clothes
+    state unchanged
+
+- If item is not present:
+    return "You are not carrying that."
+    state unchanged
+
+- If the item is lute:
+    return a careful, in-world line about handling or readying the lute
+    state unchanged
+    Do not trigger performance automatically in this prompt
+
+- If the item category is sympathy_material:
+    return a brief line about preparing or weighing the material in hand
+    state unchanged
+    Do not trigger sympathy automatically in this prompt
+
+- If the item is lecture_notes:
+    return a brief line about skimming or steadying your thoughts on the page
+    state unchanged
+    Do not add a study mechanic
+
+- For any other usable registry item:
+    return default_use_text
+    state unchanged
+
+- For non-usable items:
+    return "That is not something you can make use of just now."
+    state unchanged
+
+This prompt adds flavourful use/examine behaviour only.
+It does not add item-consumption mechanics.
+
+═══════════════════════════════════════
+ACTIONS - update src/engine/actions.ts
+═══════════════════════════════════════
+
+Do not refactor working command logic.
+Only extend it.
+
+Add these commands:
+
+  examine [item]
+    -> call examineItem(state, query)
+    -> return the resulting text, state unchanged
+
+  use [item]
+    -> if the command is specifically `use sympathy` or begins with
+       an existing sympathy-binding command pattern, preserve the
+       existing sympathy path unchanged
+    -> otherwise call useItem(state, query)
+    -> return result.message and result.newState
+
+Rules:
+- Do not break existing sympathy commands
+- Do not add new command families beyond examine/use
+- Keep existing inventory command intact
+
+═══════════════════════════════════════
+NARRATION - update src/narration/renderStatus.ts
+═══════════════════════════════════════
+
+Keep renderStatus() compact.
+
+Update renderInventory(state) so that:
+- it uses getInventoryDisplayLines(state) from inventoryEngine.ts
+- it no longer hand-builds the inventory lines itself if duplication exists
+- it preserves the existing "nothing of note" spirit where appropriate,
+  but now should still surface clothes
+
+Suggested acceptable empty-ish outcome:
+  "You are carrying little of note."
+  followed by:
+  "Clothes: worn"
+
+Do not bloat the output.
+
+═══════════════════════════════════════
+TESTS - tests/inventoryEngine.test.ts
+═══════════════════════════════════════
+
+Import:
+  getInventoryDisplayLines
+  findInventoryItem
+  examineItem
+  useItem
+  getClothingDescription
+from src/engine/inventoryEngine.ts
+
+Also import:
+  initDefaultPlayerState from src/engine/state.ts
+
+Tests:
+
+  clothing description:
+    1. worn returns the expected worn clothing line
+    2. good returns the expected good clothing line
+
+  display lines:
+    3. default state display includes Kvothe's lute
+    4. default state display includes clothes quality
+    5. quantity items display with xN suffix when quantity > 1
+
+  item lookup:
+    6. findInventoryItem(defaultState, 'lute') returns lute
+    7. findInventoryItem(defaultState, 'notes') returns lecture_notes
+    8. findInventoryItem(defaultState, 'clothes') returns null
+    9. missing item query returns null
+
+  examine:
+    10. examineItem(defaultState, 'lute') returns non-empty text
+    11. examineItem(defaultState, 'clothes') returns clothing description
+    12. examineItem(defaultState, 'missing thing') returns "You are not carrying that."
+
+  use:
+    13. useItem(defaultState, 'lute') returns state unchanged
+    14. useItem(defaultState, 'notes') returns state unchanged
+    15. useItem(defaultState, 'clothes') returns state unchanged
+    16. useItem(defaultState, 'missing thing') returns "You are not carrying that."
+
+═══════════════════════════════════════
+TESTS - update existing tests if needed
+═══════════════════════════════════════
+
+If there are existing inventory/status tests, update them minimally to
+allow the richer inventory output and the inclusion of clothes.
+
+Do not rewrite unrelated tests.
+
+═══════════════════════════════════════
+ARCHITECTURE REMINDERS
+═══════════════════════════════════════
+
+These rules from Prompt 1 still apply:
+
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls outside the optional Gemini provider
+  - No unused imports or files
+
+inventoryEngine.ts is an engine-layer file.
+It must not call the DB.
+It must not decide unrelated gameplay systems.
+It exists only to standardise meaningful item display and lightweight use/examine behaviour.
+
+═══════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════
+
+This prompt is complete when:
+
+  - the codebase has a central item registry
+  - the codebase has a central inventory engine
+  - `inventory` shows a cleaner item list including clothes quality
+  - `examine [item]` works for lute, notes, sympathy materials, and clothes
+  - `use [item]` works in a lightweight way without breaking existing sympathy commands
+  - the lute is treated as fragile/significant, not as a generic item
+  - clothes quality is tracked and surfaced
+  - no new gameplay systems beyond this inventory refinement are introduced
+  - all new tests pass alongside earlier prompts' tests
+  - no refactoring of working Prompts 1-17 code beyond what is required
+
+==========================================
+END OF PROMPT 18
+==========================================
+
+The clean next step after this is Prompt 19: busk at Anker's, which matches the original sequence.
+

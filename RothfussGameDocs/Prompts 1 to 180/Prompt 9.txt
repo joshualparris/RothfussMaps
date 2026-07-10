@@ -1,0 +1,325 @@
+Prompt 9
+Yep — Prompt 9 should now do exactly what the original roadmap intended: add a  lore guard  that checks Gemini narration output for forbidden mystery-resolution phrases and other canon-breaking patterns 
+before  any narration is returned, then logs a warning and falls back to local narration if the output is unsafe. That follows the original Prompt 9 slot cleanly, and it now fits neatly because Prompt 6 added the optional Gemini adapter, Prompt 7 added structured prompt building, and Prompt 8 added canon ground truth.
+
+KKC TEXT ADVENTURE — PROMPT 9 OF 180
+==========================================
+Lore Guard: Forbidden Phrases, Canon Safety, and Fallback Logging
+==========================================
+This prompt builds directly on Prompts 1, 2, 3, 4, 5, 6, 7, and 8.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+This prompt follows the original Phase 1 plan role for Prompt 9:
+before any optional LLM narration is returned, run a lore-guard check
+against forbidden phrases and unsafe canon patterns. If unsafe content
+is detected, log a warning and fall back to local narration.
+Do not add new gameplay systems in this prompt.
+═══════════════════════════════════════
+HARD BANS — UNCHANGED
+═══════════════════════════════════════
+No Anthropic. No OpenAI. No new AI provider.
+Gemini remains the only optional LLM provider in this codebase.
+No web server. No frontend.
+No new commands.
+No new locations.
+No new NPCs.
+No new game mechanics.
+No hidden lore inference.
+No mystery resolution system.
+No DB writes from narration/*.
+═══════════════════════════════════════
+ARCHITECTURE RULE — STILL ABSOLUTE
+═══════════════════════════════════════
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- sympathy truth
+- social truth
+- music/Eolian truth
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+- canon grounding only
+- lore-guard validation only
+The lore guard:
+- must never mutate PlayerState
+- must never write to the database
+- must never decide gameplay outcomes
+- must only inspect generated text and return a validation result
+═══════════════════════════════════════
+GOAL OF THIS PROMPT
+═══════════════════════════════════════
+By the end of Prompt 9, the Gemini narration path should have a proper
+lore guard that:
+  - checks LLM narration text before returning it
+  - rejects mystery-resolution phrases and unsafe canon claims
+  - rejects obvious contradictions to the current scene context
+  - logs a concise warning to the console when unsafe text is caught
+  - falls back automatically to local narration when flagged
+  - leaves the local deterministic path unchanged
+The player should never see a Gemini narration that confidently states
+forbidden deep-lore answers or contradicts the current visible scene.
+═══════════════════════════════════════
+SCOPE OF THIS PROMPT
+═══════════════════════════════════════
+This prompt covers:
+  1. Add loreGuard.ts
+  2. Add LoreGuardResult type
+  3. Define forbidden phrase lists and unsafe pattern checks
+  4. Add context-sensitive scene contradiction checks
+  5. Update GeminiNarrator to run the lore guard before returning text
+  6. Log concise warnings when lore guard fails
+  7. Add tests for forbidden phrase detection and fallback behaviour
+This prompt does NOT cover:
+  - new gameplay rules
+  - new commands
+  - a full mystery registry module
+  - content moderation beyond project-specific lore safety
+  - any network retry queue
+  - analytics, telemetry, or structured logging systems
+═══════════════════════════════════════
+NEW FILES IN THIS PROMPT
+═══════════════════════════════════════
+Add exactly these files:
+  src/
+    narration/
+      loreGuard.ts
+  tests/
+    loreGuard.test.ts
+Modify these existing files:
+  src/types/index.ts
+  src/narration/geminiNarrator.ts
+  src/narration/canonInstructions.ts
+  tests/geminiNarrator.test.ts
+Do not add any other files.
+═══════════════════════════════════════
+TYPES — update src/types/index.ts
+═══════════════════════════════════════
+Do not remove or rename existing types.
+Add:
+export interface LoreGuardResult {
+  isSafe: boolean;
+  reasons: string[];
+}
+Do not add any other new types in this prompt.
+═══════════════════════════════════════
+LORE GUARD — src/narration/loreGuard.ts
+═══════════════════════════════════════
+Implement and export:
+  checkLoreSafety(
+    text: string,
+    context: NarrationSceneContext
+  ): LoreGuardResult
+  containsForbiddenMysteryPhrase(text: string): string[]
+  containsSceneContradiction(
+    text: string,
+    context: NarrationSceneContext
+  ): string[]
+Rules:
+- This file is pure
+- It must not call the database
+- It must not mutate context
+- It must not call Gemini
+- It must only inspect text and context
+─────────────────────────────────────
+containsForbiddenMysteryPhrase(text)
+─────────────────────────────────────
+Return a list of human-readable reason strings if the text contains any
+forbidden mystery-resolution phrases.
+Check case-insensitively for these phrases or close equivalents:
+"  ""the chandrian are"""
+"  ""the amyr are"""
+"  ""denna's patron is"""
+"  ""the doors of stone are"""
+"  ""the true name of"""
+"  ""the secret of the chandrian"""
+"  ""the amyr's true purpose"""
+"  ""it is revealed that the chandrian"""
+"  ""it is revealed that the amyr"""
+"  ""the answer to the doors of stone"""
+"  ""denna was working for"""
+"  ""his true name is"""
+"  ""her true name is"""
+Rules:
+- return compact reason strings, e.g.
+"    ""forbidden mystery phrase: 'Denna's patron is'"""
+- do not try to do fuzzy AI interpretation
+- use deterministic string matching only
+- case-insensitive
+- no regex that is too broad or fragile
+─────────────────────────────────────
+containsSceneContradiction(text, context)
+─────────────────────────────────────
+Return a list of human-readable reason strings if the narration
+contradicts the supplied scene context in obvious ways.
+Check only these concrete contradictions:
+1. Visible NPC contradiction
+   - If context.npc_summary.names is empty and the text claims a named
+     NPC is present from this known set:
+       Simmon, Wilem, Anker, Kilvin, Ambrose, Deoch, Stanchion
+   - If context.npc_summary.names is non-empty and the text introduces
+     one of those named NPCs who is not in the visible list
+2. Exit contradiction
+   - If the text mentions directions as obvious exits that are not in
+     context.location_summary.exits
+   - Only check directions:
+       north, south, east, west, up, down, enter, out
+3. Location-name contradiction
+   - If the text explicitly names a different current seeded location
+     than context.location_summary.name
+   - Seeded location names to check against:
+       the Mains
+       the Artificery
+       the Archives, outer steps
+       the Stacks
+       the Medica
+       Kvothe's room, the Mews
+       the Mews corridor
+       the University courtyard
+       Anker's inn
+       the Fishery, outer workspace
+       the Mains, lecture hall
+       the riverside road
+       Stonebridge
+       the square before the Eolian
+       outside the Eolian
+       the Eolian
+Rules:
+- only flag obvious contradictions
+- do not attempt deep semantic contradiction detection
+- do not inspect mood/tone/style here
+- do not treat silence as contradiction
+─────────────────────────────────────
+checkLoreSafety(text, context)
+─────────────────────────────────────
+Combine both checks:
+- forbidden mystery phrase check
+- scene contradiction check
+Return:
+  {
+    isSafe: reasons.length === 0,
+    reasons
+  }
+Deterministic only.
+No randomness.
+No side effects.
+═══════════════════════════════════════
+CANON INSTRUCTIONS — update src/narration/canonInstructions.ts
+═══════════════════════════════════════
+Keep all existing instructions and mystery bans.
+Add one explicit rule:
+- Generated prose may be rejected by a lore guard if it states forbidden
+  mystery answers or contradicts the supplied scene context. Stay within
+  the given context and canon registry facts.
+Do not change any other existing behaviour here.
+═══════════════════════════════════════
+GEMINI NARRATOR — update src/narration/geminiNarrator.ts
+═══════════════════════════════════════
+Do not refactor working fallback logic.
+Only extend it.
+Update GeminiNarrator.narrateScene(context) so the flow becomes:
+  1. Build prompts using promptBuilder.ts as in Prompt 7
+  2. Call Gemini
+  3. Extract text
+  4. Run existing validateOutput(text)
+  5. If validateOutput fails:
+       return local fallback
+  6. Run checkLoreSafety(text, context)
+  7. If lore guard fails:
+       console.warn a concise line that includes:
+"         - ""Lore guard triggered"""
+         - the reason list joined briefly
+       then return local fallback
+  8. If both checks pass:
+       return Gemini text
+Rules:
+- Do not add complex logging infrastructure
+- Use console.warn only
+- Warning output must be concise and one-line if possible
+- Do not throw on lore guard failure
+- Do not retry the Gemini call in this prompt
+- Fallback remains the existing local deterministic scene rendering
+Do not change:
+- model default
+- startup selection logic
+- environment variable behaviour
+- local-only mode behaviour
+═══════════════════════════════════════
+TESTS — tests/loreGuard.test.ts
+═══════════════════════════════════════
+Import:
+  checkLoreSafety
+  containsForbiddenMysteryPhrase
+  containsSceneContradiction
+from src/narration/loreGuard.ts
+Also import:
+  buildNarrationSceneContext from src/narration/narrationContext.ts
+  initDefaultPlayerState from src/engine/state.ts
+Create a small helper scene context using:
+- a University location
+- visible exits
+- optionally visible NPCs
+Tests:
+  forbidden mystery phrases:
+"    1. ""Denna's patron is..."" is flagged"
+"    2. ""The Chandrian are..."" is flagged"
+    3. harmless atmospheric text is not flagged
+  scene contradictions:
+    4. naming Ambrose as present when no visible NPCs are supplied is flagged
+    5. naming Kilvin as present when visible NPC list does not include him is flagged
+    6. mentioning an obvious exit west when west is not in visible exits is flagged
+"    7. naming ""the Eolian"" while current location is ""the Mains"" is flagged"
+    8. normal text that stays within the scene passes
+  combined safety:
+    9. text with both a forbidden mystery phrase and a scene contradiction
+       returns multiple reasons
+    10. safe text returns isSafe === true and empty reasons
+═══════════════════════════════════════
+TESTS — update tests/geminiNarrator.test.ts
+═══════════════════════════════════════
+Add these tests to the existing Gemini narrator test file:
+  17. when validateOutput passes but loreGuard fails, local fallback is used
+  18. when loreGuard fails, console.warn is called
+  19. when validateOutput passes and loreGuard passes, Gemini output is returned
+Rules:
+- Do not make real network calls
+- Mock Gemini responses
+- Mock console.warn where needed and restore it afterward
+═══════════════════════════════════════
+ARCHITECTURE REMINDERS
+═══════════════════════════════════════
+These rules from Prompt 1 still apply:
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls outside the optional Gemini provider
+  - No unused imports or files
+loreGuard.ts is a narration-layer file.
+It must not call the DB.
+It must not decide gameplay outcomes.
+It exists only to reject unsafe LLM prose before it reaches the player.
+═══════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════
+This prompt is complete when:
+  - Gemini narration is checked by a lore guard before being returned
+  - forbidden mystery-resolution phrases are rejected
+  - obvious scene contradictions are rejected
+  - lore guard failures log a concise warning
+  - lore guard failures fall back to local narration automatically
+  - harmless grounded narration still passes
+  - the local deterministic narration path remains unchanged
+  - no new gameplay systems are introduced
+  - all new tests pass alongside earlier prompts' tests
+  - no refactoring of working Prompts 1–8 code beyond what is required
+==========================================
+END OF PROMPT 9
+==========================================
+The clean next step after this is  Prompt 10: NPC character documents / richer canon-grounded NPC profiles for the first core cast , which matches your original sequence.

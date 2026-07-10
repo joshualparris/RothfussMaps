@@ -1,0 +1,390 @@
+Prompt 12
+This Prompt 12 follows the  original plan’s Prompt 12 role : build a  rumour system  with location-based rumours, one-at-a-time delivery, reputation gating, and intentionally conflicting rumours on mystery-adjacent topics without resolving them. It also fits your earlier Prompt 2 structure, which already set up rumourPool.ts as a stub.
+
+KKC TEXT ADVENTURE — PROMPT 12 OF 180
+==========================================
+Rumour System: Location Pools, Reputation Gating, and Conflicting Hearsay
+==========================================
+This prompt builds directly on Prompts 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, and 11.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+This prompt follows the original Phase 1 plan role for Prompt 12:
+build a rumour system with location-based rumours, parcelled out one at
+a time, gated by reputation and time spent, and intentionally conflicting
+on mystery-adjacent topics.
+Do not add new gameplay systems beyond rumours in this prompt.
+═══════════════════════════════════════
+HARD BANS — UNCHANGED
+═══════════════════════════════════════
+No Anthropic. No OpenAI. No new AI provider.
+Gemini remains the only optional LLM provider in this codebase.
+No web server. No frontend.
+No new locations.
+No new seeded NPC rows.
+No new economy systems.
+No new sympathy laws.
+No new music systems.
+No new authority/social mechanics beyond existing reputation values.
+Do not:
+- resolve mysteries through rumours
+- turn rumours into quests with mandatory progression
+- make rumours authoritative truth
+- make the rumour engine call Gemini
+- make rumours mutate reputation directly in this prompt
+Rumours are hearsay, colour, misdirection, and local information.
+They are not canon truth.
+═══════════════════════════════════════
+ARCHITECTURE RULE — STILL ABSOLUTE
+═══════════════════════════════════════
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- rumour availability truth
+content/* owns:
+- authored rumour text pools only
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+- canon grounding only
+- optional conversation prose only
+The rumour system:
+- must not call the database from content/*
+- must not use the LLM
+- must not decide canon truth
+- must only decide what rumours are eligible and which one is heard next
+═══════════════════════════════════════
+GOAL OF THIS PROMPT
+═══════════════════════════════════════
+By the end of Prompt 12, the player should be able to:
+  - type `listen`, `listen for rumours`, or `ask around`
+  - hear one rumour at a time from the current location
+  - receive only rumours appropriate to the current location
+  - unlock some rumours only after spending enough time in a place
+  - unlock some rumours only if their reputation is high enough
+  - hear conflicting rumours on mystery-adjacent topics without the
+    system resolving which one is true
+  - avoid hearing the exact same rumour repeatedly once already heard
+The system should make the world feel socially alive and uncertain.
+═══════════════════════════════════════
+SCOPE OF THIS PROMPT
+═══════════════════════════════════════
+This prompt covers:
+  1. Expand rumourPool.ts from stub to real authored data
+  2. Add RumourEntry type
+  3. Add rumour state tracking to PlayerState
+  4. Add rumourEngine.ts
+  5. Add listen / ask around commands
+  6. Track time spent in the current location in a lightweight way
+  7. Add tests for eligibility, repetition prevention, and conflicting rumours
+This prompt does NOT cover:
+  - quest chains
+  - journal UI
+  - mystery resolution
+  - NPC schedule logic beyond what already exists
+  - LLM-generated rumours
+  - cross-location rumour spread simulation
+  - persistent world events caused by rumours
+═══════════════════════════════════════
+NEW FILES IN THIS PROMPT
+═══════════════════════════════════════
+Add exactly these files:
+  src/
+    engine/
+      rumourEngine.ts
+  tests/
+    rumourEngine.test.ts
+Modify these existing files:
+  src/types/index.ts
+  src/engine/state.ts
+  src/engine/actions.ts
+  src/content/rumourPool.ts
+  tests/npcEngine.test.ts
+Do not add any other files.
+═══════════════════════════════════════
+TYPES — update src/types/index.ts
+═══════════════════════════════════════
+Do not remove or rename existing types.
+Add:
+export interface RumourEntry {
+  id: string;
+  location_id: string;
+  text: string;
+  minimum_dwell_turns: number;   // how long the player must have lingered here
+  minimum_social: number;        // minimum university_social or eolian_standing as appropriate
+  applies_to: 'university_social' | 'eolian_standing' | 'academic_standing';
+  mystery_adjacent: boolean;     // true if it touches uncertain / disputed lore indirectly
+  tags: string[];                // e.g. ['archives', 'students', 'chandrian_signs']
+}
+Also add to PlayerState:
+  heard_rumour_ids: string[];
+  current_location_turns: number;
+Update initDefaultPlayerState() in engine/state.ts to include:
+  heard_rumour_ids: []
+  current_location_turns: 0
+Rules:
+- heard_rumour_ids tracks only rumour ids already heard
+- current_location_turns counts how many eligible turns the player has
+  spent at the current location since arriving
+- do not add any other new types in this prompt
+═══════════════════════════════════════
+STATE — update src/engine/state.ts
+═══════════════════════════════════════
+Update:
+  loadPlayerState(db)
+  savePlayerState(db, state)
+  initDefaultPlayerState()
+to include:
+  heard_rumour_ids
+  current_location_turns
+Rules:
+- persist these fields in player_state.world_state_flags if needed only
+  if your existing schema absolutely requires it
+- otherwise, if your current schema already serialises full PlayerState
+  fields cleanly, keep that approach
+- do not change the DB schema in this prompt unless absolutely necessary
+Prefer minimal change.
+Do not refactor unrelated persistence logic.
+═══════════════════════════════════════
+RUMOUR POOL — update src/content/rumourPool.ts
+═══════════════════════════════════════
+Prompt 2 introduced this as a stub. Replace it with a real authored pool.
+Export:
+  RUMOUR_POOL: RumourEntry[]
+Rules:
+- Original prose only
+- Exactly 2 rumours per currently relevant public-facing location
+- Keep each rumour to 1–2 sentences
+- Rumours should sound overheard, local, partial, and unreliable
+- Do not write them like quest text
+- Do not quote Rothfuss
+- Do not assert deep mysteries as fact
+Use these locations if they exist in the codebase:
+  university_ankers
+  university_courtyard
+  university_fishery_outer
+  university_archives_exterior
+  university_mains
+  eolian_floor
+  eolian_exterior
+  imre_fountain_square
+If a listed location does not yet exist in the codebase when Prompt 12
+is run, omit it rather than inventing around it.
+Rumour design rules:
+- at least 4 rumours total must be mystery_adjacent: true
+- mystery_adjacent rumours must conflict in pairs where appropriate
+- examples of safe mystery-adjacent territory:
+    Chandrian signs as hearsay
+    stories about blue fire
+    arguments about whether the Amyr still exist
+    rumours about what earns the pipes
+- these must remain rumours, not answers
+Example conflict style:
+"  rumour A: ""Blue flame means the Chandrian, everyone knows that."""
+"  rumour B: ""Blue flame means bad chemistry and frightened farmers, not monsters."""
+Required balance:
+- some rumours should be ordinary student gossip
+- some should be practical (rooms, meals, work, rules)
+- some should be mystery-adjacent but unresolved
+- some should be socially revealing about place and class
+Gating rules:
+- minimum_dwell_turns should vary between 0 and 2
+- minimum_social should vary between 0 and 50
+- applies_to:
+    use university_social for University-side places
+    use eolian_standing for Eolian rumours
+    use academic_standing only where appropriate for Archives/Fishery rumours
+═══════════════════════════════════════
+ENGINE — src/engine/rumourEngine.ts
+═══════════════════════════════════════
+Implement and export:
+  getRelevantRumours(
+    state: PlayerState,
+    locationId: string
+  ): RumourEntry[]
+  getNextRumour(
+    state: PlayerState,
+    locationId: string
+  ): RumourEntry | null
+  hearRumour(
+    state: PlayerState,
+    locationId: string
+  ): { message: string; newState: PlayerState }
+  incrementLocationDwell(
+    previousState: PlayerState,
+    newState: PlayerState,
+    command: string
+  ): PlayerState
+Rules:
+─────────────────────────────────────
+getRelevantRumours(state, locationId)
+─────────────────────────────────────
+Return rumours from RUMOUR_POOL that:
+- match location_id
+- have not already been heard
+- pass minimum_dwell_turns
+- pass minimum_social on the correct reputation axis
+Reputation axis:
+- if applies_to === 'university_social'
+    use state.reputation.university_social
+- if applies_to === 'eolian_standing'
+    use state.reputation.eolian_standing
+- if applies_to === 'academic_standing'
+    use state.reputation.academic_standing
+Keep original array order.
+Do not sort dynamically.
+Deterministic only.
+─────────────────────────────────────
+getNextRumour(state, locationId)
+─────────────────────────────────────
+Return the first eligible unheard rumour from getRelevantRumours().
+If none exist, return null.
+Do not randomise.
+One-at-a-time delivery only.
+─────────────────────────────────────
+hearRumour(state, locationId)
+─────────────────────────────────────
+Behaviour:
+- if getNextRumour() returns a rumour:
+    add its id to heard_rumour_ids
+    return:
+      message: the rumour text
+      newState: updated state
+- if no eligible rumour exists:
+    return one of these deterministic fallback lines based on
+    state.day_number % 3:
+"    0 -> ""You linger a while, but nothing new reaches your ear."""
+"    1 -> ""There is talk enough, but none of it turns into anything worth keeping."""
+"    2 -> ""You listen, but what drifts past is old noise and nothing more."""
+Do not mutate reputation in this prompt.
+─────────────────────────────────────
+incrementLocationDwell(previousState, newState, command)
+─────────────────────────────────────
+This is a lightweight helper for tracking time spent in a place.
+Rules:
+- if newState.location_id !== previousState.location_id:
+    reset current_location_turns to 0
+- else if command is one of:
+    look
+    look around
+    wait
+    talk to ...
+    ask ...
+    listen
+    listen for rumours
+    ask around
+  then increment current_location_turns by 1
+- else leave current_location_turns unchanged
+Return a new PlayerState.
+Deterministic only.
+This helper should be called from actions.ts after command resolution,
+without changing the meaning of the command itself.
+═══════════════════════════════════════
+ACTIONS — update src/engine/actions.ts
+═══════════════════════════════════════
+Do not refactor working command logic.
+Only extend it.
+Add these commands:
+  listen
+  listen for rumours
+  ask around
+Behaviour:
+- determine the current location_id from state
+- call hearRumour(state, state.location_id)
+- return the rumour or fallback line
+- do not auto-render the location afterward
+- do not call Gemini for rumours in this prompt
+Also update dispatch() so that after resolving a command and producing
+newState, it calls incrementLocationDwell(previousState, newState, input)
+before returning the final newState.
+Rules:
+- movement must still reset dwell correctly
+- local-only interface commands like help/status/inventory/quit do not
+  need to increase dwell
+- do not change any existing command semantics
+═══════════════════════════════════════
+TESTS — tests/rumourEngine.test.ts
+═══════════════════════════════════════
+Import:
+  getRelevantRumours
+  getNextRumour
+  hearRumour
+  incrementLocationDwell
+from src/engine/rumourEngine.ts
+Also import:
+  initDefaultPlayerState from src/engine/state.ts
+  RUMOUR_POOL from src/content/rumourPool.ts
+Tests:
+  rumour pool shape:
+    1. every rumour has id, location_id, text, minimum_dwell_turns,
+       minimum_social, applies_to, mystery_adjacent, and tags
+    2. there are at least 8 rumours total
+    3. at least 4 rumours have mystery_adjacent === true
+  relevant selection:
+    4. a default starting state at a University location can retrieve
+       at least one eligible rumour where minimum_dwell_turns === 0
+    5. a rumour with higher minimum_dwell_turns is excluded until
+       current_location_turns is high enough
+    6. a rumour with higher minimum_social is excluded until the
+       matching reputation axis is high enough
+  next rumour:
+    7. getNextRumour() returns the first eligible unheard rumour
+    8. once a rumour id is added to heard_rumour_ids, the next call
+       returns a different rumour or null
+  hearRumour:
+    9. hearing a rumour adds its id to heard_rumour_ids
+    10. when no rumours are eligible, a fallback line is returned
+  dwell tracking:
+    11. incrementLocationDwell increments on `wait`
+    12. incrementLocationDwell increments on `talk to simmon`
+    13. incrementLocationDwell resets to 0 when location changes
+    14. incrementLocationDwell does not increment on `inventory`
+═══════════════════════════════════════
+TESTS — update tests/npcEngine.test.ts
+═══════════════════════════════════════
+Add these two tests if the file exists and already covers local NPC talk:
+  16. a local talk/ask command still returns its normal response and
+      does not break rumour availability
+  17. current_location_turns can increase through repeated local social
+      interaction without changing location
+Keep existing tests intact.
+═══════════════════════════════════════
+ARCHITECTURE REMINDERS
+═══════════════════════════════════════
+These rules from Prompt 1 still apply:
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls outside the optional Gemini provider
+  - No unused imports or files
+rumourEngine.ts is an engine-layer file.
+It may use content/rumourPool.ts.
+It must not call the DB.
+It must not decide canon truth.
+It exists only to decide which authored rumours are currently eligible.
+═══════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════
+This prompt is complete when:
+  - the player can type `listen`, `listen for rumours`, or `ask around`
+  - rumours are location-specific
+  - rumours are delivered one at a time
+  - already-heard rumours are not repeated immediately
+  - some rumours require time spent in the location
+  - some rumours require stronger reputation
+  - mystery-adjacent rumours can conflict without being resolved
+  - no rumour asserts deep mystery truth as fact
+  - dwell tracking resets when the player moves
+  - no new gameplay systems beyond rumours are introduced
+  - all new tests pass alongside earlier prompts' tests
+  - no refactoring of working Prompts 1–11 code beyond what is required
+==========================================
+END OF PROMPT 12
+==========================================
+The clean next step after this is  Prompt 13: mystery registry , which matches your original sequence.

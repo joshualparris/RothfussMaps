@@ -1,0 +1,27 @@
+﻿{
+  "building_id": "mews",
+  "floor_id": "ground",
+  "metadata": {
+    "elevation_y": 0.0,
+    "floor_height": 3.2
+  },
+  "geometries": {
+    "footprint": [
+      {"x": -45, "z": 150}, {"x": -10, "z": 150}, {"x": -10, "z": 175}, {"x": -45, "z": 175}
+    ],
+    "rooms": [
+      {
+        "id": "mews_corridor_prime",
+        "label": "Dormitory Hall",
+        "certainty": "implied",
+        "polygon": [{"x": -40, "z": 160}, {"x": -15, "z": 160}, {"x": -15, "z": 163}, {"x": -40, "z": 163}]
+      },
+      {
+        "id": "student_cell_01",
+        "label": "Student Quarters",
+        "certainty": "canon",
+        "polygon": [{"x": -38, "z": 164}, {"x": -34, "z": 164}, {"x": -34, "z": 170}, {"x": -38, "z": 170}]
+      }
+    ]
+  }
+}

@@ -1,0 +1,189 @@
+Prompt 8
+
+KKC TEXT ADVENTURE - PROMPT 8 OF 180
+==========================================
+Canon Registry: Ground-Truth Facts for Narration
+==========================================
+
+This prompt builds directly on Prompts 1, 2, 3, 4, 5, 6, and 7.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+
+This prompt follows the original Phase 1 plan role for Prompt 8:
+add a canon registry module containing confirmed lore facts that the
+narration layer can import as ground truth.
+
+Do not add new gameplay systems in this prompt.
+
+---------------------------------------
+HARD BANS - UNCHANGED
+---------------------------------------
+
+No Anthropic. No OpenAI. No additional AI providers.
+Gemini remains the only optional LLM provider in this codebase.
+
+No web server. No frontend.
+No new AI adapter.
+No new commands.
+No new locations.
+No new NPCs.
+No new economy, sympathy, or social systems.
+
+Do not add:
+- a lore-guard logger yet
+- a mystery registry yet
+- forbidden phrase logging beyond Prompt 6 validation
+- hidden-lore inference
+- any module that decides gameplay truth
+
+This prompt is about canon grounding only.
+
+---------------------------------------
+ARCHITECTURE RULE - STILL ABSOLUTE
+---------------------------------------
+
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- sympathy truth
+- social truth
+- music/Eolian truth
+
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+- canon grounding for prose only
+
+The canon registry:
+- must never mutate PlayerState
+- must never write to the database
+- must never invent lore
+- must only provide safe, structured, relevant facts
+- must not resolve mysteries
+- must not contradict engine truth
+
+---------------------------------------
+GOAL OF THIS PROMPT
+---------------------------------------
+
+By the end of Prompt 8, the project should have:
+
+  - a structured canon registry module for the current MVP scope
+  - compact confirmed facts for:
+      currency
+      academic ranks
+      Archives access
+      sympathy constraints
+      talent pipes / Eolian
+      University / Imre / Stonebridge context
+      key seeded locations and seeded authority/social NPCs
+  - a deterministic way to select only the canon facts relevant to
+    the current scene
+  - promptBuilder integration so Gemini receives:
+      canon-era context
+      plus a compact canon ground-truth block
+  - no mystery resolution or speculative lore added
+
+The local deterministic narration path must continue to work unchanged.
+
+---------------------------------------
+SCOPE OF THIS PROMPT
+---------------------------------------
+
+This prompt covers:
+  1. Add canonRegistry.ts as a structured TypeScript module
+  2. Add a compact CanonRegistryEntry type
+  3. Add canon_registry_facts to NarrationSceneContext
+  4. Add helper functions to select scene-relevant canon facts
+  5. Update narrationContext.ts to populate canon_registry_facts
+  6. Update promptBuilder.ts to include a "Canon Ground Truth" section
+  7. Strengthen canonInstructions.ts to treat registry facts as hard constraints
+  8. Add tests for registry selection and prompt integration
+
+This prompt does NOT cover:
+  - lore-guard logging (next prompt)
+  - a mystery registry as a separate machine-readable module
+  - new NPC dialogue systems
+  - new commands
+  - new locations or new seeded content
+  - new game mechanics
+
+---------------------------------------
+NEW FILES IN THIS PROMPT
+---------------------------------------
+
+Add exactly these files:
+
+  src/
+    content/
+      canonRegistry.ts
+  tests/
+    canonRegistry.test.ts
+
+Modify these existing files:
+  src/types/index.ts
+  src/narration/narrationContext.ts
+  src/narration/promptBuilder.ts
+  src/narration/canonInstructions.ts
+  tests/promptBuilder.test.ts
+
+Do not add any other files.
+
+---------------------------------------
+TYPES - update src/types/index.ts
+---------------------------------------
+
+Do not remove or rename existing types.
+
+Add:
+
+export interface CanonRegistryEntry {
+  id: string;
+  text: string;
+  applies_to: string[];   // e.g. ['global'], ['University'], ['archives'], ['eolian']
+  tags: string[];         // e.g. ['money', 'rank', 'sympathy', 'pipes']
+}
+
+Update NarrationSceneContext to include:
+
+  canon_registry_facts: string[];
+
+Rules:
+- canon_registry_facts must contain compact human-readable fact lines
+- this is narration context only
+- do not store registry facts in PlayerState
+- do not add any other new types in this prompt
+
+---------------------------------------
+CANON REGISTRY - src/content/canonRegistry.ts
+---------------------------------------
+
+Implement this file as a TypeScript data module, not a raw .json file,
+so the existing codebase can import it directly without loader changes.
+
+Export:
+
+  CANON_REGISTRY: CanonRegistryEntry[]
+
+  getRelevantCanonFacts(input: {
+    command: string;
+    locationId: string;
+    locationGroup: string;
+    visibleNpcNames: string[];
+  }): string[]
+
+Rules:
+- All facts must be short, factual, safe, and grounded in the current
+  MVP scope only
+- No speculative lore
+- No mystery resolution
+- Deterministic stable order
+- Return at most 6 fact lines
+- Return at least 2 fact lines whenever possible
+- Never include facts about Chandrian, Amyr, Denna's patron,
+  Doors of Stone, hidden Names, or any unresolved deep

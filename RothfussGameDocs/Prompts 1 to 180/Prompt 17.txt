@@ -1,0 +1,456 @@
+﻿Prompt 17
+
+Prompt 17 should now do the original plan's Prompt 17 job: make hunger and fatigue a proper shared system that affects tone and play, rather than leaving bits of it scattered across time, economy, status, and narration. That also fits what your earlier prompts already set up: Prompt 2 introduced hunger/fatigue as part of the University day loop, and Prompt 7 started deriving descriptive condition labels for narration.
+KKC TEXT ADVENTURE - PROMPT 17 OF 180
+==========================================
+Hunger and Fatigue: Shared Condition Tracking, Labels, and Recovery
+==========================================
+
+This prompt builds directly on Prompts 1 through 16.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+
+This prompt follows the original Phase 1 plan role for Prompt 17:
+refine hunger and fatigue into a consistent shared system that affects
+status text, narration labels, and the basic day loop. The player must
+eat and sleep to stay in reasonable condition.
+
+Important:
+Prompt 2 already introduced hunger/fatigue, Prompt 7 began deriving
+descriptive labels, and Prompt 16 refined room/meal costs. This prompt
+does NOT invent a new survival game. It centralises and standardises
+the existing condition logic.
+
+Do not add new gameplay systems beyond this condition refinement.
+
+═══════════════════════════════════════
+HARD BANS - UNCHANGED
+═══════════════════════════════════════
+
+No Anthropic. No OpenAI. No new AI provider.
+Gemini remains the only optional LLM provider in this codebase.
+
+No web server. No frontend.
+No new locations.
+No new NPCs.
+No new commands.
+No health bar.
+No stamina-combat system.
+No disease, poison, or injury overhaul.
+No new warmth mechanics beyond leaving existing warmth systems intact.
+
+Do not:
+- replace numeric hunger/fatigue storage with strings
+- add random condition decay
+- create death/fainting mechanics in this prompt
+- make hunger/fatigue directly alter movement rules yet
+- turn condition labels into a separate gameplay currency
+
+═══════════════════════════════════════
+ARCHITECTURE RULE - STILL ABSOLUTE
+═══════════════════════════════════════
+
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- hunger/fatigue truth
+- condition label truth
+
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+
+Condition helpers:
+- must live in engine/*
+- must not call the database
+- must not mutate PlayerState unless explicitly returning a new state
+- must not invent new gameplay outcomes beyond condition change and labels
+
+═══════════════════════════════════════
+GOAL OF THIS PROMPT
+═══════════════════════════════════════
+
+By the end of Prompt 17, the codebase should have one shared condition
+module that:
+
+  - stores hunger and fatigue numerically as before
+  - provides consistent descriptive labels for both
+  - advances hunger/fatigue in a predictable way when time passes
+  - reduces hunger when the player eats
+  - reduces fatigue when the player sleeps
+  - makes status text and narration context use the same labels
+  - keeps the system simple, readable, and deterministic
+
+The player should feel that neglecting food and sleep has a cost, but
+this should remain a light, grounded MVP survival layer.
+
+═══════════════════════════════════════
+SCOPE OF THIS PROMPT
+═══════════════════════════════════════
+
+This prompt covers:
+  1. Add engine/conditionEngine.ts
+  2. Centralise hunger/fatigue labels there
+  3. Centralise time-passage effects there
+  4. Centralise meal and sleep recovery helpers there
+  5. Update time.ts, economy.ts, renderStatus.ts, and narrationContext.ts
+     to use the shared condition helpers
+  6. Add tests for labels, clamping, time passage, and recovery
+
+This prompt does NOT cover:
+  - warmth redesign
+  - injury redesign
+  - death or collapse
+  - movement penalties
+  - skill penalties
+  - advanced rest mechanics
+  - medical treatment
+  - new commands
+
+═══════════════════════════════════════
+NEW FILES IN THIS PROMPT
+═══════════════════════════════════════
+
+Add exactly these files:
+
+  src/
+    engine/
+      conditionEngine.ts
+  tests/
+    conditionEngine.test.ts
+
+Modify these existing files:
+  src/engine/time.ts
+  src/engine/economy.ts
+  src/narration/renderStatus.ts
+  src/narration/narrationContext.ts
+  tests/economy.test.ts
+  tests/promptBuilder.test.ts
+
+Modify only if those files already exist in the codebase from earlier prompts.
+If a listed file does not exist yet when Prompt 17 is run, skip it
+rather than inventing around it.
+
+Do not add any other files.
+
+═══════════════════════════════════════
+ENGINE - src/engine/conditionEngine.ts
+═══════════════════════════════════════
+
+Implement and export:
+
+  MIN_CONDITION = 0
+  MAX_CONDITION = 100
+
+  HUNGER_INCREASE_PER_STEP = 6
+  FATIGUE_INCREASE_PER_STEP = 4
+
+  MEAL_HUNGER_RECOVERY = 30
+  SLEEP_FATIGUE_RECOVERY = 50
+  SLEEP_HUNGER_INCREASE = 8
+
+  clampCondition(value: number): number
+
+  getHungerLabel(hunger: number): string
+  getFatigueLabel(fatigue: number): string
+
+  applyTimePassageNeeds(
+    state: PlayerState,
+    steps: number
+  ): PlayerState
+
+  applyMealRecovery(
+    state: PlayerState
+  ): PlayerState
+
+  applySleepRecovery(
+    state: PlayerState
+  ): PlayerState
+
+Rules:
+
+─────────────────────────────────────
+clampCondition(value)
+─────────────────────────────────────
+
+- Clamp to integer 0-100
+- Negative becomes 0
+- Over 100 becomes 100
+- Round down with Math.floor before clamping if needed
+
+─────────────────────────────────────
+getHungerLabel(hunger)
+─────────────────────────────────────
+
+Use these deterministic bands:
+
+  0-20   -> "well-fed"
+  21-50  -> "peckish"
+  51-80  -> "hungry"
+  81-100 -> "starving"
+
+Return those exact strings.
+
+─────────────────────────────────────
+getFatigueLabel(fatigue)
+─────────────────────────────────────
+
+Use these deterministic bands:
+
+  0-20   -> "rested"
+  21-50  -> "tired"
+  51-80  -> "weary"
+  81-100 -> "exhausted"
+
+Return those exact strings.
+
+─────────────────────────────────────
+applyTimePassageNeeds(state, steps)
+─────────────────────────────────────
+
+Rules:
+- steps <= 0 returns state unchanged
+- For each step:
+    hunger += HUNGER_INCREASE_PER_STEP
+    fatigue += FATIGUE_INCREASE_PER_STEP
+- Clamp both values 0-100
+- Return a new PlayerState
+- Do not alter warmth here
+- Do not alter any unrelated fields
+
+This helper standardises the existing MVP assumption that time passing
+slowly worsens hunger and fatigue.
+
+─────────────────────────────────────
+applyMealRecovery(state)
+─────────────────────────────────────
+
+Rules:
+- Reduce hunger by MEAL_HUNGER_RECOVERY
+- Clamp 0-100
+- Return a new PlayerState
+- Do not change fatigue here
+- Do not change warmth here
+
+─────────────────────────────────────
+applySleepRecovery(state)
+─────────────────────────────────────
+
+Rules:
+- Reduce fatigue by SLEEP_FATIGUE_RECOVERY
+- Increase hunger by SLEEP_HUNGER_INCREASE
+- Clamp both 0-100
+- Return a new PlayerState
+- Do not change warmth here
+- Do not alter any unrelated fields
+
+This helper represents the fact that sleep restores energy but time
+passes and the player wakes needing food again.
+
+═══════════════════════════════════════
+TIME - update src/engine/time.ts
+═══════════════════════════════════════
+
+Do not refactor the entire file.
+
+Update advanceTime(state, steps = 1) so that after it performs the
+existing time-of-day/day-number logic, it also applies:
+
+  applyTimePassageNeeds(updatedState, steps)
+
+Rules:
+- Keep the current time-cycle logic unchanged
+- Keep any existing morning reset logic from earlier prompts intact
+- Do not duplicate hunger/fatigue arithmetic directly in time.ts
+- Import and use the shared helper from conditionEngine.ts
+
+If time.ts already contains ad hoc hunger/fatigue changes, remove the
+duplication and use the shared helper instead.
+
+═══════════════════════════════════════
+ECONOMY - update src/engine/economy.ts
+═══════════════════════════════════════
+
+If economy.ts exists from earlier prompts:
+
+Update existing eat() and sleep() logic to use:
+- applyMealRecovery()
+- applySleepRecovery()
+
+Rules for eat():
+- keep the existing money/cost logic from Prompt 16
+- after successful payment, apply applyMealRecovery()
+- do not duplicate hunger arithmetic inline
+
+Rules for sleep():
+- keep the existing room cost and recovery/reset logic from Prompt 16
+- after successful payment and any existing time/day progression,
+  apply applySleepRecovery()
+- keep any existing daily reset logic from earlier prompts intact
+- do not duplicate fatigue/hunger arithmetic inline
+
+Do not change busk or other actions unless they directly manipulate
+hunger/fatigue and need to be standardised.
+
+═══════════════════════════════════════
+STATUS RENDERING - update src/narration/renderStatus.ts
+═══════════════════════════════════════
+
+Keep renderStatus() compact.
+
+Update it so that:
+- it imports getHungerLabel() and getFatigueLabel() from engine/conditionEngine.ts
+- it no longer contains its own duplicate label mapping
+- Hunger and fatigue lines use the shared engine labels
+
+Examples:
+  "Hunger: peckish"
+  "Fatigue: tired"
+
+Do not change the overall status layout more than necessary.
+
+═══════════════════════════════════════
+NARRATION CONTEXT - update src/narration/narrationContext.ts
+═══════════════════════════════════════
+
+If this file exists from Prompt 7:
+
+Update it so that any derived hunger/fatigue labels use:
+- getHungerLabel()
+- getFatigueLabel()
+
+Rules:
+- remove duplicated band logic if present
+- keep all existing context fields and behaviour intact
+- if warmth labels are already handled elsewhere, leave that logic alone
+  in this prompt
+- do not change command gating behaviour
+
+If narrationContext.ts does not exist yet, skip this section.
+
+═══════════════════════════════════════
+TESTS - tests/conditionEngine.test.ts
+═══════════════════════════════════════
+
+Import:
+  clampCondition
+  getHungerLabel
+  getFatigueLabel
+  applyTimePassageNeeds
+  applyMealRecovery
+  applySleepRecovery
+from src/engine/conditionEngine.ts
+
+Also import:
+  initDefaultPlayerState from src/engine/state.ts
+
+Tests:
+
+  clampCondition:
+    1. -5 becomes 0
+    2. 120 becomes 100
+    3. 42 stays 42
+
+  hunger labels:
+    4. 0 -> well-fed
+    5. 25 -> peckish
+    6. 60 -> hungry
+    7. 95 -> starving
+
+  fatigue labels:
+    8. 0 -> rested
+    9. 30 -> tired
+    10. 70 -> weary
+    11. 100 -> exhausted
+
+  time passage:
+    12. applyTimePassageNeeds(defaultState, 1) increases hunger and fatigue
+    13. applyTimePassageNeeds(defaultState, 0) leaves state unchanged
+    14. repeated steps clamp at 100
+
+  meal recovery:
+    15. applyMealRecovery on hungry state lowers hunger
+    16. applyMealRecovery cannot reduce hunger below 0
+
+  sleep recovery:
+    17. applySleepRecovery on tired state lowers fatigue
+    18. applySleepRecovery raises hunger modestly
+    19. applySleepRecovery clamps values correctly
+
+═══════════════════════════════════════
+TESTS - update tests/economy.test.ts
+═══════════════════════════════════════
+
+If economy.test.ts exists from earlier prompts, keep existing tests intact.
+
+Add these tests:
+
+  16. successful eat uses the shared meal recovery and lowers hunger
+  17. successful sleep uses the shared sleep recovery and lowers fatigue
+  18. successful sleep also increases hunger slightly
+
+If the exact economy function signatures differ in your real code,
+adapt these tests to the actual signatures rather than rewriting the
+economy layer.
+
+═══════════════════════════════════════
+TESTS - update tests/promptBuilder.test.ts
+═══════════════════════════════════════
+
+If promptBuilder.test.ts exists from earlier prompts, keep existing tests intact.
+
+Add these tests:
+
+  25. narration context uses shared hunger labels from conditionEngine
+  26. narration context uses shared fatigue labels from conditionEngine
+
+Do not rewrite unrelated promptBuilder tests.
+
+═══════════════════════════════════════
+ARCHITECTURE REMINDERS
+═══════════════════════════════════════
+
+These rules from Prompt 1 still apply:
+
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls outside the optional Gemini provider
+  - No unused imports or files
+
+conditionEngine.ts is an engine-layer file.
+It must not call the DB.
+It must not decide unrelated gameplay systems.
+It exists only to standardise hunger/fatigue truth and labels.
+
+═══════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════
+
+This prompt is complete when:
+
+  - the codebase has a single shared condition module
+  - hunger and fatigue labels are centralised and consistent
+  - time passing increases hunger and fatigue predictably
+  - eating reduces hunger through the shared helper
+  - sleeping reduces fatigue through the shared helper
+  - sleeping also raises hunger modestly
+  - renderStatus uses the shared condition labels
+  - narration context uses the shared condition labels
+  - no new gameplay systems beyond this condition refinement are introduced
+  - all new tests pass alongside earlier prompts' tests
+  - no refactoring of working Prompts 1-16 code beyond what is required
+
+==========================================
+END OF PROMPT 17
+==========================================
+
+The clean next step after this is Prompt 18: inventory system expansion, which matches the original sequence.
+

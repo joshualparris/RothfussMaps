@@ -1,0 +1,47 @@
+﻿{
+  "building_id": "masters_hall",
+  "floor_id": "ground",
+  "metadata": {
+    "elevation_y": 1.0,
+    "floor_height": 3.5,
+    "wall_thickness_default": 1.0,
+    "north_orientation_deg": 0.0
+  },
+  "geometries": {
+    "footprint": [
+      {"x": -130, "z": 25}, {"x": -90, "z": 25}, {"x": -90, "z": 55}, {"x": -130, "z": 55}
+    ],
+    "rooms": [
+      {
+        "id": "side_entry_vestibule",
+        "label": "Side Entry (Brass Key Access)",
+        "certainty": "canon",
+        "polygon": [{"x": -128, "z": 30}, {"x": -120, "z": 30}, {"x": -120, "z": 38}, {"x": -128, "z": 38}],
+        "note": "Elodin's entry point with the bright brass key."
+      },
+      {
+        "id": "narrow_stone_hall",
+        "label": "The Narrow Hallway",
+        "certainty": "canon",
+        "polygon": [{"x": -120, "z": 32}, {"x": -95, "z": 32}, {"x": -95, "z": 35}, {"x": -120, "z": 35}]
+      },
+      {
+        "id": "hemmes_suite_ground",
+        "label": "Master Hemme's Private Suite",
+        "certainty": "canon",
+        "polygon": [{"x": -115, "z": 40}, {"x": -100, "z": 40}, {"x": -100, "z": 52}, {"x": -115, "z": 52}],
+        "note": "A private master's chamber with study and hearth."
+      }
+    ],
+    "vertical_circulation": [
+      {
+        "id": "long_narrow_stair",
+        "type": "stair",
+        "pos": {"x": -124, "z": 45},
+        "target_floor": "level_2",
+        "direction": "up",
+        "label": "Long Narrow Flight of Stairs"
+      }
+    ]
+  }
+}

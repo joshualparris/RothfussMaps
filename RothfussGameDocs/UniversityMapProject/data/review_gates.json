@@ -1,0 +1,32 @@
+{
+  "schema_version": "university_review_gates_v01",
+  "targets": {
+    "archives:ground": {
+      "evidence_reviewed": {
+        "status": "pending",
+        "updated_at": null,
+        "note": "Book evidence exists in ledgers and summaries, but this gate should be explicitly approved after a focused Archives evidence audit."
+      },
+      "building_brief_frozen": {
+        "status": "pending",
+        "updated_at": null,
+        "note": "Archives brief exists, but freeze should be explicit before expanding upper/lower floors."
+      },
+      "floor_json_frozen": {
+        "status": "approved_for_blockout",
+        "updated_at": "2026-04-21T00:00:00Z",
+        "note": "archives_ground_v02_canon_safe.json is approved as the first source-of-truth blockout draft, not as final measured canon."
+      },
+      "blender_blockout_generated": {
+        "status": "generated",
+        "updated_at": "2026-04-21T13:50:20Z",
+        "note": "Generated exports\\blender\\archives_ground_v02_canon_safe.blend and godot\\assets\\archives_ground_v02_canon_safe.glb."
+      },
+      "godot_test_ready": {
+        "status": "ready",
+        "updated_at": "2026-04-21T13:52:34Z",
+        "note": "Godot scaffold points at godot\\assets\\archives_ground_v02_canon_safe.glb."
+      }
+    }
+  }
+}

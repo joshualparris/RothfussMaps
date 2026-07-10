@@ -1,0 +1,49 @@
+{
+  "schema_version": "canon_structure_plan_v01",
+  "structure": {
+    "id": "castle_crydee",
+    "name": "Castle Crydee",
+    "certainty": "canon",
+    "notes": []
+  },
+  "level": {
+    "id": "site",
+    "name": "Castle Grounds",
+    "certainty": "implied",
+    "draft": true,
+    "approximate_dimensions": true,
+    "metrics": {
+      "level_height": 4.0,
+      "wall_thickness_default": 0.8
+    }
+  },
+  "zone_role": {
+    "certainty": "implied",
+    "summary": "Describe the purpose of this level or site layer."
+  },
+  "footprint": {
+    "id": "castle_crydee_site_footprint",
+    "label": "Overall Working Footprint",
+    "certainty": "reconstructed",
+    "geometry_certainty": "reconstructed",
+    "approximate": true,
+    "polygon": [
+      { "x": 0.0, "z": 0.0 },
+      { "x": 10.0, "z": 0.0 },
+      { "x": 10.0, "z": 10.0 },
+      { "x": 0.0, "z": 10.0 }
+    ]
+  },
+  "spaces": [],
+  "links": [],
+  "vertical_links": [],
+  "fixtures": [],
+  "labels": [],
+  "validation_flags": [
+    {
+      "id": "vf_template",
+      "level": "warning",
+      "message": "Replace template values before freezing; all geometry in this template is approximate and uncertain."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+
+# Blender generated backup files.
+exports/blender/*.blend1
+
+# Godot generated editor/import cache. Keep project.godot, scenes, scripts,
+# assets, and .import metadata; Godot will regenerate this folder.
+godot/.godot/

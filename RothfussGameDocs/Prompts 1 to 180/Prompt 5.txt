@@ -1,0 +1,682 @@
+Prompt 5
+
+KKC TEXT ADVENTURE - PROMPT 5 OF 180
+==========================================
+Imre and the Eolian: Crossing the River, Music, and Talent Pipes
+==========================================
+
+This prompt builds directly on Prompts 1, 2, 3, and 4.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+
+---------------------------------------
+HARD BANS - UNCHANGED
+---------------------------------------
+
+No external APIs. No HTTP clients. No LLM. No Anthropic, OpenAI, or
+any remote service. No web server. No frontend. Fully offline only.
+
+No new abstractions unless explicitly required here.
+No new files unless listed in this prompt.
+Do not refactor working code from earlier prompts.
+
+---------------------------------------
+CANON RESTRAINT RULE - READ FIRST
+---------------------------------------
+
+Imre and the Eolian are canon-grounded, but do not over-invent them.
+
+What is safe to model here:
+  - the walk from the University side to Imre takes meaningful time
+  - Stonebridge / the river crossing is a real transition point
+  - the Eolian has an exterior approach, a music room / floor,
+    and the social sense of a place where reputation matters
+  - the Eolian awards talent pipes to musicians judged worthy
+  - Deoch and Stanchion are canon figures associated with the Eolian
+
+Do NOT:
+  - invent exact architecture with confidence
+  - add Denna as an always-available NPC in this prompt
+  - add Devi in this prompt
+  - script major canon scenes from the books
+  - make the Eolian a generic tavern for tips
+  - make earning talent pipes feel easy, casual, or gamey
+  - turn the Eolian into a combat, stealth, or drama hub
+
+Keep the tone social, musical, and reputational.
+
+---------------------------------------
+GOAL OF THIS PROMPT
+---------------------------------------
+
+By the end of Prompt 5, the player should be able to:
+
+  - Walk from the University side to Imre through a coherent chain
+    of locations
+  - Reach the Eolian exterior and enter only when it is open
+  - Talk to Deoch and Stanchion in voices that feel right
+  - Ask about the pipes and understand that they are earned,
+    not bought
+  - Attempt an audition for talent pipes
+  - Either fail cleanly or succeed and gain the pipes
+  - If they have earned their pipes, play at the Eolian for prestige
+    and reputation rather than tavern-style coin
+  - Feel that Imre is distinct from the University: looser, brighter,
+    and more public, but still socially dangerous
+
+---------------------------------------
+SCOPE OF THIS PROMPT
+---------------------------------------
+
+This prompt covers:
+  1. Expand the map from the University to Imre
+  2. Add the Eolian exterior and interior
+  3. Add Deoch and Stanchion as NPCs
+  4. Add EolianState to PlayerState
+  5. Add musicEngine.ts for audition and performance logic
+  6. Add commands:
+       audition for pipes
+       play at eolian
+  7. Extend npcEngine.ts so the player can ask about the pipes,
+     music, and the Eolian
+  8. Add deterministic music outcome text
+  9. Add tests for Eolian entry, audition, and post-pipes performance
+
+This prompt does NOT cover:
+  - Denna as a system-heavy recurring NPC
+  - Devi or moneylending
+  - the Maer, Vintas, or later travel
+  - Ambrose sabotage in Imre
+  - named songs from the books as verbatim text
+  - advanced performance simulation
+  - academic rank advancement (Prompt 6)
+  - sygaldry (Prompt 7)
+
+---------------------------------------
+NEW FILES IN THIS PROMPT
+---------------------------------------
+
+Add exactly these files:
+
+  src/
+    engine/
+      musicEngine.ts          ? audition + Eolian performance logic
+    content/
+      eolianDialogue.ts       ? authored dialogue / result pools
+  tests/
+    musicEngine.test.ts
+
+Modify these existing files:
+  src/types/index.ts
+  src/engine/state.ts
+  src/engine/actions.ts
+  src/engine/movement.ts
+  src/engine/time.ts
+  src/engine/npcEngine.ts
+  src/content/npcProfiles.ts
+  src/content/locationFlavour.ts
+  src/db/seed.ts
+
+Do not add any other files.
+
+---------------------------------------
+TYPES - additions to src/types/index.ts
+---------------------------------------
+
+Add these interfaces. Do not remove or change existing ones.
+
+export interface EolianState {
+  has_talent_pipes: boolean;
+  last_audition_day: number | null;
+  performances_today: number;
+}
+
+Also add to PlayerState:
+  eolian_state: EolianState;
+
+Update initDefaultPlayerState() in engine/state.ts to include:
+  eolian_state: {
+    has_talent_pipes: false,
+    last_audition_day: null,
+    performances_today: 0,
+  }
+
+Do not add any other new player-state systems in this prompt.
+
+---------------------------------------
+SEED EXPANSION - src/db/seed.ts
+---------------------------------------
+
+Expand runSeed(db) to insert 5 new locations (INSERT OR IGNORE).
+Keep all existing locations unchanged unless explicitly updated here.
+
+Add these 5 locations:
+
+  university_riverside_road
+    name: "the riverside road"
+    exits:
+      east -> university_ankers
+      west -> stonebridge
+    tier: 2, cluster_id: 'university', era: 'university'
+    Note: This is the road/walkway leading toward the bridge.
+    Keep the description generic and modest.
+
+  stonebridge
+    name: "Stonebridge"
+    exits:
+      east -> university_riverside_road
+      west -> imre_fountain_square
+    tier: 1, cluster_id: 'river_crossing', era: 'university'
+    Note: It is the crossing between the University side and Imre.
+    Do not invent ornate structural details.
+
+  imre_fountain_square
+    name: "the square before the Eolian"
+    exits:
+      east -> stonebridge
+      west -> eolian_exterior
+    tier: 1, cluster_id: 'imre', era: 'university'
+    Note: This is the open area outside the Eolian, with fountain
+    presence and public traffic. Keep it vivid but restrained.
+
+  eolian_exterior
+    name: "outside the Eolian"
+    exits:
+      east  -> imre_fountain_square
+      enter -> eolian_floor
+               (access_condition: 'open_evening')
+    tier: 1, cluster_id: 'imre', era: 'university'
+    Note: Entrance to the venue. Do not over-describe its facade.
+
+  eolian_floor
+    name: "the Eolian"
+    exits:
+      out -> eolian_exterior
+    tier: 1, cluster_id: 'imre', era: 'university'
+    Note: Music venue, conversation, listening, stage presence.
+    Keep the description atmospheric and public-facing.
+
+Update one existing exit:
+  university_ankers
+    add:
+      west -> university_riverside_road
+
+Do not remove any existing valid exits.
+
+Also insert 2 NPCs:
+
+  deoch
+    name: "Deoch"
+    location_id: eolian_floor
+    era: university
+    temperament: "social, observant, seasoned, careful without seeming stiff"
+    speech_style: "easy, polished, attentive, capable of warmth but not foolish"
+
+  stanchion
+    name: "Stanchion"
+    location_id: eolian_floor
+    era: university
+    temperament: "practical, fair-minded, busy, good judge of performance"
+    speech_style: "plainspoken, steady, hospitable but brisk when working"
+
+Do not add Denna or Devi in this prompt.
+
+---------------------------------------
+NPC PROFILES - update src/content/npcProfiles.ts
+---------------------------------------
+
+Extend NPC_PROFILES with: deoch, stanchion
+
+Rules for all authored text:
+  - Original prose only
+  - Do NOT reproduce Rothfuss lines
+  - Keep each line concise and playable
+  - greeting_pool: exactly 3 entries
+  - exit_lines: exactly 2 entries
+
+Deoch profile:
+  id: 'deoch'
+  name: 'Deoch'
+  era: 'university'
+  home_location_id: 'eolian_floor'
+  temperament: 'social, observant, seasoned, careful without seeming stiff'
+  speech_style: 'easy and polished, hospitable, notices moods, not easily rattled'
+
+  known_topics:
+    - music
+    - players
+    - the eolian
+    - imre
+    - pipes
+
+  taboo_topics:
+    - private patron business
+    - gossip presented as fact
+    - being pressed for secrets
+
+  greeting_pool:
+    exactly 3 brief greetings that feel socially smooth and professional
+
+  exit_lines:
+    exactly 2 lines that politely end a conversation
+
+Stanchion profile:
+  id: 'stanchion'
+  name: 'Stanchion'
+  era: 'university'
+  home_location_id: 'eolian_floor'
+  temperament: 'practical, fair-minded, busy, good judge of performance'
+  speech_style: 'plainspoken, steady, clear, judges music without ornament'
+
+  known_topics:
+    - pipes
+    - auditions
+    - performers
+    - rules
+    - the eolian
+
+  taboo_topics:
+    - flattery
+    - shortcuts
+    - entitlement
+
+  greeting_pool:
+    exactly 3 brief greetings that feel brisk but fair
+
+  exit_lines:
+    exactly 2 brief ways to dismiss a conversation and return to work
+
+Do not flatten either NPC into a generic innkeeper.
+
+---------------------------------------
+AUTHORED DIALOGUE - src/content/eolianDialogue.ts
+---------------------------------------
+
+Export these constants:
+
+  EOLIAN_AUDITION_BLOCKED: string[]
+  EOLIAN_AUDITION_FAIL: string[]
+  EOLIAN_AUDITION_SUCCESS: string[]
+  EOLIAN_PLAY_LINES: string[]
+  EOLIAN_NOT_OPEN_LINES: string[]
+
+Rules:
+  - Original prose only
+  - Maximum 2 sentences per entry
+  - Exactly 3 entries in each pool
+  - Deterministic selection only:
+      index = state.day_number % 3
+  - The Eolian should feel socially charged, not generic
+  - Success should feel significant but not over-written
+  - Failure should feel public and memorable without melodrama
+  - "Not open" should feel like a venue schedule, not a hard game wall
+
+Tone guidance:
+
+Audition blocked:
+  Use when wrong location, wrong time, no lute, already attempted
+  today, or already has pipes.
+
+Audition fail:
+  The player is good enough to be taken seriously, but not accepted
+  this time.
+
+Audition success:
+  This is a real threshold moment. Keep it brief, concrete, and earned.
+
+Play lines:
+  These are for a musician who already has talent pipes.
+  No direct tips or coin here - this is prestige, not tavern busking.
+
+---------------------------------------
+ENGINE - src/engine/musicEngine.ts
+---------------------------------------
+
+This file owns all Eolian truth for this prompt.
+It does not narrate via narrator methods.
+It may return authored lines from eolianDialogue.ts.
+
+Implement and export:
+
+-------------------------------------
+canEnterEolian(state: PlayerState): boolean
+-------------------------------------
+
+Return true only if:
+  state.time_of_day is 'evening' or 'night'
+
+Otherwise false.
+
+-------------------------------------
+calculateAuditionScore(state: PlayerState): number
+-------------------------------------
+
+Return a deterministic score 0-100.
+
+Formula:
+  score = 35
+
+  if player has an inventory item with id === 'lute':
+    score += 15
+  else:
+    return 0
+
+  if state.reputation.eolian_standing >= 40: score += 10
+  else if state.reputation.eolian_standing >= 30: score += 5
+
+  if state.reputation.university_social >= 50: score += 3
+
+  if state.fatigue >= 70: score -= 15
+  else if state.fatigue >= 40: score -= 5
+
+  if state.hunger >= 70: score -= 10
+  else if state.hunger >= 40: score -= 4
+
+  if state.warmth < 40: score -= 5
+  if state.injuries.length > 0: score -= 10
+
+  Clamp result 0-100.
+
+This score is engine truth. Do not make it random.
+
+-------------------------------------
+auditionForPipes(
+  state: PlayerState,
+  db
+): { message: string; newState: PlayerState }
+-------------------------------------
+
+Rules:
+  - Player must be at eolian_floor
+  - canEnterEolian(state) must be true
+  - Player must have a lute in inventory
+  - If state.eolian_state.has_talent_pipes is already true:
+      return blocked line
+      state unchanged
+  - If state.eolian_state.last_audition_day === state.day_number:
+      return blocked line
+      state unchanged
+
+On blocked:
+  - choose line from EOLIAN_AUDITION_BLOCKED
+  - state unchanged
+
+On attempt:
+  - score = calculateAuditionScore(state)
+
+Success threshold:
+  - if score >= 50:
+      has_talent_pipes = true
+      last_audition_day = state.day_number
+      eolian_standing += 15 (clamp 100)
+      university_social += 2 (clamp 100)
+      fatigue += 5 (clamp 100)
+      hunger += 2 (clamp 100)
+      return success line from EOLIAN_AUDITION_SUCCESS
+
+Failure:
+  - has_talent_pipes stays false
+  - last_audition_day = state.day_number
+  - eolian_standing += 1 (clamp 100)
+  - fatigue += 4 (clamp 100)
+  - hunger += 2 (clamp 100)
+  - return fail line from EOLIAN_AUDITION_FAIL
+
+Do not award money here.
+
+-------------------------------------
+playAtEolian(
+  state: PlayerState,
+  db
+): { message: string; newState: PlayerState }
+-------------------------------------
+
+Rules:
+  - Player must be at eolian_floor
+  - canEnterEolian(state) must be true
+  - state.eolian_state.has_talent_pipes must be true
+  - state.eolian_state.performances_today must be 0
+  - Player must have a lute in inventory
+
+If blocked:
+  - return a short in-world line
+  - state unchanged
+
+On success:
+  - call advanceTime(state, 1)
+  - then apply:
+      eolian_state.performances_today += 1
+      reputation.eolian_standing += 2 (clamp 100)
+      reputation.university_social += 1 (clamp 100)
+      fatigue += 10 (clamp 100)
+      hunger += 5 (clamp 100)
+  - return line from EOLIAN_PLAY_LINES
+
+No direct money reward.
+The Eolian is not Anker's.
+
+-------------------------------------
+isLutePresent(state: PlayerState): boolean
+-------------------------------------
+
+Return true if inventory contains item id 'lute' with quantity >= 1.
+
+---------------------------------------
+NPC ENGINE - update src/engine/npcEngine.ts
+---------------------------------------
+
+Do not refactor existing working logic.
+Only extend it.
+
+Update getNPCProfile() and talkToNPC() to support deoch and stanchion.
+
+Deoch talking rules:
+  - If topic is null: socially smooth greeting
+  - If topic is 'music' or 'players': answer with cultured practicality
+  - If topic is 'imre': answer lightly, as someone rooted there
+  - If topic is 'pipes': acknowledge they must be earned
+  - If topic is taboo: polite deflection
+
+Stanchion talking rules:
+  - If topic is null: brief, busy greeting
+  - If topic is 'pipes' or 'auditions': explain that standards matter
+  - If topic is 'rules': practical answer about how the place runs
+  - If topic is taboo: brisk refusal
+
+Do not make either one sound modern, theatrical, or over-friendly.
+
+If parseNPCCommand() already supports:
+  talk to deoch
+  talk to stanchion
+  ask stanchion about pipes
+  ask deoch about music
+then leave the parser alone.
+Only extend it if necessary.
+
+---------------------------------------
+MOVEMENT - update src/engine/movement.ts
+---------------------------------------
+
+Extend both getAccessibleExits() and movePlayer() to support this
+new access_condition:
+
+  'open_evening'
+    - accessible only when state.time_of_day is 'evening' or 'night'
+
+Rules:
+  - getAccessibleExits() should exclude open_evening exits when it is
+    morning or afternoon
+  - movePlayer() must still distinguish:
+      (a) no exit exists
+      (b) exit exists but is blocked
+  - For blocked open_evening exit:
+      return message from EOLIAN_NOT_OPEN_LINES using deterministic
+      index = state.day_number % 3
+
+Do not add any other new movement access conditions in this prompt.
+
+---------------------------------------
+ACTIONS - update src/engine/actions.ts
+---------------------------------------
+
+Add these commands to dispatch():
+
+  audition for pipes
+    -> call auditionForPipes(state, db)
+    -> return only the result line and newState
+    -> do not auto-render location afterward
+
+  play at eolian
+    -> call playAtEolian(state, db)
+    -> return only the result line and newState
+    -> do not auto-render location afterward
+
+Keep all existing commands from Prompts 1-4 intact.
+
+After any successful audition or performance:
+  - if tuition is not yet paid, call checkTuitionDeadline() as per Prompt 2
+
+Do not add any other new commands in this prompt.
+
+---------------------------------------
+TIME / DAILY RESET - update src/engine/time.ts and economy.ts
+---------------------------------------
+
+Prompt 2, 3, and 4 already modified advanceTime() and sleep().
+Keep those changes. Add only the following:
+
+In advanceTime():
+  - When the time cycle passes from night -> morning,
+    reset:
+      eolian_state.performances_today = 0
+
+Do not reset last_audition_day.
+Do not change any other recovery logic.
+
+In economy.ts sleep():
+  - After a successful sleep, also reset:
+      eolian_state.performances_today = 0
+
+Do not change any other economy behaviour.
+
+---------------------------------------
+LOCATION FLAVOUR - update src/content/locationFlavour.ts
+---------------------------------------
+
+Add entries for all 5 new locations.
+
+Rules:
+  - Exactly 4 lines per location
+  - Original prose only
+  - Grounded, sensory, restrained
+  - Imre should feel distinct from the University:
+      brighter, more public, more polished, but still real
+  - The Eolian should feel charged, attentive, and socially exposed
+
+---------------------------------------
+TESTS - tests/musicEngine.test.ts
+---------------------------------------
+
+Import:
+  canEnterEolian,
+  calculateAuditionScore,
+  auditionForPipes,
+  playAtEolian,
+  isLutePresent
+from src/engine/musicEngine.ts
+
+Also import:
+  initDefaultPlayerState from src/engine/state.ts
+  runMigrations from src/db/schema.ts
+  runSeed from src/db/seed.ts
+  movePlayer from src/engine/movement.ts
+  Database from better-sqlite3
+
+Use an in-memory SQLite DB:
+  new Database(':memory:')
+Call runMigrations() and runSeed() before tests.
+
+Tests:
+
+  isLutePresent:
+    1. default player state returns true
+    2. state with lute removed returns false
+
+  canEnterEolian:
+    3. evening returns true
+    4. morning returns false
+
+  calculateAuditionScore:
+    5. healthy default state with lute returns a score > 0
+    6. exhausted and hungry state returns a lower score than healthy state
+
+  auditionForPipes:
+    7. wrong location returns blocked and unchanged state
+    8. eolian_floor in evening with healthy state and lute can succeed
+       or fail deterministically, but must set last_audition_day to current day
+    9. second audition attempt on the same day returns blocked
+    10. successful audition sets has_talent_pipes true
+
+  playAtEolian:
+    11. without talent pipes returns blocked and unchanged state
+    12. with talent pipes at eolian_floor in evening advances time by 1
+        and increments performances_today
+    13. second performance on same day returns blocked
+
+  movement:
+    14. attempting enter from eolian_exterior in afternoon returns
+        blocked line, not "You cannot go that way."
+    15. attempting enter from eolian_exterior in evening succeeds
+
+Add 2 tests to existing tests/npcEngine.test.ts:
+
+  10. talkToNPC('deoch', 'music', stateAtEolian, db)
+      returns non-empty string
+  11. talkToNPC('stanchion', 'pipes', stateAtEolian, db)
+      returns non-empty string
+
+---------------------------------------
+ARCHITECTURE REMINDERS
+---------------------------------------
+
+These rules from Prompt 1 still apply:
+
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls
+  - No unused imports or files
+
+musicEngine.ts is an engine-layer file.
+It may read from the DB.
+It must not call narrator methods directly.
+
+---------------------------------------
+SUCCESS CRITERIA
+---------------------------------------
+
+This prompt is complete when:
+
+  - the player can walk from the University side to Stonebridge,
+    then to Imre, then to the Eolian
+  - attempting to enter the Eolian in the daytime returns an in-world
+    "not open" line
+  - entering in the evening works
+  - `talk to deoch` returns a voice-true social line
+  - `talk to stanchion` returns a voice-true practical line
+  - `ask stanchion about pipes` explains that they are earned
+  - `audition for pipes` works only inside the Eolian
+  - a successful audition grants talent pipes and boosts Eolian standing
+  - a failed audition still consumes the day's attempt
+  - `play at eolian` works only if the player has pipes
+  - Eolian performance gives prestige, not direct coin
+  - performances_today resets on the next morning
+  - all new tests pass alongside earlier prompts' tests
+  - no network calls occur at any point
+  - no refactoring of working Prompt 1-4 code
+
+==========================================
+END OF PROMPT 5
+==========================================

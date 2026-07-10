@@ -1,0 +1,478 @@
+{
+  "schema_version": "canon_floor_plan_v02",
+  "building": {
+    "id": "castle_crydee",
+    "name": "Castle Crydee",
+    "certainty": "canon",
+    "source": "Magician by Raymond E. Feist"
+  },
+  "floor": {
+    "id": "ground",
+    "name": "Ground Floor",
+    "certainty": "canon",
+    "draft": true,
+    "approximate_dimensions": true,
+    "metrics": {
+      "floor_z": 0.0,
+      "floor_height": 3.0,
+      "floor_slab_thickness": 0.2,
+      "wall_thickness_default": 0.5
+    }
+  },
+  "story_role": {
+    "certainty": "canon",
+    "summary": "Main living and functional level containing great hall, kitchen, living quarters, and service areas"
+  },
+  "footprint": {
+    "id": "castle_footprint",
+    "name": "Castle Footprint",
+    "certainty": "reconstructed",
+    "geometry_certainty": "reconstructed",
+    "polygon": [
+      {"x": 0, "z": 0},
+      {"x": 50, "z": 0},
+      {"x": 50, "z": 50},
+      {"x": 0, "z": 50}
+    ],
+    "approximate": true,
+    "has_windows": true,
+    "public_entrances": 1
+  },
+  "slab_regions": [
+    {
+      "id": "castle_main_slab",
+      "name": "Castle Main Slab",
+      "certainty": "reconstructed",
+      "polygon": [
+        {"x": 0, "z": 0},
+        {"x": 50, "z": 0},
+        {"x": 50, "z": 50},
+        {"x": 0, "z": 50}
+      ]
+    },
+    {
+      "id": "north_gate_apron",
+      "name": "North Gate Apron",
+      "certainty": "reconstructed",
+      "polygon": [
+        {"x": 18, "z": 50},
+        {"x": 32, "z": 50},
+        {"x": 32, "z": 58},
+        {"x": 18, "z": 58}
+      ]
+    }
+  ],
+  "rooms": [
+    {
+      "id": "great_hall",
+      "name": "Great Hall",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        {"x": 12, "z": 18},
+        {"x": 38, "z": 18},
+        {"x": 38, "z": 34},
+        {"x": 12, "z": 34}
+      ],
+      "approximate": true
+    },
+    {
+      "id": "kitchen",
+      "name": "Kitchen",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        {"x": 38, "z": 18},
+        {"x": 48, "z": 18},
+        {"x": 48, "z": 30},
+        {"x": 38, "z": 30}
+      ],
+      "approximate": true
+    },
+    {
+      "id": "gatehouse",
+      "name": "Gatehouse",
+      "certainty": "implied",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        {"x": 18, "z": 34},
+        {"x": 32, "z": 34},
+        {"x": 32, "z": 38},
+        {"x": 18, "z": 38}
+      ],
+      "approximate": true
+    },
+    {
+      "id": "courtyard",
+      "name": "Courtyard",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        {"x": 18, "z": 38},
+        {"x": 32, "z": 38},
+        {"x": 32, "z": 50},
+        {"x": 18, "z": 50}
+      ],
+      "approximate": true
+    },
+    {
+      "id": "guardroom",
+      "name": "Guardroom",
+      "certainty": "reconstructed",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        {"x": 12, "z": 34},
+        {"x": 18, "z": 34},
+        {"x": 18, "z": 36},
+        {"x": 12, "z": 36}
+      ],
+      "approximate": true
+    },
+    {
+      "id": "pantry",
+      "name": "Pantry",
+      "certainty": "reconstructed",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        {"x": 38, "z": 30},
+        {"x": 44, "z": 30},
+        {"x": 44, "z": 34},
+        {"x": 38, "z": 34}
+      ],
+      "approximate": true
+    },
+    {
+      "id": "keep_entrance",
+      "name": "Keep Entrance",
+      "certainty": "implied",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        {"x": 32, "z": 34},
+        {"x": 44, "z": 34},
+        {"x": 44, "z": 46},
+        {"x": 32, "z": 46}
+      ],
+      "approximate": true
+    },
+    {
+      "id": "stables",
+      "name": "Stables",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        {"x": 4, "z": 36},
+        {"x": 18, "z": 36},
+        {"x": 18, "z": 48},
+        {"x": 4, "z": 48}
+      ],
+      "approximate": true
+    }
+  ],
+  "doors": [
+    {
+      "id": "main_gate",
+      "name": "Main Gate",
+      "certainty": "canon",
+      "connects": ["courtyard", "exterior"],
+      "line": {
+        "start": {"x": 22, "z": 50},
+        "end": {"x": 28, "z": 50}
+      },
+      "approximate": true
+    },
+    {
+      "id": "hall_entrance",
+      "name": "Hall Entrance",
+      "certainty": "implied",
+      "connects": ["gatehouse", "great_hall"],
+      "line": {
+        "start": {"x": 22, "z": 34},
+        "end": {"x": 28, "z": 34}
+      },
+      "approximate": true
+    },
+    {
+      "id": "gatehouse_courtyard_door",
+      "name": "Gatehouse Courtyard Door",
+      "certainty": "implied",
+      "connects": ["gatehouse", "courtyard"],
+      "line": {
+        "start": {"x": 18, "z": 38},
+        "end": {"x": 32, "z": 38}
+      },
+      "approximate": true
+    },
+    {
+      "id": "guardroom_hall_door",
+      "name": "Guardroom Hall Door",
+      "certainty": "reconstructed",
+      "connects": ["great_hall", "guardroom"],
+      "line": {
+        "start": {"x": 12, "z": 34},
+        "end": {"x": 18, "z": 34}
+      },
+      "approximate": true
+    },
+    {
+      "id": "guardroom_courtyard_door",
+      "name": "Guardroom Courtyard Door",
+      "certainty": "reconstructed",
+      "connects": ["guardroom", "courtyard"],
+      "line": {
+        "start": {"x": 18, "z": 34},
+        "end": {"x": 18, "z": 36}
+      },
+      "approximate": true
+    },
+    {
+      "id": "pantry_door",
+      "name": "Pantry Door",
+      "certainty": "reconstructed",
+      "connects": ["kitchen", "pantry"],
+      "line": {
+        "start": {"x": 38, "z": 30},
+        "end": {"x": 44, "z": 30}
+      },
+      "approximate": true
+    },
+    {
+      "id": "kitchen_door",
+      "name": "Kitchen Door",
+      "certainty": "canon",
+      "connects": ["great_hall", "kitchen"],
+      "line": {
+        "start": {"x": 38, "z": 22},
+        "end": {"x": 38, "z": 28}
+      },
+      "approximate": true
+    },
+    {
+      "id": "stable_door",
+      "name": "Stable Yard Door",
+      "certainty": "reconstructed",
+      "connects": ["courtyard", "stables"],
+      "line": {
+        "start": {"x": 18, "z": 40},
+        "end": {"x": 18, "z": 44}
+      },
+      "approximate": true
+    },
+    {
+      "id": "keep_door",
+      "name": "Keep Entrance Door",
+      "certainty": "implied",
+      "connects": ["courtyard", "keep_entrance"],
+      "line": {
+        "start": {"x": 32, "z": 38},
+        "end": {"x": 32, "z": 42}
+      },
+      "approximate": true
+    }
+  ],
+  "stairs": [
+    {
+      "id": "tower_stairs",
+      "name": "Tower Stairs",
+      "certainty": "canon",
+      "connects": ["keep_entrance", "upper_tower_level"],
+      "from_floor": "ground",
+      "access_from": "keep_entrance",
+      "polygon": [
+        {"x": 38, "z": 38},
+        {"x": 44, "z": 38},
+        {"x": 44, "z": 44},
+        {"x": 38, "z": 44}
+      ],
+      "approximate": true
+    }
+  ],
+  "upper_levels": [
+    {
+      "id": "first_floor",
+      "name": "First Floor (Upper Hall Level)",
+      "certainty": "implied",
+      "elevation": 3.2,
+      "approximate_dimensions": true,
+      "rooms": [
+        {
+          "id": "great_hall_gallery",
+          "name": "Great Hall Gallery",
+          "certainty": "implied",
+          "geometry_certainty": "reconstructed",
+          "polygon": [
+            {"x": 12, "z": 18},
+            {"x": 38, "z": 18},
+            {"x": 38, "z": 34},
+            {"x": 12, "z": 34}
+          ],
+          "approximate": true
+        },
+        {
+          "id": "lords_chamber",
+          "name": "Lord's Chamber",
+          "certainty": "implied",
+          "geometry_certainty": "reconstructed",
+          "polygon": [
+            {"x": 32, "z": 38},
+            {"x": 44, "z": 38},
+            {"x": 44, "z": 46},
+            {"x": 32, "z": 46}
+          ],
+          "approximate": true
+        },
+        {
+          "id": "tower_chamber",
+          "name": "Tower Chamber",
+          "certainty": "reconstructed",
+          "geometry_certainty": "reconstructed",
+          "polygon": [
+            {"x": 38, "z": 30},
+            {"x": 44, "z": 30},
+            {"x": 44, "z": 34},
+            {"x": 38, "z": 34}
+          ],
+          "approximate": true
+        },
+        {
+          "id": "guard_walk",
+          "name": "Guard Walk",
+          "certainty": "implied",
+          "geometry_certainty": "reconstructed",
+          "polygon": [
+            {"x": 0, "z": 0},
+            {"x": 50, "z": 0},
+            {"x": 50, "z": 50},
+            {"x": 0, "z": 50}
+          ],
+          "approximate": true
+        }
+      ],
+      "doors": [
+        {
+          "id": "gallery_to_lord_chamber",
+          "name": "Gallery to Lord's Chamber",
+          "certainty": "implied",
+          "connects": ["great_hall_gallery", "lords_chamber"],
+          "line": {
+            "start": {"x": 38, "z": 34},
+            "end": {"x": 38, "z": 40}
+          },
+          "approximate": true
+        },
+        {
+          "id": "lords_to_tower",
+          "name": "Lord's to Tower Chamber",
+          "certainty": "reconstructed",
+          "connects": ["lords_chamber", "tower_chamber"],
+          "line": {
+            "start": {"x": 38, "z": 38},
+            "end": {"x": 38, "z": 34}
+          },
+          "approximate": true
+        }
+      ],
+      "stairs": [
+        {
+          "id": "tower_stairs_upper",
+          "name": "Tower Stairs Upper",
+          "certainty": "canon",
+          "connects": ["lords_chamber", "tower_peak"],
+          "from_floor": "first_floor",
+          "access_from": "lords_chamber",
+          "polygon": [
+            {"x": 40, "z": 38},
+            {"x": 44, "z": 38},
+            {"x": 44, "z": 42},
+            {"x": 40, "z": 42}
+          ],
+          "approximate": true
+        }
+      ],
+      "labels": [
+        {
+          "id": "gallery_label",
+          "text": "Gallery",
+          "position": {"x": 25, "z": 26},
+          "certainty": "implied"
+        },
+        {
+          "id": "lords_chamber_label",
+          "text": "Lord's Chamber",
+          "position": {"x": 38, "z": 42},
+          "certainty": "implied"
+        },
+        {
+          "id": "tower_chamber_label",
+          "text": "Tower Chamber",
+          "position": {"x": 41, "z": 32},
+          "certainty": "reconstructed"
+        }
+      ]
+    }
+  ],
+  "labels": [
+    {
+      "id": "castle_label",
+      "text": "Castle Crydee",
+      "position": {"x": 25, "z": 25},
+      "certainty": "canon"
+    },
+    {
+      "id": "great_hall_label",
+      "text": "Great Hall",
+      "position": {"x": 25, "z": 26},
+      "certainty": "canon"
+    },
+    {
+      "id": "courtyard_label",
+      "text": "Courtyard",
+      "position": {"x": 25, "z": 44},
+      "certainty": "canon"
+    },
+    {
+      "id": "gatehouse_label",
+      "text": "Gatehouse",
+      "position": {"x": 25, "z": 36},
+      "certainty": "implied"
+    },
+    {
+      "id": "guardroom_label",
+      "text": "Guardroom",
+      "position": {"x": 15, "z": 37},
+      "certainty": "reconstructed"
+    },
+    {
+      "id": "pantry_label",
+      "text": "Pantry",
+      "position": {"x": 41, "z": 32},
+      "certainty": "reconstructed"
+    }
+  ],
+  "validation_flags": [
+    {
+      "id": "vf_draft_status",
+      "level": "warning",
+      "message": "This is a draft blockout for initial Godot testing, not final architecture."
+    },
+    {
+      "id": "vf_dimensions_approximate",
+      "level": "warning",
+      "message": "All dimensions and room placements are approximate reconstructions."
+    },
+    {
+      "id": "vf_canon_elements",
+      "level": "pass",
+      "message": "Great Hall, Kitchen, Stables, Tower, and Courtyard are canon elements."
+    },
+    {
+      "id": "vf_geometry_valid",
+      "level": "pass",
+      "message": "Polygon geometry is valid and non-overlapping where required."
+    },
+    {
+      "id": "vf_ids_unique",
+      "level": "pass",
+      "message": "All room, door, and stair IDs are unique."
+    }
+  ]
+}

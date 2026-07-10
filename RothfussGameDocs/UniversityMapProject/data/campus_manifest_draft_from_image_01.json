@@ -1,0 +1,218 @@
+{
+  "id": "campus_v2_from_image_draft_01",
+  "type": "campus_site_plan",
+  "north_up": true,
+  "source_image": "Campus site plan (user uploaded)",
+  "status": "draft_from_image_analysis",
+  "notes": "Extracted by ChatGPT vision from campus-wide site plan image. This is a placement draft, not a locked canonical survey.",
+  "regional_spine": {
+    "imre_side": "east",
+    "university_side": "west",
+    "bridge": "Stonebridge",
+    "canyon": "Omethi canyon",
+    "certainty": "canon"
+  },
+  "zones": [
+    {
+      "id": "z1",
+      "name": "Eastern threshold / ceremonial cluster",
+      "certainty": "implied",
+      "members": ["archives", "hollows", "central_square"]
+    },
+    {
+      "id": "z2",
+      "name": "Central academic core",
+      "certainty": "implied",
+      "members": ["mains"]
+    },
+    {
+      "id": "z3",
+      "name": "Productive / service belt",
+      "certainty": "implied",
+      "members": ["medica", "fishery_artificery"]
+    },
+    {
+      "id": "z4",
+      "name": "Residential belt",
+      "certainty": "implied",
+      "members": ["mews", "mess"]
+    },
+    {
+      "id": "z5",
+      "name": "Northern secure compound",
+      "certainty": "implied",
+      "members": ["haven"]
+    }
+  ],
+  "buildings": [
+    {
+      "id": "archives",
+      "name": "Archives",
+      "certainty": "canon",
+      "shape_read": "square monolith",
+      "placement": {
+        "relative_to_bridge": "immediately west",
+        "relative_to_central_square": "east",
+        "relative_to_hollows": "east-southeast"
+      },
+      "site_role": "eastern visual anchor",
+      "footprint_quality": "clear",
+      "rotation_quality": "low"
+    },
+    {
+      "id": "hollows",
+      "name": "Hollows",
+      "certainty": "implied",
+      "shape_read": "small square block",
+      "placement": {
+        "relative_to_archives": "west-northwest",
+        "relative_to_mains": "east-northeast",
+        "relative_to_central_square": "north-east edge"
+      },
+      "site_role": "near-archives administrative / ceremonial building",
+      "footprint_quality": "clear",
+      "rotation_quality": "low"
+    },
+    {
+      "id": "mains",
+      "name": "Mains",
+      "certainty": "implied",
+      "shape_read": "large irregular accreted mass",
+      "placement": {
+        "relative_to_central_square": "west",
+        "relative_to_archives": "west",
+        "relative_to_medica": "north",
+        "relative_to_fishery_artificery": "north"
+      },
+      "site_role": "central academic core",
+      "footprint_quality": "moderate",
+      "rotation_quality": "low"
+    },
+    {
+      "id": "central_square",
+      "name": "Central Square / Courtyard",
+      "certainty": "implied",
+      "shape_read": "large open rectangular-ish court",
+      "placement": {
+        "relative_to_mains": "east",
+        "relative_to_archives": "west",
+        "relative_to_hollows": "south",
+        "relative_to_medica": "north"
+      },
+      "site_role": "main outdoor circulation / gathering space",
+      "footprint_quality": "clear",
+      "rotation_quality": "n/a"
+    },
+    {
+      "id": "medica",
+      "name": "Medica",
+      "certainty": "implied",
+      "shape_read": "large irregular institutional mass",
+      "placement": {
+        "relative_to_mains": "south-east",
+        "relative_to_central_square": "south",
+        "relative_to_archives": "south-west"
+      },
+      "site_role": "medical / service building",
+      "footprint_quality": "moderate",
+      "rotation_quality": "low"
+    },
+    {
+      "id": "fishery_artificery",
+      "name": "Fishery / Artificery",
+      "certainty": "implied",
+      "shape_read": "large workshop block / complex",
+      "placement": {
+        "relative_to_mains": "south-west",
+        "relative_to_medica": "west",
+        "relative_to_mews": "east"
+      },
+      "site_role": "productive / industrial service building",
+      "footprint_quality": "moderate",
+      "rotation_quality": "low"
+    },
+    {
+      "id": "mews",
+      "name": "Mews",
+      "certainty": "canon",
+      "shape_read": "radial hub with eight wings",
+      "placement": {
+        "relative_to_mains": "south-west",
+        "relative_to_mess": "north",
+        "relative_to_fishery_artificery": "west"
+      },
+      "site_role": "residential hub",
+      "footprint_quality": "clear",
+      "rotation_quality": "clear"
+    },
+    {
+      "id": "mess",
+      "name": "Mess",
+      "certainty": "canon",
+      "shape_read": "separate hall south of Mews",
+      "placement": {
+        "relative_to_mews": "south",
+        "relative_to_residential_belt": "central"
+      },
+      "site_role": "dining / hall building",
+      "footprint_quality": "clear",
+      "rotation_quality": "low"
+    },
+    {
+      "id": "haven",
+      "name": "Haven",
+      "certainty": "implied",
+      "shape_read": "isolated fenced compound",
+      "placement": {
+        "relative_to_mains": "north",
+        "relative_to_archives": "north-west",
+        "relative_to_campus_core": "isolated"
+      },
+      "site_role": "northern secure compound",
+      "footprint_quality": "moderate",
+      "rotation_quality": "low"
+    }
+  ],
+  "linear_features": [
+    {
+      "id": "stonebridge",
+      "name": "Stonebridge",
+      "certainty": "canon",
+      "type": "bridge",
+      "orientation": "east-west",
+      "connects": ["imre", "university"]
+    },
+    {
+      "id": "omethi_canyon",
+      "name": "Omethi canyon",
+      "certainty": "canon",
+      "type": "canyon",
+      "orientation": "north-south-ish"
+    },
+    {
+      "id": "north_road",
+      "name": "North road",
+      "certainty": "implied",
+      "type": "road",
+      "orientation": "east-west"
+    }
+  ],
+  "open_spaces": [
+    {
+      "id": "residential_belt_open",
+      "name": "Residential belt open ground",
+      "certainty": "reconstructed"
+    },
+    {
+      "id": "central_square_open",
+      "name": "Central Square / Courtyard",
+      "certainty": "implied"
+    }
+  ],
+  "validation_flags": [
+    "Campus east-west spine appears correct.",
+    "Building placements are readable but not metrically extracted.",
+    "Footprints should be manually traced or vectorised before Blender use.",
+    "Use this as placement JSON, not as final build geometry."
+  ]
+}

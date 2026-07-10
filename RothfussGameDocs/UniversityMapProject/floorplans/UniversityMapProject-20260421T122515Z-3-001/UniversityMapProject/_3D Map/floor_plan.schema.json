@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UniversityFloorPlan",
+  "type": "object",
+  "required": [
+    "id","building","floor","story_role","north_up","units","source_plan","certainty_summary","levels","defaults","footprint","points","walls","doors","stairs","rooms","labels"
+  ],
+  "properties": {
+    "id": {"type":"string"},
+    "building": {"type":"string"},
+    "floor": {"type":"string"},
+    "story_role": {"type":"string","enum":["basement","ground","upper","roof","sublevel","mezzanine"]},
+    "north_up": {"type":"boolean"},
+    "units": {"type":"string","enum":["m"]},
+    "source_plan": {"type":"object"},
+    "certainty_summary": {"type":"object"},
+    "levels": {"type":"object"},
+    "defaults": {"type":"object"},
+    "footprint": {"type":"array"},
+    "points": {"type":"array"},
+    "walls": {"type":"array"},
+    "doors": {"type":"array"},
+    "stairs": {"type":"array"},
+    "windows": {"type":"array"},
+    "rooms": {"type":"array"},
+    "labels": {"type":"array"},
+    "hotspots": {"type":"array"}
+  }
+}

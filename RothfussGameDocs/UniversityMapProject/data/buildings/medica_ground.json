@@ -1,0 +1,64 @@
+﻿{
+  "building_id": "medica",
+  "floor_id": "ground",
+  "metadata": {
+    "elevation_y": 0.0,
+    "floor_height": 5.0,
+    "wall_thickness_default": 1.5,
+    "north_orientation_deg": 25.0
+  },
+  "geometries": {
+    "footprint": [
+      {"x": 160, "z": -40}, {"x": 210, "z": -40}, {"x": 220, "z": -10}, {"x": 190, "z": 10}, {"x": 150, "z": 0}
+    ],
+    "rooms": [
+      {
+        "id": "receiving_area",
+        "label": "Main Receiving (Waiting Hall)",
+        "certainty": "implied",
+        "polygon": [{"x": 165, "z": -35}, {"x": 185, "z": -35}, {"x": 185, "z": -20}, {"x": 165, "z": -20}],
+        "fittings": ["intake_desk", "waiting_benches"]
+      },
+      {
+        "id": "treatment_ward_alpha",
+        "label": "General Treatment Ward",
+        "certainty": "implied",
+        "polygon": [{"x": 190, "z": -35}, {"x": 215, "z": -35}, {"x": 215, "z": -15}, {"x": 190, "z": -15}],
+        "fittings": ["treatment_tables", "washstands", "privacy_screens"]
+      },
+      {
+        "id": "quiet_recovery",
+        "label": "Quiet Recovery Rooms",
+        "certainty": "implied",
+        "polygon": [{"x": 160, "z": -10}, {"x": 185, "z": -10}, {"x": 185, "z": 5}, {"x": 160, "z": 5}],
+        "note": "Sited away from the busy receiving area for convalescence."
+      },
+      {
+        "id": "dispensary",
+        "label": "Dispensary / Supplies",
+        "certainty": "implied",
+        "polygon": [{"x": 185, "z": -15}, {"x": 200, "z": -15}, {"x": 200, "z": -5}, {"x": 185, "z": -5}],
+        "is_secured": true
+      }
+    ],
+    "portals": [
+      {
+        "id": "public_entrance",
+        "type": "door",
+        "pos": {"x": 175, "z": -40},
+        "width": 3.0,
+        "label": "Main Medical Entrance"
+      }
+    ],
+    "vertical_circulation": [
+      {
+        "id": "medica_main_stair",
+        "type": "stair",
+        "pos": {"x": 195, "z": -10},
+        "target_floor": "level_2",
+        "direction": "up",
+        "label": "To Upper Wards"
+      }
+    ]
+  }
+}

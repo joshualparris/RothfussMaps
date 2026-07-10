@@ -1,0 +1,4612 @@
+[gd_scene load_steps=27 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_player"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor_slab"]
+albedo_color = Color(0.24, 0.24, 0.23, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_room_canon"]
+albedo_color = Color(0.76, 0.82, 0.9, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_room_implied"]
+albedo_color = Color(0.9, 0.82, 0.56, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_room_reconstructed"]
+albedo_color = Color(0.72, 0.74, 0.72, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_outer_wall"]
+albedo_color = Color(0.09, 0.1, 0.11, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_partition_wall"]
+albedo_color = Color(0.17, 0.17, 0.18, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_door_marker"]
+albedo_color = Color(0.58, 0.16, 0.1, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_stair_marker"]
+albedo_color = Color(0.22, 0.47, 0.3, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_fixture"]
+albedo_color = Color(0.41, 0.31, 0.19, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_label_dark"]
+albedo_color = Color(0.08, 0.08, 0.09, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_grass"]
+albedo_color = Color(0.36, 0.49, 0.26, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_road"]
+albedo_color = Color(0.48, 0.4, 0.3, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_water"]
+albedo_color = Color(0.16, 0.31, 0.47, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_cliff"]
+albedo_color = Color(0.37, 0.35, 0.33, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_forest"]
+albedo_color = Color(0.2, 0.32, 0.17, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_timber"]
+albedo_color = Color(0.46, 0.3, 0.16, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_stone"]
+albedo_color = Color(0.58, 0.57, 0.52, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_wall_walk"]
+albedo_color = Color(0.53, 0.55, 0.49, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_merlon"]
+albedo_color = Color(0.4, 0.42, 0.4, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_banner"]
+albedo_color = Color(0.58, 0.15, 0.12, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_canon_marker"]
+albedo_color = Color(0.64, 0.84, 0.98, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_implied_marker"]
+albedo_color = Color(0.96, 0.85, 0.44, 1)
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="Mat_reconstructed_marker"]
+albedo_color = Color(0.76, 0.76, 0.76, 1)
+roughness = 0.82
+
+[sub_resource type="Environment" id="Env_default"]
+background_mode = 1
+background_color = Color(0.64, 0.71, 0.79, 1)
+ambient_light_color = Color(0.54, 0.57, 0.61, 1)
+ambient_light_energy = 0.9
+
+[node name="castle_crydee_ground_walkthrough" type="Node3D"]
+
+[node name="Blockout" type="Node3D" parent="."]
+
+[node name="SiteContext" type="Node3D" parent="."]
+
+[node name="Terrain" type="Node3D" parent="SiteContext"]
+
+[node name="Town" type="Node3D" parent="SiteContext"]
+
+[node name="Forest" type="Node3D" parent="SiteContext"]
+
+[node name="Markers" type="Node3D" parent="SiteContext"]
+
+[node name="Legend" type="Node3D" parent="SiteContext"]
+
+[node name="01_CastleRaisedPlatform_Slab" type="CSGBox3D" parent="SiteContext/Terrain"]
+position = Vector3(42, 0, 38)
+size = Vector3(104, 0.3, 92)
+use_collision = true
+material = SubResource("Mat_cliff")
+
+[node name="01_CastleRaisedPlatform_Label" type="Label3D" parent="SiteContext/Markers"]
+position = Vector3(42, 0.95, 38)
+text = "Raised Castle Platform [implied]"
+font_size = 34
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+billboard = 1
+
+[node name="02_GateApproachRoad_Slab" type="CSGBox3D" parent="SiteContext/Terrain"]
+position = Vector3(42, 0, 103.5)
+size = Vector3(8, 0.08, 63)
+use_collision = true
+material = SubResource("Mat_road")
+
+[node name="02_GateApproachRoad_Label" type="Label3D" parent="SiteContext/Markers"]
+position = Vector3(42, 0.84, 103.5)
+text = "Road Approach To Great Gate [canon]"
+font_size = 34
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="03_TownBelowCastle_Ground" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(42, -1.14, 133)
+size = Vector3(56, 0.12, 34)
+use_collision = true
+material = SubResource("Mat_road")
+
+[node name="03_TownBelowCastle_House00_Base" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(22, -0.64, 124)
+size = Vector3(8.6154, 1.1, 7.5556)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="03_TownBelowCastle_House00_Roof" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(22, 0.04, 124)
+size = Vector3(9.0154, 0.26, 7.9556)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="03_TownBelowCastle_House01_Base" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(35.3333, -0.64, 124)
+size = Vector3(8.6154, 1.1, 7.5556)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="03_TownBelowCastle_House01_Roof" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(35.3333, 0.04, 124)
+size = Vector3(9.0154, 0.26, 7.9556)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="03_TownBelowCastle_House02_Base" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(48.6667, -0.64, 124)
+size = Vector3(8.6154, 1.1, 7.5556)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="03_TownBelowCastle_House02_Roof" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(48.6667, 0.04, 124)
+size = Vector3(9.0154, 0.26, 7.9556)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="03_TownBelowCastle_House03_Base" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(62, -0.64, 124)
+size = Vector3(8.6154, 1.1, 7.5556)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="03_TownBelowCastle_House03_Roof" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(62, 0.04, 124)
+size = Vector3(9.0154, 0.26, 7.9556)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="03_TownBelowCastle_House10_Base" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(22, -0.64, 142)
+size = Vector3(8.6154, 1.1, 7.5556)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="03_TownBelowCastle_House10_Roof" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(22, 0.04, 142)
+size = Vector3(9.0154, 0.26, 7.9556)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="03_TownBelowCastle_House11_Base" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(35.3333, -0.64, 142)
+size = Vector3(8.6154, 1.1, 7.5556)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="03_TownBelowCastle_House11_Roof" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(35.3333, 0.04, 142)
+size = Vector3(9.0154, 0.26, 7.9556)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="03_TownBelowCastle_House12_Base" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(48.6667, -0.64, 142)
+size = Vector3(8.6154, 1.1, 7.5556)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="03_TownBelowCastle_House12_Roof" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(48.6667, 0.04, 142)
+size = Vector3(9.0154, 0.26, 7.9556)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="03_TownBelowCastle_House13_Base" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(62, -0.64, 142)
+size = Vector3(8.6154, 1.1, 7.5556)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="03_TownBelowCastle_House13_Roof" type="CSGBox3D" parent="SiteContext/Town"]
+position = Vector3(62, 0.04, 142)
+size = Vector3(9.0154, 0.26, 7.9556)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="03_TownBelowCastle_Label" type="Label3D" parent="SiteContext/Markers"]
+position = Vector3(42, 0.8, 133)
+text = "Town Below Castle [canon]"
+font_size = 34
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="04_SeaView_Slab" type="CSGBox3D" parent="SiteContext/Terrain"]
+position = Vector3(30, -1.66, 205)
+size = Vector3(220, 0.08, 110)
+use_collision = false
+material = SubResource("Mat_water")
+
+[node name="04_SeaView_Label" type="Label3D" parent="SiteContext/Markers"]
+position = Vector3(30, -0.82, 205)
+text = "Sea View Beyond Town [canon]"
+font_size = 34
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="05_EastClearing_Slab" type="CSGBox3D" parent="SiteContext/Terrain"]
+position = Vector3(112, 0, 36)
+size = Vector3(56, 0.1, 72)
+use_collision = true
+material = SubResource("Mat_grass")
+
+[node name="05_EastClearing_Label" type="Label3D" parent="SiteContext/Markers"]
+position = Vector3(112, 0.85, 36)
+text = "Broad Clearing Beyond Eastern Wall [canon]"
+font_size = 34
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="06_EasternForestEdge_Ground" type="CSGBox3D" parent="SiteContext/Forest"]
+position = Vector3(160, 0, 40)
+size = Vector3(40, 0.1, 100)
+use_collision = true
+material = SubResource("Mat_grass")
+
+[node name="06_EasternForestEdge_Tree00_Trunk" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(146, 0.5, -2)
+radius = 0.22
+height = 1.1
+sides = 10
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="06_EasternForestEdge_Tree00_Canopy" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(146, 1.45, -2)
+radius = 0.85
+height = 1.25
+sides = 12
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="06_EasternForestEdge_Tree01_Trunk" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(155.3333, 0.5, -2)
+radius = 0.22
+height = 1.1
+sides = 10
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="06_EasternForestEdge_Tree01_Canopy" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(155.3333, 1.45, -2)
+radius = 0.85
+height = 1.25
+sides = 12
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="06_EasternForestEdge_Tree02_Trunk" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(164.6667, 0.5, -2)
+radius = 0.22
+height = 1.1
+sides = 10
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="06_EasternForestEdge_Tree02_Canopy" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(164.6667, 1.45, -2)
+radius = 0.85
+height = 1.25
+sides = 12
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="06_EasternForestEdge_Tree03_Trunk" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(174, 0.5, -2)
+radius = 0.22
+height = 1.1
+sides = 10
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="06_EasternForestEdge_Tree03_Canopy" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(174, 1.45, -2)
+radius = 0.85
+height = 1.25
+sides = 12
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="06_EasternForestEdge_Tree10_Trunk" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(146, 0.5, 40)
+radius = 0.22
+height = 1.1
+sides = 10
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="06_EasternForestEdge_Tree10_Canopy" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(146, 1.45, 40)
+radius = 0.85
+height = 1.25
+sides = 12
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="06_EasternForestEdge_Tree11_Trunk" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(155.3333, 0.5, 40)
+radius = 0.22
+height = 1.1
+sides = 10
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="06_EasternForestEdge_Tree11_Canopy" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(155.3333, 1.45, 40)
+radius = 0.85
+height = 1.25
+sides = 12
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="06_EasternForestEdge_Tree12_Trunk" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(164.6667, 0.5, 40)
+radius = 0.22
+height = 1.1
+sides = 10
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="06_EasternForestEdge_Tree12_Canopy" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(164.6667, 1.45, 40)
+radius = 0.85
+height = 1.25
+sides = 12
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="06_EasternForestEdge_Tree13_Trunk" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(174, 0.5, 40)
+radius = 0.22
+height = 1.1
+sides = 10
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="06_EasternForestEdge_Tree13_Canopy" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(174, 1.45, 40)
+radius = 0.85
+height = 1.25
+sides = 12
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="06_EasternForestEdge_Tree20_Trunk" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(146, 0.5, 82)
+radius = 0.22
+height = 1.1
+sides = 10
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="06_EasternForestEdge_Tree20_Canopy" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(146, 1.45, 82)
+radius = 0.85
+height = 1.25
+sides = 12
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="06_EasternForestEdge_Tree21_Trunk" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(155.3333, 0.5, 82)
+radius = 0.22
+height = 1.1
+sides = 10
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="06_EasternForestEdge_Tree21_Canopy" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(155.3333, 1.45, 82)
+radius = 0.85
+height = 1.25
+sides = 12
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="06_EasternForestEdge_Tree22_Trunk" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(164.6667, 0.5, 82)
+radius = 0.22
+height = 1.1
+sides = 10
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="06_EasternForestEdge_Tree22_Canopy" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(164.6667, 1.45, 82)
+radius = 0.85
+height = 1.25
+sides = 12
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="06_EasternForestEdge_Tree23_Trunk" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(174, 0.5, 82)
+radius = 0.22
+height = 1.1
+sides = 10
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="06_EasternForestEdge_Tree23_Canopy" type="CSGCylinder3D" parent="SiteContext/Forest"]
+position = Vector3(174, 1.45, 82)
+radius = 0.85
+height = 1.25
+sides = 12
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="06_EasternForestEdge_Label" type="Label3D" parent="SiteContext/Markers"]
+position = Vector3(160, 2.15, 40)
+text = "Forest Beyond Eastern Clearing [canon]"
+font_size = 34
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="07_WestAssaultField_Slab" type="CSGBox3D" parent="SiteContext/Terrain"]
+position = Vector3(-35, 0, 36)
+size = Vector3(70, 0.1, 72)
+use_collision = true
+material = SubResource("Mat_grass")
+
+[node name="07_WestAssaultField_Label" type="Label3D" parent="SiteContext/Markers"]
+position = Vector3(-35, 0.85, 36)
+text = "West Wall Assault Field [canon]"
+font_size = 34
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="08_SailorsGriefDirectionMarker_Marker" type="CSGCylinder3D" parent="SiteContext/Markers"]
+position = Vector3(42, 1.4, -55)
+radius = 0.35
+height = 2.2
+sides = 8
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="08_SailorsGriefDirectionMarker_Label" type="Label3D" parent="SiteContext/Markers"]
+position = Vector3(42, 2.9, -55)
+text = "Sailor's Grief Direction Marker [canon]"
+font_size = 30
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="09_SixSistersHorizonMarker_Island1" type="CSGBox3D" parent="SiteContext/Terrain"]
+position = Vector3(24, -0.6, 221)
+size = Vector3(14, 1, 8)
+use_collision = false
+material = SubResource("Mat_cliff")
+
+[node name="09_SixSistersHorizonMarker_Island2" type="CSGBox3D" parent="SiteContext/Terrain"]
+position = Vector3(42, -0.6, 225)
+size = Vector3(14, 1, 8)
+use_collision = false
+material = SubResource("Mat_cliff")
+
+[node name="09_SixSistersHorizonMarker_Island3" type="CSGBox3D" parent="SiteContext/Terrain"]
+position = Vector3(64, -0.6, 231)
+size = Vector3(14, 1, 8)
+use_collision = false
+material = SubResource("Mat_cliff")
+
+[node name="09_SixSistersHorizonMarker_Label" type="Label3D" parent="SiteContext/Markers"]
+position = Vector3(42, 1.1, 225)
+text = "Six Sisters Horizon Marker [canon]"
+font_size = 30
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="LegendBase" type="CSGBox3D" parent="SiteContext/Legend"]
+position = Vector3(56, 0.1, 100)
+size = Vector3(12, 0.2, 7)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="LegendTitle" type="Label3D" parent="SiteContext/Legend"]
+position = Vector3(56, 1.5, 97.8)
+text = "Evidence Legend"
+font_size = 36
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="LegendMarker01" type="CSGCylinder3D" parent="SiteContext/Legend"]
+position = Vector3(52.2, 0.55, 100)
+radius = 0.35
+height = 0.7
+sides = 16
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="LegendLabel01" type="Label3D" parent="SiteContext/Legend"]
+position = Vector3(52.2, 1.3, 101.2)
+text = "Canon-supported function"
+font_size = 24
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="LegendMarker02" type="CSGCylinder3D" parent="SiteContext/Legend"]
+position = Vector3(56, 0.55, 100)
+radius = 0.35
+height = 0.7
+sides = 16
+use_collision = false
+material = SubResource("Mat_implied_marker")
+
+[node name="LegendLabel02" type="Label3D" parent="SiteContext/Legend"]
+position = Vector3(56, 1.3, 101.2)
+text = "Implied function"
+font_size = 24
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+billboard = 1
+
+[node name="LegendMarker03" type="CSGCylinder3D" parent="SiteContext/Legend"]
+position = Vector3(59.8, 0.55, 100)
+radius = 0.35
+height = 0.7
+sides = 16
+use_collision = false
+material = SubResource("Mat_reconstructed_marker")
+
+[node name="LegendLabel03" type="Label3D" parent="SiteContext/Legend"]
+position = Vector3(59.8, 1.3, 101.2)
+text = "Reconstructed geometry"
+font_size = 24
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.76, 0.76, 0.76, 1)
+billboard = 1
+
+[node name="LegendNote" type="Label3D" parent="SiteContext/Legend"]
+position = Vector3(56, 1.2, 102.6)
+text = "Exact geometry is often reconstructed even when function is canon."
+font_size = 24
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.76, 0.76, 0.76, 1)
+billboard = 1
+
+[node name="Slabs" type="Node3D" parent="Blockout"]
+
+[node name="Rooms" type="Node3D" parent="Blockout"]
+
+[node name="Walls" type="Node3D" parent="Blockout"]
+
+[node name="Doors" type="Node3D" parent="Blockout"]
+
+[node name="Stairs" type="Node3D" parent="Blockout"]
+
+[node name="Fixtures" type="Node3D" parent="Blockout"]
+
+[node name="Labels" type="Node3D" parent="Blockout"]
+
+[node name="Slab01_CastleMainSlab_01" type="CSGBox3D" parent="Blockout/Slabs"]
+position = Vector3(32, 0.1, 36)
+size = Vector3(64, 0.2, 72)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Slab01_CastleMainSlab_02" type="CSGBox3D" parent="Blockout/Slabs"]
+position = Vector3(77, 0.1, 36)
+size = Vector3(14, 0.2, 72)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Slab01_CastleMainSlab_03" type="CSGBox3D" parent="Blockout/Slabs"]
+position = Vector3(67, 0.1, 21.25)
+size = Vector3(6, 0.2, 42.5)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Slab01_CastleMainSlab_04" type="CSGBox3D" parent="Blockout/Slabs"]
+position = Vector3(67, 0.1, 60.1)
+size = Vector3(6, 0.2, 23.8)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Slab02_NorthGateApron_01" type="CSGBox3D" parent="Blockout/Slabs"]
+position = Vector3(42, 0.1, 76)
+size = Vector3(24, 0.2, 8)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="Room01_WestGateTowerBase_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(28, 0.23, 66)
+size = Vector3(8, 0.04, 12)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="Room02_GatehousePassage_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(41, 0.23, 66)
+size = Vector3(18, 0.04, 12)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room03_EastGateTowerBase_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(54, 0.23, 66)
+size = Vector3(8, 0.04, 12)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="Room04_ServiceYard_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(20, 0.23, 46)
+size = Vector3(8, 0.04, 52)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Room05_Stables_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(8, 0.23, 62)
+size = Vector3(16, 0.04, 20)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room06_Barracks_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(8, 0.23, 44)
+size = Vector3(16, 0.04, 16)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room07_Armory_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(8, 0.23, 28)
+size = Vector3(16, 0.04, 16)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room08_Courtyard_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(41, 0.23, 50)
+size = Vector3(34, 0.04, 20)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room09_KeepStairLanding_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(39, 0.23, 36)
+size = Vector3(22, 0.04, 8)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="Room10_GreatHall_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(39, 0.23, 25)
+size = Vector3(30, 0.04, 14)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room11_InnerHall_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(39, 0.23, 14)
+size = Vector3(30, 0.04, 8)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Room12_CouncilChamber_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(31, 0.23, 5)
+size = Vector3(14, 0.04, 10)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room13_DucalPrivateHall_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(46, 0.23, 5)
+size = Vector3(16, 0.04, 10)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="Room14_PrincessGarden_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(67, 0.23, 5)
+size = Vector3(26, 0.04, 10)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room15_StorageRoom_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(58, 0.23, 14)
+size = Vector3(8, 0.04, 8)
+use_collision = false
+material = SubResource("Mat_room_reconstructed")
+
+[node name="Room16_ServiceCorridor_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(58, 0.23, 27)
+size = Vector3(8, 0.04, 18)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room17_Kitchen_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(71, 0.23, 26)
+size = Vector3(18, 0.04, 16)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="Room18_Pantry_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(67, 0.23, 38)
+size = Vector3(10, 0.04, 8)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="Room19_CellarAccess_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(63, 0.23, 46)
+size = Vector3(2, 0.04, 8)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="Room19_CellarAccess_02" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(71, 0.23, 46)
+size = Vector3(2, 0.04, 8)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="Room19_CellarAccess_03" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(67, 0.23, 42.25)
+size = Vector3(6, 0.04, 0.5)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="Room19_CellarAccess_04" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(67, 0.23, 49.1)
+size = Vector3(6, 0.04, 1.8)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="Room20_MagicianTowerBase_01" type="CSGBox3D" parent="Blockout/Rooms"]
+position = Vector3(78, 0.23, 42)
+size = Vector3(12, 0.04, 16)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="OuterWall01" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(42, 1.8, 0)
+size = Vector3(84, 3.2, 0.55)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall02" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(84, 1.8, 36)
+size = Vector3(0.55, 3.2, 72)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall03" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16.96, 1.8, 72)
+size = Vector3(33.92, 3.2, 0.55)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall04" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(45.5, 1.8, 72)
+size = Vector3(0.84, 3.2, 0.55)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall05" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(66.54, 1.8, 72)
+size = Vector3(34.92, 3.2, 0.55)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="OuterWall06" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(0, 1.8, 36)
+size = Vector3(0.55, 3.2, 72)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="Partition001_WestGateTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(24.96, 1.65, 60)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition002_WestGateTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(31.04, 1.65, 60)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition003_WestGateTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(32, 1.65, 61.96)
+size = Vector3(0.22, 2.9, 3.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition004_WestGateTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(32, 1.65, 70.04)
+size = Vector3(0.22, 2.9, 3.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition005_WestGateTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(28, 1.65, 72)
+size = Vector3(8, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition006_WestGateTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(24, 1.65, 61.96)
+size = Vector3(0.22, 2.9, 3.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition007_WestGateTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(24, 1.65, 70.04)
+size = Vector3(0.22, 2.9, 3.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition008_GatehousePassage" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(34.46, 1.65, 60)
+size = Vector3(4.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition009_GatehousePassage" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(47.54, 1.65, 60)
+size = Vector3(4.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition010_GatehousePassage" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(50, 1.65, 61.96)
+size = Vector3(0.22, 2.9, 3.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition011_GatehousePassage" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(50, 1.65, 70.04)
+size = Vector3(0.22, 2.9, 3.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition012_GatehousePassage" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(32.96, 1.65, 72)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition013_GatehousePassage" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(45.5, 1.65, 72)
+size = Vector3(0.84, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition014_GatehousePassage" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(49.54, 1.65, 72)
+size = Vector3(0.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition015_EastGateTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(50.96, 1.65, 60)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition016_EastGateTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(57.04, 1.65, 60)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition017_EastGateTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(58, 1.65, 66)
+size = Vector3(0.22, 2.9, 12)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition018_EastGateTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(54, 1.65, 72)
+size = Vector3(8, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition019_ServiceYard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(20, 1.65, 20)
+size = Vector3(8, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition020_ServiceYard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(24, 1.65, 31.96)
+size = Vector3(0.22, 2.9, 23.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition021_ServiceYard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(24, 1.65, 57)
+size = Vector3(0.22, 2.9, 13.84)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition022_ServiceYard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(20, 1.65, 72)
+size = Vector3(8, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition023_ServiceYard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.65, 22.96)
+size = Vector3(0.22, 2.9, 5.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition024_ServiceYard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.65, 36)
+size = Vector3(0.22, 2.9, 11.84)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition025_ServiceYard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.65, 53)
+size = Vector3(0.22, 2.9, 13.84)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition026_ServiceYard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.65, 68.04)
+size = Vector3(0.22, 2.9, 7.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition027_Stables" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(8, 1.65, 52)
+size = Vector3(16, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition028_Stables" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.65, 55.96)
+size = Vector3(0.22, 2.9, 7.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition029_Stables" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(8, 1.65, 72)
+size = Vector3(16, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition030_Stables" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(0, 1.65, 62)
+size = Vector3(0.22, 2.9, 20)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition031_Barracks" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(8, 1.65, 36)
+size = Vector3(16, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition032_Barracks" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.65, 38.96)
+size = Vector3(0.22, 2.9, 5.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition033_Barracks" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.65, 49.04)
+size = Vector3(0.22, 2.9, 5.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition034_Barracks" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(0, 1.65, 44)
+size = Vector3(0.22, 2.9, 16)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition035_Armory" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(8, 1.65, 20)
+size = Vector3(16, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition036_Armory" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(16, 1.65, 33.04)
+size = Vector3(0.22, 2.9, 5.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition037_Armory" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(0, 1.65, 28)
+size = Vector3(0.22, 2.9, 16)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition038_Courtyard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(28.96, 1.65, 40)
+size = Vector3(9.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition039_Courtyard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(51.04, 1.65, 40)
+size = Vector3(13.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition040_Courtyard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(58, 1.65, 50)
+size = Vector3(0.22, 2.9, 20)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition041_Courtyard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(33.5, 1.65, 60)
+size = Vector3(6.84, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition042_Courtyard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(48.5, 1.65, 60)
+size = Vector3(6.84, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition043_Courtyard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(24, 1.65, 41.96)
+size = Vector3(0.22, 2.9, 3.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition044_Courtyard" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(24, 1.65, 55.04)
+size = Vector3(0.22, 2.9, 9.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition045_KeepStairLanding" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(30.96, 1.65, 32)
+size = Vector3(5.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition046_KeepStairLanding" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(47.04, 1.65, 32)
+size = Vector3(5.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition047_KeepStairLanding" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(50, 1.65, 36)
+size = Vector3(0.22, 2.9, 8)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition048_KeepStairLanding" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(30.96, 1.65, 40)
+size = Vector3(5.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition049_KeepStairLanding" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(47.04, 1.65, 40)
+size = Vector3(5.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition050_KeepStairLanding" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(28, 1.65, 36)
+size = Vector3(0.22, 2.9, 8)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition051_GreatHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(30.46, 1.65, 18)
+size = Vector3(12.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition052_GreatHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(48.54, 1.65, 18)
+size = Vector3(10.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition053_GreatHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(54, 1.65, 19.96)
+size = Vector3(0.22, 2.9, 3.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition054_GreatHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(54, 1.65, 29.04)
+size = Vector3(0.22, 2.9, 5.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition055_GreatHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(28.96, 1.65, 32)
+size = Vector3(9.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition056_GreatHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(49.04, 1.65, 32)
+size = Vector3(9.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition057_GreatHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(24, 1.65, 25)
+size = Vector3(0.22, 2.9, 14)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition058_InnerHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(26.96, 1.65, 10)
+size = Vector3(5.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition059_InnerHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(39, 1.65, 10)
+size = Vector3(9.84, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition060_InnerHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(51.04, 1.65, 10)
+size = Vector3(5.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition061_InnerHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(54, 1.65, 10.96)
+size = Vector3(0.22, 2.9, 1.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition062_InnerHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(54, 1.65, 17.04)
+size = Vector3(0.22, 2.9, 1.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition063_InnerHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(24, 1.65, 14)
+size = Vector3(0.22, 2.9, 8)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition064_CouncilChamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(31, 1.65, 0)
+size = Vector3(14, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition065_CouncilChamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(38, 1.65, 5)
+size = Vector3(0.22, 2.9, 10)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition066_CouncilChamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(36.04, 1.65, 10)
+size = Vector3(3.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition067_CouncilChamber" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(24, 1.65, 5)
+size = Vector3(0.22, 2.9, 10)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition068_DucalPrivateHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(46, 1.65, 0)
+size = Vector3(16, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition069_DucalPrivateHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(54, 1.65, 1.96)
+size = Vector3(0.22, 2.9, 3.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition070_DucalPrivateHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(54, 1.65, 9.04)
+size = Vector3(0.22, 2.9, 1.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition071_DucalPrivateHall" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(40.96, 1.65, 10)
+size = Vector3(5.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition072_PrincessGarden" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(67, 1.65, 0)
+size = Vector3(26, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition073_PrincessGarden" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(80, 1.65, 5)
+size = Vector3(0.22, 2.9, 10)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition074_PrincessGarden" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(67, 1.65, 10)
+size = Vector3(26, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition075_StorageRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(58, 1.65, 10)
+size = Vector3(8, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition076_StorageRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(62, 1.65, 14)
+size = Vector3(0.22, 2.9, 8)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition077_StorageRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(54.96, 1.65, 18)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition078_StorageRoom" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(61.04, 1.65, 18)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition079_ServiceCorridor" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(62, 1.65, 20.96)
+size = Vector3(0.22, 2.9, 5.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition080_ServiceCorridor" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(62, 1.65, 33.04)
+size = Vector3(0.22, 2.9, 5.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition081_ServiceCorridor" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(58, 1.65, 36)
+size = Vector3(8, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition082_ServiceCorridor" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(54, 1.65, 31.04)
+size = Vector3(0.22, 2.9, 9.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition083_Kitchen" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(71, 1.65, 18)
+size = Vector3(18, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition084_Kitchen" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(80, 1.65, 26)
+size = Vector3(0.22, 2.9, 16)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition085_Kitchen" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(63.96, 1.65, 34)
+size = Vector3(3.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition086_Kitchen" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(72, 1.65, 34)
+size = Vector3(3.84, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition087_Kitchen" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(62, 1.65, 32.04)
+size = Vector3(0.22, 2.9, 3.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition088_Pantry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(71.04, 1.65, 34)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition089_Pantry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(72, 1.65, 38)
+size = Vector3(0.22, 2.9, 8)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition090_Pantry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(63.96, 1.65, 42)
+size = Vector3(3.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition091_Pantry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(71.04, 1.65, 42)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition092_Pantry" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(62, 1.65, 38)
+size = Vector3(0.22, 2.9, 8)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition093_CellarAccess" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(72, 1.65, 42.96)
+size = Vector3(0.22, 2.9, 1.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition094_CellarAccess" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(72, 1.65, 49.04)
+size = Vector3(0.22, 2.9, 1.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition095_CellarAccess" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(67, 1.65, 50)
+size = Vector3(10, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition096_CellarAccess" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(62, 1.65, 46)
+size = Vector3(0.22, 2.9, 8)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition097_MagicianTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(72.96, 1.65, 34)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition098_MagicianTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(82.04, 1.65, 34)
+size = Vector3(3.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition099_MagicianTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(84, 1.65, 42)
+size = Vector3(0.22, 2.9, 16)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition100_MagicianTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(78, 1.65, 50)
+size = Vector3(12, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Partition101_MagicianTowerBase" type="CSGBox3D" parent="Blockout/Walls"]
+position = Vector3(72, 1.65, 38.96)
+size = Vector3(0.22, 2.9, 9.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="Door01_GreatGate" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(39.5, 0.18, 72)
+size = Vector3(11, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door02_GatePostern" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(47.5, 0.18, 72)
+size = Vector3(3, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door03_GatehouseCourtyardDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(41, 0.18, 60)
+size = Vector3(8, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door04_WestGatehouseTowerDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(32, 0.18, 66)
+size = Vector3(0.6, 0.08, 4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door05_EastGatehouseTowerDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(50, 0.18, 66)
+size = Vector3(0.6, 0.08, 4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door06_WestTowerCourtyardDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(28, 0.18, 60)
+size = Vector3(4, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door07_EastTowerCourtyardDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(54, 0.18, 60)
+size = Vector3(4, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door08_ServiceYardCourtyardDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(24, 0.18, 47)
+size = Vector3(0.6, 0.08, 6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door09_ServiceYardTowerDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(24, 0.18, 66)
+size = Vector3(0.6, 0.08, 4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door10_StableYardDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(16, 0.18, 62)
+size = Vector3(0.6, 0.08, 4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door11_BarracksYardDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(16, 0.18, 44)
+size = Vector3(0.6, 0.08, 4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door12_ArmoryYardDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(16, 0.18, 28)
+size = Vector3(0.6, 0.08, 4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door13_CourtyardKeepLandingDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(39, 0.18, 40)
+size = Vector3(10, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door14_GreatHallOakDoors" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(39, 0.18, 32)
+size = Vector3(10, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door15_GreatHallInnerDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(40, 0.18, 18)
+size = Vector3(6, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door16_CouncilDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(32, 0.18, 10)
+size = Vector3(4, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door17_PrivateHallDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(46, 0.18, 10)
+size = Vector3(4, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door18_GardenDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(54, 0.18, 6)
+size = Vector3(0.6, 0.08, 4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door19_StorageHallDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(54, 0.18, 14)
+size = Vector3(0.6, 0.08, 4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door20_StorageCorridorDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(58, 0.18, 18)
+size = Vector3(4, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door21_HallServiceDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(54, 0.18, 24)
+size = Vector3(0.6, 0.08, 4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door22_KitchenServiceDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(62, 0.18, 27)
+size = Vector3(0.6, 0.08, 6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door23_PantryDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(68, 0.18, 34)
+size = Vector3(4, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door24_CellarAccessDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(68, 0.18, 42)
+size = Vector3(4, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door25_TowerKitchenDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(77, 0.18, 34)
+size = Vector3(6, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Door26_TowerCellarDoor" type="CSGBox3D" parent="Blockout/Doors"]
+position = Vector3(72, 0.18, 46)
+size = Vector3(0.6, 0.08, 4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="Stair01_WestGateTowerStairs" type="CSGBox3D" parent="Blockout/Stairs"]
+position = Vector3(28, 0.28, 64)
+size = Vector3(6, 0.08, 6)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="Stair02_CellarStairs" type="CSGBox3D" parent="Blockout/Stairs"]
+position = Vector3(67, 0.28, 46)
+size = Vector3(6, 0.08, 6)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="Stair03_MagicianTowerStairs" type="CSGBox3D" parent="Blockout/Stairs"]
+position = Vector3(78, 0.28, 44)
+size = Vector3(8, 0.08, 8)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="Fixture01_BroadKeepStairsMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(39, 0.3, 36.5)
+size = Vector3(18, 0.08, 7)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="Fixture02_ChoosingAssemblyMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(41, 0.285, 50)
+size = Vector3(14, 0.05, 8)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="Fixture03_CourtyardFeastTable" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(32, 0.66, 53)
+size = Vector3(8, 0.8, 2)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="Fixture04_CourtyardAleCasks" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(40, 0.76, 54)
+size = Vector3(4, 1, 4)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="Fixture05_GreatHallDaisMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(39, 0.35, 20.5)
+size = Vector3(20, 0.18, 3)
+use_collision = true
+material = SubResource("Mat_stone")
+
+[node name="Fixture06_GreatHallHighTableMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(39, 0.67, 20.75)
+size = Vector3(12, 0.82, 1.5)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="Fixture07_GreatHallAudienceMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(39, 0.28, 26.5)
+size = Vector3(22, 0.04, 7)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="Fixture08_CouncilTable" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(31, 0.685, 5)
+size = Vector3(6, 0.85, 4)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="Fixture09_ServiceDishTable" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(58.5, 0.65, 26.5)
+size = Vector3(3, 0.78, 13)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="Fixture10_ServiceGobletMarkerRun" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(60.7, 0.28, 27)
+size = Vector3(1, 0.04, 13)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="Fixture11_ServantsCurtainMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(61.6, 1.26, 31)
+size = Vector3(0.4, 2, 4)
+use_collision = true
+material = SubResource("Mat_banner")
+
+[node name="Fixture12_KitchenHearthMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(77.5, 0.86, 25)
+size = Vector3(4, 1.2, 8)
+use_collision = true
+material = SubResource("Mat_stone")
+
+[node name="Fixture13_KitchenPrepTableMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(66.5, 0.67, 23)
+size = Vector3(5, 0.82, 2)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="Fixture14_KitchenShelfRunMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(71, 1.01, 32)
+size = Vector3(1, 1.5, 4)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="Fixture15_GardenStepsMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(56, 0.3, 9)
+size = Vector3(4, 0.08, 2)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="Fixture16_GardenBench" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(63, 0.51, 5)
+size = Vector3(6, 0.5, 2)
+use_collision = true
+material = SubResource("Mat_stone")
+
+[node name="Fixture17_GardenHedgeScreen" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(67, 0.96, 1.75)
+size = Vector3(24, 1.4, 1.5)
+use_collision = true
+material = SubResource("Mat_forest")
+
+[node name="Fixture18_StableStallMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(8, 1.01, 56.5)
+size = Vector3(14, 1.5, 1)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="Fixture19_WallBehindStablesMarker" type="CSGBox3D" parent="Blockout/Fixtures"]
+position = Vector3(1.25, 0.28, 69.5)
+size = Vector3(1.5, 0.04, 3)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="Label01_CastleLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(42, 0.34, 26)
+text = "Castle Crydee"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label02_GreatHallLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(39, 0.34, 25)
+text = "Great Hall"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label03_CourtyardLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(41, 0.34, 50)
+text = "Courtyard"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label04_GatehouseLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(41, 0.34, 66)
+text = "Great Gate"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label05_ServiceYardLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(20, 0.34, 46)
+text = "Service Yard"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.76, 0.76, 0.76, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label06_StablesLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(8, 0.34, 62)
+text = "Stables"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label07_BarracksLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(8, 0.34, 44)
+text = "Barracks"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label08_ArmoryLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(8, 0.34, 28)
+text = "Armory"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label09_CouncilLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(31, 0.34, 5)
+text = "Council Chamber"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label10_PrivateHallLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(46, 0.34, 5)
+text = "Private Hall"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label11_GardenLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(67, 0.34, 5)
+text = "Princess Garden"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label12_ServiceCorridorLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(58, 0.34, 27)
+text = "Service Corridor"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label13_KitchenLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(71, 0.34, 26)
+text = "Kitchen"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label14_CellarAccessLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(67, 0.34, 46)
+text = "Cellar Access"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label15_TowerBaseLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(78, 0.34, 42)
+text = "Magician's Tower"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label16_WestWallLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(2, 0.34, 46)
+text = "West Wall"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="Label17_EastWallLabel" type="Label3D" parent="Blockout/Labels"]
+position = Vector3(82, 0.34, 46)
+text = "East Wall"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="CellarLevel" type="Node3D" parent="Blockout"]
+
+[node name="Slabs" type="Node3D" parent="Blockout/CellarLevel"]
+
+[node name="Rooms" type="Node3D" parent="Blockout/CellarLevel"]
+
+[node name="Walls" type="Node3D" parent="Blockout/CellarLevel"]
+
+[node name="Doors" type="Node3D" parent="Blockout/CellarLevel"]
+
+[node name="Stairs" type="Node3D" parent="Blockout/CellarLevel"]
+
+[node name="Fixtures" type="Node3D" parent="Blockout/CellarLevel"]
+
+[node name="Labels" type="Node3D" parent="Blockout/CellarLevel"]
+
+[node name="CellarLevel_Slab01_CellarMainSlab_01" type="CSGBox3D" parent="Blockout/CellarLevel/Slabs"]
+position = Vector3(69, -3.1, 34)
+size = Vector3(22, 0.2, 32)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="CellarLevel_Room01_KitchenStores_01" type="CSGBox3D" parent="Blockout/CellarLevel/Rooms"]
+position = Vector3(64, -2.97, 25)
+size = Vector3(12, 0.04, 14)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="CellarLevel_Room02_AleCellar_01" type="CSGBox3D" parent="Blockout/CellarLevel/Rooms"]
+position = Vector3(75, -2.97, 25)
+size = Vector3(10, 0.04, 14)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="CellarLevel_Room03_RefugeCellar_01" type="CSGBox3D" parent="Blockout/CellarLevel/Rooms"]
+position = Vector3(69, -2.97, 41)
+size = Vector3(22, 0.04, 18)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="CellarLevel_OuterWall01" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(69, -1.6, 18)
+size = Vector3(22, 2.8, 0.55)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="CellarLevel_OuterWall02" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(80, -1.6, 34)
+size = Vector3(0.55, 2.8, 32)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="CellarLevel_OuterWall03" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(69, -1.6, 50)
+size = Vector3(22, 2.8, 0.55)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="CellarLevel_OuterWall04" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(58, -1.6, 34)
+size = Vector3(0.55, 2.8, 32)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="CellarLevel_Partition001_KitchenStores" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(64, -1.55, 18)
+size = Vector3(12, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="CellarLevel_Partition002_KitchenStores" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(70, -1.55, 19.96)
+size = Vector3(0.22, 2.9, 3.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="CellarLevel_Partition003_KitchenStores" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(70, -1.55, 29.04)
+size = Vector3(0.22, 2.9, 5.92)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="CellarLevel_Partition004_KitchenStores" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(61.96, -1.55, 32)
+size = Vector3(7.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="CellarLevel_Partition005_KitchenStores" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(58, -1.55, 25)
+size = Vector3(0.22, 2.9, 14)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="CellarLevel_Partition006_AleCellar" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(75, -1.55, 18)
+size = Vector3(10, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="CellarLevel_Partition007_AleCellar" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(80, -1.55, 25)
+size = Vector3(0.22, 2.9, 14)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="CellarLevel_Partition008_AleCellar" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(72, -1.55, 32)
+size = Vector3(3.84, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="CellarLevel_Partition009_AleCellar" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(79.04, -1.55, 32)
+size = Vector3(1.92, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="CellarLevel_Partition010_RefugeCellar" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(80, -1.55, 41)
+size = Vector3(0.22, 2.9, 18)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="CellarLevel_Partition011_RefugeCellar" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(69, -1.55, 50)
+size = Vector3(22, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="CellarLevel_Partition012_RefugeCellar" type="CSGBox3D" parent="Blockout/CellarLevel/Walls"]
+position = Vector3(58, -1.55, 41)
+size = Vector3(0.22, 2.9, 18)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="CellarLevel_Door01_StoresAleDoor" type="CSGBox3D" parent="Blockout/CellarLevel/Doors"]
+position = Vector3(70, -3.02, 24)
+size = Vector3(0.6, 0.08, 4)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="CellarLevel_Door02_StoresRefugeDoor" type="CSGBox3D" parent="Blockout/CellarLevel/Doors"]
+position = Vector3(68, -3.02, 32)
+size = Vector3(4, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="CellarLevel_Door03_AleRefugeDoor" type="CSGBox3D" parent="Blockout/CellarLevel/Doors"]
+position = Vector3(76, -3.02, 32)
+size = Vector3(4, 0.08, 0.6)
+use_collision = false
+material = SubResource("Mat_door_marker")
+
+[node name="CellarLevel_Fixture01_CellarCasks" type="CSGBox3D" parent="Blockout/CellarLevel/Fixtures"]
+position = Vector3(75, -2.44, 25)
+size = Vector3(6, 1, 6)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="CellarLevel_Fixture02_CellarSacks" type="CSGBox3D" parent="Blockout/CellarLevel/Fixtures"]
+position = Vector3(63, -2.54, 24)
+size = Vector3(6, 0.8, 4)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="CellarLevel_Fixture03_CellarRefugeMarker" type="CSGBox3D" parent="Blockout/CellarLevel/Fixtures"]
+position = Vector3(69, -2.92, 41)
+size = Vector3(18, 0.04, 14)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="CellarLevel_Label01_KitchenStoresLabel" type="Label3D" parent="Blockout/CellarLevel/Labels"]
+position = Vector3(64, -2.86, 25)
+text = "Kitchen Stores"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="CellarLevel_Label02_AleCellarLabel" type="Label3D" parent="Blockout/CellarLevel/Labels"]
+position = Vector3(75, -2.86, 25)
+text = "Ale Cellar"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="CellarLevel_Label03_RefugeCellarLabel" type="Label3D" parent="Blockout/CellarLevel/Labels"]
+position = Vector3(69, -2.86, 40)
+text = "Refuge Cellar"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="GatehouseWalkLevel" type="Node3D" parent="Blockout"]
+
+[node name="Slabs" type="Node3D" parent="Blockout/GatehouseWalkLevel"]
+
+[node name="Rooms" type="Node3D" parent="Blockout/GatehouseWalkLevel"]
+
+[node name="Walls" type="Node3D" parent="Blockout/GatehouseWalkLevel"]
+
+[node name="Doors" type="Node3D" parent="Blockout/GatehouseWalkLevel"]
+
+[node name="Stairs" type="Node3D" parent="Blockout/GatehouseWalkLevel"]
+
+[node name="Fixtures" type="Node3D" parent="Blockout/GatehouseWalkLevel"]
+
+[node name="Labels" type="Node3D" parent="Blockout/GatehouseWalkLevel"]
+
+[node name="GatehouseWalkLevel_Slab01_GatehouseWalkSlab_01" type="CSGBox3D" parent="Blockout/GatehouseWalkLevel/Slabs"]
+position = Vector3(41, 4.5, 66)
+size = Vector3(34, 0.2, 12)
+use_collision = true
+material = SubResource("Mat_wall_walk")
+
+[node name="GatehouseWalkLevel_Slab02_HeraldBalconySlab_01" type="CSGBox3D" parent="Blockout/GatehouseWalkLevel/Slabs"]
+position = Vector3(41, 4.5, 59)
+size = Vector3(14, 0.2, 2)
+use_collision = true
+material = SubResource("Mat_wall_walk")
+
+[node name="GatehouseWalkLevel_Slab03_WestTowerEntrySlab_01" type="CSGBox3D" parent="Blockout/GatehouseWalkLevel/Slabs"]
+position = Vector3(28, 4.5, 58.7)
+size = Vector3(8, 0.2, 2.6)
+use_collision = true
+material = SubResource("Mat_wall_walk")
+
+[node name="GatehouseWalkLevel_Slab04_EastTowerEntrySlab_01" type="CSGBox3D" parent="Blockout/GatehouseWalkLevel/Slabs"]
+position = Vector3(54, 4.5, 58.7)
+size = Vector3(8, 0.2, 2.6)
+use_collision = true
+material = SubResource("Mat_wall_walk")
+
+[node name="GatehouseWalkLevel_Fixture01_GatehouseBellMarker" type="CSGBox3D" parent="Blockout/GatehouseWalkLevel/Fixtures"]
+position = Vector3(53, 5.11, 67)
+size = Vector3(2, 0.9, 2)
+use_collision = true
+material = SubResource("Mat_implied_marker")
+
+[node name="GatehouseWalkLevel_Label01_GatehouseWalkLabel" type="Label3D" parent="Blockout/GatehouseWalkLevel/Labels"]
+position = Vector3(41, 4.74, 67)
+text = "Gate Tower Walk"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="GatehouseWalkLevel_Label02_HeraldBalconyLabel" type="Label3D" parent="Blockout/GatehouseWalkLevel/Labels"]
+position = Vector3(41, 4.74, 59)
+text = "Herald Balcony"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="BattlementWalkLevel" type="Node3D" parent="Blockout"]
+
+[node name="Slabs" type="Node3D" parent="Blockout/BattlementWalkLevel"]
+
+[node name="Rooms" type="Node3D" parent="Blockout/BattlementWalkLevel"]
+
+[node name="Walls" type="Node3D" parent="Blockout/BattlementWalkLevel"]
+
+[node name="Doors" type="Node3D" parent="Blockout/BattlementWalkLevel"]
+
+[node name="Stairs" type="Node3D" parent="Blockout/BattlementWalkLevel"]
+
+[node name="Fixtures" type="Node3D" parent="Blockout/BattlementWalkLevel"]
+
+[node name="Labels" type="Node3D" parent="Blockout/BattlementWalkLevel"]
+
+[node name="BattlementWalkLevel_Slab01_WestWallWalkSlab_01" type="CSGBox3D" parent="Blockout/BattlementWalkLevel/Slabs"]
+position = Vector3(1.6, 4.5, 36)
+size = Vector3(2.4, 0.2, 71.2)
+use_collision = true
+material = SubResource("Mat_wall_walk")
+
+[node name="BattlementWalkLevel_Slab02_EastWallWalkSlab_01" type="CSGBox3D" parent="Blockout/BattlementWalkLevel/Slabs"]
+position = Vector3(82.4, 4.5, 36)
+size = Vector3(2.4, 0.2, 71.2)
+use_collision = true
+material = SubResource("Mat_wall_walk")
+
+[node name="BattlementWalkLevel_Slab03_NorthWallWalkSlab_01" type="CSGBox3D" parent="Blockout/BattlementWalkLevel/Slabs"]
+position = Vector3(42, 4.5, 70.4)
+size = Vector3(83.2, 0.2, 2.4)
+use_collision = true
+material = SubResource("Mat_wall_walk")
+
+[node name="BattlementWalkLevel_Slab04_SouthWallWalkSlab_01" type="CSGBox3D" parent="Blockout/BattlementWalkLevel/Slabs"]
+position = Vector3(42, 4.5, 1.6)
+size = Vector3(83.2, 0.2, 2.4)
+use_collision = true
+material = SubResource("Mat_wall_walk")
+
+[node name="BattlementWalkLevel_Fixture01_WestWallWatchMarker" type="CSGBox3D" parent="Blockout/BattlementWalkLevel/Fixtures"]
+position = Vector3(1.6, 4.68, 36)
+size = Vector3(1.6, 0.04, 12)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="BattlementWalkLevel_Fixture02_EastClearingViewMarker" type="CSGBox3D" parent="Blockout/BattlementWalkLevel/Fixtures"]
+position = Vector3(82.4, 4.68, 36)
+size = Vector3(1.6, 0.04, 12)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="BattlementWalkLevel_Label01_BattlementWestLabel" type="Label3D" parent="Blockout/BattlementWalkLevel/Labels"]
+position = Vector3(1.6, 4.74, 36)
+text = "West Wall Walk"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="BattlementWalkLevel_Label02_BattlementEastLabel" type="Label3D" parent="Blockout/BattlementWalkLevel/Labels"]
+position = Vector3(82.4, 4.74, 36)
+text = "East Wall Walk"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="BattlementWalkLevel_Label03_BattlementNorthLabel" type="Label3D" parent="Blockout/BattlementWalkLevel/Labels"]
+position = Vector3(42, 4.74, 70.4)
+text = "North Battlements"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="BattlementWalkLevel_Label04_BattlementSouthLabel" type="Label3D" parent="Blockout/BattlementWalkLevel/Labels"]
+position = Vector3(42, 4.74, 1.6)
+text = "South Battlements"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="MagicianTowerLevel" type="Node3D" parent="Blockout"]
+
+[node name="Slabs" type="Node3D" parent="Blockout/MagicianTowerLevel"]
+
+[node name="Rooms" type="Node3D" parent="Blockout/MagicianTowerLevel"]
+
+[node name="Walls" type="Node3D" parent="Blockout/MagicianTowerLevel"]
+
+[node name="Doors" type="Node3D" parent="Blockout/MagicianTowerLevel"]
+
+[node name="Stairs" type="Node3D" parent="Blockout/MagicianTowerLevel"]
+
+[node name="Fixtures" type="Node3D" parent="Blockout/MagicianTowerLevel"]
+
+[node name="Labels" type="Node3D" parent="Blockout/MagicianTowerLevel"]
+
+[node name="MagicianTowerLevel_Slab01_MagicianTowerMainSlab_01" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Slabs"]
+position = Vector3(73.3, 4.3, 42)
+size = Vector3(2.6, 0.2, 16)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="MagicianTowerLevel_Slab01_MagicianTowerMainSlab_02" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Slabs"]
+position = Vector3(82.3, 4.3, 42)
+size = Vector3(3.4, 0.2, 16)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="MagicianTowerLevel_Slab01_MagicianTowerMainSlab_03" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Slabs"]
+position = Vector3(77.6, 4.3, 35.2)
+size = Vector3(6, 0.2, 2.4)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="MagicianTowerLevel_Slab01_MagicianTowerMainSlab_04" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Slabs"]
+position = Vector3(77.6, 4.3, 44.6)
+size = Vector3(6, 0.2, 10.8)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="MagicianTowerLevel_Room01_PugsTowerRoom_01" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Rooms"]
+position = Vector3(73.3, 4.43, 42)
+size = Vector3(2.6, 0.04, 16)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="MagicianTowerLevel_Room01_PugsTowerRoom_02" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Rooms"]
+position = Vector3(82.3, 4.43, 42)
+size = Vector3(3.4, 0.04, 16)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="MagicianTowerLevel_Room01_PugsTowerRoom_03" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Rooms"]
+position = Vector3(77.6, 4.43, 35.2)
+size = Vector3(6, 0.04, 2.4)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="MagicianTowerLevel_Room01_PugsTowerRoom_04" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Rooms"]
+position = Vector3(77.6, 4.43, 44.6)
+size = Vector3(6, 0.04, 10.8)
+use_collision = false
+material = SubResource("Mat_room_canon")
+
+[node name="MagicianTowerLevel_OuterWall01" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Walls"]
+position = Vector3(78, 5.9, 34)
+size = Vector3(12, 3, 0.55)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="MagicianTowerLevel_OuterWall02" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Walls"]
+position = Vector3(84, 5.9, 42)
+size = Vector3(0.55, 3, 16)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="MagicianTowerLevel_OuterWall03" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Walls"]
+position = Vector3(78, 5.9, 50)
+size = Vector3(12, 3, 0.55)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="MagicianTowerLevel_OuterWall04" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Walls"]
+position = Vector3(72, 5.9, 42)
+size = Vector3(0.55, 3, 16)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="MagicianTowerLevel_Partition001_PugsTowerRoom" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Walls"]
+position = Vector3(78, 5.85, 34)
+size = Vector3(12, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="MagicianTowerLevel_Partition002_PugsTowerRoom" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Walls"]
+position = Vector3(84, 5.85, 42)
+size = Vector3(0.22, 2.9, 16)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="MagicianTowerLevel_Partition003_PugsTowerRoom" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Walls"]
+position = Vector3(78, 5.85, 50)
+size = Vector3(12, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="MagicianTowerLevel_Partition004_PugsTowerRoom" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Walls"]
+position = Vector3(72, 5.85, 42)
+size = Vector3(0.22, 2.9, 16)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="MagicianTowerLevel_Fixture01_TowerBed" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Fixtures"]
+position = Vector3(75.8, 4.785, 43.2)
+size = Vector3(4, 0.65, 4)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="MagicianTowerLevel_Fixture02_TowerWorktable" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Fixtures"]
+position = Vector3(80.5, 4.86, 43.5)
+size = Vector3(3, 0.8, 3)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="MagicianTowerLevel_Fixture03_TowerWindowMarker" type="CSGBox3D" parent="Blockout/MagicianTowerLevel/Fixtures"]
+position = Vector3(78, 4.48, 34.6)
+size = Vector3(2, 0.04, 0.8)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="MagicianTowerLevel_Label01_MagicianTowerRoomLabel" type="Label3D" parent="Blockout/MagicianTowerLevel/Labels"]
+position = Vector3(78, 4.54, 44)
+text = "Pug's Tower Room"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="KulganTowerLevel" type="Node3D" parent="Blockout"]
+
+[node name="Slabs" type="Node3D" parent="Blockout/KulganTowerLevel"]
+
+[node name="Rooms" type="Node3D" parent="Blockout/KulganTowerLevel"]
+
+[node name="Walls" type="Node3D" parent="Blockout/KulganTowerLevel"]
+
+[node name="Doors" type="Node3D" parent="Blockout/KulganTowerLevel"]
+
+[node name="Stairs" type="Node3D" parent="Blockout/KulganTowerLevel"]
+
+[node name="Fixtures" type="Node3D" parent="Blockout/KulganTowerLevel"]
+
+[node name="Labels" type="Node3D" parent="Blockout/KulganTowerLevel"]
+
+[node name="KulganTowerLevel_Slab01_KulganTowerMainSlab_01" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Slabs"]
+position = Vector3(73.3, 7.7, 42)
+size = Vector3(2.6, 0.2, 16)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="KulganTowerLevel_Slab01_KulganTowerMainSlab_02" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Slabs"]
+position = Vector3(82.3, 7.7, 42)
+size = Vector3(3.4, 0.2, 16)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="KulganTowerLevel_Slab01_KulganTowerMainSlab_03" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Slabs"]
+position = Vector3(77.6, 7.7, 35.2)
+size = Vector3(6, 0.2, 2.4)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="KulganTowerLevel_Slab01_KulganTowerMainSlab_04" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Slabs"]
+position = Vector3(77.6, 7.7, 44.6)
+size = Vector3(6, 0.2, 10.8)
+use_collision = true
+material = SubResource("Mat_floor_slab")
+
+[node name="KulganTowerLevel_Room01_KulganTowerRoomAbove_01" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Rooms"]
+position = Vector3(73.3, 7.83, 42)
+size = Vector3(2.6, 0.04, 16)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="KulganTowerLevel_Room01_KulganTowerRoomAbove_02" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Rooms"]
+position = Vector3(82.3, 7.83, 42)
+size = Vector3(3.4, 0.04, 16)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="KulganTowerLevel_Room01_KulganTowerRoomAbove_03" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Rooms"]
+position = Vector3(77.6, 7.83, 35.2)
+size = Vector3(6, 0.04, 2.4)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="KulganTowerLevel_Room01_KulganTowerRoomAbove_04" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Rooms"]
+position = Vector3(77.6, 7.83, 44.6)
+size = Vector3(6, 0.04, 10.8)
+use_collision = false
+material = SubResource("Mat_room_implied")
+
+[node name="KulganTowerLevel_OuterWall01" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Walls"]
+position = Vector3(78, 9.25, 34)
+size = Vector3(12, 2.9, 0.55)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="KulganTowerLevel_OuterWall02" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Walls"]
+position = Vector3(84, 9.25, 42)
+size = Vector3(0.55, 2.9, 16)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="KulganTowerLevel_OuterWall03" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Walls"]
+position = Vector3(78, 9.25, 50)
+size = Vector3(12, 2.9, 0.55)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="KulganTowerLevel_OuterWall04" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Walls"]
+position = Vector3(72, 9.25, 42)
+size = Vector3(0.55, 2.9, 16)
+use_collision = true
+material = SubResource("Mat_outer_wall")
+
+[node name="KulganTowerLevel_Partition001_KulganTowerRoomAbove" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Walls"]
+position = Vector3(78, 9.25, 34)
+size = Vector3(12, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="KulganTowerLevel_Partition002_KulganTowerRoomAbove" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Walls"]
+position = Vector3(84, 9.25, 42)
+size = Vector3(0.22, 2.9, 16)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="KulganTowerLevel_Partition003_KulganTowerRoomAbove" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Walls"]
+position = Vector3(78, 9.25, 50)
+size = Vector3(12, 2.9, 0.22)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="KulganTowerLevel_Partition004_KulganTowerRoomAbove" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Walls"]
+position = Vector3(72, 9.25, 42)
+size = Vector3(0.22, 2.9, 16)
+use_collision = true
+material = SubResource("Mat_partition_wall")
+
+[node name="KulganTowerLevel_Fixture01_KulganStudyTable" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Fixtures"]
+position = Vector3(78, 8.285, 41.7)
+size = Vector3(4, 0.85, 3)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="KulganTowerLevel_Fixture02_KulganBookshelves" type="CSGBox3D" parent="Blockout/KulganTowerLevel/Fixtures"]
+position = Vector3(78, 8.76, 45)
+size = Vector3(8, 1.8, 2)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="KulganTowerLevel_Label01_KulganTowerRoomLabel" type="Label3D" parent="Blockout/KulganTowerLevel/Labels"]
+position = Vector3(78, 7.94, 44)
+text = "Kulgan's Room Above"
+font_size = 44
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+rotation = Vector3(-1.5708, 0, 0)
+
+[node name="VerticalLinks" type="Node3D" parent="Blockout"]
+
+[node name="RouteLabels" type="Node3D" parent="Blockout/VerticalLinks"]
+
+[node name="VerticalLink01_CellarDescent_BottomLanding" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, 0.32, 48.1)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.6, 0.2, 1.8)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_TopLanding" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -2.9, 38.9)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.6, 0.2, 1.8)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_CollisionRamp" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -1.4817, 43.5399)
+rotation = Vector3(0.4104, 3.1416, 0)
+size = Vector3(2.6, 0.2, 8.0702)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread01" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, 0.1606, 46.9944)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread02" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -0.0183, 46.5833)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread03" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -0.1972, 46.1722)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread04" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -0.3761, 45.7611)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread05" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -0.555, 45.35)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread06" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -0.7339, 44.9389)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread07" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -0.9128, 44.5278)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread08" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -1.0917, 44.1167)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread09" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -1.2706, 43.7056)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread10" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -1.4494, 43.2944)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread11" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -1.6283, 42.8833)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread12" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -1.8072, 42.4722)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread13" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -1.9861, 42.0611)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread14" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -2.165, 41.65)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread15" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -2.3439, 41.2389)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread16" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -2.5228, 40.8278)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread17" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -2.7017, 40.4167)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink01_CellarDescent_Tread18" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(67, -2.8806, 40.0056)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.2878)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLinkLabel01_CellarDescent" type="Label3D" parent="Blockout/VerticalLinks/RouteLabels"]
+position = Vector3(67, -0.49, 43.5)
+text = "Cellar Stairs [implied]"
+font_size = 36
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+billboard = 1
+
+[node name="VerticalLink02_WestGateTowerToWalk_BottomLanding" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 0.32, 66.2)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.8, 0.2, 1.6)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_TopLanding" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 4.52, 57.2)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.8, 0.2, 1.6)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_CollisionRamp" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 2.233, 61.6506)
+rotation = Vector3(-0.5162, 3.1416, 0)
+size = Vector3(2.8, 0.2, 8.5088)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread01" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 0.355, 65.215)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread02" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 0.565, 64.845)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread03" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 0.775, 64.475)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread04" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 0.985, 64.105)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread05" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 1.195, 63.735)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread06" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 1.405, 63.365)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread07" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 1.615, 62.995)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread08" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 1.825, 62.625)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread09" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 2.035, 62.255)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread10" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 2.245, 61.885)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread11" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 2.455, 61.515)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread12" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 2.665, 61.145)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread13" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 2.875, 60.775)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread14" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 3.085, 60.405)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread15" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 3.295, 60.035)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread16" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 3.505, 59.665)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread17" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 3.715, 59.295)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread18" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 3.925, 58.925)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread19" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 4.135, 58.555)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink02_WestGateTowerToWalk_Tread20" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(28, 4.345, 58.185)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.88, 0.05, 0.259)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLinkLabel02_WestGateTowerToWalk" type="Label3D" parent="Blockout/VerticalLinks/RouteLabels"]
+position = Vector3(28, 3.22, 61.7)
+text = "West Gate Tower Stairs [implied]"
+font_size = 36
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+billboard = 1
+
+[node name="VerticalLink03_MagicianTowerStairLink_BottomLanding" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 0.32, 48.2)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.6, 0.2, 1.6)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_TopLanding" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 4.32, 36.6)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.6, 0.2, 1.6)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_CollisionRamp" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 2.1272, 42.3629)
+rotation = Vector3(-0.3805, 3.1416, 0)
+size = Vector3(2.6, 0.2, 10.7703)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread01" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 0.3409, 47.1727)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread02" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 0.5227, 46.7182)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread03" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 0.7045, 46.2636)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread04" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 0.8864, 45.8091)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread05" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 1.0682, 45.3545)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread06" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 1.25, 44.9)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread07" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 1.4318, 44.4455)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread08" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 1.6136, 43.9909)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread09" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 1.7955, 43.5364)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread10" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 1.9773, 43.0818)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread11" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 2.1591, 42.6273)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread12" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 2.3409, 42.1727)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread13" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 2.5227, 41.7182)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread14" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 2.7045, 41.2636)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread15" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 2.8864, 40.8091)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread16" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 3.0682, 40.3545)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread17" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 3.25, 39.9)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread18" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 3.4318, 39.4455)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread19" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 3.6136, 38.9909)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread20" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 3.7955, 38.5364)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread21" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 3.9773, 38.0818)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink03_MagicianTowerStairLink_Tread22" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 4.1591, 37.6273)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.68, 0.05, 0.3182)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLinkLabel03_MagicianTowerStairLink" type="Label3D" parent="Blockout/VerticalLinks/RouteLabels"]
+position = Vector3(78, 3.12, 42.4)
+text = "Magician Tower Stairs [implied]"
+font_size = 36
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+billboard = 1
+
+[node name="VerticalLink04_PugToKulganStairLink_BottomLanding" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 4.51, 46.3)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.2, 0.18, 1.4)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_TopLanding" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 7.91, 37.2)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.2, 0.18, 1.4)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_CollisionRamp" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 6.0377, 41.7136)
+rotation = Vector3(-0.4158, 3.1416, 0)
+size = Vector3(2.2, 0.18, 8.4172)
+use_collision = true
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread01" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 4.5563, 45.3594)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread02" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 4.7687, 44.8781)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread03" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 4.9813, 44.3969)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread04" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 5.1938, 43.9156)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread05" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 5.4062, 43.4344)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread06" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 5.6188, 42.9531)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread07" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 5.8312, 42.4719)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread08" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 6.0438, 41.9906)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread09" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 6.2563, 41.5094)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread10" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 6.4688, 41.0281)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread11" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 6.6813, 40.5469)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread12" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 6.8937, 40.0656)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread13" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 7.1063, 39.5844)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread14" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 7.3188, 39.1031)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread15" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 7.5313, 38.6219)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLink04_PugToKulganStairLink_Tread16" type="CSGBox3D" parent="Blockout/VerticalLinks"]
+position = Vector3(78, 7.7438, 38.1406)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(2.28, 0.05, 0.3369)
+use_collision = false
+material = SubResource("Mat_stair_marker")
+
+[node name="VerticalLinkLabel04_PugToKulganStairLink" type="Label3D" parent="Blockout/VerticalLinks/RouteLabels"]
+position = Vector3(78, 7.02, 41.75)
+text = "Tower Stair To Kulgan [implied]"
+font_size = 36
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+billboard = 1
+
+[node name="DefensiveDetail" type="Node3D" parent="."]
+
+[node name="WallWalks" type="Node3D" parent="DefensiveDetail"]
+
+[node name="Merlons" type="Node3D" parent="DefensiveDetail"]
+
+[node name="Markers" type="Node3D" parent="DefensiveDetail"]
+
+[node name="NorthWallWalk" type="CSGBox3D" parent="DefensiveDetail/WallWalks"]
+position = Vector3(42, 4.51, 70.8)
+size = Vector3(84, 0.18, 2.4)
+use_collision = true
+material = SubResource("Mat_wall_walk")
+
+[node name="SouthWallWalk" type="CSGBox3D" parent="DefensiveDetail/WallWalks"]
+position = Vector3(42, 4.51, 1.2)
+size = Vector3(84, 0.18, 2.4)
+use_collision = true
+material = SubResource("Mat_wall_walk")
+
+[node name="WestWallWalk" type="CSGBox3D" parent="DefensiveDetail/WallWalks"]
+position = Vector3(1.2, 4.51, 36)
+size = Vector3(2.4, 0.18, 72)
+use_collision = true
+material = SubResource("Mat_wall_walk")
+
+[node name="EastWallWalk" type="CSGBox3D" parent="DefensiveDetail/WallWalks"]
+position = Vector3(82.8, 4.51, 36)
+size = Vector3(2.4, 0.18, 72)
+use_collision = true
+material = SubResource("Mat_wall_walk")
+
+[node name="NorthMerlon03" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(3, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon03" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(3, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon07" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(7, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon07" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(7, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon11" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(11, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon11" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(11, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon15" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(15, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon15" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(15, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon19" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(19, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon19" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(19, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon23" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(23, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon23" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(23, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon27" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(27, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon27" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(27, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon31" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(31, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon31" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(31, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon35" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(35, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon35" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(35, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon39" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(39, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon39" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(39, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon43" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(43, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon43" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(43, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon47" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(47, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon47" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(47, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon51" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(51, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon51" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(51, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon55" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(55, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon55" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(55, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon59" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(59, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon59" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(59, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon63" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(63, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon63" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(63, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon67" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(67, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon67" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(67, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon71" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(71, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon71" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(71, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon75" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(75, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon75" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(75, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="NorthMerlon79" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(79, 5.05, 71.4)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="SouthMerlon79" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(79, 5.05, 0.6)
+size = Vector3(1, 1, 0.8)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon03" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 3)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon03" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 3)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon07" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 7)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon07" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 7)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon11" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 11)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon11" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 11)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon15" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 15)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon15" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 15)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon19" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 19)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon19" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 19)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon23" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 23)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon23" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 23)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon27" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 27)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon27" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 27)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon31" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 31)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon31" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 31)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon35" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 35)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon35" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 35)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon39" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 39)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon39" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 39)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon43" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 43)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon43" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 43)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon47" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 47)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon47" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 47)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon51" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 51)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon51" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 51)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon55" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 55)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon55" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 55)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon59" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 59)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon59" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 59)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon63" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 63)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon63" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 63)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestMerlon67" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(0.6, 5.05, 67)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="EastMerlon67" type="CSGBox3D" parent="DefensiveDetail/Merlons"]
+position = Vector3(83.4, 5.05, 67)
+size = Vector3(0.8, 1, 1)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="WestWallLabel" type="Label3D" parent="DefensiveDetail/Markers"]
+position = Vector3(-2.5, 5, 36)
+text = "West Wall [canon, geometry reconstructed]"
+font_size = 30
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="EastWallLabel" type="Label3D" parent="DefensiveDetail/Markers"]
+position = Vector3(86.5, 5, 36)
+text = "East Wall / clearing view [canon]"
+font_size = 30
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="AlarmBell" type="CSGCylinder3D" parent="DefensiveDetail/Markers"]
+position = Vector3(52.8, 5.15, 66.8)
+radius = 0.45
+height = 0.8
+sides = 12
+use_collision = false
+material = SubResource("Mat_implied_marker")
+
+[node name="AlarmBellLabel" type="Label3D" parent="DefensiveDetail/Markers"]
+position = Vector3(52.8, 6.1, 66.8)
+text = "Alarm Bell [implied]"
+font_size = 26
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+billboard = 1
+
+[node name="SiegeHintLadder" type="CSGBox3D" parent="DefensiveDetail/Markers"]
+position = Vector3(-6, 1.2, 42)
+rotation = Vector3(0, 0, 0.35)
+size = Vector3(0.35, 2.4, 2.8)
+use_collision = false
+material = SubResource("Mat_reconstructed_marker")
+
+[node name="SiegeHintLabel" type="Label3D" parent="DefensiveDetail/Markers"]
+position = Vector3(-8, 2.8, 42)
+text = "Siege ladder hint [reconstructed variant]"
+font_size = 24
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.76, 0.76, 0.76, 1)
+billboard = 1
+
+[node name="GateDetail" type="Node3D" parent="."]
+
+[node name="Woodwork" type="Node3D" parent="GateDetail"]
+
+[node name="Stonework" type="Node3D" parent="GateDetail"]
+
+[node name="Labels" type="Node3D" parent="GateDetail"]
+
+[node name="GreatGatePanelWest" type="CSGBox3D" parent="GateDetail/Woodwork"]
+position = Vector3(37.2, 1.9, 71.35)
+rotation = Vector3(0, 0.24, 0)
+size = Vector3(5.3, 3.4, 0.35)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="GreatGatePanelEast" type="CSGBox3D" parent="GateDetail/Woodwork"]
+position = Vector3(43.8, 1.9, 71.35)
+rotation = Vector3(0, -0.24, 0)
+size = Vector3(5.3, 3.4, 0.35)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="GreatGatePosternMarker" type="CSGBox3D" parent="GateDetail/Woodwork"]
+position = Vector3(47.2, 1.25, 71.18)
+size = Vector3(1.2, 2, 0.08)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="WestGateTowerMassing" type="CSGBox3D" parent="GateDetail/Stonework"]
+position = Vector3(28, 6.1, 66)
+size = Vector3(8, 3.2, 12)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="EastGateTowerMassing" type="CSGBox3D" parent="GateDetail/Stonework"]
+position = Vector3(54, 6.1, 66)
+size = Vector3(8, 3.2, 12)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="GateLintel" type="CSGBox3D" parent="GateDetail/Stonework"]
+position = Vector3(41, 4.7, 71)
+size = Vector3(18, 1, 1.1)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="GreatGateDetailLabel" type="Label3D" parent="GateDetail/Labels"]
+position = Vector3(41, 4.3, 75)
+text = "Great Gate and inset door [canon function, structure reconstructed]"
+font_size = 32
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="KeepFrontDetail" type="Node3D" parent="."]
+
+[node name="Stairs" type="Node3D" parent="KeepFrontDetail"]
+
+[node name="Doors" type="Node3D" parent="KeepFrontDetail"]
+
+[node name="Balcony" type="Node3D" parent="KeepFrontDetail"]
+
+[node name="Labels" type="Node3D" parent="KeepFrontDetail"]
+
+[node name="KeepFrontBroadStairs_BottomLanding" type="CSGBox3D" parent="KeepFrontDetail/Stairs"]
+position = Vector3(39, 0.3, 39.1)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(14, 0.16, 1)
+use_collision = true
+material = SubResource("Mat_stone")
+
+[node name="KeepFrontBroadStairs_TopLanding" type="CSGBox3D" parent="KeepFrontDetail/Stairs"]
+position = Vector3(39, 0.48, 33.2)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(14, 0.16, 1)
+use_collision = true
+material = SubResource("Mat_stone")
+
+[node name="KeepFrontBroadStairs_CollisionRamp" type="CSGBox3D" parent="KeepFrontDetail/Stairs"]
+position = Vector3(39, 0.2301, 36.1471)
+rotation = Vector3(-0.0367, 3.1416, 0)
+size = Vector3(14, 0.16, 4.9033)
+use_collision = true
+material = SubResource("Mat_stone")
+
+[node name="KeepFrontBroadStairs_Tread01" type="CSGBox3D" parent="KeepFrontDetail/Stairs"]
+position = Vector3(39, 0.26, 38.3278)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(14.08, 0.05, 0.3811)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="KeepFrontBroadStairs_Tread02" type="CSGBox3D" parent="KeepFrontDetail/Stairs"]
+position = Vector3(39, 0.28, 37.7833)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(14.08, 0.05, 0.3811)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="KeepFrontBroadStairs_Tread03" type="CSGBox3D" parent="KeepFrontDetail/Stairs"]
+position = Vector3(39, 0.3, 37.2389)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(14.08, 0.05, 0.3811)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="KeepFrontBroadStairs_Tread04" type="CSGBox3D" parent="KeepFrontDetail/Stairs"]
+position = Vector3(39, 0.32, 36.6944)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(14.08, 0.05, 0.3811)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="KeepFrontBroadStairs_Tread05" type="CSGBox3D" parent="KeepFrontDetail/Stairs"]
+position = Vector3(39, 0.34, 36.15)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(14.08, 0.05, 0.3811)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="KeepFrontBroadStairs_Tread06" type="CSGBox3D" parent="KeepFrontDetail/Stairs"]
+position = Vector3(39, 0.36, 35.6056)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(14.08, 0.05, 0.3811)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="KeepFrontBroadStairs_Tread07" type="CSGBox3D" parent="KeepFrontDetail/Stairs"]
+position = Vector3(39, 0.38, 35.0611)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(14.08, 0.05, 0.3811)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="KeepFrontBroadStairs_Tread08" type="CSGBox3D" parent="KeepFrontDetail/Stairs"]
+position = Vector3(39, 0.4, 34.5167)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(14.08, 0.05, 0.3811)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="KeepFrontBroadStairs_Tread09" type="CSGBox3D" parent="KeepFrontDetail/Stairs"]
+position = Vector3(39, 0.42, 33.9722)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(14.08, 0.05, 0.3811)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="GreatHallDoorWest" type="CSGBox3D" parent="KeepFrontDetail/Doors"]
+position = Vector3(36.3, 1.85, 31.75)
+rotation = Vector3(0, 0.12, 0)
+size = Vector3(3.9, 3.3, 0.28)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="GreatHallDoorEast" type="CSGBox3D" parent="KeepFrontDetail/Doors"]
+position = Vector3(41.7, 1.85, 31.75)
+rotation = Vector3(0, -0.12, 0)
+size = Vector3(3.9, 3.3, 0.28)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="HeraldBalconyFloor" type="CSGBox3D" parent="KeepFrontDetail/Balcony"]
+position = Vector3(39, 5.15, 34.2)
+size = Vector3(14, 0.18, 2.4)
+use_collision = false
+material = SubResource("Mat_stone")
+
+[node name="HeraldBalconyRail" type="CSGBox3D" parent="KeepFrontDetail/Balcony"]
+position = Vector3(39, 5.7, 35.1)
+size = Vector3(14, 0.8, 0.18)
+use_collision = false
+material = SubResource("Mat_merlon")
+
+[node name="CourtyardLabelRaised" type="Label3D" parent="KeepFrontDetail/Labels"]
+position = Vector3(41, 1.1, 50)
+text = "Courtyard [canon]"
+font_size = 30
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="KeepStairsLabel" type="Label3D" parent="KeepFrontDetail/Labels"]
+position = Vector3(39, 1.2, 36.2)
+text = "Broad keep stairs [canon function]"
+font_size = 30
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="OakDoorsLabel" type="Label3D" parent="KeepFrontDetail/Labels"]
+position = Vector3(39, 4, 30.8)
+text = "Large oaken doors [canon]"
+font_size = 30
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="HeraldBalconyLabelRaised" type="Label3D" parent="KeepFrontDetail/Labels"]
+position = Vector3(39, 6.2, 35.2)
+text = "Herald balcony [canon]"
+font_size = 30
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="RoomFunctionDetail" type="Node3D" parent="."]
+
+[node name="GroundProps" type="Node3D" parent="RoomFunctionDetail"]
+
+[node name="CellarProps" type="Node3D" parent="RoomFunctionDetail"]
+
+[node name="TowerProps" type="Node3D" parent="RoomFunctionDetail"]
+
+[node name="Labels" type="Node3D" parent="RoomFunctionDetail"]
+
+[node name="GreatHallDais" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(39, 0.37, 20.5)
+size = Vector3(20, 0.25, 3)
+use_collision = true
+material = SubResource("Mat_stone")
+
+[node name="GreatHallHighTable" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(39, 0.88, 21)
+size = Vector3(10, 0.8, 1.4)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="GreatHallBenchWest1" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(33, 0.72, 24.2)
+size = Vector3(9, 0.65, 1.1)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="GreatHallBenchEast1" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(45, 0.72, 24.2)
+size = Vector3(9, 0.65, 1.1)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="GreatHallBenchWest2" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(33, 0.72, 26.7)
+size = Vector3(9, 0.65, 1.1)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="GreatHallBenchEast2" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(45, 0.72, 26.7)
+size = Vector3(9, 0.65, 1.1)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="GreatHallBenchWest3" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(33, 0.72, 29.2)
+size = Vector3(9, 0.65, 1.1)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="GreatHallBenchEast3" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(45, 0.72, 29.2)
+size = Vector3(9, 0.65, 1.1)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="GreatHallAudienceZone" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(39, 0.27, 26.5)
+size = Vector3(22, 0.05, 7)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="GreatHallBannerWest" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(26, 2.8, 22)
+size = Vector3(0.2, 2.4, 1.1)
+use_collision = false
+material = SubResource("Mat_banner")
+
+[node name="GreatHallBannerEast" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(52, 2.8, 22)
+size = Vector3(0.2, 2.4, 1.1)
+use_collision = false
+material = SubResource("Mat_banner")
+
+[node name="ChoosingAssemblyMarker" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(41, 0.28, 49.5)
+size = Vector3(14, 0.05, 7)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="BanapisTableWest" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(31, 0.74, 53)
+size = Vector3(8, 0.7, 1.6)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="BanapisTableEast" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(48.5, 0.74, 53)
+size = Vector3(7, 0.7, 1.6)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="CourtyardCask1" type="CSGCylinder3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(38.6, 0.7, 55)
+radius = 0.55
+height = 1
+sides = 16
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="CourtyardCask2" type="CSGCylinder3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(40.3, 0.7, 55)
+radius = 0.55
+height = 1
+sides = 16
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="CourtyardCask3" type="CSGCylinder3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(42, 0.7, 55)
+radius = 0.55
+height = 1
+sides = 16
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="ServiceCorridorLongTable" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(58, 0.8, 27)
+size = Vector3(2, 0.75, 10.5)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="GobletMarker1" type="CSGCylinder3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(59.1, 1.22, 22.2)
+radius = 0.12
+height = 0.18
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="GobletMarker2" type="CSGCylinder3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(59.1, 1.22, 24.8)
+radius = 0.12
+height = 0.18
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="GobletMarker3" type="CSGCylinder3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(59.1, 1.22, 27.4)
+radius = 0.12
+height = 0.18
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="GobletMarker4" type="CSGCylinder3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(59.1, 1.22, 30)
+radius = 0.12
+height = 0.18
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="GobletMarker5" type="CSGCylinder3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(59.1, 1.22, 32.6)
+radius = 0.12
+height = 0.18
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="ServiceCurtainMarker" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(61.7, 1.2, 31.2)
+size = Vector3(0.18, 2.2, 3.6)
+use_collision = false
+material = SubResource("Mat_banner")
+
+[node name="ServiceCorridorRouteLabel" type="Label3D" parent="RoomFunctionDetail/Labels"]
+position = Vector3(59.6, 2.2, 28.5)
+text = "Long service corridor with dishware [canon]"
+font_size = 26
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="KitchenHearth" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(77.3, 1.15, 25)
+size = Vector3(3.4, 1.9, 7.2)
+use_collision = true
+material = SubResource("Mat_stone")
+
+[node name="KitchenPrepTableWest" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(66.5, 0.82, 22.8)
+size = Vector3(4.8, 0.78, 1.8)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="KitchenPrepTableEast" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(66.5, 0.82, 29.2)
+size = Vector3(4.8, 0.78, 1.8)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="KitchenShelfRun" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(71.2, 1.15, 31.5)
+size = Vector3(1, 1.7, 4)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="GardenStoneBench" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(63, 0.58, 5)
+size = Vector3(6, 0.5, 1.6)
+use_collision = true
+material = SubResource("Mat_stone")
+
+[node name="GardenScreenNorth" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(67, 1, 1)
+size = Vector3(22, 1.8, 1.6)
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="GardenScreenWest" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(55.2, 1, 5)
+size = Vector3(1.4, 1.8, 6)
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="GardenRoseScreen" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(58, 0.95, 6.4)
+size = Vector3(2.2, 1.6, 3.2)
+use_collision = false
+material = SubResource("Mat_forest")
+
+[node name="StableDivider1" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(8, 1, 56.5)
+size = Vector3(15.5, 1.8, 0.18)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="StableDivider2" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(8, 1, 61)
+size = Vector3(15.5, 1.8, 0.18)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="StableDivider3" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(8, 1, 65.5)
+size = Vector3(15.5, 1.8, 0.18)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="StableDivider4" type="CSGBox3D" parent="RoomFunctionDetail/GroundProps"]
+position = Vector3(8, 1, 70)
+size = Vector3(15.5, 1.8, 0.18)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="StableWallMarker" type="Label3D" parent="RoomFunctionDetail/Labels"]
+position = Vector3(2, 2.2, 69)
+text = "Wall behind stables [canon context, placement reconstructed]"
+font_size = 24
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="CellarStorageStacks" type="CSGBox3D" parent="RoomFunctionDetail/CellarProps"]
+position = Vector3(63, -2.2, 24)
+size = Vector3(6, 1.2, 3)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="CellarRefugeMarker" type="CSGBox3D" parent="RoomFunctionDetail/CellarProps"]
+position = Vector3(69, -3.08, 40)
+size = Vector3(16, 0.05, 12)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="CellarBarrel1" type="CSGCylinder3D" parent="RoomFunctionDetail/CellarProps"]
+position = Vector3(73, -2.55, 24.5)
+radius = 0.55
+height = 1
+sides = 16
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="CellarBarrel2" type="CSGCylinder3D" parent="RoomFunctionDetail/CellarProps"]
+position = Vector3(75.2, -2.55, 24.5)
+radius = 0.55
+height = 1
+sides = 16
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="CellarBarrel3" type="CSGCylinder3D" parent="RoomFunctionDetail/CellarProps"]
+position = Vector3(77.4, -2.55, 24.5)
+radius = 0.55
+height = 1
+sides = 16
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="CellarRefugeLabel" type="Label3D" parent="RoomFunctionDetail/Labels"]
+position = Vector3(69, -1.6, 40)
+text = "Cellar refuge / stores [canon function]"
+font_size = 26
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="PugBed" type="CSGBox3D" parent="RoomFunctionDetail/TowerProps"]
+position = Vector3(75.8, 4.9, 43.2)
+size = Vector3(3, 0.6, 1.8)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="PugWorktable" type="CSGBox3D" parent="RoomFunctionDetail/TowerProps"]
+position = Vector3(80.5, 5, 43.6)
+size = Vector3(2.2, 0.75, 1.4)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="PugBookshelf" type="CSGBox3D" parent="RoomFunctionDetail/TowerProps"]
+position = Vector3(81.8, 5.6, 46.5)
+size = Vector3(0.8, 2, 2.4)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="TowerWindowMarker" type="CSGBox3D" parent="RoomFunctionDetail/TowerProps"]
+position = Vector3(78, 6.2, 34.2)
+size = Vector3(2.2, 1.6, 0.12)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="PugTowerLabel" type="Label3D" parent="RoomFunctionDetail/Labels"]
+position = Vector3(78, 7, 44)
+text = "Pug's room [canon function, geometry reconstructed]"
+font_size = 26
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="KulganStudyTable" type="CSGBox3D" parent="RoomFunctionDetail/TowerProps"]
+position = Vector3(78, 8.55, 41.8)
+size = Vector3(3, 0.85, 2.2)
+use_collision = true
+material = SubResource("Mat_timber")
+
+[node name="KulganBookshelfWest" type="CSGBox3D" parent="RoomFunctionDetail/TowerProps"]
+position = Vector3(74.8, 9, 44)
+size = Vector3(0.8, 1.9, 3.2)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="KulganBookshelfEast" type="CSGBox3D" parent="RoomFunctionDetail/TowerProps"]
+position = Vector3(81.2, 9, 44)
+size = Vector3(0.8, 1.9, 3.2)
+use_collision = false
+material = SubResource("Mat_timber")
+
+[node name="KulganTowerLabel" type="Label3D" parent="RoomFunctionDetail/Labels"]
+position = Vector3(78, 10.2, 44)
+text = "Kulgan's room above [implied]"
+font_size = 26
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+billboard = 1
+
+[node name="WalkthroughRoutes" type="Node3D" parent="."]
+
+[node name="RouteGateToKeep" type="Node3D" parent="WalkthroughRoutes"]
+
+[node name="RoutePoint01" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(42, 0.32, 120)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RouteLabel01" type="Label3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(42, 0.79, 120)
+text = "Town / road approach [canon]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="RouteSegment01" type="CSGBox3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(42, 0.26, 97)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(0.38, 0.03, 46)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RoutePoint02" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(42, 0.32, 74)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RouteLabel02" type="Label3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(42, 0.79, 74)
+text = "Great gate and small door [canon]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="RouteSegment02" type="CSGBox3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(41.5, 0.26, 62)
+rotation = Vector3(0, -3.1, 0)
+size = Vector3(0.38, 0.03, 24.0208)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RoutePoint03" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(41, 0.32, 50)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RouteLabel03" type="Label3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(41, 0.79, 50)
+text = "Courtyard [canon]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="RouteSegment03" type="CSGBox3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(40, 0.26, 43)
+rotation = Vector3(0, -2.9997, 0)
+size = Vector3(0.38, 0.03, 14.1421)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RoutePoint04" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(39, 0.32, 36)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RouteLabel04" type="Label3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(39, 0.79, 36)
+text = "Broad keep stairs [canon]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="RouteSegment04" type="CSGBox3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(39, 0.26, 30.5)
+rotation = Vector3(0, 3.1416, 0)
+size = Vector3(0.38, 0.03, 11)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RoutePoint05" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(39, 0.32, 25)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RouteLabel05" type="Label3D" parent="WalkthroughRoutes/RouteGateToKeep"]
+position = Vector3(39, 0.79, 25)
+text = "Great hall [canon]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="RouteGreatHallToKitchen" type="Node3D" parent="WalkthroughRoutes"]
+
+[node name="RoutePoint01" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteGreatHallToKitchen"]
+position = Vector3(39, 0.32, 25)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RouteLabel01" type="Label3D" parent="WalkthroughRoutes/RouteGreatHallToKitchen"]
+position = Vector3(39, 0.79, 25)
+text = "Great hall [canon]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="RouteSegment01" type="CSGBox3D" parent="WalkthroughRoutes/RouteGreatHallToKitchen"]
+position = Vector3(48.5, 0.26, 26)
+rotation = Vector3(0, 1.4659, 0)
+size = Vector3(0.38, 0.03, 19.105)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RoutePoint02" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteGreatHallToKitchen"]
+position = Vector3(58, 0.32, 27)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RouteLabel02" type="Label3D" parent="WalkthroughRoutes/RouteGreatHallToKitchen"]
+position = Vector3(58, 0.79, 27)
+text = "Long service corridor with dishware [canon]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="RouteSegment02" type="CSGBox3D" parent="WalkthroughRoutes/RouteGreatHallToKitchen"]
+position = Vector3(64.5, 0.26, 26.5)
+rotation = Vector3(0, 1.6476, 0)
+size = Vector3(0.38, 0.03, 13.0384)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RoutePoint03" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteGreatHallToKitchen"]
+position = Vector3(71, 0.32, 26)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RouteLabel03" type="Label3D" parent="WalkthroughRoutes/RouteGreatHallToKitchen"]
+position = Vector3(71, 0.79, 26)
+text = "Kitchen [canon]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="RouteKitchenCellarTower" type="Node3D" parent="WalkthroughRoutes"]
+
+[node name="RoutePoint01" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteKitchenCellarTower"]
+position = Vector3(71, 0.32, 26)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_implied_marker")
+
+[node name="RouteLabel01" type="Label3D" parent="WalkthroughRoutes/RouteKitchenCellarTower"]
+position = Vector3(71, 0.79, 26)
+text = "Kitchen [implied]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+billboard = 1
+
+[node name="RouteSegment01" type="CSGBox3D" parent="WalkthroughRoutes/RouteKitchenCellarTower"]
+position = Vector3(69, 0.26, 36)
+rotation = Vector3(0, -0.1974, 0)
+size = Vector3(0.38, 0.03, 20.3961)
+use_collision = false
+material = SubResource("Mat_implied_marker")
+
+[node name="RoutePoint02" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteKitchenCellarTower"]
+position = Vector3(67, 0.32, 46)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_implied_marker")
+
+[node name="RouteLabel02" type="Label3D" parent="WalkthroughRoutes/RouteKitchenCellarTower"]
+position = Vector3(67, 0.79, 46)
+text = "Cellar access [implied]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+billboard = 1
+
+[node name="RouteSegment02" type="CSGBox3D" parent="WalkthroughRoutes/RouteKitchenCellarTower"]
+position = Vector3(72.5, 0.26, 44)
+rotation = Vector3(0, 1.9196, 0)
+size = Vector3(0.38, 0.03, 11.7047)
+use_collision = false
+material = SubResource("Mat_implied_marker")
+
+[node name="RoutePoint03" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteKitchenCellarTower"]
+position = Vector3(78, 0.32, 42)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_implied_marker")
+
+[node name="RouteLabel03" type="Label3D" parent="WalkthroughRoutes/RouteKitchenCellarTower"]
+position = Vector3(78, 0.79, 42)
+text = "Magician tower base [implied]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.96, 0.85, 0.44, 1)
+billboard = 1
+
+[node name="RouteDefenceWalk" type="Node3D" parent="WalkthroughRoutes"]
+
+[node name="RoutePoint01" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteDefenceWalk"]
+position = Vector3(28, 4.68, 67)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RouteLabel01" type="Label3D" parent="WalkthroughRoutes/RouteDefenceWalk"]
+position = Vector3(28, 5.15, 67)
+text = "Gate tower stair [canon]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="RouteSegment01" type="CSGBox3D" parent="WalkthroughRoutes/RouteDefenceWalk"]
+position = Vector3(16, 4.62, 51.5)
+rotation = Vector3(0, -2.4828, 0)
+size = Vector3(0.38, 0.03, 39.2046)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RoutePoint02" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteDefenceWalk"]
+position = Vector3(4, 4.68, 36)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RouteLabel02" type="Label3D" parent="WalkthroughRoutes/RouteDefenceWalk"]
+position = Vector3(4, 5.15, 36)
+text = "West wall [canon]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="RouteSegment02" type="CSGBox3D" parent="WalkthroughRoutes/RouteDefenceWalk"]
+position = Vector3(42, 4.62, 36)
+rotation = Vector3(0, 1.5708, 0)
+size = Vector3(0.38, 0.03, 76)
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RoutePoint03" type="CSGCylinder3D" parent="WalkthroughRoutes/RouteDefenceWalk"]
+position = Vector3(80, 4.68, 36)
+radius = 0.35
+height = 0.12
+sides = 12
+use_collision = false
+material = SubResource("Mat_canon_marker")
+
+[node name="RouteLabel03" type="Label3D" parent="WalkthroughRoutes/RouteDefenceWalk"]
+position = Vector3(80, 5.15, 36)
+text = "East wall and clearing view [canon]"
+font_size = 22
+pixel_size = 0.015
+outline_size = 8
+modulate = Color(0.64, 0.84, 0.98, 1)
+billboard = 1
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector3(42, 0.45, 108)
+rotation = Vector3(0, 0, 0)
+spawn_position = Vector3(42, 0.45, 108)
+spawn_yaw_degrees = 0
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_default")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 18, 0)
+light_energy = 2.4
+
+[node name="FillLight" type="OmniLight3D" parent="."]
+position = Vector3(42, 8, 34)
+light_energy = 1.15
+omni_range = 120.0

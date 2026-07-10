@@ -1,0 +1,224 @@
+Prompt 7.1 summary of prompts 1 to 7 so far
+
+Yep. Here's the cleanest way to think about it:
+First, what we've actually done
+We have designed prompts 1-7.
+We have not actually executed prompts 4-7 in code yet in this chat.
+So there are two layers:
+Prompt design progress - we've mapped out Prompts 1-7
+Likely code progress once run - what those prompts are intended to build
+I'll summarise both.
+What prompts 1-7 cover so far
+Prompt 1 - scaffold and core loop
+This is the offline TypeScript MVP scaffold: Node + TypeScript + SQLite, strict architecture boundaries, REPL loop, state persistence, seeded starter locations, movement, time-of-day, local narration, and tests. It establishes the core rule that engine owns truth, narration only renders text.
+What that sets up
+project structure
+DB connection and schema
+REPL
+movement engine
+basic time cycle
+local narrator
+tests for core formatting/movement/time
+Prompt 2 - richer University vertical slice
+This expands the world from the tiny scaffold into a more real University day: 11 navigable University locations, 3 NPCs, economy actions, talk to, hunger/fatigue rising over time, and tuition tracking. It aims to make the MVP feel like an actual lived day rather than a toy scaffold.
+What that sets up
+Mews / room / courtyard / Anker's / Fishery outer / Mains hall
+Simmon, Wilem, Anker
+eat / sleep / busk
+talk command
+tuition deadline
+real money pressure
+more meaningful day loop
+Prompt 3 - sympathy system
+This adds the first serious "magic as cost" system: sympathy state, materials, Alar, warmth, deterministic adjudication, slips / bleed-through / backlash, material buying, and tests. It follows the planning doc's rule that sympathy must be a disciplined, risky system, not a mana bar.
+What that sets up
+sympathy_state
+warmth / cold
+material-based bindings
+use sympathy / bind ...
+Fishery materials economy
+sympathy narration templates
+sympathy recovery rules
+Prompt 4 - Kilvin, Ambrose, and social consequence
+This is a designed prompt, not yet code-run here.
+It adds:
+Kilvin as a proper authority figure
+Ambrose as a social-pressure figure
+Fishery work approval / refusal
+Fishery shift labour for modest pay
+social response commands for Ambrose
+trust / university_social consequences
+daily reset for Fishery approval
+What that sets up
+authority-driven gameplay
+public/social consequence
+Kilvin as more than flavour
+Ambrose conflict as a low-level persistent pressure, not just a future event
+Prompt 5 - Imre and the Eolian
+Also designed, not yet code-run here.
+It adds:
+path from University to riverside road to Stonebridge to Imre
+Eolian exterior + Eolian floor
+Deoch and Stanchion
+audition for pipes
+play at eolian
+talent pipes state
+Eolian standing / social prestige
+evening-only entry logic
+This matches the original plan's Phase 1 expectation that the MVP eventually allows a player to cross to Imre and engage the Eolian as a real social/music venue.
+What that sets up
+first real off-campus expansion
+social prestige system beyond the University
+music becoming meaningful in-world, not just flavour
+Deoch/Stanchion as Eolian anchors
+Prompt 6 - optional free-tier LLM narration adapter
+Also designed, not yet code-run here.
+This is where we returned to the original roadmap role of Prompt 6: add an LLM narration layer. But instead of the original Anthropic idea, we redesigned it so:
+Gemini is optional
+local narration always remains available
+no API key means the game still works
+engine truth never moves into the model
+fallback to local narration is automatic
+This lines up with your planning doc's warning that the biggest LLM risk is lore invention, so the engine must remain authoritative.
+What that sets up
+optional Gemini narrator
+local fallback
+provider-based narration mode selection
+validation for bad / lore-breaking output
+no DB writes from narration
+Prompt 7 - dynamic prompt builder
+Also designed, not yet code-run here.
+This takes the Gemini adapter from "possible" to "grounded" by building:
+structured scene context
+location / time / NPC / inventory / money summaries
+canon-era context
+promptBuilder module
+stronger canon instructions
+scene-only gating so non-scene commands stay local
+This is the bridge between the engine state and the AI prose layer.
+What that sets up
+structured prompt construction
+scene context separate from engine truth
+derived descriptive labels instead of raw numbers
+event-first narration
+clean handoff into Prompt 8
+So where does that leave us overall?
+In plain terms
+Prompts 1-5 originally were meant to be "setup-ish," but in the version we've built they now function more like:
+Prompt 1: scaffold + minimum playable loop
+Prompt 2: first real University slice
+Prompt 3: core magic system
+Prompt 4: authority/social consequence
+Prompt 5: Imre/Eolian/music prestige
+Prompt 6: optional AI prose adapter
+Prompt 7: dynamic AI prompt construction
+So we've effectively built:
+A playable MVP stack for:
+Kvothe
+University era
+local/offline play first
+money / hunger / fatigue / tuition
+movement and map growth
+social consequence
+sympathy
+Fishery labour
+Eolian prestige
+optional AI prose without surrendering truth
+That is still very aligned with the larger MVP goal: one playable University-era day with real consequences, money, Fishery work, and a walk to Imre/Eolian.
+What the stage is now set for in Prompt 8
+Prompt 8 is now in a very good position to be the Canon Registry / Lore Registry prompt.
+Why?
+Because Prompt 7 has already created the exact slots a lore registry needs.
+Specifically, Prompt 8 can now plug into:
+1. promptBuilder.ts
+Prompt 7 created a dedicated place where canon notes can be injected cleanly into narration prompts.
+2. canonInstructions.ts
+Prompt 6/7 already established hard narration rules and mystery bans. Prompt 8 can now add a more formal lore source of truth without rewriting the whole narration system.
+3. NarrationSceneContext
+Prompt 7 already separates:
+player summary
+inventory / money
+location summary
+NPC summary
+canon-era context
+engine truth
+So Prompt 8 can add canon registry facts cleanly as another input layer rather than dumping everything into one giant prompt.
+4. Engine-first architecture
+Because narration does not own truth, Prompt 8 can remain a grounding / constraint module, not a gameplay decision-maker.
+5. Existing systems already worth grounding
+By Prompt 8, there are already enough systems that benefit from a formal lore register:
+currency
+rank names
+sympathy constraints
+Eolian / pipes
+University / Imre distinction
+Archives restrictions
+mystery bans
+key location identity
+What Prompt 8 should probably do
+Prompt 8 should likely introduce:
+A canon registry module
+Something like:
+src/content/canonRegistry.ts or src/lore/canonRegistry.ts
+Containing structured canonical facts such as:
+currency denominations
+academic ranks
+Archives access rule
+sympathy truths
+talent pipes rule
+University era framing notes
+Imre / Eolian context
+mystery topics marked never resolve
+A mystery registry
+Separate or embedded:
+Chandrian
+Amyr
+Denna's patron
+Doors of Stone
+hidden Names
+other unresolved truths
+Marked in a machine-readable way.
+Prompt-builder integration
+Prompt 8 should update Prompt 7's builder so the Gemini prompt includes:
+a compact canon facts block
+current relevant lore facts only
+never-resolve reminders
+maybe location-specific canon notes
+Validation / lore-guard support
+Either now or next:
+forbidden phrases
+forbidden resolutions
+logging / fallback if the model violates lore boundaries
+That would line up very closely with your original roadmap, where Prompt 8 was meant to add a canon registry module as ground truth after the narration adapter and dynamic prompt builder existed. ?
+_Prompts (2).PDF
+The clearest summary in one sentence
+Prompts 1-7 have built the game's skeleton, core University systems, social/magic/music layers, and the optional AI narration bridge - which means Prompt 8 can now cleanly become the formal canon registry / lore grounding layer without having to invent a new architecture.
+If you want, I can now write Prompt 8 so it fits exactly into this sequence.
+
+Across Prompts 1 through 7, you have evolved this project from a simple technical scaffold into a sophisticated, dual-layered simulation. The engine handles the "Hard Truth" of the world, while the narration layer translates that truth into atmospheric prose.
+Here is the summary of the journey so far and how the stage is set for the next major milestone.
+### The Foundation: Prompts 1-5 (The Engine)
+These prompts built the "Skeleton and Muscle" of the game. Every action here is deterministic, meaning the game functions perfectly even without an internet connection or an AI.
+ * **World & Movement:** Established a 12-location map (University and Imre) with time-of-day progression and a persistent save system.
+ * **The Economy:** Built a "material realism" system where tuition, room rent at Anker's, and the price of a candle actually matter to the player's survival.
+ * **Sympathy (Magic):** Coded the laws of Correspondence and Conservation. Sympathy isn't a "spell list" but a calculation of Alar strength, link quality, and the physical cost of body heat.
+ * **Social & Music:** Built the "Social Engine" where reputation with NPCs like Kilvin or Ambrose fluctuates based on dialogue choices, and performance at the Eolian determines your status as a musician.
+### The Bridge: Prompt 6 (The Nervous System)
+Prompt 6 introduced the **Narration Adapter**. It established the architectural "Hard Ban" that prevents the LLM from ever touching the game state.
+ * **Hybrid Architecture:** You built the ability to toggle between "Local Narration" (simple, functional text) and "Gemini Narration" (atmospheric prose).
+ * **The Fallback Safety:** You ensured that if the API fails or the LLM hallucinates, the game instantly reverts to the engine's local text, ensuring the player is never "stuck."
+### The Refinement: Prompt 7 (The Senses)
+Prompt 7 turned the "Engine Data" into "Narrative Context." It stopped sending raw numbers to the AI and started sending "feelings."
+ * **Descriptive Labels:** Instead of telling the AI "Hunger is 4," the engine now says "Your stomach is a hollow ache."
+ * **Event Priority:** You taught the narrator that if an "Event" happens (like a sympathy link breaking), that event must be the primary focus of the prose, with the room description acting only as a backdrop.
+ * **Command Gatekeeping:** You restricted the LLM to only narrating "Scene Actions," keeping UI elements like inventory and status purely local for speed and accuracy.
+### The Stage is Set for Prompt 8: The Canon Registry
+Prompt 7 was the "Injection Point" build. Now that you have a promptBuilder.ts that knows how to handle context, you are ready to give the narrator its **"Memory."**
+**Prompt 8 will address the project's single biggest risk: Lore Contamination.**
+Currently, the AI knows *how* to describe a scene, but it doesn't have a centralized "Bible" to verify facts (e.g., that the Archives are made of grey stone, or that a specific NPC shouldn't know about the Chandrian yet).
+**Why we are ready:**
+ 1. **Context Injection is Ready:** You already have the canon_era_context field in your types; it's currently a placeholder for "lightweight notes." Prompt 8 will expand this into a full registry.
+ 2. **Architecture is Stable:** Because Prompt 7 separated the prompt logic into its own module, you can now add a complex Lore Registry without touching the Sympathy engine or the Movement code.
+ 3. **Tone is Grounded:** With the style notes you added in the Prompt 7 patch (restrained, observational, grounded), the stage is set for a Lore Registry that provides "grounding facts" rather than "florid descriptions."
+Prompt 8 will essentially move the game from "Generic Fantasy AI" to "Hard-Coded Kingkiller Specialist," ensuring that the narrator's "voice" is always checked against a fixed registry of Rothfuss's world.
+

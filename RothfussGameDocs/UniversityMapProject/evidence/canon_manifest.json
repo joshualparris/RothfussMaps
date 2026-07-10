@@ -1,0 +1,413 @@
+{
+  "source_hierarchy": [
+    "lawful-text evidence and evidence-ledger rows",
+    "campus-layout freeze",
+    "building briefs and reconstruction briefs",
+    "floorplan JSON",
+    "AI prompts"
+  ],
+  "certainty_tags": {
+    "canon": "Directly supported by the evidence ledger or quoted text.",
+    "implied": "Strongly supported by canon but not directly stated.",
+    "reconstructed": "Practical bridge added to make a usable plan.",
+    "unknown": "Unresolved and must stay unresolved.",
+    "tension": "Two project-supported claims conflict and neither may be silently discarded."
+  },
+  "terminology": [
+    {
+      "entity_id": "campus_terminology",
+      "entity_type": "terminology",
+      "claim": "Treat House of the Wind, Pennant Square, and the whipping courtyard as one working central square until evidence forces a split.",
+      "certainty": "reconstructed",
+      "source_ref": "campus-layout.md",
+      "notes": "Preserve alternate naming in notes and prompts.",
+      "hard_ban": false,
+      "frozen_bridge": true
+    },
+    {
+      "entity_id": "underthing_terminology",
+      "entity_type": "terminology",
+      "claim": "Treat Belows and Billows as the same deep wind-tunnel Underthing zone with spelling uncertainty preserved.",
+      "certainty": "reconstructed",
+      "source_ref": "university-evidence-ledger-v3.csv:UMAP030,UMAP084",
+      "notes": "Do not collapse the spelling uncertainty into false certainty.",
+      "hard_ban": false,
+      "frozen_bridge": true
+    },
+    {
+      "entity_id": "fishery_artificery_terminology",
+      "entity_type": "terminology",
+      "claim": "Treat Fishery and Artificery as one larger industrial complex unless narrower evidence is needed.",
+      "certainty": "reconstructed",
+      "source_ref": "university-evidence-ledger-v3.csv:UMAP023,UMAP024",
+      "notes": "Room-level prompts may still distinguish Kilvin's office and the main workshop.",
+      "hard_ban": false,
+      "frozen_bridge": true
+    },
+    {
+      "entity_id": "north_reference",
+      "entity_type": "terminology",
+      "claim": "Map north is a project convention, not a canon fact beyond the Imre/University river axis.",
+      "certainty": "reconstructed",
+      "source_ref": "campus-layout.md",
+      "notes": "Never let project north become false canon.",
+      "hard_ban": false,
+      "frozen_bridge": true
+    }
+  ],
+  "entities": [
+    {
+      "entity_id": "archives",
+      "entity_type": "building",
+      "claims": [
+        {
+          "claim": "The Archives are five stories tall.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP051",
+          "notes": "Use this to reject six-story drift.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "The Archives are square, grey, windowless, and severely undecorated.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP006",
+          "notes": "No windows and no ornamental facade.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "The Archives have one public entrance reached only after circling the building.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP007",
+          "notes": "Do not add second public entrances.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "The public threshold is stone doors to antechamber, then interior doors to Tomes, Stacks, and Scrivs Only.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP008,UMAP009",
+          "notes": "Threshold hierarchy matters.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Tomes is a well-lit public reading space and the Stacks are darker, restricted, and access-controlled.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP032,UMAP033,UMAP034,UMAP064,UMAP074",
+          "notes": "Well-lit does not imply windows.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "The Archives interior behaves like a city with roads, lanes, alleys, shortcuts, stairwells, deep named levels, and shelving coordinates.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP036,UMAP039,UMAP041,UMAP085,UMAP087",
+          "notes": "Do not flatten upper floors into repeated rectangles.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Sub-three and Puppet's chambers exist deep inside the Archives beyond the public threshold.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP085,UMAP086",
+          "notes": "Do not place them casually on the public floor.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "The roof is bare stone and reached by locked interior door.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP052,UMAP064",
+          "notes": "Use a roof prompt, not a false sixth-floor prompt.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "No windows may be added to the Archives shell.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP006,UMAP051",
+          "notes": "Treat as hard ban.",
+          "hard_ban": true,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Natural light through windows must not be used for interior Archives lighting.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP006,UMAP033",
+          "notes": "Tomes may be well-lit by controlled artificial light.",
+          "hard_ban": true,
+          "frozen_bridge": false
+        }
+      ]
+    },
+    {
+      "entity_id": "mains",
+      "entity_type": "building",
+      "claims": [
+        {
+          "claim": "Mains is nearly an acre and a half and visibly accreted from mismatched pieces.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP013,UMAP014",
+          "notes": "Reject neat master-plan geometry.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Mains has odd turns, dead ends, shortcuts, and at least one isolated courtyard reachable only through a window.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP015,UMAP016",
+          "notes": "Keep circulation inconvenient and layered.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Mains includes theatre-like teaching rooms and a roof maze of chimneys and mixed roofing materials.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP050,UMAP061,UMAP079",
+          "notes": "No rectangular lecture-block simplification.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Do not assign exact dimensions, exact entrance counts, or a rectangular shell to Mains without evidence.",
+          "certainty": "reconstructed",
+          "source_ref": "campus-layout.md",
+          "notes": "Treat as validation ban.",
+          "hard_ban": true,
+          "frozen_bridge": true
+        }
+      ]
+    },
+    {
+      "entity_id": "mews",
+      "entity_type": "building",
+      "claims": [
+        {
+          "claim": "The Mews have a circular hub with eight wings.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP011",
+          "notes": "This is a strong shell description.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "The Mews are described externally as grey, many-windowed, and three stories tall.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP017",
+          "notes": "This creates tension with the fourth-floor bunk reference.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Non-Arcanum bunks are on the fourth floor of the east wing and farthest from the baths.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP018",
+          "notes": "Treat as tension with exterior height wording.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Arcanum students are housed in the west wing and baths are on the ground floor.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP018,UMAP019",
+          "notes": "Do not reassign these known roles.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "The working bridge is a dominant three-story exterior plus a reconstructed partial upper east-wing level.",
+          "certainty": "reconstructed",
+          "source_ref": "campus-layout.md",
+          "notes": "This bridge must stay labeled as reconstructed wherever used.",
+          "hard_ban": false,
+          "frozen_bridge": true
+        }
+      ]
+    },
+    {
+      "entity_id": "hollows",
+      "entity_type": "building",
+      "claims": [
+        {
+          "claim": "Hollows are simple, square, stained-glass, and reached from the Archives by going down then left.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP010,UMAP012",
+          "notes": "Two big maples are a visual anchor.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "The admissions theatre and Elodin's office are canonically in Hollows.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP057,UMAP067",
+          "notes": "This does not by itself fix Elodin's lecture hall there.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Elodin's lecture hall may be linked to Hollows in project reconstruction, but that location is not frozen canon.",
+          "certainty": "tension",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP073",
+          "notes": "If used in Hollows prompts, label the placement reconstructed or uncertain.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        }
+      ]
+    },
+    {
+      "entity_id": "masters_hall",
+      "entity_type": "building",
+      "claims": [
+        {
+          "claim": "Masters' Hall has a large windowless room with a familiar crescent-shaped table distinct from the admissions theatre.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP062",
+          "notes": "Do not conflate it with Hollows or invent Elodin's office there.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Masters' Hall is associated with living quarters for masters, resident gillers, and guest rooms for visiting arcanists.",
+          "certainty": "implied",
+          "source_ref": "buildings/masters-hall-brief.md",
+          "notes": "Residential-governance identity is stronger than office-block identity.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        }
+      ]
+    },
+    {
+      "entity_id": "fishery_artificery",
+      "entity_type": "building_complex",
+      "claims": [
+        {
+          "claim": "The Fishery or Artificery is an industrial complex with a broad workshop, elevated walkways, low east-wall windows, and a south exit toward a courtyard.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP023,UMAP025,UMAP026,UMAP076,UMAP078",
+          "notes": "Use orientation evidence conservatively but explicitly.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Kilvin's office opens off the workshop and contains a small forge or glasswork in the corner behind a heavy door.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP066",
+          "notes": "Room prompts should use Kilvin's office, not a generic master office.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Ventilation and safety zoning may be reconstructed, but must remain labeled reconstructed.",
+          "certainty": "reconstructed",
+          "source_ref": "user feedback 2026-04-20",
+          "notes": "Do not hard-code unsupported roof exits or water-related logic as canon.",
+          "hard_ban": false,
+          "frozen_bridge": true
+        }
+      ]
+    },
+    {
+      "entity_id": "bursar",
+      "entity_type": "room_or_office",
+      "claims": [
+        {
+          "claim": "The strongest Bursar access sequence is courtyard to another stone building to hallway to stairs down to the bursar.",
+          "certainty": "canon",
+          "source_ref": "existing project evidence summary and user feedback 2026-04-20",
+          "notes": "Route sequence should anchor Bursar prompts.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        }
+      ]
+    },
+    {
+      "entity_id": "haven",
+      "entity_type": "building_complex",
+      "claims": [
+        {
+          "claim": "Haven is north of the main core, formal, manor-like, fenced, and large-capacity.",
+          "certainty": "canon",
+          "source_ref": "university-evidence-ledger-v3.csv:UMAP045-UMAP048,UMAP068-UMAP070",
+          "notes": "Do not treat Haven as a Masters' office center.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        }
+      ]
+    }
+  ],
+  "validation_rules": [
+    {
+      "rule_id": "archives_no_six_story",
+      "scope_glob": "ai-prompts/*archives*.md",
+      "must_not_contain_any": ["six-story", "six story", "sixth and top floor", "six stories"],
+      "notes": "Archives height is fixed to five stories by UMAP051."
+    },
+    {
+      "rule_id": "archives_no_window_light",
+      "scope_glob": "ai-prompts/*archives*.md",
+      "must_not_contain_any": ["natural light", "through windows", "clerestory"],
+      "notes": "Archives are windowless."
+    },
+    {
+      "rule_id": "archives_floor_distinctness",
+      "scope_glob": "ai-prompts/floor-plan-archives-[2345]*.md",
+      "max_pairwise_similarity": 0.92,
+      "notes": "Upper Archives floor prompts must not be cloned."
+    },
+    {
+      "rule_id": "mains_no_rational_shell",
+      "scope_glob": "ai-prompts/*mains*.md",
+      "must_not_contain_any": ["rectangular stone building", "50x30", "four main entrances", "central staircase"],
+      "notes": "Mains must stay irregular and underdetermined."
+    },
+    {
+      "rule_id": "mews_fourth_floor_bridge",
+      "scope_glob": "ai-prompts/*mews*.md",
+      "if_contains_then_require": [
+        {
+          "trigger": "fourth floor",
+          "require_any": ["reconstructed", "partial upper", "bridge", "partial fourth-level", "partial fourth level"]
+        }
+      ],
+      "notes": "The Mews floor-count tension must stay labeled as reconstructed when bridged."
+    },
+    {
+      "rule_id": "mews_floor_distinctness",
+      "scope_glob": "ai-prompts/floor-plan-mews-*.md",
+      "max_pairwise_similarity": 0.97,
+      "notes": "The Mews floor prompts must differ by level role."
+    },
+    {
+      "rule_id": "hollows_lecture_hall_uncertain",
+      "scope_glob": "ai-prompts/*hollows*.md",
+      "if_contains_then_require": [
+        {
+          "trigger": "lecture hall",
+          "require_any": ["reconstructed", "uncertain", "not frozen canon", "project bridge"]
+        }
+      ],
+      "notes": "Do not silently lock Elodin's lecture hall into Hollows."
+    },
+    {
+      "rule_id": "masters_hall_no_elodin_office",
+      "scope_glob": "ai-prompts/*masters-hall*.md",
+      "must_not_contain_any": ["Elodin has an office", "Contains masters' offices"],
+      "notes": "Masters' Hall should not inherit the old Haven/Hollows office drift."
+    },
+    {
+      "rule_id": "fishery_needs_orientation",
+      "scope_glob": "ai-prompts/*fishery*.*",
+      "must_contain_any": ["Kilvin", "eastern", "east wall", "south exit", "courtyard"],
+      "must_not_contain_any": ["roof exit", "water-related facilities"],
+      "notes": "Use the evidence-backed workshop anchors instead of generic workshop filler."
+    },
+    {
+      "rule_id": "bursar_route_anchor",
+      "scope_glob": "ai-prompts/*bursar*.*",
+      "must_contain_all": ["courtyard", "stone building", "hallway", "stairs"],
+      "notes": "The Bursar route sequence is the strongest prompt anchor."
+    }
+  ]
+}

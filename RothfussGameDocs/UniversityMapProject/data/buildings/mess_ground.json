@@ -1,0 +1,22 @@
+﻿{
+  "building_id": "mess_hall",
+  "floor_id": "ground",
+  "metadata": {
+    "elevation_y": 0.0,
+    "floor_height": 3.5
+  },
+  "geometries": {
+    "footprint": [
+      {"x": -45, "z": 125}, {"x": 45, "z": 125}, {"x": 45, "z": 145}, {"x": -45, "z": 145}
+    ],
+    "rooms": [
+      {
+        "id": "mess_hall",
+        "label": "The Mess",
+        "certainty": "canon",
+        "polygon": [{"x": -45, "z": 125}, {"x": 45, "z": 125}, {"x": 45, "z": 145}, {"x": -45, "z": 145}],
+        "note": "Where students eat; high-reverb timber hall."
+      }
+    ]
+  }
+}

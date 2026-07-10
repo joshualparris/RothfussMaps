@@ -1,0 +1,11 @@
+exports/
+outputs/
+tmp/
+*.blend1
+*.blend2
+*.glb
+*.import
+.godot/
+__pycache__/
+*.pyc
+

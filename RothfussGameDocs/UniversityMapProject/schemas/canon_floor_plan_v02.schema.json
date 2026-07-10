@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "canon_floor_plan_v02.schema.json",
+  "title": "Canon-Constrained Floor Plan v02",
+  "type": "object",
+  "required": [
+    "building",
+    "floor",
+    "story_role",
+    "footprint",
+    "rooms",
+    "doors",
+    "stairs",
+    "labels",
+    "validation_flags"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "canon_floor_plan_v02"
+    },
+    "building": {
+      "$ref": "#/$defs/certifiedObject"
+    },
+    "floor": {
+      "type": "object",
+      "required": [ "id", "name", "certainty", "draft", "approximate_dimensions", "metrics" ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "certainty": { "$ref": "#/$defs/certainty" },
+        "draft": { "type": "boolean" },
+        "approximate_dimensions": { "type": "boolean" },
+        "metrics": {
+          "type": "object",
+          "required": [ "floor_z", "floor_height", "floor_slab_thickness", "wall_thickness_default" ],
+          "properties": {
+            "floor_z": { "type": "number" },
+            "floor_height": { "type": "number", "exclusiveMinimum": 0 },
+            "floor_slab_thickness": { "type": "number", "minimum": 0 },
+            "wall_thickness_default": { "type": "number", "exclusiveMinimum": 0 }
+          }
+        }
+      }
+    },
+    "story_role": {
+      "type": "object",
+      "required": [ "certainty", "summary" ],
+      "properties": {
+        "certainty": { "$ref": "#/$defs/certainty" },
+        "summary": { "type": "string", "minLength": 1 }
+      }
+    },
+    "footprint": {
+      "allOf": [
+        { "$ref": "#/$defs/certifiedObject" },
+        {
+          "type": "object",
+          "required": [ "polygon", "approximate" ],
+          "properties": {
+            "polygon": { "$ref": "#/$defs/polygon" },
+            "approximate": { "type": "boolean" },
+            "has_windows": { "type": "boolean" },
+            "public_entrances": { "type": "integer", "minimum": 0 }
+          }
+        }
+      ]
+    },
+    "rooms": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "#/$defs/certifiedObject" },
+          {
+            "type": "object",
+            "required": [ "polygon", "approximate" ],
+            "properties": {
+              "polygon": { "$ref": "#/$defs/polygon" },
+              "approximate": { "type": "boolean" }
+            }
+          }
+        ]
+      }
+    },
+    "doors": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "#/$defs/certifiedObject" },
+          {
+            "type": "object",
+            "required": [ "connects", "line", "approximate" ],
+            "properties": {
+              "connects": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "line": {
+                "type": "object",
+                "required": [ "start", "end" ],
+                "properties": {
+                  "start": { "$ref": "#/$defs/point" },
+                  "end": { "$ref": "#/$defs/point" }
+                }
+              },
+              "approximate": { "type": "boolean" }
+            }
+          }
+        ]
+      }
+    },
+    "stairs": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "#/$defs/certifiedObject" },
+          {
+            "type": "object",
+            "required": [ "polygon", "access_from", "from_floor", "to_floor", "approximate" ],
+            "properties": {
+              "polygon": { "$ref": "#/$defs/polygon" },
+              "access_from": { "type": "string", "minLength": 1 },
+              "from_floor": { "type": "string", "minLength": 1 },
+              "to_floor": { "type": "string", "minLength": 1 },
+              "connects": {
+                "type": "array",
+                "minItems": 2,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "approximate": { "type": "boolean" }
+            }
+          }
+        ]
+      }
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [ "id", "text", "certainty", "position" ],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "text": { "type": "string", "minLength": 1 },
+          "certainty": { "$ref": "#/$defs/certainty" },
+          "position": { "$ref": "#/$defs/point" }
+        }
+      }
+    },
+    "validation_flags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [ "id", "level", "message" ],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "level": { "enum": [ "pass", "info", "warning", "error" ] },
+          "message": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "certainty": {
+      "enum": [ "canon", "implied", "reconstructed" ]
+    },
+    "certifiedObject": {
+      "type": "object",
+      "required": [ "id", "certainty" ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string" },
+        "name": { "type": "string" },
+        "certainty": { "$ref": "#/$defs/certainty" },
+        "geometry_certainty": { "$ref": "#/$defs/certainty" },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "point": {
+      "type": "object",
+      "required": [ "x", "z" ],
+      "properties": {
+        "x": { "type": "number" },
+        "z": { "type": "number" }
+      }
+    },
+    "polygon": {
+      "type": "array",
+      "minItems": 3,
+      "items": { "$ref": "#/$defs/point" }
+    }
+  }
+}

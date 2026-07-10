@@ -1,0 +1,138 @@
+{
+  "source_hierarchy": [
+    "lawful text evidence and evidence-ledger rows",
+    "evidence/canon_manifest.json",
+    "docs/site-layout.md",
+    "building briefs and reconstruction briefs",
+    "structure json",
+    "ai prompts"
+  ],
+  "certainty_tags": {
+    "canon": "Directly supported by the novel evidence.",
+    "implied": "Strongly supported but not directly stated.",
+    "reconstructed": "A practical bridge added to make the structure usable.",
+    "unknown": "Unresolved and must stay unresolved.",
+    "tension": "Two supported claims conflict and neither may be silently discarded."
+  },
+  "terminology": [
+    {
+      "entity_id": "north_reference",
+      "entity_type": "terminology",
+      "claim": "Project north is a workflow convention until the site directionality is anchored more fully by evidence.",
+      "certainty": "reconstructed",
+      "source_ref": "docs/site-layout.md",
+      "notes": "Do not let project north become false canon.",
+      "hard_ban": false,
+      "frozen_bridge": true
+    }
+  ],
+  "entities": [
+    {
+      "entity_id": "castle_crydee",
+      "entity_type": "castle_site",
+      "claims": [
+        {
+          "claim": "Castle Crydee contains a keep.",
+          "certainty": "canon",
+          "source_ref": "evidence/evidence-ledger.csv:CRY001",
+          "notes": "Treat the keep as a primary structural anchor.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Castle Crydee has walls and towers as active defensive elements.",
+          "certainty": "canon",
+          "source_ref": "evidence/evidence-ledger.csv:CRY002",
+          "notes": "Do not downplay the castle shell into an unfortified manor.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "The castle and the town below are distinct settlement levels or zones.",
+          "certainty": "canon",
+          "source_ref": "evidence/evidence-ledger.csv:CRY003",
+          "notes": "Do not flatten the castle and lower town into one level plane.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "The great hall is a major public-noble room where the Duke holds court.",
+          "certainty": "canon",
+          "source_ref": "evidence/evidence-ledger.csv:CRY005",
+          "notes": "This is one of the safest interior anchors.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "A courtyard gate and courtyard movement sequence are part of the castle approach.",
+          "certainty": "canon",
+          "source_ref": "evidence/evidence-ledger.csv:CRY006",
+          "notes": "Preserve circulation logic instead of inventing ornamental forecourts.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "A long corridor connects the kitchen and the great hall.",
+          "certainty": "canon",
+          "source_ref": "evidence/evidence-ledger.csv:CRY007",
+          "notes": "This service route should shape interior planning.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Castle Crydee has a west wall and battlements.",
+          "certainty": "canon",
+          "source_ref": "evidence/evidence-ledger.csv:CRY008",
+          "notes": "Preserve this directional anchor once more site references are gathered.",
+          "hard_ban": false,
+          "frozen_bridge": false
+        },
+        {
+          "claim": "Do not treat Castle Crydee as a neat concentric super-castle without evidence.",
+          "certainty": "reconstructed",
+          "source_ref": "docs/CONSISTENCY_RULES.md",
+          "notes": "Guardrail against generic fantasy drift.",
+          "hard_ban": true,
+          "frozen_bridge": true
+        },
+        {
+          "claim": "Do not merge peacetime and siege-state layout assumptions into one false definitive map.",
+          "certainty": "reconstructed",
+          "source_ref": "docs/CONSISTENCY_RULES.md",
+          "notes": "Version major state changes if needed later.",
+          "hard_ban": true,
+          "frozen_bridge": true
+        }
+      ]
+    }
+  ],
+  "validation_rules": [
+    {
+      "rule_id": "crydee_no_concentric_drift",
+      "scope_glob": "ai-prompts/*crydee*.md",
+      "must_not_contain_any": [
+        "perfect concentric castle",
+        "massive seven-wall citadel",
+        "symmetrical grand palace fortress"
+      ],
+      "notes": "Avoid generic fantasy inflation."
+    },
+    {
+      "rule_id": "crydee_town_below_preserved",
+      "scope_glob": "ai-prompts/*crydee*.md",
+      "if_contains_then_require": [
+        {
+          "trigger": "town",
+          "require_any": [
+            "below",
+            "lower town",
+            "distinct level",
+            "separate settlement tier"
+          ]
+        }
+      ],
+      "notes": "Keep the strongest elevation clue alive when prompts mention the settlement."
+    }
+  ]
+}
+

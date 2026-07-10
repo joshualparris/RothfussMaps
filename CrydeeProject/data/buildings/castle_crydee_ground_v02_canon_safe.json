@@ -1,0 +1,1216 @@
+{
+  "schema_version": "canon_floor_plan_v02",
+  "building": {
+    "id": "castle_crydee",
+    "name": "Castle Crydee",
+    "certainty": "canon",
+    "source": "Magician by Raymond E. Feist"
+  },
+  "floor": {
+    "id": "ground",
+    "name": "Ground Floor",
+    "certainty": "canon",
+    "draft": true,
+    "approximate_dimensions": true,
+    "metrics": {
+      "floor_z": 0.0,
+      "floor_height": 3.2,
+      "floor_slab_thickness": 0.2,
+      "wall_thickness_default": 0.55,
+      "partition_wall_thickness": 0.22,
+      "partition_height": 2.9,
+      "door_marker_width": 0.6
+    }
+  },
+  "story_role": {
+    "certainty": "canon",
+    "summary": "Expanded Castle Crydee blockout covering the gate approach, central courtyard, keep front, great hall, ducal chambers, west service wing, east kitchen-service spine, cellar descent, and tower access."
+  },
+  "footprint": {
+    "id": "castle_crydee_footprint",
+    "name": "Castle Crydee Footprint",
+    "certainty": "reconstructed",
+    "geometry_certainty": "reconstructed",
+    "polygon": [
+      { "x": 0, "z": 0 },
+      { "x": 84, "z": 0 },
+      { "x": 84, "z": 72 },
+      { "x": 0, "z": 72 }
+    ],
+    "approximate": true,
+    "public_entrances": 2
+  },
+  "slab_regions": [
+    {
+      "id": "castle_main_slab",
+      "name": "Castle Main Slab",
+      "certainty": "reconstructed",
+      "polygon": [
+        { "x": 0, "z": 0 },
+        { "x": 84, "z": 0 },
+        { "x": 84, "z": 72 },
+        { "x": 0, "z": 72 }
+      ]
+    },
+    {
+      "id": "north_gate_apron",
+      "name": "North Gate Apron",
+      "certainty": "reconstructed",
+      "polygon": [
+        { "x": 30, "z": 72 },
+        { "x": 54, "z": 72 },
+        { "x": 54, "z": 80 },
+        { "x": 30, "z": 80 }
+      ]
+    }
+  ],
+  "rooms": [
+    {
+      "id": "west_gate_tower_base",
+      "name": "West Gate Tower Base",
+      "certainty": "implied",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 24, "z": 60 },
+        { "x": 32, "z": 60 },
+        { "x": 32, "z": 72 },
+        { "x": 24, "z": 72 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "gatehouse_passage",
+      "name": "Great Gate Passage",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 32, "z": 60 },
+        { "x": 50, "z": 60 },
+        { "x": 50, "z": 72 },
+        { "x": 32, "z": 72 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "east_gate_tower_base",
+      "name": "East Gate Tower Base",
+      "certainty": "implied",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 50, "z": 60 },
+        { "x": 58, "z": 60 },
+        { "x": 58, "z": 72 },
+        { "x": 50, "z": 72 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "service_yard",
+      "name": "West Service Yard",
+      "certainty": "reconstructed",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 16, "z": 20 },
+        { "x": 24, "z": 20 },
+        { "x": 24, "z": 72 },
+        { "x": 16, "z": 72 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "stables",
+      "name": "Stables",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 0, "z": 52 },
+        { "x": 16, "z": 52 },
+        { "x": 16, "z": 72 },
+        { "x": 0, "z": 72 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "barracks",
+      "name": "Guard Barracks",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 0, "z": 36 },
+        { "x": 16, "z": 36 },
+        { "x": 16, "z": 52 },
+        { "x": 0, "z": 52 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "armory",
+      "name": "Armory",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 0, "z": 20 },
+        { "x": 16, "z": 20 },
+        { "x": 16, "z": 36 },
+        { "x": 0, "z": 36 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "courtyard",
+      "name": "Courtyard",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 24, "z": 40 },
+        { "x": 58, "z": 40 },
+        { "x": 58, "z": 60 },
+        { "x": 24, "z": 60 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "keep_stair_landing",
+      "name": "Keep Stair Landing",
+      "certainty": "implied",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 28, "z": 32 },
+        { "x": 50, "z": 32 },
+        { "x": 50, "z": 40 },
+        { "x": 28, "z": 40 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "great_hall",
+      "name": "Great Hall",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 24, "z": 18 },
+        { "x": 54, "z": 18 },
+        { "x": 54, "z": 32 },
+        { "x": 24, "z": 32 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "inner_hall",
+      "name": "Inner Hall",
+      "certainty": "reconstructed",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 24, "z": 10 },
+        { "x": 54, "z": 10 },
+        { "x": 54, "z": 18 },
+        { "x": 24, "z": 18 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "council_chamber",
+      "name": "Council Chamber",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 24, "z": 0 },
+        { "x": 38, "z": 0 },
+        { "x": 38, "z": 10 },
+        { "x": 24, "z": 10 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "ducal_private_hall",
+      "name": "Ducal Private Hall",
+      "certainty": "implied",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 38, "z": 0 },
+        { "x": 54, "z": 0 },
+        { "x": 54, "z": 10 },
+        { "x": 38, "z": 10 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "princess_garden",
+      "name": "Princess's Flower Garden",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 54, "z": 0 },
+        { "x": 80, "z": 0 },
+        { "x": 80, "z": 10 },
+        { "x": 54, "z": 10 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "storage_room",
+      "name": "Storage Room",
+      "certainty": "reconstructed",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 54, "z": 10 },
+        { "x": 62, "z": 10 },
+        { "x": 62, "z": 18 },
+        { "x": 54, "z": 18 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "service_corridor",
+      "name": "Kitchen Hall Corridor",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 54, "z": 18 },
+        { "x": 62, "z": 18 },
+        { "x": 62, "z": 36 },
+        { "x": 54, "z": 36 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "kitchen",
+      "name": "Kitchen",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 62, "z": 18 },
+        { "x": 80, "z": 18 },
+        { "x": 80, "z": 34 },
+        { "x": 62, "z": 34 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "pantry",
+      "name": "Pantry",
+      "certainty": "implied",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 62, "z": 34 },
+        { "x": 72, "z": 34 },
+        { "x": 72, "z": 42 },
+        { "x": 62, "z": 42 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "cellar_access",
+      "name": "Cellar Access",
+      "certainty": "implied",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 62, "z": 42 },
+        { "x": 72, "z": 42 },
+        { "x": 72, "z": 50 },
+        { "x": 62, "z": 50 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "magician_tower_base",
+      "name": "Magician's Tower Base",
+      "certainty": "canon",
+      "geometry_certainty": "reconstructed",
+      "polygon": [
+        { "x": 72, "z": 34 },
+        { "x": 84, "z": 34 },
+        { "x": 84, "z": 50 },
+        { "x": 72, "z": 50 }
+      ],
+      "approximate": true
+    }
+  ],
+  "doors": [
+    {
+      "id": "great_gate",
+      "name": "Great Gate",
+      "certainty": "canon",
+      "connects": ["gatehouse_passage", "exterior"],
+      "line": {
+        "start": { "x": 34, "z": 72 },
+        "end": { "x": 45, "z": 72 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "gate_postern",
+      "name": "Small Door In Great Gate",
+      "certainty": "canon",
+      "connects": ["gatehouse_passage", "exterior"],
+      "line": {
+        "start": { "x": 46, "z": 72 },
+        "end": { "x": 49, "z": 72 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "gatehouse_courtyard_door",
+      "name": "Gatehouse To Courtyard",
+      "certainty": "canon",
+      "connects": ["gatehouse_passage", "courtyard"],
+      "line": {
+        "start": { "x": 37, "z": 60 },
+        "end": { "x": 45, "z": 60 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "west_gatehouse_tower_door",
+      "name": "West Gate Tower Door",
+      "certainty": "implied",
+      "connects": ["west_gate_tower_base", "gatehouse_passage"],
+      "line": {
+        "start": { "x": 32, "z": 64 },
+        "end": { "x": 32, "z": 68 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "east_gatehouse_tower_door",
+      "name": "East Gate Tower Door",
+      "certainty": "implied",
+      "connects": ["gatehouse_passage", "east_gate_tower_base"],
+      "line": {
+        "start": { "x": 50, "z": 64 },
+        "end": { "x": 50, "z": 68 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "west_tower_courtyard_door",
+      "name": "West Tower Court Door",
+      "certainty": "reconstructed",
+      "connects": ["west_gate_tower_base", "courtyard"],
+      "line": {
+        "start": { "x": 26, "z": 60 },
+        "end": { "x": 30, "z": 60 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "east_tower_courtyard_door",
+      "name": "East Tower Court Door",
+      "certainty": "reconstructed",
+      "connects": ["east_gate_tower_base", "courtyard"],
+      "line": {
+        "start": { "x": 52, "z": 60 },
+        "end": { "x": 56, "z": 60 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "service_yard_courtyard_door",
+      "name": "Service Yard To Courtyard",
+      "certainty": "reconstructed",
+      "connects": ["service_yard", "courtyard"],
+      "line": {
+        "start": { "x": 24, "z": 44 },
+        "end": { "x": 24, "z": 50 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "service_yard_tower_door",
+      "name": "Service Yard To West Gate Tower",
+      "certainty": "reconstructed",
+      "connects": ["service_yard", "west_gate_tower_base"],
+      "line": {
+        "start": { "x": 24, "z": 64 },
+        "end": { "x": 24, "z": 68 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "stable_yard_door",
+      "name": "Stable Yard Door",
+      "certainty": "reconstructed",
+      "connects": ["stables", "service_yard"],
+      "line": {
+        "start": { "x": 16, "z": 60 },
+        "end": { "x": 16, "z": 64 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "barracks_yard_door",
+      "name": "Barracks Yard Door",
+      "certainty": "reconstructed",
+      "connects": ["barracks", "service_yard"],
+      "line": {
+        "start": { "x": 16, "z": 42 },
+        "end": { "x": 16, "z": 46 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "armory_yard_door",
+      "name": "Armory Yard Door",
+      "certainty": "reconstructed",
+      "connects": ["armory", "service_yard"],
+      "line": {
+        "start": { "x": 16, "z": 26 },
+        "end": { "x": 16, "z": 30 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "courtyard_keep_landing_door",
+      "name": "Courtyard To Keep Landing",
+      "certainty": "implied",
+      "connects": ["courtyard", "keep_stair_landing"],
+      "line": {
+        "start": { "x": 34, "z": 40 },
+        "end": { "x": 44, "z": 40 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "great_hall_oak_doors",
+      "name": "Great Hall Oak Doors",
+      "certainty": "canon",
+      "connects": ["keep_stair_landing", "great_hall"],
+      "line": {
+        "start": { "x": 34, "z": 32 },
+        "end": { "x": 44, "z": 32 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "great_hall_inner_door",
+      "name": "Great Hall Inner Door",
+      "certainty": "reconstructed",
+      "connects": ["great_hall", "inner_hall"],
+      "line": {
+        "start": { "x": 37, "z": 18 },
+        "end": { "x": 43, "z": 18 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "council_door",
+      "name": "Council Chamber Door",
+      "certainty": "canon",
+      "connects": ["inner_hall", "council_chamber"],
+      "line": {
+        "start": { "x": 30, "z": 10 },
+        "end": { "x": 34, "z": 10 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "private_hall_door",
+      "name": "Private Hall Door",
+      "certainty": "implied",
+      "connects": ["inner_hall", "ducal_private_hall"],
+      "line": {
+        "start": { "x": 44, "z": 10 },
+        "end": { "x": 48, "z": 10 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "garden_door",
+      "name": "Garden Door",
+      "certainty": "reconstructed",
+      "connects": ["ducal_private_hall", "princess_garden"],
+      "line": {
+        "start": { "x": 54, "z": 4 },
+        "end": { "x": 54, "z": 8 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "storage_hall_door",
+      "name": "Hallway To Storage",
+      "certainty": "reconstructed",
+      "connects": ["inner_hall", "storage_room"],
+      "line": {
+        "start": { "x": 54, "z": 12 },
+        "end": { "x": 54, "z": 16 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "storage_corridor_door",
+      "name": "Storage To Service Corridor",
+      "certainty": "reconstructed",
+      "connects": ["storage_room", "service_corridor"],
+      "line": {
+        "start": { "x": 56, "z": 18 },
+        "end": { "x": 60, "z": 18 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "hall_service_door",
+      "name": "Great Hall Service Door",
+      "certainty": "canon",
+      "connects": ["great_hall", "service_corridor"],
+      "line": {
+        "start": { "x": 54, "z": 22 },
+        "end": { "x": 54, "z": 26 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "kitchen_service_door",
+      "name": "Kitchen Corridor Door",
+      "certainty": "canon",
+      "connects": ["service_corridor", "kitchen"],
+      "line": {
+        "start": { "x": 62, "z": 24 },
+        "end": { "x": 62, "z": 30 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "pantry_door",
+      "name": "Pantry Door",
+      "certainty": "reconstructed",
+      "connects": ["kitchen", "pantry"],
+      "line": {
+        "start": { "x": 66, "z": 34 },
+        "end": { "x": 70, "z": 34 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "cellar_access_door",
+      "name": "Cellar Access Door",
+      "certainty": "reconstructed",
+      "connects": ["pantry", "cellar_access"],
+      "line": {
+        "start": { "x": 66, "z": 42 },
+        "end": { "x": 70, "z": 42 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "tower_kitchen_door",
+      "name": "Tower Kitchen Door",
+      "certainty": "canon",
+      "connects": ["kitchen", "magician_tower_base"],
+      "line": {
+        "start": { "x": 74, "z": 34 },
+        "end": { "x": 80, "z": 34 }
+      },
+      "approximate": true
+    },
+    {
+      "id": "tower_cellar_door",
+      "name": "Tower Cellar Hall Door",
+      "certainty": "reconstructed",
+      "connects": ["cellar_access", "magician_tower_base"],
+      "line": {
+        "start": { "x": 72, "z": 44 },
+        "end": { "x": 72, "z": 48 }
+      },
+      "approximate": true
+    }
+  ],
+  "stairs": [
+    {
+      "id": "west_gate_tower_stairs",
+      "name": "West Gate Tower Stairs",
+      "certainty": "implied",
+      "connects": ["west_gate_tower_base", "gatehouse_walk_level"],
+      "from_floor": "ground",
+      "access_from": "west_gate_tower_base",
+      "polygon": [
+        { "x": 25, "z": 61 },
+        { "x": 31, "z": 61 },
+        { "x": 31, "z": 67 },
+        { "x": 25, "z": 67 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "cellar_stairs",
+      "name": "Cellar Stairs",
+      "certainty": "implied",
+      "connects": ["cellar_access", "cellar_level"],
+      "from_floor": "ground",
+      "access_from": "cellar_access",
+      "polygon": [
+        { "x": 64, "z": 43 },
+        { "x": 70, "z": 43 },
+        { "x": 70, "z": 49 },
+        { "x": 64, "z": 49 }
+      ],
+      "approximate": true
+    },
+    {
+      "id": "magician_tower_stairs",
+      "name": "Magician Tower Stairs",
+      "certainty": "canon",
+      "connects": ["magician_tower_base", "magician_tower_level"],
+      "from_floor": "ground",
+      "access_from": "magician_tower_base",
+      "polygon": [
+        { "x": 74, "z": 40 },
+        { "x": 82, "z": 40 },
+        { "x": 82, "z": 48 },
+        { "x": 74, "z": 48 }
+      ],
+      "approximate": true
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "broad_keep_stairs_marker",
+      "name": "Broad Keep Stairs",
+      "certainty": "canon",
+      "type": "floor_marker",
+      "height": 0.08,
+      "polygon": [
+        { "x": 30, "z": 33 },
+        { "x": 48, "z": 33 },
+        { "x": 48, "z": 40 },
+        { "x": 30, "z": 40 }
+      ]
+    },
+    {
+      "id": "courtyard_feast_table",
+      "name": "Courtyard Feast Table",
+      "certainty": "reconstructed",
+      "height": 0.8,
+      "polygon": [
+        { "x": 28, "z": 52 },
+        { "x": 36, "z": 52 },
+        { "x": 36, "z": 54 },
+        { "x": 28, "z": 54 }
+      ]
+    },
+    {
+      "id": "courtyard_ale_casks",
+      "name": "Courtyard Ale Casks",
+      "certainty": "canon",
+      "height": 1.0,
+      "polygon": [
+        { "x": 38, "z": 52 },
+        { "x": 42, "z": 52 },
+        { "x": 42, "z": 56 },
+        { "x": 38, "z": 56 }
+      ]
+    },
+    {
+      "id": "council_table",
+      "name": "Council Table",
+      "certainty": "canon",
+      "height": 0.85,
+      "polygon": [
+        { "x": 28, "z": 3 },
+        { "x": 34, "z": 3 },
+        { "x": 34, "z": 7 },
+        { "x": 28, "z": 7 }
+      ]
+    },
+    {
+      "id": "garden_steps_marker",
+      "name": "Garden Steps",
+      "certainty": "canon",
+      "type": "floor_marker",
+      "height": 0.08,
+      "polygon": [
+        { "x": 54, "z": 8 },
+        { "x": 58, "z": 8 },
+        { "x": 58, "z": 10 },
+        { "x": 54, "z": 10 }
+      ]
+    },
+    {
+      "id": "garden_bench",
+      "name": "Garden Bench",
+      "certainty": "canon",
+      "height": 0.5,
+      "polygon": [
+        { "x": 60, "z": 4 },
+        { "x": 66, "z": 4 },
+        { "x": 66, "z": 6 },
+        { "x": 60, "z": 6 }
+      ]
+    }
+  ],
+  "labels": [
+    {
+      "id": "castle_label",
+      "text": "Castle Crydee",
+      "position": { "x": 42, "z": 26 },
+      "certainty": "canon"
+    },
+    {
+      "id": "great_hall_label",
+      "text": "Great Hall",
+      "position": { "x": 39, "z": 25 },
+      "certainty": "canon"
+    },
+    {
+      "id": "courtyard_label",
+      "text": "Courtyard",
+      "position": { "x": 41, "z": 50 },
+      "certainty": "canon"
+    },
+    {
+      "id": "gatehouse_label",
+      "text": "Great Gate",
+      "position": { "x": 41, "z": 66 },
+      "certainty": "canon"
+    },
+    {
+      "id": "service_yard_label",
+      "text": "Service Yard",
+      "position": { "x": 20, "z": 46 },
+      "certainty": "reconstructed"
+    },
+    {
+      "id": "stables_label",
+      "text": "Stables",
+      "position": { "x": 8, "z": 62 },
+      "certainty": "canon"
+    },
+    {
+      "id": "barracks_label",
+      "text": "Barracks",
+      "position": { "x": 8, "z": 44 },
+      "certainty": "canon"
+    },
+    {
+      "id": "armory_label",
+      "text": "Armory",
+      "position": { "x": 8, "z": 28 },
+      "certainty": "canon"
+    },
+    {
+      "id": "council_label",
+      "text": "Council Chamber",
+      "position": { "x": 31, "z": 5 },
+      "certainty": "canon"
+    },
+    {
+      "id": "private_hall_label",
+      "text": "Private Hall",
+      "position": { "x": 46, "z": 5 },
+      "certainty": "implied"
+    },
+    {
+      "id": "garden_label",
+      "text": "Princess Garden",
+      "position": { "x": 67, "z": 5 },
+      "certainty": "canon"
+    },
+    {
+      "id": "kitchen_label",
+      "text": "Kitchen",
+      "position": { "x": 71, "z": 26 },
+      "certainty": "canon"
+    },
+    {
+      "id": "tower_base_label",
+      "text": "Magician's Tower",
+      "position": { "x": 78, "z": 42 },
+      "certainty": "canon"
+    },
+    {
+      "id": "west_wall_label",
+      "text": "West Wall",
+      "position": { "x": 2, "z": 46 },
+      "certainty": "canon"
+    },
+    {
+      "id": "east_wall_label",
+      "text": "East Wall",
+      "position": { "x": 82, "z": 46 },
+      "certainty": "canon"
+    }
+  ],
+  "upper_levels": [
+    {
+      "id": "cellar_level",
+      "name": "Cellar Level",
+      "certainty": "implied",
+      "elevation": -3.2,
+      "floor_height": 2.8,
+      "notes": [
+        "The novel establishes kitchen stores, ale barrels, and refuge use in the cellars.",
+        "This playable cellar layer is reconstructed from those functions rather than exact architectural plans."
+      ],
+      "footprint": {
+        "id": "cellar_footprint",
+        "name": "Cellar Footprint",
+        "certainty": "reconstructed",
+        "geometry_certainty": "reconstructed",
+        "polygon": [
+          { "x": 58, "z": 18 },
+          { "x": 80, "z": 18 },
+          { "x": 80, "z": 50 },
+          { "x": 58, "z": 50 }
+        ]
+      },
+      "slab_regions": [
+        {
+          "id": "cellar_main_slab",
+          "name": "Cellar Main Slab",
+          "certainty": "reconstructed",
+          "polygon": [
+            { "x": 58, "z": 18 },
+            { "x": 80, "z": 18 },
+            { "x": 80, "z": 50 },
+            { "x": 58, "z": 50 }
+          ]
+        }
+      ],
+      "rooms": [
+        {
+          "id": "kitchen_stores",
+          "name": "Kitchen Stores",
+          "certainty": "canon",
+          "geometry_certainty": "reconstructed",
+          "polygon": [
+            { "x": 58, "z": 18 },
+            { "x": 70, "z": 18 },
+            { "x": 70, "z": 32 },
+            { "x": 58, "z": 32 }
+          ]
+        },
+        {
+          "id": "ale_cellar",
+          "name": "Ale Cellar",
+          "certainty": "canon",
+          "geometry_certainty": "reconstructed",
+          "polygon": [
+            { "x": 70, "z": 18 },
+            { "x": 80, "z": 18 },
+            { "x": 80, "z": 32 },
+            { "x": 70, "z": 32 }
+          ]
+        },
+        {
+          "id": "refuge_cellar",
+          "name": "Refuge Cellar",
+          "certainty": "canon",
+          "geometry_certainty": "reconstructed",
+          "polygon": [
+            { "x": 58, "z": 32 },
+            { "x": 80, "z": 32 },
+            { "x": 80, "z": 50 },
+            { "x": 58, "z": 50 }
+          ]
+        }
+      ],
+      "doors": [
+        {
+          "id": "stores_ale_door",
+          "name": "Stores To Ale Cellar",
+          "certainty": "reconstructed",
+          "connects": ["kitchen_stores", "ale_cellar"],
+          "line": {
+            "start": { "x": 70, "z": 22 },
+            "end": { "x": 70, "z": 26 }
+          }
+        },
+        {
+          "id": "stores_refuge_door",
+          "name": "Stores To Refuge Cellar",
+          "certainty": "reconstructed",
+          "connects": ["kitchen_stores", "refuge_cellar"],
+          "line": {
+            "start": { "x": 66, "z": 32 },
+            "end": { "x": 70, "z": 32 }
+          }
+        },
+        {
+          "id": "ale_refuge_door",
+          "name": "Ale Cellar To Refuge Cellar",
+          "certainty": "reconstructed",
+          "connects": ["ale_cellar", "refuge_cellar"],
+          "line": {
+            "start": { "x": 74, "z": 32 },
+            "end": { "x": 78, "z": 32 }
+          }
+        }
+      ],
+      "stairs": [],
+      "fixtures": [
+        {
+          "id": "cellar_casks",
+          "name": "Ale Casks",
+          "certainty": "canon",
+          "height": 1.0,
+          "polygon": [
+            { "x": 72, "z": 22 },
+            { "x": 78, "z": 22 },
+            { "x": 78, "z": 28 },
+            { "x": 72, "z": 28 }
+          ]
+        },
+        {
+          "id": "cellar_sacks",
+          "name": "Store Sacks",
+          "certainty": "reconstructed",
+          "height": 0.8,
+          "polygon": [
+            { "x": 60, "z": 22 },
+            { "x": 66, "z": 22 },
+            { "x": 66, "z": 26 },
+            { "x": 60, "z": 26 }
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "id": "kitchen_stores_label",
+          "text": "Kitchen Stores",
+          "position": { "x": 64, "z": 25 },
+          "certainty": "canon"
+        },
+        {
+          "id": "ale_cellar_label",
+          "text": "Ale Cellar",
+          "position": { "x": 75, "z": 25 },
+          "certainty": "canon"
+        },
+        {
+          "id": "refuge_cellar_label",
+          "text": "Refuge Cellar",
+          "position": { "x": 69, "z": 40 },
+          "certainty": "canon"
+        }
+      ]
+    },
+    {
+      "id": "gatehouse_walk_level",
+      "name": "Gatehouse Walk",
+      "certainty": "implied",
+      "elevation": 4.4,
+      "floor_height": 1.25,
+      "notes": [
+        "This open-air level combines the gate tower watch position and the herald balcony overlooking the courtyard.",
+        "The geometry is intentionally simple and reviewable."
+      ],
+      "footprint": {
+        "id": "gatehouse_walk_footprint",
+        "name": "Gatehouse Walk Footprint",
+        "certainty": "reconstructed",
+        "geometry_certainty": "reconstructed",
+        "polygon": [
+          { "x": 24, "z": 58 },
+          { "x": 58, "z": 58 },
+          { "x": 58, "z": 72 },
+          { "x": 24, "z": 72 }
+        ]
+      },
+      "slab_regions": [
+        {
+          "id": "gatehouse_walk_slab",
+          "name": "Gatehouse Walk Slab",
+          "certainty": "reconstructed",
+          "polygon": [
+            { "x": 24, "z": 60 },
+            { "x": 58, "z": 60 },
+            { "x": 58, "z": 72 },
+            { "x": 24, "z": 72 }
+          ]
+        },
+        {
+          "id": "herald_balcony_slab",
+          "name": "Herald Balcony Slab",
+          "certainty": "canon",
+          "polygon": [
+            { "x": 34, "z": 58 },
+            { "x": 48, "z": 58 },
+            { "x": 48, "z": 60 },
+            { "x": 34, "z": 60 }
+          ]
+        }
+      ],
+      "rooms": [],
+      "doors": [],
+      "stairs": [],
+      "fixtures": [
+        {
+          "id": "gatehouse_bell_marker",
+          "name": "Alarm Bell Marker",
+          "certainty": "reconstructed",
+          "height": 0.9,
+          "polygon": [
+            { "x": 52, "z": 66 },
+            { "x": 54, "z": 66 },
+            { "x": 54, "z": 68 },
+            { "x": 52, "z": 68 }
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "id": "gatehouse_walk_label",
+          "text": "Gate Tower Walk",
+          "position": { "x": 41, "z": 67 },
+          "certainty": "implied"
+        },
+        {
+          "id": "herald_balcony_label",
+          "text": "Herald Balcony",
+          "position": { "x": 41, "z": 59 },
+          "certainty": "canon"
+        }
+      ]
+    },
+    {
+      "id": "magician_tower_level",
+      "name": "Magician's Tower Room",
+      "certainty": "canon",
+      "elevation": 4.2,
+      "floor_height": 3.0,
+      "notes": [
+        "Pug's room is described in the northmost tower, the magician's tower.",
+        "This upper room remains a restrained reconstruction rather than a full tower stack."
+      ],
+      "footprint": {
+        "id": "magician_tower_level_footprint",
+        "name": "Magician Tower Level Footprint",
+        "certainty": "reconstructed",
+        "geometry_certainty": "reconstructed",
+        "polygon": [
+          { "x": 72, "z": 34 },
+          { "x": 84, "z": 34 },
+          { "x": 84, "z": 50 },
+          { "x": 72, "z": 50 }
+        ]
+      },
+      "slab_regions": [
+        {
+          "id": "magician_tower_main_slab",
+          "name": "Magician Tower Main Slab",
+          "certainty": "reconstructed",
+          "polygon": [
+            { "x": 72, "z": 34 },
+            { "x": 84, "z": 34 },
+            { "x": 84, "z": 50 },
+            { "x": 72, "z": 50 }
+          ]
+        }
+      ],
+      "rooms": [],
+      "doors": [],
+      "stairs": [],
+      "fixtures": [
+        {
+          "id": "tower_bed",
+          "name": "Tower Bed",
+          "certainty": "reconstructed",
+          "height": 0.65,
+          "polygon": [
+            { "x": 74, "z": 36 },
+            { "x": 78, "z": 36 },
+            { "x": 78, "z": 40 },
+            { "x": 74, "z": 40 }
+          ]
+        },
+        {
+          "id": "tower_worktable",
+          "name": "Tower Worktable",
+          "certainty": "reconstructed",
+          "height": 0.8,
+          "polygon": [
+            { "x": 79, "z": 38 },
+            { "x": 82, "z": 38 },
+            { "x": 82, "z": 41 },
+            { "x": 79, "z": 41 }
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "id": "magician_tower_room_label",
+          "text": "Magician's Tower Room",
+          "position": { "x": 78, "z": 44 },
+          "certainty": "canon"
+        }
+      ]
+    }
+  ],
+  "vertical_links": [
+    {
+      "id": "cellar_descent",
+      "label": "Cellar Stairs",
+      "certainty": "implied",
+      "type": "walkable_stair_ramp",
+      "width": 2.4,
+      "thickness": 0.22,
+      "step_count": 15,
+      "from_floor": "ground",
+      "to_floor": "cellar_level",
+      "start": { "x": 67.0, "y": 0.2, "z": 49.0 },
+      "end": { "x": 67.0, "y": -3.0, "z": 43.0 },
+      "notes": [
+        "Playable descent to the cellar level.",
+        "Exact run and turn count are reconstructed from function rather than textual precision."
+      ]
+    },
+    {
+      "id": "west_gate_tower_to_walk",
+      "label": "West Gate Tower Stairs",
+      "certainty": "implied",
+      "type": "walkable_stair_ramp",
+      "width": 2.8,
+      "thickness": 0.22,
+      "step_count": 16,
+      "from_floor": "ground",
+      "to_floor": "gatehouse_walk_level",
+      "start": { "x": 28.0, "y": 0.2, "z": 67.0 },
+      "end": { "x": 28.0, "y": 4.62, "z": 60.5 },
+      "notes": [
+        "Connects the west gate tower base to the upper watch and balcony level."
+      ]
+    },
+    {
+      "id": "magician_tower_stair_link",
+      "label": "Magician Tower Stairs",
+      "certainty": "implied",
+      "type": "walkable_stair_ramp",
+      "width": 2.6,
+      "thickness": 0.22,
+      "step_count": 18,
+      "from_floor": "ground",
+      "to_floor": "magician_tower_level",
+      "start": { "x": 78.0, "y": 0.2, "z": 49.0 },
+      "end": { "x": 78.0, "y": 4.42, "z": 41.5 },
+      "notes": [
+        "Playable connection from the tower base to Pug's upper room."
+      ]
+    }
+  ],
+  "validation_flags": [
+    {
+      "id": "vf_draft_status",
+      "level": "warning",
+      "message": "This remains an evidence-led draft blockout rather than a final canon architecture lock."
+    },
+    {
+      "id": "vf_dimensions_approximate",
+      "level": "warning",
+      "message": "All dimensions, adjacencies, and circulation shapes remain approximate reconstructions."
+    },
+    {
+      "id": "vf_expanded_scope",
+      "level": "info",
+      "message": "This v02 target expands Crydee beyond the first courtyard prototype to include west-wing support spaces, a cellar layer, and two upper traversable areas."
+    },
+    {
+      "id": "vf_canon_elements",
+      "level": "pass",
+      "message": "Keep, great hall, courtyard, great gate, kitchen corridor, barracks, armory, cellars, garden, and magician tower are all represented from direct or tightly implied book evidence."
+    },
+    {
+      "id": "vf_review_needed",
+      "level": "warning",
+      "message": "Tower count, exact outer shell geometry, and the relationship of east and west battlements still need broader review across the novel."
+    }
+  ]
+}

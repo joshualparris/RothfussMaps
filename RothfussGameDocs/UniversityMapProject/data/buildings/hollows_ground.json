@@ -1,0 +1,48 @@
+﻿{
+  "building_id": "hollows",
+  "floor_id": "ground",
+  "metadata": {
+    "elevation_y": 0.0,
+    "floor_height": 5.0,
+    "wall_thickness_default": 1.2,
+    "north_orientation_deg": 15.0
+  },
+  "geometries": {
+    "footprint": [
+      {"x": -100, "z": -75}, {"x": -70, "z": -75}, {"x": -70, "z": -45}, {"x": -100, "z": -45}
+    ],
+    "walls": [
+      {"id": "front_wall", "start": {"x": -100, "z": -45}, "end": {"x": -70, "z": -45}, "feature": "stained_glass_teccam"}
+    ],
+    "rooms": [
+      {
+        "id": "admissions_theatre",
+        "label": "Admissions Theatre",
+        "certainty": "canon",
+        "polygon": [{"x": -98, "z": -70}, {"x": -85, "z": -70}, {"x": -85, "z": -55}, {"x": -98, "z": -55}],
+        "elevation_steps": [0.0, 0.5, 1.0], 
+        "note": "Auditorium -> Stage -> Masters' Dais"
+      },
+      {
+        "id": "masters_hall",
+        "label": "Masters' Hall",
+        "certainty": "canon",
+        "polygon": [{"x": -83, "z": -70}, {"x": -72, "z": -70}, {"x": -72, "z": -58}, {"x": -83, "z": -58}],
+        "is_windowless": true
+      },
+      {
+        "id": "ledgers_and_lists",
+        "label": "Ledgers and Lists",
+        "certainty": "reconstructed",
+        "polygon": [{"x": -80, "z": -55}, {"x": -72, "z": -55}, {"x": -72, "z": -48}, {"x": -80, "z": -48}]
+      }
+    ],
+    "portals": [
+      {"type": "door", "pos": {"x": -85, "z": -45}, "width": 3.0, "label": "Front Entry"}
+    ],
+    "vertical_circulation": [
+      {"type": "stair", "pos": {"x": -75, "z": -65}, "target_floor": "basement", "direction": "down", "label": "To Bursar"},
+      {"type": "stair", "pos": {"x": -73, "z": -65}, "target_floor": "level_2", "direction": "up", "label": "To Master Offices"}
+    ]
+  }
+}

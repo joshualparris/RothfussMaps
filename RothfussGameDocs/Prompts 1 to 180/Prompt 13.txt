@@ -1,0 +1,347 @@
+Prompt 13
+This Prompt 13 follows the  original plan’s Prompt 13 role : add a dedicated  mystery registry  listing the series’ major unresolved mysteries, flagged as  never resolve
+, and wire that registry into the optional Gemini narration path. Because Prompts 8 and 9 already established canon grounding and lore-guard validation, Prompt 13 can now make mystery protection more explicit, structured, and reusable without changing any gameplay systems.
+
+KKC TEXT ADVENTURE — PROMPT 13 OF 180
+==========================================
+Mystery Registry: Structured Never-Resolve Constraints for Narration
+==========================================
+This prompt builds directly on Prompts 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, and 12.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+This prompt follows the original Phase 1 plan role for Prompt 13:
+add a mystery registry listing the major unresolved series mysteries,
+flagged as never_resolve: true, and make the optional narration layer
+reference that registry explicitly.
+Do not add new gameplay systems in this prompt.
+═══════════════════════════════════════
+HARD BANS — UNCHANGED
+═══════════════════════════════════════
+No Anthropic. No OpenAI. No new AI provider.
+Gemini remains the only optional LLM provider in this codebase.
+No web server. No frontend.
+No new commands.
+No new locations.
+No new NPCs.
+No new economy systems.
+No new sympathy rules.
+No new music systems.
+No new social mechanics.
+No new quest mechanics.
+Do not:
+- resolve mysteries
+- create a “mystery progress” gameplay loop
+- let rumours or NPCs answer deep unresolved questions
+- move mystery logic into engine truth
+- make the mystery registry decide gameplay outcomes
+This prompt is for narration safety and structural clarity only.
+═══════════════════════════════════════
+ARCHITECTURE RULE — STILL ABSOLUTE
+═══════════════════════════════════════
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- sympathy truth
+- social truth
+- music/Eolian truth
+- NPC presence truth
+- rumour availability truth
+content/* owns:
+- authored registry data only
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+- canon grounding only
+- lore-guard validation only
+- mystery registry enforcement only for narration safety
+The mystery registry:
+- must not call the database
+- must not mutate PlayerState
+- must not decide gameplay outcomes
+- must not contain speculative answers
+- must only declare unresolved mystery topics and safe framing notes
+═══════════════════════════════════════
+GOAL OF THIS PROMPT
+═══════════════════════════════════════
+By the end of Prompt 13, the project should have:
+  - a structured mystery registry module
+  - explicit never-resolve entries for the major deep mysteries
+  - a compact mystery constraint block available to narration prompts
+  - lore-guard integration that uses the registry rather than only
+    relying on hardcoded phrase lists
+  - a deterministic way to inject only relevant mystery constraints
+    into the current narration context
+  - no change to gameplay systems
+The player should never receive Gemini narration that casually answers
+major unresolved mysteries.
+═══════════════════════════════════════
+SCOPE OF THIS PROMPT
+═══════════════════════════════════════
+This prompt covers:
+  1. Add mysteryRegistry.ts
+  2. Add MysteryRegistryEntry type
+  3. Add mystery_registry_notes to NarrationSceneContext
+  4. Add helper functions to select relevant mystery constraints
+"  5. Update promptBuilder.ts to include an ""Unresolved Mysteries"" section"
+  6. Update loreGuard.ts to read from the structured mystery registry
+  7. Add tests for registry contents, selection, and lore-guard use
+This prompt does NOT cover:
+  - new mystery gameplay
+  - journals or clue tracking
+  - new NPC dialogue systems
+  - new commands
+  - new locations
+  - new lore facts
+  - changing the existing canon registry beyond using it alongside
+    the mystery registry
+═══════════════════════════════════════
+NEW FILES IN THIS PROMPT
+═══════════════════════════════════════
+Add exactly these files:
+  src/
+    content/
+      mysteryRegistry.ts
+  tests/
+    mysteryRegistry.test.ts
+Modify these existing files:
+  src/types/index.ts
+  src/narration/narrationContext.ts
+  src/narration/promptBuilder.ts
+  src/narration/loreGuard.ts
+  src/narration/canonInstructions.ts
+  tests/loreGuard.test.ts
+  tests/promptBuilder.test.ts
+Do not add any other files.
+═══════════════════════════════════════
+TYPES — update src/types/index.ts
+═══════════════════════════════════════
+Do not remove or rename existing types.
+Add:
+export interface MysteryRegistryEntry {
+  id: string;
+  label: string;
+  never_resolve: true;
+  applies_to: string[];   // e.g. ['global'], ['rumours'], ['npc_conversation']
+  notes: string[];        // short constraint lines for the narrator
+  forbidden_phrases: string[];
+}
+Update NarrationSceneContext to include:
+  mystery_registry_notes: string[];
+Rules:
+- mystery_registry_notes must contain compact human-readable constraint lines
+- these are narration-context only
+- do not store them in PlayerState
+- do not add any other new types in this prompt
+═══════════════════════════════════════
+MYSTERY REGISTRY — src/content/mysteryRegistry.ts
+═══════════════════════════════════════
+Implement and export:
+  MYSTERY_REGISTRY: MysteryRegistryEntry[]
+  getRelevantMysteryNotes(input: {
+    command: string;
+    locationGroup: string;
+    visibleNpcNames: string[];
+  }): string[]
+  getAllForbiddenMysteryPhrases(): string[]
+Rules:
+- This is a TypeScript data module, not a .json file
+- Deterministic only
+- No speculative content
+- No answers, only constraints
+- Return at most 6 mystery note lines
+- Return stable order
+- Do not include raw implementation commentary
+Required registry entries:
+Add exactly these major unresolved topics, all with never_resolve: true:
+  1. chandrian_truth
+  2. amyr_truth
+  3. denna_patron
+  4. doors_of_stone
+  5. hidden_true_names
+Each entry must include:
+- label
+- applies_to
+- 2–4 short notes
+- forbidden_phrases array
+Safe applies_to values for this prompt:
+  global
+  rumours
+  npc_conversation
+  university
+  imre
+  eolian
+  sympathy
+Required mystery note style:
+- short, direct, constraint-oriented
+- examples of acceptable note tone:
+"    ""Do not state who Denna's patron is."""
+"    ""Do not treat the Amyr's current status as settled fact."""
+"    ""Do not give any hidden true name."""
+Required forbidden_phrases coverage:
+These must be covered across the registry:
+"  ""the chandrian are"""
+"  ""the amyr are"""
+"  ""denna's patron is"""
+"  ""the doors of stone are"""
+"  ""the true name of"""
+"  ""his true name is"""
+"  ""her true name is"""
+"  ""the secret of the chandrian"""
+"  ""the amyr's true purpose"""
+"  ""the answer to the doors of stone"""
+getRelevantMysteryNotes(input):
+- Start empty
+- Add all global mystery notes
+- If command suggests rumours, add rumours-relevant mystery notes
+- If command suggests NPC conversation, add npc_conversation notes
+- If locationGroup is imre or eolian, include the relevant Denna/pipes-safe constraints if present
+- Deduplicate notes
+- Return only note strings, not full entries
+- Keep result compact
+getAllForbiddenMysteryPhrases():
+- Flatten all forbidden_phrases across the registry
+- Deduplicate
+- Return stable order
+═══════════════════════════════════════
+NARRATION CONTEXT — update src/narration/narrationContext.ts
+═══════════════════════════════════════
+Update buildNarrationSceneContext(...) to populate:
+  mystery_registry_notes
+using getRelevantMysteryNotes(...) from mysteryRegistry.ts.
+Rules:
+- pass only:
+    command
+    canon_era_context.location_group
+    visible NPC names
+- do not query the database
+- do not include hidden state
+- keep result deterministic
+- keep existing canon_registry_facts logic unchanged
+Do not change any other existing prompt-7/8 context behaviour unless needed.
+═══════════════════════════════════════
+CANON INSTRUCTIONS — update src/narration/canonInstructions.ts
+═══════════════════════════════════════
+Keep all existing instructions, mystery bans, and canon registry rules.
+Add these explicit rules:
+- If mystery_registry_notes are provided, treat them as hard constraints.
+- Do not answer, settle, or explain any mystery covered by those notes.
+- If a scene brushes near one of those topics, preserve uncertainty.
+- Do not let rumours, NPC dialogue, or descriptive prose turn unresolved
+  mysteries into facts.
+Do not add any new mystery topics beyond the required registry entries.
+═══════════════════════════════════════
+PROMPT BUILDER — update src/narration/promptBuilder.ts
+═══════════════════════════════════════
+Do not refactor working prompt construction.
+Only extend it.
+Update:
+  buildGeminiSystemPrompt(context: NarrationSceneContext): string
+to include a new compact section titled:
+  Unresolved Mysteries — Never Resolve
+Rules for this section:
+- Include mystery_registry_notes as short bullet-like lines
+- Include only if mystery_registry_notes.length > 0
+- Keep it compact
+"- Place it after ""Canon Ground Truth"" if that section exists"
+- Do not duplicate the same notes unnecessarily
+- Do not move mystery notes into the user prompt
+Do not alter working scene/user prompt structure more than needed.
+═══════════════════════════════════════
+LORE GUARD — update src/narration/loreGuard.ts
+═══════════════════════════════════════
+Do not refactor the whole file.
+Only replace hardcoded mystery phrase handling where appropriate.
+Update:
+  containsForbiddenMysteryPhrase(text: string): string[]
+so that it uses getAllForbiddenMysteryPhrases() from mysteryRegistry.ts
+as its primary source of forbidden phrase matching.
+Rules:
+- Keep deterministic case-insensitive matching
+- Keep reason strings compact
+- Existing scene-contradiction checks remain intact
+- Existing overall checkLoreSafety() flow remains intact
+Do not remove the scene contradiction logic.
+═══════════════════════════════════════
+TESTS — tests/mysteryRegistry.test.ts
+═══════════════════════════════════════
+Import:
+  MYSTERY_REGISTRY
+  getRelevantMysteryNotes
+  getAllForbiddenMysteryPhrases
+from src/content/mysteryRegistry.ts
+Tests:
+  registry shape:
+    1. registry contains exactly 5 entries
+    2. every entry has id, label, never_resolve, applies_to, notes, and forbidden_phrases
+    3. every entry has never_resolve === true
+  safety:
+    4. no notes contain speculative answers
+    5. getAllForbiddenMysteryPhrases() includes:
+"         ""the chandrian are"""
+"         ""denna's patron is"""
+"         ""the doors of stone are"""
+    6. flattened forbidden phrase list contains no duplicates
+  relevant notes:
+    7. generic look command returns global mystery notes
+    8. rumour-style command returns notes relevant to rumours
+    9. NPC-conversation-style command returns notes relevant to npc_conversation
+    10. returned notes never exceed 6 entries
+    11. returned notes are deterministic in order
+═══════════════════════════════════════
+TESTS — update tests/loreGuard.test.ts
+═══════════════════════════════════════
+Add these tests:
+  11. a forbidden phrase present in the mystery registry is caught by lore guard
+"  12. if the registry includes ""the true name of"", lore guard catches"
+"      ""the true name of Kvothe is ..."""
+  13. safe atmospheric text still passes after registry integration
+Keep the existing lore guard tests intact.
+═══════════════════════════════════════
+TESTS — update tests/promptBuilder.test.ts
+═══════════════════════════════════════
+Add these tests:
+  21. buildNarrationSceneContext includes mystery_registry_notes
+"  22. buildGeminiSystemPrompt includes an ""Unresolved Mysteries"" section"
+      when mystery_registry_notes are present
+  23. buildGeminiSystemPrompt omits the section when mystery_registry_notes is empty
+  24. a normal University look scene includes canon facts plus mystery notes
+      without mixing them together into one section
+Keep existing tests intact.
+═══════════════════════════════════════
+ARCHITECTURE REMINDERS
+═══════════════════════════════════════
+These rules from Prompt 1 still apply:
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls outside the optional Gemini provider
+  - No unused imports or files
+mysteryRegistry.ts is a content-layer file.
+It must not call the DB.
+It must not decide gameplay outcomes.
+It exists only to keep unresolved mysteries unresolved in narration.
+═══════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════
+This prompt is complete when:
+  - the codebase has a structured mystery registry module
+  - NarrationSceneContext includes mystery_registry_notes
+  - relevant mystery constraints are selected deterministically by scene
+"  - Gemini system prompts include an ""Unresolved Mysteries"" section"
+  - the lore guard uses structured forbidden mystery phrases from the registry
+  - rumours and NPC conversation remain unable to settle deep mysteries
+  - no new gameplay systems are introduced
+  - local fallback still works unchanged
+  - all new tests pass alongside earlier prompts' tests
+  - no refactoring of working Prompts 1–12 code beyond what is required
+==========================================
+END OF PROMPT 13
+==========================================
+The clean next step after this is  Prompt 14: currency system , which matches the original sequence.

@@ -1,0 +1,393 @@
+Prompt 20
+Prompt 20 should now do the  original plan’s Prompt 20 job : formalise the  multi-axis reputation system  so the codebase has one authoritative place for academic standing, University social reputation, Eolian standing, and per-NPC trust. Because your earlier prompts already introduced reputation in PlayerState and several systems now adjust it in scattered ways, this version is about 
+centralising and standardising  those mutations, not inventing reputation from scratch.
+
+KKC TEXT ADVENTURE — PROMPT 20 OF 180
+==========================================
+Reputation System: Centralised Multi-Axis Standing and NPC Trust
+==========================================
+This prompt builds directly on Prompts 1 through 19.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+This prompt follows the original Phase 1 plan role for Prompt 20:
+build a multi-axis reputation system covering academic_standing,
+university_social, eolian_standing, and individual_npc_trust.
+Important:
+Earlier prompts already introduced:
+- reputation in PlayerState
+- university_social effects
+- eolian_standing effects
+- npc_trust values for specific NPCs
+This prompt does NOT reinvent reputation from scratch.
+It centralises and standardises reputation truth so later prompts can
+build consequence triggers cleanly.
+Do not add new gameplay systems beyond reputation formalisation.
+═══════════════════════════════════════
+HARD BANS — UNCHANGED
+═══════════════════════════════════════
+No Anthropic. No OpenAI. No new AI provider.
+Gemini remains the only optional LLM provider in this codebase.
+No web server. No frontend.
+No new locations.
+No new NPCs.
+No new commands.
+No new delayed reputation queue yet.
+No new consequence triggers yet.
+No faction system.
+No morality meter.
+No hidden alignment layer.
+Do not:
+- replace the existing reputation object with a new structure unless
+  absolutely necessary
+- add random reputation shifts
+- add automatic NPC schedule changes
+- add location hostility rules yet
+- add new gameplay outcomes beyond standardised reputation mutation
+Prompt 21 will handle consequence triggers.
+Prompt 22 will handle delayed reputation spread.
+This prompt is only about making the reputation system coherent.
+═══════════════════════════════════════
+ARCHITECTURE RULE — STILL ABSOLUTE
+═══════════════════════════════════════
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- reputation truth
+- reputation labels
+- NPC trust truth
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+The reputation helpers:
+- must live in engine/*
+- must not call the database
+- must not mutate PlayerState unless explicitly returning a new state
+- must not invent consequence systems beyond adjusting reputation values
+═══════════════════════════════════════
+GOAL OF THIS PROMPT
+═══════════════════════════════════════
+By the end of Prompt 20, the codebase should have one shared reputation
+module that:
+  - centralises academic_standing, university_social, eolian_standing
+  - centralises npc_trust lookups and updates
+  - clamps all reputation values safely between 0 and 100
+  - provides simple descriptive labels for the three main axes
+  - is used by social, music, tuition, and related existing systems
+  - leaves future consequence triggers easier to implement
+The player should continue to experience the same underlying
+reputation-driven world, but the code should now have one authoritative
+reputation implementation.
+═══════════════════════════════════════
+SCOPE OF THIS PROMPT
+═══════════════════════════════════════
+This prompt covers:
+  1. Add engine/reputationEngine.ts
+  2. Add shared helpers for main axes and npc_trust
+  3. Add simple descriptive labels for the three main axes
+  4. Update socialEngine, musicEngine, tuitionEngine, and any other
+     existing reputation-changing code to use shared helpers
+  5. Add tests for clamping, axis updates, npc trust updates, and labels
+This prompt does NOT cover:
+  - delayed reputation spread
+  - hostility triggers
+  - Archives denial triggers beyond existing rules
+  - world reaction changes
+  - UI redesign
+  - new commands
+═══════════════════════════════════════
+NEW FILES IN THIS PROMPT
+═══════════════════════════════════════
+Add exactly these files:
+  src/
+    engine/
+      reputationEngine.ts
+  tests/
+    reputationEngine.test.ts
+Modify these existing files:
+  src/types/index.ts
+  src/engine/socialEngine.ts
+  src/engine/musicEngine.ts
+  src/engine/tuitionEngine.ts
+  src/narration/renderStatus.ts
+  src/narration/narrationContext.ts
+Modify only if those files already exist in the codebase from earlier prompts.
+If a listed file does not exist yet when Prompt 20 is run, skip it
+rather than inventing around it.
+Do not add any other files.
+═══════════════════════════════════════
+TYPES — update src/types/index.ts
+═══════════════════════════════════════
+Do not remove or rename existing types.
+Add:
+export type ReputationAxis =
+  'academic_standing' |
+  'university_social' |
+  'eolian_standing';
+Do not change the existing Reputation interface structure.
+Rules:
+- Keep main reputation axes exactly as:
+    academic_standing
+    university_social
+    eolian_standing
+- Keep npc_trust as Record<string, number>
+- Do not add any other new types in this prompt
+═══════════════════════════════════════
+ENGINE — src/engine/reputationEngine.ts
+═══════════════════════════════════════
+Implement and export:
+  clampReputation(value: number): number
+  getReputationValue(
+    state: PlayerState,
+    axis: ReputationAxis
+  ): number
+  setReputationValue(
+    state: PlayerState,
+    axis: ReputationAxis,
+    value: number
+  ): PlayerState
+  adjustReputation(
+    state: PlayerState,
+    axis: ReputationAxis,
+    delta: number
+  ): PlayerState
+  getNpcTrust(
+    state: PlayerState,
+    npcId: string
+  ): number
+  setNpcTrust(
+    state: PlayerState,
+    npcId: string,
+    value: number
+  ): PlayerState
+  adjustNpcTrust(
+    state: PlayerState,
+    npcId: string,
+    delta: number
+  ): PlayerState
+  getAcademicStandingLabel(value: number): string
+  getUniversitySocialLabel(value: number): string
+  getEolianStandingLabel(value: number): string
+Rules:
+─────────────────────────────────────
+clampReputation(value)
+─────────────────────────────────────
+- Clamp to integer 0–100
+- Round down with Math.floor before clamping if needed
+- negative becomes 0
+- over 100 becomes 100
+─────────────────────────────────────
+getReputationValue(state, axis)
+─────────────────────────────────────
+- Return the numeric value for the requested main axis
+─────────────────────────────────────
+setReputationValue(state, axis, value)
+─────────────────────────────────────
+- Return a new PlayerState with the requested axis set to the clamped value
+- Do not mutate the input state
+─────────────────────────────────────
+adjustReputation(state, axis, delta)
+─────────────────────────────────────
+- Return a new PlayerState with the requested axis adjusted by delta
+- Clamp result 0–100
+- Do not mutate the input state
+─────────────────────────────────────
+getNpcTrust(state, npcId)
+─────────────────────────────────────
+- Return state.reputation.npc_trust[npcId] if present
+- Otherwise return 50
+This preserves existing MVP assumptions.
+─────────────────────────────────────
+setNpcTrust(state, npcId, value)
+─────────────────────────────────────
+- Return a new PlayerState with npc_trust[npcId] set to the clamped value
+- Do not mutate the input state
+─────────────────────────────────────
+adjustNpcTrust(state, npcId, delta)
+─────────────────────────────────────
+- Return a new PlayerState with npc_trust[npcId] adjusted by delta
+- Clamp result 0–100
+- Do not mutate the input state
+─────────────────────────────────────
+getAcademicStandingLabel(value)
+─────────────────────────────────────
+Use these deterministic bands:
+"  0–20   -> ""in poor standing"""
+"  21–50  -> ""in uncertain standing"""
+"  51–80  -> ""in decent standing"""
+"  81–100 -> ""in strong standing"""
+Return those exact strings.
+─────────────────────────────────────
+getUniversitySocialLabel(value)
+─────────────────────────────────────
+Use these deterministic bands:
+"  0–20   -> ""actively disliked"""
+"  21–50  -> ""little regarded"""
+"  51–80  -> ""reasonably well regarded"""
+"  81–100 -> ""well regarded"""
+Return those exact strings.
+─────────────────────────────────────
+getEolianStandingLabel(value)
+─────────────────────────────────────
+Use these deterministic bands:
+"  0–20   -> ""unknown at the Eolian"""
+"  21–50  -> ""barely noted at the Eolian"""
+"  51–80  -> ""respectably regarded at the Eolian"""
+"  81–100 -> ""well regarded at the Eolian"""
+Return those exact strings.
+These are descriptive labels only.
+They do not add new gameplay logic.
+═══════════════════════════════════════
+SOCIAL ENGINE — update src/engine/socialEngine.ts
+═══════════════════════════════════════
+If socialEngine.ts exists from earlier prompts:
+Update it to use:
+- adjustReputation() for university_social and academic_standing
+- getNpcTrust() / setNpcTrust() / adjustNpcTrust() for npc trust
+Rules:
+- Do not change any existing social formulas from earlier prompts
+- Only replace ad hoc reputation arithmetic with shared helpers
+- Keep Kilvin/Ambrose logic functionally the same
+If socialEngine.ts does not exist yet, skip this section.
+═══════════════════════════════════════
+MUSIC ENGINE — update src/engine/musicEngine.ts
+═══════════════════════════════════════
+If musicEngine.ts exists from earlier prompts:
+Update it to use:
+- adjustReputation() for university_social and eolian_standing
+Rules:
+- Do not change Eolian or busking formulas
+- Do not change thresholds
+- Only centralise the reputation updates
+If musicEngine.ts does not exist yet, skip this section.
+═══════════════════════════════════════
+TUITION ENGINE — update src/engine/tuitionEngine.ts
+═══════════════════════════════════════
+If tuitionEngine.ts exists from earlier prompts:
+Update overdue-penalty logic to use:
+- adjustReputation(state, 'academic_standing', -5)
+- adjustReputation(state, 'university_social', -2)
+Rules:
+- Do not change the overdue penalty amounts
+- Do not change tuition rules
+- Only centralise the reputation mutation
+If tuitionEngine.ts does not exist yet, skip this section.
+═══════════════════════════════════════
+STATUS RENDERING — update src/narration/renderStatus.ts
+═══════════════════════════════════════
+Keep renderStatus() compact.
+Add one optional compact reputation summary block or line that uses the
+shared labels from reputationEngine.ts.
+Minimum acceptable output shape:
+"  ""Standing: in decent standing."""
+"  ""University: reasonably well regarded."""
+"  ""Eolian: unknown at the Eolian."""
+Rules:
+- Use the shared label helpers
+- Do not expose raw numeric reputation values
+- Keep it concise
+- If this makes status too long, it is acceptable to keep only:
+    academic standing
+    university social
+  and omit Eolian unless eolian_standing > 0
+- Do not remove existing important status lines
+═══════════════════════════════════════
+NARRATION CONTEXT — update src/narration/narrationContext.ts
+═══════════════════════════════════════
+If narrationContext.ts exists from earlier prompts:
+Update it so that any derived social_standing_label uses the shared
+label helpers from reputationEngine.ts instead of duplicating logic.
+Rules:
+- Keep behaviour compact and deterministic
+- Do not expose raw numeric reputation values to Gemini
+- Do not change command gating
+- If social_standing_label currently combines multiple axes into a
+  single phrase, keep that approach, but derive the underlying labels
+  from the shared engine helpers
+If narrationContext.ts does not exist yet, skip this section.
+═══════════════════════════════════════
+TESTS — tests/reputationEngine.test.ts
+═══════════════════════════════════════
+Import:
+  clampReputation
+  getReputationValue
+  setReputationValue
+  adjustReputation
+  getNpcTrust
+  setNpcTrust
+  adjustNpcTrust
+  getAcademicStandingLabel
+  getUniversitySocialLabel
+  getEolianStandingLabel
+from src/engine/reputationEngine.ts
+Also import:
+  initDefaultPlayerState from src/engine/state.ts
+Tests:
+  clamping:
+    1. clampReputation(-5) -> 0
+    2. clampReputation(42) -> 42
+    3. clampReputation(120) -> 100
+  main axes:
+    4. getReputationValue(defaultState, 'academic_standing') returns existing default
+    5. setReputationValue(..., 120) clamps to 100
+    6. adjustReputation(..., -999) clamps to 0
+    7. adjustReputation(..., +5) increases the chosen axis only
+  npc trust:
+    8. getNpcTrust(defaultState, 'ambrose') returns existing default trust
+    9. getNpcTrust(defaultState, 'unknown_npc') returns 50
+    10. setNpcTrust(..., 'simmon', 101) clamps to 100
+    11. adjustNpcTrust(..., 'simmon', -999) clamps to 0
+    12. adjustNpcTrust(..., 'new_person', +5) starts from 50 then adjusts and clamps
+  labels:
+"    13. getAcademicStandingLabel(10) -> ""in poor standing"""
+"    14. getAcademicStandingLabel(60) -> ""in decent standing"""
+"    15. getUniversitySocialLabel(10) -> ""actively disliked"""
+"    16. getUniversitySocialLabel(70) -> ""reasonably well regarded"""
+"    17. getEolianStandingLabel(10) -> ""unknown at the Eolian"""
+"    18. getEolianStandingLabel(90) -> ""well regarded at the Eolian"""
+═══════════════════════════════════════
+TESTS — update existing tests if needed
+═══════════════════════════════════════
+If existing tests directly inspect raw reputation arithmetic in:
+- socialEngine
+- musicEngine
+- tuitionEngine
+update them minimally so they still pass with shared helper usage.
+Do not rewrite unrelated tests.
+═══════════════════════════════════════
+ARCHITECTURE REMINDERS
+═══════════════════════════════════════
+These rules from Prompt 1 still apply:
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls outside the optional Gemini provider
+  - No unused imports or files
+reputationEngine.ts is an engine-layer file.
+It must not call the DB.
+It must not decide new consequence systems.
+It exists only to centralise multi-axis reputation truth and labels.
+═══════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════
+This prompt is complete when:
+  - the codebase has a single shared reputation module
+  - academic_standing, university_social, and eolian_standing are all
+    handled through shared helpers
+  - npc trust is handled through shared helpers
+  - all reputation values clamp safely between 0 and 100
+  - status/narration can use shared descriptive labels
+  - existing systems still behave the same but use centralised helpers
+  - no new gameplay systems beyond this reputation formalisation are introduced
+  - all new tests pass alongside earlier prompts' tests
+  - no refactoring of working Prompts 1–19 code beyond what is required
+==========================================
+END OF PROMPT 20
+==========================================
+The clean next step after this is  Prompt 21: reputation consequence triggers , which matches the original sequence.

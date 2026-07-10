@@ -1,0 +1,399 @@
+﻿Campus
+
+
+Please generate this image
+Create a strictly top-down, orthographic architectural site plan of the University campus and its immediate settlement context from Patrick Rothfuss’s Kingkiller Chronicle as a canon-constrained reconstruction.
+This image must function as the master campus layout freeze for the whole project.
+It is not fantasy concept art.
+It is not a decorative map.
+It is not a cinematic establishing shot.
+It is not a full regional map.
+It is not a narrative illustration.
+It must be drawn like a measured, restrained, scholarly planning document that another architect or reconstruction artist could use as a base reference for later building site plans and floor plans.
+CORE INTENT
+The goal is to reconstruct the University campus as faithfully as possible to the books while preserving uncertainty where the books do not fully resolve it.
+The drawing must:
+* prioritize canon-supported spatial relationships
+* prefer modest, institutional, believable planning over spectacle
+* show only enough settlement context to orient the campus properly
+* avoid over-inventing exact building placements where the books remain ambiguous
+* make uncertain placements legible as reconstructed, not silently “solved”
+DRAWING MODE
+Use:
+* true top-down orthographic view
+* black-and-white architectural site plan graphics
+* clean linework
+* restrained hatch only if useful
+* north arrow
+* scale bar
+* simple labels
+* plain legend/key
+* a short notes block if needed for unresolved naming or placement issues
+Do not use:
+* perspective
+* isometric projection
+* dramatic shadows
+* fantasy decoration
+* parchment textures
+* characters
+* carts
+* punishments
+* admissions crowds
+* heraldry
+* decorative borders
+* atmospheric ruins
+* cinematic canyon rendering
+* painterly effects
+CERTAINTY SYSTEM
+Use a visible plain key with:
+* canon
+* implied
+* reconstructed
+Apply these consistently:
+* canon = directly supported by the books
+* implied = strong spatial inference from the books
+* reconstructed = conservative working placement chosen to make the campus usable and coherent
+Do not present a reconstructed placement as if it were a proven canon fact.
+OVERALL CAMPUS IDENTITY
+The University must read as:
+* west of Imre
+* reached by crossing Stonebridge over the Omethi canyon
+* embedded in an orderly, service-oriented, town-scale settlement
+* academically institutional rather than aristocratic
+* varied in architecture rather than master-planned uniformity
+* large enough to support over a thousand students
+* spread out with roads, paths, lawns, gardens, courtyards, and working yards
+* not a tiny isolated cloister
+* not a walled magical citadel
+* not a palace complex
+* not a monastery quadrangle
+* not a fortress keep with decorative additions
+The campus should feel like a lived-in university town cluster, not a ceremonial capital.
+REGIONAL SPATIAL SPINE — MUST BE CLEAR
+The east-west approach must be the clearest campus-level spatial fact in the drawing:
+* Imre lies to the east
+* Stonebridge crosses the Omethi canyon
+* the University lies to the west of that crossing
+* the Archives are the first major severe academic landmark on the University side
+This axis must be legible immediately from the plan.
+Do not bury or confuse this relationship.
+SETTLEMENT CONTEXT
+Show enough context to make the campus believable as part of a service town:
+* a limited amount of Imre-side or settlement-side street structure
+* roads and lanes
+* some small surrounding buildings or blocks at the edges where helpful
+* the sense of a larger settlement serving the University
+* open ground, lawns, and gardens around the main academic buildings
+Do not:
+* fully map all of Imre
+* draw every surrounding house
+* over-detail the service town
+* invent a dense complete city plan
+* turn the University into an isolated island of buildings in empty landscape
+The books support a town-sized, orderly, service-oriented built environment, not a tiny cloister or an empty field campus.
+CAMPUS-WIDE COMPOSITION
+Lay out the campus as a loose academic cluster with distinct functional belts:
+1. Eastern threshold / ceremonial / administrative cluster
+2. Central academic core
+3. Productive / service-heavy zone
+4. Residential belt
+5. Northern isolated secure compound
+These zones should be evident in planning logic even where exact building coordinates remain reconstructed.
+EASTERN THRESHOLD / CEREMONIAL CLUSTER
+This part of campus must include:
+* the Archives as the strongest eastern monolithic anchor
+* Hollows near the Archives
+* a large central square or courtyard suitable for admissions logistics and public punishment
+* practical approach paths or roads from the Stonebridge side
+* enough openness that the Archives remain a dominant visual exterior anchor
+This zone should feel:
+* formal
+* exposed
+* institutional
+* public-facing
+* academic
+* not festive or decorative
+Do not turn it into:
+* a palace forecourt
+* a cathedral close
+* a ceremonial parade ground
+* a tiny enclosed cloister court
+CENTRAL ACADEMIC CORE
+Mains must sit as the central academic labyrinth:
+* old
+* sprawling
+* accreted
+* chaotic
+* composed of mismatched pieces
+* suggestive of swallowed buildings and courtyards
+* visibly less rational than the rest of the campus
+Mains must not read as:
+* symmetrical
+* cleanly axial
+* neatly rectangular
+* a classic quadrangle
+* one unified facade mass
+It should feel like the campus’s oldest academic body, grown over centuries.
+PRODUCTIVE / SERVICE SIDE
+The Medica and Fishery / Artificery belong on the more practical side of campus:
+* not in the ceremonial threshold cluster
+* not hidden like tiny annexes
+* not treated as decorative landmarks
+Medica
+The Medica should read as:
+* large
+* irregular
+* substantial
+* institutional
+* active
+* more practical than ceremonial
+* a serious medical / service building
+Fishery / Artificery
+The Fishery / Artificery should read as:
+* industrial
+* workshop-based
+* practical
+* tied to working-yard logic
+* not residential
+* not office-like
+* not a mere classroom block
+Its placement should plausibly support:
+* east-wall light logic
+* a south exit toward a courtyard
+* service / work circulation
+Do not invent excessive substructures or unsupported annexes.
+RESIDENTIAL BELT
+The residential cluster must include:
+* Mews
+* Mess
+Mews
+Mews must read as:
+* radial
+* many-windowed
+* a central hub with eight wings
+* clearly residential
+* larger than a simple dormitory
+* practical rather than ornate
+Mess
+Mess must be:
+* south of Mews
+* across open lawn
+* separate from Mews
+* simpler and more hall-like than the major academic buildings
+This Mews -> lawn -> Mess south relationship must be preserved clearly.
+NORTHERN SECURED COMPOUND
+Haven must be:
+* to the north of the dense academic core
+* reached by road
+* fenced
+* spatially distinct
+* manor-institutional rather than prison-block
+* isolated enough to feel separate from ordinary student circulation
+It should read as a dedicated secure institutional precinct, not merely another academic hall.
+CENTRAL SQUARE / COURTYARD
+Include one large open square / courtyard that can plausibly serve as:
+* admissions queues
+* student milling
+* public punishments
+* a major campus gathering space
+Treat:
+* House of the Wind
+* Pennant Square
+* the whipping courtyard
+as one working central square for this freeze.
+Do not split them into separate spaces unless explicitly forced by evidence.
+Keep any naming uncertainty in a small notes block, not by generating multiple separate squares.
+This square must be:
+* large
+* open
+* practical
+* institutional
+* important to circulation
+* not overly landscaped
+* not ceremonial in a noble sense
+* not tiny
+THE ARCHIVES — EXTERIOR CAMPUS ROLE
+The Archives must read as:
+* the strongest eastern visual anchor
+* austere
+* square in footprint
+* windowless
+* severe
+* blank-faced
+* monolithic
+* more forbidding than inviting
+* externally simpler than its interior complexity suggests
+Do not:
+* add windows
+* add extra exterior entrances
+* ornament it
+* give it decorative towers
+* make it look like a palace, church, or fortress keep
+* place it so deep in the cluster that it stops functioning as the eastern anchor
+If the approved shell elsewhere already fixes the exact height, use that shell.
+If not, do not hard-code a conflicting storey count here; just draw it as a tall severe square monolith.
+HOLLOWS
+Hollows must read as:
+* smaller than the Archives and Mains
+* square or nearly square
+* simple
+* near the Archives
+* part of the eastern cluster
+* associated with stained-glass identity
+Place Hollows conservatively consistent with the known relation:
+from the Archives, it is reached by going “down, then left.”
+Do not overstate this into over-precise compass geometry beyond what the master campus orientation supports.
+MEDICA
+The Medica must read as:
+* large
+* irregular
+* substantial
+* institutional
+* medical/service-oriented rather than ceremonial
+* opposite or beyond the Archives from one known courtyard approach
+Use that relationship conservatively without pretending its full global compass placement is fully solved.
+FISHERY / ARTIFICERY
+The Fishery / Artificery must read as:
+* an industrial working complex
+* not just a small hall
+* on the practical / productive side of campus
+* plausibly tied to working-yard space
+* not tucked into the ceremonial eastern cluster
+* not merged into Mains
+* not residential
+Keep its exact final placement cautious if not fully locked.
+MEWS
+The Mews must:
+* preserve the radial hub-and-eight-wings geometry
+* feel residential and many-windowed
+* sit in the residential belt
+* pair clearly with the Mess to the south across lawn
+Do not stylize the Mews into an ornamental flower-like fantasy building.
+HAVEN
+Haven must:
+* be clearly north
+* outside the dense student core
+* be road-connected
+* be fenced
+* read as formal, substantial, and controlled
+* not read as dungeon-maze architecture from above
+Its separation from the main student core must be obvious.
+UNDERTHING SURFACE LOGIC
+The Underthing is large and important but mostly hidden.
+At the campus site-plan level:
+* do not try to map the Underthing fully
+* do not create a dramatic underground cutaway
+* do not invent extensive exterior vent towers
+* do not overpopulate the surface with unexplained grates
+At most, show:
+* very minimal conservative service / ventilation logic
+* only if needed
+* only where it helps explain Archives connection
+* only if it stays understated
+The Underthing should remain mostly invisible at this scale.
+ROADS, PATHS, LAWNS, AND GARDENS
+The campus must include:
+* roads
+* connecting paths
+* lawns
+* some gardens
+* open ground between buildings
+* believable circulation between academic, residential, industrial, and secure zones
+Do not:
+* make the campus wall-to-wall stone
+* eliminate outdoor breathing room
+* turn all open space into decorative gardens
+* make circulation purely symbolic rather than practical
+TOPOGRAPHY
+Show the Omethi canyon and Stonebridge clearly enough that:
+* the crossing matters
+* the eastern approach makes sense
+* the Archives can plausibly be seen as the first strong visual landmark on the University side
+But do not:
+* turn the canyon into a dramatic fantasy ravine illustration
+* over-render cliffs for spectacle
+* make the whole plan about the canyon
+Keep topography restrained and diagrammatic.
+UNCERTAINTY HANDLING
+Where the books do not fully lock placement:
+* choose the most conservative believable planning arrangement
+* mark it reconstructed
+* keep footprints modest
+* avoid over-precise compass claims
+* preserve unresolved relationships as unresolved
+This especially applies to:
+* exact placement of Mains relative to some secondary buildings
+* exact siting of Fishery / Crucible / Ledgers and Lists / Masters’ Hall
+* exact global placement of some buildings beyond the Imre -> Stonebridge -> University axis
+* number and placement of Underthing access points
+Do not smooth over uncertainty with elegant symmetry.
+GRAPHIC CONVENTIONS
+Use:
+* strong lineweight for primary canon anchors
+* lighter lineweight for reconstructed masses
+* restrained hatching or fill only if helpful
+* simple room/building labels
+* plain legend
+* north arrow
+* scale bar
+* optional notes block for unresolved naming or placement tensions
+Suggested labels:
+* Imre
+* Stonebridge
+* Omethi canyon
+* Archives
+* Hollows
+* Mains
+* Medica
+* Fishery / Artificery
+* Mews
+* Mess
+* Haven
+* Central Square / Courtyard
+Do not over-label speculative items.
+HARD BANS
+Absolutely do not include:
+* decorative fantasy architecture
+* extra towers for silhouette
+* giant ceremonial stairs
+* palace courtyards
+* cathedral forecourts
+* full campus walls or fortifications unless explicitly frozen elsewhere
+* ornamental cloisters
+* over-detailed service-town mapping
+* multiple invented Underthing access points
+* unsupported exact dimensions
+* over-resolved cardinal placement of every building
+* decorative water features unless explicitly required
+* people, processions, wagons, punishments, banners, or scene elements
+FINAL IMAGE CHARACTER
+The final drawing should feel like:
+* a serious reconstruction
+* institutional
+* practical
+* academically believable
+* town-scaled
+* restrained
+* useful as a base map for later plans
+It should not feel like:
+* a fantasy poster
+* a tourism map
+* a theme-park masterplan
+* a palace estate
+* a solved perfect campus where every uncertainty has disappeared
+FINAL QUALITY CHECK
+Before finalizing, verify all of the following:
+* Imre is east
+* Stonebridge is the eastern crossing
+* the University lies west of the bridge
+* the Archives are the eastern monolithic anchor
+* Hollows is near the Archives
+* Mains is central and irregular
+* Medica and Fishery are on the practical/service side rather than buried inside the ceremonial threshold cluster
+* Mews and Mess preserve the south-across-lawn relationship
+* Haven is isolated to the north by road and fence
+* the central square is large and useful
+* the campus reads as a town-sized academic settlement
+* uncertainty is preserved rather than silently erased
+* nothing decorative or overly invented has been added
+Generate one single campus site plan image only.

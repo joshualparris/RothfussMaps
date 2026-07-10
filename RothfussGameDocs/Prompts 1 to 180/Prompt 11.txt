@@ -1,0 +1,354 @@
+Prompt 11
+Yep — Prompt 11 should now do the  original plan’s Prompt 11 job : create richer  NPC character documents  for the first core cast, so the optional Gemini conversation layer has something better than a thin profile to work from. In your adapted architecture, that means a dedicated content module for  character documents
+ that the narration layer can read, while the engine still owns presence, truth, and state. This is also a good place to add  Fela  and  Elodin  as documented future-facing characters without making them active gameplay NPCs yet.
+
+KKC TEXT ADVENTURE — PROMPT 11 OF 180
+==========================================
+NPC Character Documents: Deeper Canon-Grounded Profiles for the Core Cast
+==========================================
+This prompt builds directly on Prompts 1, 2, 3, 4, 5, 6, 7, 8, 9, and 10.
+Do not restructure, rename, or refactor anything from those prompts.
+Only add to what exists.
+This prompt follows the original Phase 1 plan role for Prompt 11:
+create richer NPC character documents for the first core cast so that
+conversation narration has better canon-grounded character material.
+Do not add new gameplay systems in this prompt.
+═══════════════════════════════════════
+HARD BANS — UNCHANGED
+═══════════════════════════════════════
+No Anthropic. No OpenAI. No new AI provider.
+Gemini remains the only optional LLM provider in this codebase.
+No web server. No frontend.
+No new commands.
+No new locations.
+No new seeded NPC rows.
+No new economy, sympathy, or social systems.
+No new gameplay outcomes.
+Do not make these characters active Gemini conversation NPCs yet:
+  - Fela
+  - Elodin
+  - Kvothe as an NPC speaker
+They may receive character documents in this prompt, but they do not
+become active dialogue targets unless already supported elsewhere.
+═══════════════════════════════════════
+ARCHITECTURE RULE — STILL ABSOLUTE
+═══════════════════════════════════════
+engine/* owns:
+- command parsing
+- movement
+- access checks
+- time advancement
+- state mutation
+- persistence
+- sympathy truth
+- social truth
+- music/Eolian truth
+- NPC presence truth
+narration/* owns:
+- prose rendering only
+- prompt construction only
+- fallback rendering only
+- canon grounding only
+- lore-guard validation only
+- optional conversation prose only
+Character documents:
+- must live in content/*
+- must not call the DB
+- must not decide gameplay outcomes
+- must not override engine truth
+- exist only to ground Gemini conversation and future narration context
+═══════════════════════════════════════
+GOAL OF THIS PROMPT
+═══════════════════════════════════════
+By the end of Prompt 11, the codebase should have a richer character
+document registry that:
+  - expands beyond the lightweight npcProfiles.ts summaries
+  - captures temperament, speech style, known knowledge boundaries,
+    ignorance boundaries, and relationship stance to Kvothe
+  - supports the currently active safe MVP Gemini cast
+  - also includes future-facing documents for Fela and Elodin
+  - gives Gemini conversation enough structure to stay in-character
+    without inventing lore
+The player should not see any new commands from this prompt.
+This is a narration-grounding prompt, not a gameplay-expansion prompt.
+═══════════════════════════════════════
+SCOPE OF THIS PROMPT
+═══════════════════════════════════════
+This prompt covers:
+  1. Add npcCharacterDocs.ts
+  2. Add a richer NpcCharacterDoc type
+  3. Add documents for:
+       kvothe_player
+       simmon
+       fela
+       elodin
+       kilvin
+       ambrose
+       plus currently used safe-cast docs where helpful
+  4. Add a helper to fetch safe document summaries
+  5. Update npcConversationContext.ts to use character docs when available
+  6. Update Gemini conversation prompting to prefer character docs over
+     thin profile data
+  7. Add tests for document completeness and context integration
+This prompt does NOT cover:
+  - activating Fela or Elodin as present NPCs in the world
+  - adding Denna, Auri, Bast, Felurian, Kote, or Chronicler docs yet
+  - persistent memory
+  - relationship mechanics beyond current systems
+  - new commands or locations
+  - changing the engine’s presence logic
+═══════════════════════════════════════
+NEW FILES IN THIS PROMPT
+═══════════════════════════════════════
+Add exactly these files:
+  src/
+    content/
+      npcCharacterDocs.ts
+  tests/
+    npcCharacterDocs.test.ts
+Modify these existing files:
+  src/types/index.ts
+  src/narration/npcConversationContext.ts
+  src/narration/geminiNarrator.ts
+  src/content/npcProfiles.ts
+  tests/npcConversationNarrator.test.ts
+Do not add any other files.
+═══════════════════════════════════════
+TYPES — update src/types/index.ts
+═══════════════════════════════════════
+Do not remove or rename existing types.
+Add:
+export interface NpcCharacterDoc {
+  id: string;
+  name: string;
+  era: string;
+  role: string;                    // e.g. 'student', 'Master Artificer'
+  temperament: string;
+  speech_style: string;
+  what_they_know: string[];        // concise, safe, canon-grounded
+  what_they_do_not_know: string[]; // limits / ignorance / uncertainty
+  relationship_to_kvothe: string;  // concise current-era stance
+  conversational_habits: string[]; // e.g. deflects, notices distress, cuts short
+  tone_guardrails: string[];       // what the model must avoid when voicing them
+}
+Update NpcConversationContext to replace npc_profile_summary with:
+  npc_character_doc: {
+    temperament: string;
+    speech_style: string;
+    what_they_know: string[];
+    what_they_do_not_know: string[];
+    relationship_to_kvothe: string;
+    conversational_habits: string[];
+    tone_guardrails: string[];
+  };
+Rules:
+- keep the context compact
+- do not include all raw profile fields if they are redundant
+- do not add any other new types in this prompt
+═══════════════════════════════════════
+CHARACTER DOCS — src/content/npcCharacterDocs.ts
+═══════════════════════════════════════
+Implement and export:
+  NPC_CHARACTER_DOCS: Record<string, NpcCharacterDoc>
+  getNpcCharacterDoc(npcId: string): NpcCharacterDoc | null
+Rules:
+- Original prose only
+- Concise, practical, canon-grounded
+- Do not quote Rothfuss
+- Do not include unresolved mystery knowledge
+- Do not make anyone omniscient
+- Do not make speech_style or temperament overblown
+Required documents in this prompt:
+1. kvothe_player
+   - This is not for speaking as an NPC.
+   - It exists as a player-era grounding doc for future prompts.
+   - University-era Kvothe only.
+   - Emphasise:
+       brilliance
+       pride
+       poverty pressure
+       musical seriousness
+       emotional damage around his family
+       uneven judgment
+   - what_they_do_not_know must make clear that early-University Kvothe
+     does not know deep Chandrian/Amyr truths.
+2. simmon
+   - warm, perceptive, decent, not naive
+   - notices distress
+   - does not pry brutally
+   - knows student life, classes, gossip, music, social texture
+   - does not know deep mysteries
+   - relationship_to_kvothe should reflect warmth and concern
+3. fela
+   - competent, observant, socially aware, not decorative
+   - can be documented now without becoming an active NPC yet
+   - knows student life and social observation
+   - does not know deep mysteries
+   - relationship_to_kvothe should be respectful, lightly warm, not exaggerated
+4. elodin
+   - strange, perceptive, dangerous, not a comic eccentric
+   - can be documented now without becoming an active NPC yet
+   - knows more than most, but still must not become a mystery dump
+   - what_they_do_not_know should preserve deep uncertainty
+"   - tone_guardrails must explicitly prevent ""quirky wizard"" flattening"
+5. kilvin
+   - grave, exacting, practical, morally serious
+   - knows artificing discipline, safety, work judgment
+   - does not indulge foolishness
+   - does not explain everything
+   - relationship_to_kvothe is conditional respect, not warmth
+6. ambrose
+   - arrogant, cutting, entitled, socially dangerous
+   - knows rank games, exclusion, student pressure
+   - not omnipotent
+   - not a melodramatic supervillain
+   - relationship_to_kvothe is antagonistic and status-conscious
+7. wilem
+   - reserved, loyal, dry, trustworthy once earned
+   - knows student hardship, money reality, Archives/Fishery textures
+   - can be included because he is already active in the MVP
+8. anker
+   - practical, fair, transactional, observant in an innkeeper’s way
+   - knows rooms, meals, shifts, surface gossip
+   - not sentimental
+9. deoch
+   - socially smooth, observant, rooted in the Eolian’s public life
+   - knows music culture and social reading
+   - does not casually reveal private matters
+10. stanchion
+   - practical, fair-minded, busy, a real judge of performance
+   - knows rules, standards, venue expectations
+   - does not flatter
+Keep each document tight.
+Do not turn this into a wiki.
+═══════════════════════════════════════
+PROFILE ALIGNMENT — update src/content/npcProfiles.ts
+═══════════════════════════════════════
+Do not rewrite or expand npcProfiles dramatically.
+Only ensure the lightweight NPCProfile entries remain compatible with
+the richer NpcCharacterDoc entries.
+Rules:
+- If there is overlap, keep them semantically aligned
+- NPCProfile remains the lighter-weight active profile used by existing
+  local systems
+- NpcCharacterDoc is the richer narration grounding layer
+- Do not remove any current fields from NPCProfile
+═══════════════════════════════════════
+NPC CONVERSATION CONTEXT — update src/narration/npcConversationContext.ts
+═══════════════════════════════════════
+Update buildNpcConversationContext(...) so that:
+- it still checks Gemini eligibility exactly as before
+- it loads the NpcCharacterDoc for the target NPC if available
+- if a character doc exists, use it to populate:
+    npc_character_doc
+- if no character doc exists, return null for unsupported NPCs in this prompt
+Rules:
+- keep context compact
+- do not include raw trust numbers
+- do not include hidden state
+- do not include unresolved mystery content
+- visible_people stays as before
+- canon_registry_facts stays as before
+Do not change Gemini eligibility rules in this prompt unless required
+for currently supported safe NPCs.
+═══════════════════════════════════════
+GEMINI NARRATOR — update src/narration/geminiNarrator.ts
+═══════════════════════════════════════
+Do not refactor working Gemini conversation flow.
+Only strengthen the prompts.
+Update the NPC conversation prompt construction so that it uses the
+NpcCharacterDoc-derived data instead of the thinner npc_profile_summary.
+Conversation prompt rules must now include:
+- the NPC’s known knowledge boundaries
+- the NPC’s ignorance boundaries
+- the NPC’s relationship_to_kvothe
+- the NPC’s conversational habits
+- the NPC’s tone guardrails
+Add explicit instruction text to the NPC conversation system prompt:
+- Stay within this NPC's knowledge limits.
+- Do not let the NPC speak as if they know deep unrevealed truths.
+- Use relationship_to_kvothe to shape warmth, distance, or hostility.
+- Use conversational_habits to shape how they answer.
+- Respect tone_guardrails strictly.
+Do not change:
+- fallback behaviour
+- lore guard usage
+- model choice
+- startup selection logic
+═══════════════════════════════════════
+TESTS — tests/npcCharacterDocs.test.ts
+═══════════════════════════════════════
+Import:
+  NPC_CHARACTER_DOCS
+  getNpcCharacterDoc
+from src/content/npcCharacterDocs.ts
+Tests:
+  registry shape:
+    1. required ids exist:
+         kvothe_player
+         simmon
+         fela
+         elodin
+         kilvin
+         ambrose
+    2. every doc has:
+         temperament
+         speech_style
+         what_they_know
+         what_they_do_not_know
+         relationship_to_kvothe
+         conversational_habits
+         tone_guardrails
+  safety:
+    3. no what_they_know entry contains:
+"         ""Chandrian are"""
+"         ""Amyr are"""
+"         ""Denna's patron is"""
+"         ""Doors of Stone are"""
+"         ""true name"""
+    4. Elodin doc exists but does not make him omniscient
+    5. Ambrose doc does not describe him as omnipotent or all-powerful
+  helper:
+    6. getNpcCharacterDoc('simmon') returns non-null
+    7. getNpcCharacterDoc('unknown_id') returns null
+═══════════════════════════════════════
+TESTS — update tests/npcConversationNarrator.test.ts
+═══════════════════════════════════════
+Add these tests:
+  11. buildNpcConversationContext for simmon includes npc_character_doc
+  12. buildNpcConversationContext for kilvin includes relationship_to_kvothe
+  13. buildNpcConversationContext for unsupported npc without a character doc returns null
+  14. eligible active NPCs still build conversation context successfully
+═══════════════════════════════════════
+ARCHITECTURE REMINDERS
+═══════════════════════════════════════
+These rules from Prompt 1 still apply:
+  - narration/* never reads from or writes to the DB
+  - narration/* never mutates PlayerState
+  - engine/* owns all state changes
+  - repl.ts saves state exactly once per turn
+  - No `any` types
+  - No external API calls outside the optional Gemini provider
+  - No unused imports or files
+npcCharacterDocs.ts is a content-layer file.
+It must not call the DB.
+It must not decide gameplay outcomes.
+It exists only to ground NPC conversation and future narration.
+═══════════════════════════════════════
+SUCCESS CRITERIA
+═══════════════════════════════════════
+This prompt is complete when:
+  - the codebase has a richer NPC character document registry
+  - Simmon, Fela, Elodin, Kilvin, Ambrose, and kvothe_player all have docs
+  - safe active NPCs can use character docs in Gemini conversation context
+  - Fela and Elodin can be documented without becoming active NPCs yet
+  - Gemini NPC conversation uses richer character grounding than before
+  - local talkToNPC() behaviour remains unchanged
+  - no new gameplay systems are introduced
+  - no unresolved mystery knowledge is added to character docs
+  - all new tests pass alongside earlier prompts' tests
+  - no refactoring of working Prompts 1–10 code beyond what is required
+==========================================
+END OF PROMPT 11
+==========================================
+The clean next step after this is  Prompt 12: rumour system , which matches your original sequence.

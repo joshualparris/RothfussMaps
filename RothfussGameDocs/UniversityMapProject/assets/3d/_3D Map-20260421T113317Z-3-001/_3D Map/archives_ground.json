@@ -1,0 +1,60 @@
+{
+  "id": "archives_ground_v01",
+  "building": "Archives",
+  "floor": "Ground",
+  "story_role": "ground",
+  "north_up": true,
+  "units": "m",
+  "source_plan": {
+    "image": "archives_ground_floor_v03.png",
+    "prompt_ref": "Archives Ground Floor prompt pack v03",
+    "notes": "Threshold logic prioritized."
+  },
+  "certainty_summary": {"canon_pct": 62, "implied_pct": 18, "reconstructed_pct": 20},
+  "levels": {"floor_z": 0.0, "ceiling_height": 4.6, "slab_thickness": 0.35},
+  "defaults": {"wall_height": 4.6, "wall_thickness": 0.6, "door_height": 2.4, "door_width": 1.6},
+  "footprint": [{"x":0,"y":0},{"x":36,"y":0},{"x":36,"y":36},{"x":0,"y":36}],
+  "points": [
+    {"id":"p1","x":0,"y":0},{"id":"p2","x":36,"y":0},{"id":"p3","x":36,"y":36},{"id":"p4","x":0,"y":36},
+    {"id":"p5","x":10,"y":6},{"id":"p6","x":26,"y":6},{"id":"p7","x":26,"y":14},{"id":"p8","x":10,"y":14},
+    {"id":"p9","x":3,"y":14},{"id":"p10","x":33,"y":14},{"id":"p11","x":33,"y":33},{"id":"p12","x":3,"y":33}
+  ],
+  "walls": [
+    {"id":"w1","a":"p1","b":"p2","thickness":0.8,"certainty":"canon","tags":["exterior","south"]},
+    {"id":"w2","a":"p2","b":"p3","thickness":0.8,"certainty":"canon","tags":["exterior","east"]},
+    {"id":"w3","a":"p3","b":"p4","thickness":0.8,"certainty":"canon","tags":["exterior","north"]},
+    {"id":"w4","a":"p4","b":"p1","thickness":0.8,"certainty":"canon","tags":["exterior","west"]},
+    {"id":"w5","a":"p5","b":"p6","thickness":0.5,"certainty":"canon","tags":["antechamber","south"]},
+    {"id":"w6","a":"p6","b":"p7","thickness":0.5,"certainty":"canon","tags":["antechamber","east"]},
+    {"id":"w7","a":"p7","b":"p8","thickness":0.5,"certainty":"canon","tags":["antechamber","north"]},
+    {"id":"w8","a":"p8","b":"p5","thickness":0.5,"certainty":"canon","tags":["antechamber","west"]}
+  ],
+  "doors": [
+    {"id":"d1","wall_id":"w3","offset":16.5,"width":3.0,"swing_deg":180,"kind":"double","certainty":"canon","name":"Public stone doors"},
+    {"id":"d2","wall_id":"w7","offset":1.5,"width":2.0,"swing_deg":180,"kind":"double","certainty":"canon","name":"TOMES"},
+    {"id":"d3","wall_id":"w7","offset":12.5,"width":2.0,"swing_deg":180,"kind":"double","certainty":"canon","name":"STACKS"},
+    {"id":"d4","wall_id":"w7","offset":7.1,"width":1.1,"swing_deg":90,"kind":"service","certainty":"canon","name":"SCRIVS ONLY"}
+  ],
+  "stairs": [
+    {"id":"s1","name":"Restricted stair down","x":28.5,"y":18.0,"width":2.2,"run_length":5.8,"direction":"S","stair_type":"straight","connects_to":"archives_sublevel_v01","certainty":"implied"},
+    {"id":"s2","name":"Restricted stair up","x":30.8,"y":24.5,"width":2.2,"run_length":5.0,"direction":"N","stair_type":"straight","connects_to":"archives_level2_v01","certainty":"reconstructed"}
+  ],
+  "windows": [],
+  "rooms": [
+    {"id":"r1","name":"Antechamber","polygon":[{"x":10,"y":6},{"x":26,"y":6},{"x":26,"y":14},{"x":10,"y":14}],"certainty":"canon","tags":["threshold","gatekeeping"],"notes":"Small threshold chamber with desk and ledger logic."},
+    {"id":"r2","name":"Tomes","polygon":[{"x":3,"y":14},{"x":33,"y":14},{"x":33,"y":33},{"x":3,"y":33}],"certainty":"canon","tags":["public","reading","well_lit"],"notes":"High-ceilinged public reading room with long tables and public shelves."},
+    {"id":"r3","name":"Restricted threshold","polygon":[{"x":26,"y":14},{"x":33,"y":14},{"x":33,"y":28},{"x":26,"y":28}],"certainty":"reconstructed","tags":["restricted","stacks_access"],"notes":"First controlled circulation into the Stacks."}
+  ],
+  "labels": [
+    {"text":"Public stone doors","x":18,"y":35.2,"certainty":"canon"},
+    {"text":"Antechamber","x":18,"y":10,"certainty":"canon"},
+    {"text":"TOMES","x":11.8,"y":14.8,"certainty":"canon"},
+    {"text":"STACKS","x":23.6,"y":14.8,"certainty":"canon"},
+    {"text":"SCRIVS ONLY","x":18.5,"y":14.8,"certainty":"canon"},
+    {"text":"Tomes","x":18,"y":23.5,"certainty":"canon"}
+  ],
+  "hotspots": [
+    {"id":"h1","room_id":"r1","title":"Threshold gatekeeping logic","certainty":"canon","book_refs":["NOTW Ch 36"]},
+    {"id":"h2","room_id":"r2","title":"Public reading zone","certainty":"canon","book_refs":["NOTW Ch 38"]}
+  ]
+}
